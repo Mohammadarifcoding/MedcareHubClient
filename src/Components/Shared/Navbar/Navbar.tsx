@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link} from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 
 
 
@@ -24,9 +24,7 @@ const Navbar = () => {
                           <Link to='/' className="hover:text-[#0360D9]">Home</Link>
                           <Link className="hover:text-[#0360D9]">About Us</Link>
                           <Link className="hover:text-[#0360D9]">Application</Link>
-                          <Link className="hover:text-[#0360D9]">History</Link>
-
-
+                          <Link to={'/contact'} className="hover:text-[#0360D9]">Contact</Link>
                           <Link to='/login' className="hover:text-[#0360D9]">Log in</Link>
                           <Link to='/register' className="hover:text-[#0360D9]">Sign up</Link>
 
@@ -44,15 +42,27 @@ const Navbar = () => {
 
 
                   <ul className="items-stretch hidden space-x-3 lg:flex">
+                  <Link to={'/'}>
                       <li className="flex">
-                          <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline">Home</a>
+                          <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Home</a>
                       </li>
+                      </Link>
+                      <Link to={'/'}>
                       <li className="flex">
-                          <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline">About Us</a>
+                          <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">About Us</a>
                       </li>
+                      </Link>
+                      <Link to={'/'}>
                       <li className="flex">
                           <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Doctor's</a>
                       </li>
+                      </Link>
+                      <Link to={'/contact'}>
+                      <li className="flex">
+                          <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Contact</a>
+                      </li>
+                      </Link>
+                      
 
 
 

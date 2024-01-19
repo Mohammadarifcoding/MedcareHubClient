@@ -1,8 +1,9 @@
 {
-  "name": "furnishop-typescript-client",
+  "name": "medcarehub",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -16,6 +17,7 @@
     "react-scripts": "5.0.1",
     "react-tabs": "^6.0.2",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.10.3",
     "swiper": "^11.0.5",
     "web-vitals": "^2.1.4"
   },

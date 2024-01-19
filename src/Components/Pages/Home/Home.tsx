@@ -19,8 +19,6 @@ function Home() {
            <ShortAboutUs></ShortAboutUs>
            <HomePoster></HomePoster>
            <Reviews></Reviews>
-           <Collection></Collection>
-           <LatestTrend></LatestTrend>
             </div>
            
         

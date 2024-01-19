@@ -11,6 +11,7 @@ import {
 import Home from './Components/Pages/Home/Home.tsx';
 import Layout from './Components/Layout/Layout.tsx';
 import { render } from '@testing-library/react';
+import Contact from './Components/Pages/Contact/Contact.tsx';
 
 
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home></Home>
+      },
+      {
+        path:'/contact',
+        element:<Contact></Contact>
       }
     ]
   },

@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '../../../Shared/Container/Container.tsx';
 
 const SpecialistCard = () => {
     const Specialist =[
@@ -24,8 +25,9 @@ const SpecialistCard = () => {
         },
     ]
     return (
-        <div>
-            <h1 className="lg:text-5xl text-3xl font-bold lg:my-20 my-10 px-5">
+        <Container>
+        <div className='max-w-[1550px]'>
+            <h1 className="lg:text-5xl text-center text-3xl font-bold lg:my-20 my-10 px-5">
                 Our Consulting Specialists
             </h1>
             <div className="lg:flex lg:space-y-0 space-y-5 mx-5 justify-center gap-10">
@@ -48,7 +50,9 @@ const SpecialistCard = () => {
 
 
             </div>
-        </div>
+        </div>    
+        </Container>
+        
 
     );
 };
