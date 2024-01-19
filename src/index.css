@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'Inter', sans-serif;
+    scrollbar-width: 15px;
+}
+
+
+.tabData::-webkit-scrollbar,.CollectionProduct::-webkit-scrollbar {
+   color: #EEF2FB;
+  height: 10px;
+}
+
+.tabData::-webkit-scrollbar-track,.CollectionProduct::-webkit-scrollbar-track  {
+  background: #EEF2FB;
+}
+
+.tabData::-webkit-scrollbar-thumb,.CollectionProduct::-webkit-scrollbar-thumb {
+  background: #EEF2FB;
+  border-radius: 100px;
+}
+
+.menuItemData a.active{
+    border-bottom: 2px solid #3AA39F;
+    color: #3AA39F;
+}
+
+.react-tabs__tab--selected{
+    border-radius: 535px !important;
+    background-color: #000 !important; 
+    color: white !important;
+    
+}
+
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
