@@ -1,19 +1,21 @@
 
 import React from 'react';
-import { Link, NavLink} from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import UseAuth from '../../../Hook/UseAuth.tsx';
 
 
 
 
 const Navbar = () => {
 
+    const {user} = UseAuth()
  
 
   return (
       <div>
 
           <header className="px-2 py-7 bg-[#E1EEFF] ">
-              <div className="container flex lg:justify-between h-16 mx-auto">
+              <div className="container flex lg:justify-between items-center h-16 mx-auto">
 
                   <div className="dropdown lg:hidden">
                       <div tabIndex={0} role="button" className=" p-2 btn btn-ghost rounded-xl ">
@@ -68,7 +70,7 @@ const Navbar = () => {
 
                   </ul>
                   <div className="items-center gap-5 flex-shrink-0 lg:flex">
-                      {undefined ?
+                      {user ?
                           <>
 
                               <div className="dropdown dropdown-end">

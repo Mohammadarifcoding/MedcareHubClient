@@ -20,3 +20,16 @@ export type latestProduct = {
     Shop_Name: string;
     Product_Date:string
 }
+
+export type doctor = {
+    ID: string;
+    DocName: string;
+    image: string;
+    DocType: string;
+    service: string;
+    age: number;
+    startAvail: number;
+    endAvail: number;
+    degree: string[];
+    gender: string;
+}
