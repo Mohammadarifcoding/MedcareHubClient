@@ -11,7 +11,7 @@ const HomePoster = () => {
                         <button className="btn bg-[#0360D9] text-white">Buy Medicine</button>
                     </div>
                 </div>
-            </div>
+        </div>
     );
 };
 
