@@ -16,6 +16,7 @@ import AuthProvider from './Providers/AuthProvider/AuthProvider.tsx';
 import Login from './Components/Pages/Login/Login.tsx';
 import Register from './Components/Pages/Register/Register.tsx';
 import Doctors from './Components/Pages/Doctors/Doctors.tsx';
+import Medicines from './Components/Pages/Medicines/Medicines.tsx';
 
 
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path:'/doctors',
         element:<Doctors></Doctors>
+      },
+      {
+        path:'/medicines',
+        element:<Medicines></Medicines>
       }
     ]
   },
