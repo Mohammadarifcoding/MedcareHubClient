@@ -1,5 +1,11 @@
 import React from 'react';
-
+import bestPrice from "../../../../assets/Images/best-price.png";
+import Authentic from "../../../../assets/Images/brands.png";
+import cashon from "../../../../assets/Images/cash-delivery.png";
+import freeDelivary from "../../../../assets/Images/free-delivery.png";
+import hotDeals from "../../../../assets/Images/hot-deals.png";
+import installment from "../../../../assets/Images/installments.png";
+import verified from "../../../../assets/Images/verified.png";
 const SideContent = () => {
     return (
         <div className=" space-y-10">
