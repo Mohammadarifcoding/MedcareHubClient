@@ -1,6 +1,6 @@
 import { doctor } from '../Model/Model';
 
-const Docotrs: doctor[] = [
+const DocotrsData: doctor[] = [
     {
         ID: 'D001',
         DocName: 'Dr.Smith',
@@ -11,6 +11,7 @@ const Docotrs: doctor[] = [
         startAvail: 7,
         endAvail: 15,
         degree: ['MD in Cardiology', 'MBBS'],
+        visit:400,
         gender: 'male'
     },
     {
@@ -23,6 +24,7 @@ const Docotrs: doctor[] = [
         startAvail: 12,
         endAvail: 19,
         degree: ['Pediatrician', 'MBBS'],
+        visit:300,
         gender: 'female'
     },
     {
@@ -35,6 +37,7 @@ const Docotrs: doctor[] = [
         startAvail: 9,
         endAvail: 15,
         degree: ['Dermatology', 'MBBS'],
+        visit:400,
         gender: 'male'
     },
     {
@@ -47,6 +50,7 @@ const Docotrs: doctor[] = [
         startAvail: 11,
         endAvail: 19,
         degree: ['Orthopedic Surgery', 'MBBS'],
+        visit:100,
         gender: 'male'
     },
     {
@@ -59,6 +63,7 @@ const Docotrs: doctor[] = [
         startAvail: 8,
         endAvail: 14,
         degree: ['Ophthalmology', 'MBBS'],
+        visit:200,
         gender: 'male'
     },
     {
@@ -71,6 +76,7 @@ const Docotrs: doctor[] = [
         startAvail: 10,
         endAvail: 21,
         degree: ['Gynecology', 'MBBS'],
+        visit:400,
         gender: 'female'
     },
     {
@@ -83,6 +89,7 @@ const Docotrs: doctor[] = [
         startAvail: 9,
         endAvail: 19,
         degree: ['Neurology', 'MBBS'],
+        visit:400,
         gender: 'female'
     },
     {
@@ -95,6 +102,7 @@ const Docotrs: doctor[] = [
         startAvail: 4,
         endAvail: 18,
         degree: ['Dentistry', 'MBBS'],
+        visit:400,
         gender: 'male'
     },
     {
@@ -107,6 +115,7 @@ const Docotrs: doctor[] = [
         startAvail: 11,
         endAvail: 17,
         degree: ['Psychiatry', 'MBBS'],
+        visit:400,
         gender: 'female'
     },
     {
@@ -119,6 +128,7 @@ const Docotrs: doctor[] = [
         startAvail: 10,
         endAvail: 19,
         degree: ['Allergy and Immunology', 'MBBS'],
+        visit:160,
         gender: 'female'
     },
     {
@@ -131,6 +141,7 @@ const Docotrs: doctor[] = [
         startAvail: 5,
         endAvail: 14,
         degree: ['Urology', 'MBBS'],
+        visit:400,
         gender: 'male'
     },
     {
@@ -143,6 +154,7 @@ const Docotrs: doctor[] = [
         startAvail: 9,
         endAvail: 18,
         degree: ['Rheumatology', 'MBBS'],
+        visit:200,
         gender: 'male'
     },
     {
@@ -155,6 +167,7 @@ const Docotrs: doctor[] = [
         startAvail: 3,
         endAvail: 17,
         degree: ['Otolaryngology', 'MBBS'],
+        visit:200,
         gender: 'male'
     },
     {
@@ -167,6 +180,7 @@ const Docotrs: doctor[] = [
         startAvail: 19,
         endAvail: 23,
         degree: ['Endocrinology', 'MBBS', 'PhD'],
+        visit:540,
         gender: 'male'
     },
     {
@@ -179,7 +193,8 @@ const Docotrs: doctor[] = [
         startAvail: 18,
         endAvail: 22,
         degree: ['Pulmonology', 'MBBS'],
+        visit:200,
         gender: 'female'
     }
 ];
-export default Docotrs
+export default DocotrsData
