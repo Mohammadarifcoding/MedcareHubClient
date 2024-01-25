@@ -34,3 +34,15 @@ export type doctor = {
     gender: string;
     visit:number
 }
+
+export  type Medicine = {
+    ID: number;
+    Medname: string;
+    Image: string;
+    Price: number;
+    Category: string;
+    Company: string;
+    Description: string;
+  }
+  
+  

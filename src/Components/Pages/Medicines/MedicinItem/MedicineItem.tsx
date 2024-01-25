@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import Cart from "../../../../assets/Icons/Cart.tsx";
 import LoveFill from "../../../../assets/Icons/LoveFill.tsx";
 import LoveLine from "../../../../assets/Icons/LoveLine.tsx";
+import MedicineData from '../../../../Data/Medicine.ts';
 
 const MedicineItem = ({ filter }) => {
-    const [medicine, setMedicine] = useState([]);
+    const [medicine, setMedicine] = useState([...MedicineData]);
     const [filteredMedicine, setFilteredMedicine] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [priceRange, setPriceRange] = useState(90);
@@ -15,15 +16,10 @@ const MedicineItem = ({ filter }) => {
     };
   
     useEffect(() => {
-      fetch("./medicine.json")
-        .then((res) => res.json())
-        .then((data) => {
-          const rangeMedicine = data.filter((item) => item.Price <= priceRange);
+      
+          const rangeMedicine = MedicineData.filter((item) => item.Price <= priceRange);
           setMedicine(rangeMedicine);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
+        
     }, [priceRange]);
   
     const handleToggleFavorite = (id) => {
@@ -34,14 +30,14 @@ const MedicineItem = ({ filter }) => {
       }
     };
   
-    useEffect(() => {
-      fetch("./medicine.json")
-        .then((res) => res.json())
-        .then((data) => setMedicine(data))
-        .catch((error) => {
-          console.log(error.message);
-        });
-    }, []);
+    // useEffect(() => {
+    //   fetch("./medicine.json")
+    //     .then((res) => res.json())
+    //     .then((data) => setMedicine(data))
+    //     .catch((error) => {
+    //       console.log(error.message);
+    //     });
+    // }, []);
   
     useEffect(() => {
       const debounceFilter = setTimeout(() => {
