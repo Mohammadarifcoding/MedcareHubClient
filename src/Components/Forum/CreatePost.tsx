@@ -1,12 +1,14 @@
 import React from 'react';
 import { IoMdPhotos } from "react-icons/io";
+import UseAuth from '../../Hook/UseAuth.tsx';
 
 const CreatePost = () => {
+    const {user} = UseAuth()
     return (
         <div className="px-11 py-5 mx-auto bg-slate-200">
             <div className="flex gap-5">
                 <div>
-                    <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src="https://source.unsplash.com/300x300/?profile" alt="" />
+                    <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src={user.photoURL} alt="" />
                 </div>
                 <div className="w-full">
 
