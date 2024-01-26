@@ -20,17 +20,7 @@ const Medicines = () => {
   };
     return (
         <Container>
-            <div
-        className="h-52 lg:h-64 w-full flex items-center justify-center border rounded"
-        style={{
-          backgroundImage: 'url("https://i.ibb.co/8YYpwS9/medicine.png")',
-          backgroundSize: "cover",
-          opacity: 0.7,
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <h1 className="text-4xl font-bold text-[#0360D9]">Buy Medicine</h1>
-      </div>
+           
 
       <div className="grid grid-cols-12 my-10">
         <div className="col-span-12 block md:hidden">

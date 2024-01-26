@@ -80,7 +80,10 @@ const Navbar = () => {
                                                 Profile
                                             </p>
                                         </li>
+                                        <Link to={'/dashboard'}>
                                         <li><p>DashBoard</p></li>
+                                        </Link>
+                                        
                                         <li > <p>Log Out</p></li>
                                     </ul>
                                 </div>
