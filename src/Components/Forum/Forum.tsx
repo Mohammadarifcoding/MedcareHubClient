@@ -1,9 +1,11 @@
 import React from 'react';
+import FNavBar from './FNavBar.tsx';
 
 const Forum = () => {
     return (
-        <div>
-            <h1>Hello!</h1>
+        <div className='container mx-auto'>
+
+            <FNavBar></FNavBar>
         </div>
     );
 };
