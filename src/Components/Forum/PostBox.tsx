@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SinglePost from './SinglePost';
 interface PostData {
     id: number;
     name: string;
