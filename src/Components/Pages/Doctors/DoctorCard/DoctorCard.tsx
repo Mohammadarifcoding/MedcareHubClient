@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import DocotrsData from './../../../../Data/Doctor.ts';
 
-const DoctorCard = ({ filter }) => {
+const DoctorCard = ({ filter,setFilter }) => {
     const [doctors, setDoctors] = useState([...DocotrsData]);
     const [filteredDoctors, setFilteredDoctors] = useState([]);
     // const linkVariants = {
@@ -13,14 +13,27 @@ const DoctorCard = ({ filter }) => {
     //     }
     // };
     useEffect(() => {
-        const debounceFilter = setTimeout(() => {
-            let tempFilteredDoctors = [...doctors];
-            if (filter.keyword) {
-                tempFilteredDoctors = tempFilteredDoctors?.filter((item) => item.DocName.toLowerCase().includes(filter.keyword.toLowerCase()));
-            }
-            setFilteredDoctors(tempFilteredDoctors);
-        }, 600);
-        return () => clearTimeout(debounceFilter);
+      const debounceFilter = setTimeout(() => {
+        let tempFilteredDoctors = [...doctors];
+        if (filter.keyword) {
+          tempFilteredDoctors = tempFilteredDoctors?.filter((item) =>
+            item.DocName.toLowerCase().includes(filter.keyword.toLowerCase())
+          );
+        }
+        if (filter.docTypes.length > 0) {
+          tempFilteredDoctors = tempFilteredDoctors?.filter((item) =>
+            filter.docTypes.includes(item.DocType)
+          );
+        }
+      if (filter.genders.length > 0) {
+        tempFilteredDoctors = tempFilteredDoctors?.filter((item) =>
+          filter.genders.includes(item.gender.toLowerCase())
+        );
+      }
+
+        setFilteredDoctors(tempFilteredDoctors);
+      }, 600);
+      return () => clearTimeout(debounceFilter);
     }, [filter, doctors]);
 
     return (
