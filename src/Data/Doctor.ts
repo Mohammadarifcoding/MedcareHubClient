@@ -3,7 +3,7 @@ import { doctor } from '../Model/Model';
 const DocotrsData: doctor[] = [
     {
         ID: 'D001',
-        DocName: 'Dr.Smith',
+        DocName: 'Dr. Smith',
         image: 'https://i.ibb.co/Wx8KF8y/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441.jpg',
         DocType: 'Cardiologist',
         service: 'Heart Checkup',
