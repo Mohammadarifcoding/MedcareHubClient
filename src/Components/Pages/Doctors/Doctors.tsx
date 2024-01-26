@@ -1,28 +1,25 @@
-import React from "react";
+import React from 'react';
 
 // import component 👇
-import Drawer from 'react-modern-drawer'
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import Drawer from 'react-modern-drawer';
 //import styles 👇
-import 'react-modern-drawer/dist/index.css'
-import DoctorCard from "./DoctorCard/DoctorCard.tsx";
-import Container from "../../Shared/Container/Container.tsx";
-
+import 'react-modern-drawer/dist/index.css';
+import DoctorCard from './DoctorCard/DoctorCard.tsx';
 
 const Doctors = () => {
     const linkVariants = {
         hover: {
             scale: 1.1,
-            transition: { duration: 0.2 },
-        },
+            transition: { duration: 0.2 }
+        }
     };
 
-    const [isOpen, setIsOpen] = React.useState(false)
+    const [isOpen, setIsOpen] = React.useState(false);
     const toggleDrawer = () => {
-        setIsOpen((prevState) => !prevState)
-    }
+        setIsOpen((prevState) => !prevState);
+    };
     return (
-     
         <div className="flex container mx-auto gap-10 justify-between">
             <div className="mt-10 xl:w-[20%] w-0 xl:block hidden">
                 <h1 className="text-2xl font-semibold">Filters</h1>
@@ -61,7 +58,9 @@ const Doctors = () => {
                     <input placeholder="min" className="border focus:outline-none px-2 rounded-lg w-[70px]" type="text" name="" id="" />
                     <p className="mx-3">-</p>
                     <input placeholder="max" className="border focus:outline-none px-2 rounded-lg w-[70px]" type="text" name="" id="" />
-                    <motion.button whileHover="hover"  variants={linkVariants} className="bg-[#0360D9] ml-3 p-2 rounded-lg text-white">Apply</motion.button>
+                    <motion.button whileHover="hover" variants={linkVariants} className="bg-[#0360D9] ml-3 p-2 rounded-lg text-white">
+                        Apply
+                    </motion.button>
                 </div>
                 <div>
                     <h1 className="text-xl font-medium">Gender</h1>
@@ -78,10 +77,7 @@ const Doctors = () => {
                         <input type="checkbox" name="" id="" />
                         <p>All</p>
                     </div>
-
                 </div>
-
-
             </div>
             <div className="xl:w-[80%] w-full">
                 <div className="mt-10 mx-5 flex items-center">
@@ -99,20 +95,16 @@ const Doctors = () => {
                         </div>
                     </fieldset>
 
-                    <button onClick={toggleDrawer} className="btn-sm lg:hidden bg-[#0360D9]  rounded-lg text-white">Filter</button>
-                    <Drawer
-                        open={isOpen}
-                        onClose={toggleDrawer}
-                        direction='left'
-                        className='bla bla bla'
-                    >
+                    <button onClick={toggleDrawer} className="btn-sm lg:hidden bg-[#0360D9]  rounded-lg text-white">
+                        Filter
+                    </button>
+                    <Drawer open={isOpen} onClose={toggleDrawer} direction="left" className="bla bla bla">
                         <div className="mt-5 ml-5 lg:hidden">
                             <h1 className="text-2xl font-semibold">Filters</h1>
                             <hr className="my-4" />
                             <h1 className="text-xl font-medium ">Category</h1>
                             <hr className="my-4" />
                             <div className="mb-3">
-
                                 <div className="flex gap-2">
                                     <input type="checkbox" name="" id="" />
                                     <p>Health Suggestion</p>
@@ -144,7 +136,6 @@ const Doctors = () => {
                                 <input placeholder="mini" className="border rounded-lg w-[70px]" type="text" name="" id="" />
                                 <p className="mx-3">-</p>
                                 <input placeholder="maxi" className="border rounded-lg w-[70px]" type="text" name="" id="" />
-
                             </div>
                             <button className="bg-[#0360D9]  p-2 btn-sm rounded-lg text-white">Apply</button>
 
@@ -159,12 +150,9 @@ const Doctors = () => {
                                     <input type="checkbox" name="" id="" />
                                     <p>Female</p>
                                 </div>
-
                             </div>
                         </div>
                     </Drawer>
-
-
                 </div>
                 <div className="text-center my-10">
                     <h1 className="lg:text-4xl text-2xl font-bold ">Our Expert Doctors</h1>
@@ -175,7 +163,6 @@ const Doctors = () => {
                 </div>
             </div>
         </div>
-    
     );
 };
 
