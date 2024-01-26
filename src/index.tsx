@@ -20,6 +20,7 @@ import Medicines from './Components/Pages/Medicines/Medicines.tsx';
 import DashboardLayout from './Components/Dashboard/Layout/DashboardLayout.tsx';
 import Profile from './Components/Dashboard/Pages/Profile/Profile.tsx';
 import Forum from './Components/Forum/Forum.tsx';
+import About from './Components/Pages/About/About.tsx';
 
 
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/medicines',
         element: <Medicines></Medicines>
+      },
+      {
+        path:'/about',
+        element:<About></About>
       }
     ]
   },
