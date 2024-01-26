@@ -1,9 +1,17 @@
 import React from 'react';
+import FNavBar from './FNavBar.tsx';
+import CreatePost from './CreatePost.tsx';
+import PostMenu from './PostMenu.tsx';
+import PostBox from './PostBox.tsx';
 
 const Forum = () => {
     return (
-        <div>
-            <h1>Hello!</h1>
+        <div className='container mx-auto'>
+
+            <FNavBar></FNavBar>
+            <CreatePost></CreatePost>
+            <PostMenu></PostMenu>
+            <PostBox></PostBox>
         </div>
     );
 };
