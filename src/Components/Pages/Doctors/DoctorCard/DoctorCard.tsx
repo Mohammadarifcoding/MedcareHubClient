@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import DocotrsData from './../../../../Data/Doctor.ts';
 
@@ -40,6 +41,8 @@ const DoctorCard = ({ filter,setFilter }) => {
         <div className="grid w-full xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 lg:gap-6 my-10">
             {filteredDoctors?.map((data) => (
                 <div key={data.ID} className=" w-full max-w-[350px] shadow-lg border border-gray-200 rounded-lg overflow-hidden">
+                  
+                    <Link to={`/doctors/${data.ID}`}>
                     <div className="flex-col space-y-1.5 flex items-center gap-4 p-6 bg-[#E1EEFF] ">
                         <span className="relative flex shrink-0 overflow-hidden rounded-full w-14 h-14">
                             <img src={data.image} alt="" />
@@ -48,7 +51,7 @@ const DoctorCard = ({ filter,setFilter }) => {
                             <h3 className=" text-lg font-semibold text-[#0360D9]">{data.DocName}</h3>
                             <p className="text-sm text-[#1F2937] ">{data.DocType}</p>
                         </div>
-                    </div>
+                    LN</div>
                     <div className="grid gap-2 p-6">
                         <div className="flex items-center gap-2">
                             <svg
@@ -88,6 +91,7 @@ const DoctorCard = ({ filter,setFilter }) => {
                         </div>
                         <div className="flex items-center gap-2" />
                     </div>
+                    </Link>
                 </div>
                 // <div key={data.ID}>
                 //     <div className="max-w-[350px] mx-auto bg-white border  border-gray-200 rounded-lg shadow">
