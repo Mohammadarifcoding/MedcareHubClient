@@ -19,6 +19,7 @@ import Doctors from './Components/Pages/Doctors/Doctors.tsx';
 import Medicines from './Components/Pages/Medicines/Medicines.tsx';
 import DashboardLayout from './Components/Dashboard/Layout/DashboardLayout.tsx';
 import Profile from './Components/Dashboard/Pages/Profile/Profile.tsx';
+import Forum from './Components/Forum/Forum.tsx';
 
 
 
@@ -29,42 +30,46 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
-    children:[
+    children: [
       {
-        path:'/',
-        element:<Home></Home>
+        path: '/',
+        element: <Home></Home>
       },
       {
-        path:'/contact',
-        element:<Contact></Contact>
+        path: '/contact',
+        element: <Contact></Contact>
       },
       {
-        path:'/login',
-        element:<Login></Login>
+        path: '/login',
+        element: <Login></Login>
       },
       {
-        path:'/register',
-        element:<Register></Register>
+        path: '/register',
+        element: <Register></Register>
       },
       {
-        path:'/doctors',
-        element:<Doctors></Doctors>
+        path: '/doctors',
+        element: <Doctors></Doctors>
       },
       {
-        path:'/medicines',
-        element:<Medicines></Medicines>
+        path: '/medicines',
+        element: <Medicines></Medicines>
       }
     ]
   },
   {
-    path:'/dashboard',
-    element:<DashboardLayout></DashboardLayout>,
-    children:[
+    path: '/dashboard',
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
       {
-        path:'profile',
-        element:<Profile></Profile>
+        path: 'profile',
+        element: <Profile></Profile>
       }
     ]
+  },
+  {
+    path: '/forum',
+    element: <Forum></Forum>
   }
 ]);
 
@@ -75,15 +80,15 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <AuthProvider>
-      <div className='bg-[#EEF2FB]'>
-      <RouterProvider router={router} />
-      </div>
+        <div className='bg-[#EEF2FB]'>
+          <RouterProvider router={router} />
+        </div>
       </AuthProvider>
     </React.StrictMode>)
-  
+
 } else {
   // handle the case when the element with id 'root' is not found
-  render(<div>Root elemeent Not found</div>,document.body)
+  render(<div>Root elemeent Not found</div>, document.body)
 }
 
 
