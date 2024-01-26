@@ -19,6 +19,7 @@ import Doctors from './Components/Pages/Doctors/Doctors.tsx';
 import Medicines from './Components/Pages/Medicines/Medicines.tsx';
 import DashboardLayout from './Components/Dashboard/Layout/DashboardLayout.tsx';
 import Profile from './Components/Dashboard/Pages/Profile/Profile.tsx';
+import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.tsx';
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/doctors',
         element: <Doctors></Doctors>
+      },
+      {
+        path:'/doctors/:id',
+        element:<DoctorDetails></DoctorDetails>
       },
       {
         path: '/medicines',
