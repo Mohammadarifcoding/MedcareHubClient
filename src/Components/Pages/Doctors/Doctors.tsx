@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // import component 👇
 import { motion } from 'framer-motion';
@@ -8,6 +8,11 @@ import 'react-modern-drawer/dist/index.css';
 import DoctorCard from './DoctorCard/DoctorCard.tsx';
 
 const Doctors = () => {
+    const [filter, setFilter] = useState({
+        keyword: '',
+        sortBy: ''
+    });
+
     const linkVariants = {
         hover: {
             scale: 1.1,
@@ -91,7 +96,20 @@ const Doctors = () => {
                                     </svg>
                                 </button>
                             </span>
-                            <input type="search" name="Search" placeholder="Search doctor..." className="w-48 py-2 pl-10 text-sm rounded-md lg:w-[400px] border" />
+                            <input
+                                type="search"
+                                name="Search"
+                                placeholder="Search doctor..."
+                                value={filter.keyword}
+                                required
+                                onChange={(e) =>
+                                    setFilter((previousValue) => ({
+                                        ...previousValue,
+                                        keyword: e.target.value
+                                    }))
+                                }
+                                className="w-48 py-2 pl-10 text-sm rounded-md lg:w-[400px] border"
+                            />
                         </div>
                     </fieldset>
 
@@ -159,7 +177,7 @@ const Doctors = () => {
                     <p className="text-lg">Meet our doctor—a beacon of knowledge, a guardian of health, and a partner in your wellness journey.</p>
                 </div>
                 <div className="mx-5 xl:w-[100%] w-full">
-                    <DoctorCard></DoctorCard>
+                    <DoctorCard filter={filter} ></DoctorCard>
                 </div>
             </div>
         </div>
