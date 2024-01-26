@@ -8,7 +8,7 @@ const CreatePost = () => {
         <div className="px-11 py-5 mx-auto bg-slate-200">
             <div className="flex gap-5">
                 <div>
-                    <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src={user.photoURL} alt="" />
+                    <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src={user?.photoURL} alt="" />
                 </div>
                 <div className="w-full">
 

@@ -12,7 +12,7 @@ const FNavBar = () => {
 
             <div className="navbar-end">
                 <div className="relative group">
-                    <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-full" src={user.photoURL} alt="" />
+                    <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-full" src={user?.photoURL} alt="" />
                     <span className="h-4 w-4 bg-green-500 absolute rounded-full bottom-2 right-0 border-[3px] border-white"></span>
                     <span className="h-4 w-4 bg-green-500 absolute rounded-full bottom-2 right-0 animate-ping"></span>
                 </div>
