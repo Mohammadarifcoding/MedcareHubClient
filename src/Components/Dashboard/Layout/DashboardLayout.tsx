@@ -5,7 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 
-const DashboardLayout = () => {
+const DashboardLayout = () => { 
     const [openLayout, setOpenLayout] = useState(true)
     return (
 
