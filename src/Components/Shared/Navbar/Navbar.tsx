@@ -11,8 +11,13 @@ import Container from '../Container/Container.tsx';
 
 const Navbar = () => {
 
-    const { user } = UseAuth()
+    const { user, logoutUser } = UseAuth()
 
+    const handleLogOut = () => {
+        logoutUser()
+            .then(() => console.log("You logged out successfully"))
+            .catch(error => console.error(error))
+    }
 
     return (
         <div>
@@ -89,7 +94,7 @@ const Navbar = () => {
                                                 <li><p>DashBoard</p></li>
                                             </Link>
 
-                                            <li > <p>Log Out</p></li>
+                                            <li > <p onClick={handleLogOut}>Log Out</p></li>
                                         </ul>
                                     </div>
                                 </>
