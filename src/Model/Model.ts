@@ -26,13 +26,15 @@ export type doctor = {
     DocName: string;
     image: string;
     DocType: string;
-    service: string;
+    service: string[];
     age: number;
     startAvail: number;
     endAvail: number;
     degree: string[];
     gender: string;
-    visit:number
+    visit:number;
+    aboutMe:string;
+    specialties:string[]
 }
 
 export  type Medicine = {

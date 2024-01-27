@@ -51,7 +51,7 @@ const DoctorCard = ({ filter,setFilter }) => {
                             <h3 className=" text-lg font-semibold text-[#0360D9]">{data.DocName}</h3>
                             <p className="text-sm text-[#1F2937] ">{data.DocType}</p>
                         </div>
-                    LN</div>
+                    </div>
                     <div className="grid gap-2 p-6">
                         <div className="flex items-center gap-2">
                             <svg
@@ -69,7 +69,7 @@ const DoctorCard = ({ filter,setFilter }) => {
                                 <line x1={12} x2={12} y1={2} y2={22} />
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                             </svg>
-                            <span className="text-sm text-[#1F2937] ">${data.visit} per visit</span>
+                            <span className="text-sm text-[#1F2937] ">{data.visit} per visit</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <svg
