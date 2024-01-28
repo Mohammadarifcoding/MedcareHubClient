@@ -34,7 +34,10 @@ export type doctor = {
     gender: string;
     visit:number;
     aboutMe:string;
-    specialties:string[]
+    specialties:string[];
+    Email:string;
+    Phone:string;
+    Address:string
 }
 
 export  type Medicine = {

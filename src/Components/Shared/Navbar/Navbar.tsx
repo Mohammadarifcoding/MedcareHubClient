@@ -66,7 +66,7 @@ const Navbar = () => {
                                 <li className="flex">
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Forum</p>
                                 </li>
-                            </Link> 
+                            </Link>
 
 
 
@@ -90,7 +90,7 @@ const Navbar = () => {
                                                     Profile
                                                 </p>
                                             </li>
-                                            <Link to={'/dashboard'}>
+                                            <Link to={'/dashboard/profile'}>
                                                 <li><p>DashBoard</p></li>
                                             </Link>
 
