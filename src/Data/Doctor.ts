@@ -17,7 +17,10 @@ const DocotrsData: doctor[] = [
         visit: 400,
         gender: 'Male',
         aboutMe: "Dr. Smith is a dedicated cardiologist with over 15 years of experience in diagnosing and treating heart conditions. He is committed to providing personalized care to his patients and staying updated with the latest advancements in cardiology. Dr. Smith completed his MD in Cardiology and MBBS, and his areas of expertise include hypertension management and echocardiography. He believes in a holistic approach to heart health, emphasizing lifestyle modifications alongside medical treatments. Patients value Dr. Smith's compassionate demeanor and his ability to explain complex medical concepts in simple terms, fostering trust and confidence in his care.",
-        specialties: ['Hypertension Management', 'Echocardiography', 'Heart Disease Prevention', 'Cardiac Rehabilitation']
+        specialties: ['Hypertension Management', 'Echocardiography', 'Heart Disease Prevention', 'Cardiac Rehabilitation'],
+        Email: 'drsmith@example.com',
+        Phone: '+1(555) 123 - 4567',
+        Address: '123 Main Street, Cityville, State, Zip'
     },
     {
         ID: 'D002',
@@ -26,8 +29,8 @@ const DocotrsData: doctor[] = [
         DocType: 'Pediatrician',
         service: ['Pediatric Care',
             'Well-Baby Checkups',
-           ' Immunizations',
-           ' Developmental Assessments'],
+            ' Immunizations',
+            ' Developmental Assessments'],
         age: 35,
         startAvail: 12,
         endAvail: 19,
@@ -38,7 +41,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Child Development',
             'Pediatric Immunology',
             'Preventive Pediatrics',
-            'Childhood Nutrition']
+            'Childhood Nutrition'],
+        Email: 'drjohnson@example.com',
+        Phone: ' +1 (555) 234-5678',
+        Address: '456 Oak Avenue, Townsville, State, Zip'
     },
     {
         ID: 'D003',
@@ -58,8 +64,11 @@ const DocotrsData: doctor[] = [
         aboutMe: "Dr. Davis is a renowned dermatologist specializing in the diagnosis and treatment of various skin conditions. With his expertise and innovative treatment approaches, he strives to help patients achieve healthy and radiant skin. Dr. Davis completed his training in Dermatology and MBBS, focusing on acne treatment and cosmetic dermatology. He believes in a personalized approach to skincare, tailoring treatment plans to each patient's unique needs and goals. Dr. Davis's patients appreciate his attention to detail and his ability to combine medical expertise with aesthetic sensibilities, enhancing both skin health and confidence.",
         specialties: ['Acne Treatment',
             'Cosmetic Dermatology',
-           ' Skin Cancer Screening',
-            'Dermatologic Surgery']
+            ' Skin Cancer Screening',
+            'Dermatologic Surgery'],
+        Email: 'drdavis@example.com',
+        Phone: '+1 (555) 345-6789',
+        Address: '789 Elm Road, Villageton, State, Zip'
     },
     {
         ID: 'D004',
@@ -67,7 +76,7 @@ const DocotrsData: doctor[] = [
         image: 'https://i.ibb.co/rsdsBdr/stock-photo-serious-doctor-glasses-white-coat-looking-camera.jpg',
         DocType: 'Orthopedic Surgeon',
         service: ['Orthopedic Consultation',
-           ' Sports Injury Treatment',
+            ' Sports Injury Treatment',
             'Joint Replacement Surgery',
             'Fracture Management'],
         age: 50,
@@ -80,7 +89,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Sports Medicine',
             'Joint Replacement Surgery',
             'Orthopedic Trauma',
-            'Arthroscopic Surgery']
+            'Arthroscopic Surgery'],
+        Email: 'dranderson@example.com',
+        Phone: '+1 (555) 456-7890',
+        Address: '101 Pine Street, Hamletville, State, Zip'
     },
     {
         ID: 'D005',
@@ -88,9 +100,9 @@ const DocotrsData: doctor[] = [
         image: 'https://i.ibb.co/16Z3rcw/29323559-portrait-of-confident-young-male-doctor-holding-medicine-box-in-hospital.jpg',
         DocType: 'Ophthalmologist',
         service: ['Eye Examination',
-        ' Retinal Evaluation',
-         'Cataract Surgery',
-         'LASIK Eye Surgery'],
+            ' Retinal Evaluation',
+            'Cataract Surgery',
+            'LASIK Eye Surgery'],
         age: 38,
         startAvail: 8,
         endAvail: 14,
@@ -101,7 +113,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Retina Specialist',
             'Cornea and Refractive Surgery',
             'Glaucoma Management',
-            'Pediatric Ophthalmology']
+            'Pediatric Ophthalmology'],
+        Email: 'drwilson@example.com',
+        Phone: '+1 (555) 567-8901',
+        Address: '210 Maple Avenue, Suburbia, State, Zip'
     },
     {
         ID: 'D006',
@@ -109,7 +124,7 @@ const DocotrsData: doctor[] = [
         image: 'https://i.ibb.co/6wpN037/young-woman-doctor-is-making-some-notes-using-clipboard-while-standing-her-cabinet-clinic-portrait-b.jpg',
         DocType: 'Gynecologist',
         service: ['Eye Examination',
-           ' Retinal Evaluation',
+            ' Retinal Evaluation',
             'Cataract Surgery',
             'LASIK Eye Surgery'],
         age: 32,
@@ -120,9 +135,12 @@ const DocotrsData: doctor[] = [
         gender: 'Female',
         aboutMe: "Dr. Taylor is a caring and experienced gynecologist dedicated to providing comprehensive care for women's health needs. She strives to create a supportive and empowering environment for her patients while offering personalized treatment options. Dr. Taylor completed her training in Gynecology and MBBS, focusing on reproductive endocrinology and minimally invasive gynecologic surgery. Patients trust her expertise and compassionate approach to women's health.",
         specialties: ["Women's Health Checkup",
-        "Reproductive Health Services",
-        "Minimally Invasive Surgery",
-        "Pregnancy Care"]
+            "Reproductive Health Services",
+            "Minimally Invasive Surgery",
+            "Pregnancy Care"],
+        Email: 'drtaylor@example.com',
+        Phone: ' +1 (555) 678-9012',
+        Address: '333 Cedar Lane, Ruralville, State, Zip'
     },
     {
         ID: 'D007',
@@ -143,7 +161,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Headache Medicine',
             'Neuromuscular Medicine',
             'Stroke Management',
-           ' Epilepsy Treatment']
+            ' Epilepsy Treatment'],
+        Email: 'drmoore@example.com',
+        Phone: '+1 (555) 789-0123',
+        Address: '456 Birch Street, Outskirts, State, Zip'
     },
     {
         ID: 'D008',
@@ -162,9 +183,12 @@ const DocotrsData: doctor[] = [
         gender: 'Male',
         aboutMe: "Dr. Clark is an experienced dentist committed to providing high-quality dental care to patients of all ages. With his gentle approach and commitment to excellence, he helps patients achieve healthy smiles and optimal oral health. Dr. Clark completed his training in Dentistry and MBBS, focusing on cosmetic dentistry and oral surgery. Patients value his professionalism and attention to detail during dental procedures.",
         specialties: ['Cosmetic Dentistry',
-           ' Oral Surgery',
+            ' Oral Surgery',
             'Periodontics',
-           ' Endodontics']
+            ' Endodontics'],
+        Email: 'drclark@example.com',
+        Phone: '+1 (555) 890-1234',
+        Address: ' 555 Spruce Road, Countryside, State, Zip'
     },
     {
         ID: 'D009',
@@ -184,8 +208,11 @@ const DocotrsData: doctor[] = [
         aboutMe: "Dr. Baker is a compassionate psychiatrist dedicated to helping patients achieve mental wellness and stability. With her expertise in psychotherapy and medication management, she provides comprehensive care tailored to individual needs. Dr. Baker completed her training in Psychiatry and MBBS, focusing on child and adolescent psychiatry and addiction psychiatry. Patients trust her empathetic approach and commitment to their mental health journey.",
         specialties: ['Child and Adolescent Psychiatry',
             'Addiction Psychiatry',
-           ' Mood Disorders',
-           ' Anxiety Disorders']
+            ' Mood Disorders',
+            ' Anxiety Disorders'],
+        Email: 'drbaker@example.com',
+        Phone: '+1 (555) 901-2345',
+        Address: '678 Pinecrest Avenue, Farmland, State, Zip'
     },
     {
         ID: 'D010',
@@ -195,7 +222,7 @@ const DocotrsData: doctor[] = [
         service: ['Allergy Testing',
             'Asthma Management',
             'Immunotherapy',
-           ' Allergic Rhinitis Treatment'],
+            ' Allergic Rhinitis Treatment'],
         age: 44,
         startAvail: 10,
         endAvail: 19,
@@ -206,7 +233,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Asthma and Immunology',
             'Food Allergy',
             'Allergic Rhinitis',
-           ' Drug Allergies']
+            ' Drug Allergies'],
+        Email: 'drhill@example.com',
+        Phone: '+1 (555) 012-3456',
+        Address: '789 Oakwood Drive, Wilderness, State, Zip'
     },
     {
         ID: 'D011',
@@ -215,7 +245,7 @@ const DocotrsData: doctor[] = [
         DocType: 'Urologist',
         service: ['Urological Consultation',
             'Prostate Screening',
-           ' Kidney Stone Treatment',
+            ' Kidney Stone Treatment',
             'Male Infertility Evaluation'],
         age: 37,
         startAvail: 5,
@@ -227,7 +257,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Urologic Oncology',
             'Male Infertility',
             'Kidney Stone Management',
-            'Prostate Disorders']
+            'Prostate Disorders'],
+        Email: 'drwalker@example.com',
+        Phone: '+1 (555) 123-4567',
+        Address: '123 Brookside Lane, Mountainside, State, Zip'
     },
     {
         ID: 'D012',
@@ -237,7 +270,7 @@ const DocotrsData: doctor[] = [
         service: ['Rheumatoid Arthritis Treatment',
             'Osteoporosis Management',
             'Autoimmune Disease Therapy',
-           ' Joint Pain Evaluation'],
+            ' Joint Pain Evaluation'],
         age: 41,
         startAvail: 9,
         endAvail: 18,
@@ -246,9 +279,12 @@ const DocotrsData: doctor[] = [
         gender: 'Male',
         aboutMe: "Dr. Turner is a compassionate rheumatologist specializing in the diagnosis and treatment of rheumatoid arthritis and other rheumatic diseases. With his expertise and patient-centered approach, he aims to improve the quality of life for patients living with chronic autoimmune conditions. Dr. Turner completed his training in Rheumatology and MBBS, focusing on autoimmune diseases and osteoporosis. Patients value his holistic approach to managing rheumatic conditions.",
         specialties: ['Autoimmune Diseases',
-           ' Osteoporosis',
-           ' Rheumatoid Arthritis',
-            'Lupus']
+            ' Osteoporosis',
+            ' Rheumatoid Arthritis',
+            'Lupus'],
+        Email: 'drturner@example.com',
+        Phone: '+1 (555) 234-5678',
+        Address: '456 Willow Avenue, Riverfront, State, Zip'
     },
     {
         ID: 'D013',
@@ -257,8 +293,8 @@ const DocotrsData: doctor[] = [
         DocType: 'ENT Specialist',
         service: ['Ear, Nose, and Throat Evaluation',
             'Sinus Treatment',
-           ' Tonsillectomy',
-           ' Hearing Tests'],
+            ' Tonsillectomy',
+            ' Hearing Tests'],
         age: 39,
         startAvail: 3,
         endAvail: 17,
@@ -269,7 +305,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Head and Neck Surgery',
             'Facial Plastic and Reconstructive Surgery',
             'Sinus Disorders',
-            'Hearing Disorders']
+            'Hearing Disorders'],
+        Email: 'drreed@example.com',
+        Phone: '+1 (555) 345-6789',
+        Address: '789 Ivy Lane, Lakeside, State, Zip'
     },
     {
         ID: 'D014',
@@ -290,7 +329,10 @@ const DocotrsData: doctor[] = [
         specialties: ['Thyroid Disorders',
             'Metabolic Syndrome',
             'Diabetes Management',
-            'Hormonal Imbalance']
+            'Hormonal Imbalance'],
+        Email: 'drfisher@example.com',
+        Phone: '+1 (555) 456-7890',
+        Address: '101 Grove Street, Seaside, State, Zip'
     },
     {
         ID: 'D015',
@@ -308,7 +350,10 @@ const DocotrsData: doctor[] = [
         visit: 200,
         gender: 'Female',
         aboutMe: "Dr. Ross is a dedicated pulmonologist specializing in the diagnosis and treatment of respiratory conditions. With her comprehensive approach and dedication to patient care, she aims to improve the respiratory health and quality of life for her patients. Dr. Ross completed her training in Pulmonology and MBBS, focusing on asthma and chronic obstructive pulmonary disease (COPD). Patients appreciate her compassionate care and expertise in managing respiratory conditions.",
-        specialties: ['Asthma','Chronic Obstructive Pulmonary Disease(COPD)', 'Respiratory Infections','Pulmonary Rehabilitation']
+        specialties: ['Asthma', 'Chronic Obstructive Pulmonary Disease(COPD)', 'Respiratory Infections', 'Pulmonary Rehabilitation'],
+        Email: 'drross@example.com',
+        Phone: '+1 (555) 567-8901',
+        Address: '210 Cedar Lane, Hillside, State, Zip'
     }
 ];
 export default DocotrsData;

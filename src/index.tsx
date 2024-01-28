@@ -29,6 +29,7 @@ import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,20 +56,20 @@ const router = createBrowserRouter([
         element: <Doctors></Doctors>
       },
       {
-        path:'/doctors/:id',
-        element:<DoctorDetails></DoctorDetails>
+        path: '/doctors/:id',
+        element: <DoctorDetails></DoctorDetails>
       },
       {
         path: '/medicines',
         element: <Medicines></Medicines>
       },
       {
-        path:'/about',
-        element:<About></About>
+        path: '/about',
+        element: <About></About>
       },
       {
-        path:'/company/:companyname',
-        element:<CompanyDetails></CompanyDetails>
+        path: '/company/:companyname',
+        element: <CompanyDetails></CompanyDetails>
       }
     ]
   },
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: 'profile',
+        path: '/dashboard/profile',
         element: <Profile></Profile>
       }
     ]
@@ -95,9 +96,13 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <AuthProvider>
-        <div className='bg-[#EEF2FB]'>
-          <RouterProvider router={router} />
-        </div>
+        
+
+          <div className='bg-[#EEF2FB]'>
+            <RouterProvider router={router} />
+          </div>
+      
+
       </AuthProvider>
     </React.StrictMode>)
 

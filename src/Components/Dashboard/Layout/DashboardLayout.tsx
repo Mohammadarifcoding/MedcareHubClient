@@ -4,15 +4,24 @@ import { FaArrowRight, FaHome } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
+import UseAuth from '../../../Hook/UseAuth.tsx';
+import Drawer from 'react-modern-drawer'
 
-const DashboardLayout = () => { 
+import { PiDotsNineBold } from "react-icons/pi";
+
+const DashboardLayout = () => {
     const [openLayout, setOpenLayout] = useState(true)
+    const { user } = UseAuth()
+    const [isOpen, setIsOpen] = React.useState(false)
+    const toggleDrawer = () => {
+        setIsOpen((prevState) => !prevState)
+    }
     return (
 
         <div className='flex h-full relative'>
             {/* Sidebar */}
             <div className={` ${openLayout ? 'xl:w-[20%]' : 'xl:w-[5%]'} fixed h-full  overflow-y-auto bg-[#0360D9] w-[0%] text-[#FFF] transition-all duration-300 `}>
-                <div className={`${openLayout ?'flex':'hidden'} gap-5 border-b border-white  py-4  justify-around xl:text-xl 2xl:text-2xl`}>
+                <div className={`${openLayout ? 'flex' : 'hidden'} gap-5 border-b border-white  py-4  justify-around xl:text-xl 2xl:text-2xl`}>
                     <h2 className='font-semibold'>MedCareHub</h2>
                     <div className='p-1 border border-white rounded-full group-hover:p-3 transition-all duration-200 group cursor-pointer'>
                         <MdOutlineNotificationsActive className='group-hover:scale-110  transition-all duration-200'></MdOutlineNotificationsActive>
@@ -23,26 +32,26 @@ const DashboardLayout = () => {
                     {/* BIg layout  */}
                     {openLayout ? <>
 
-                        <NavLink to='/dashboard' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                        <NavLink to='/' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaHome className=''></FaHome>  Home
                         </NavLink>
-                        <NavLink to='/dashboard' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                        <NavLink to='/dashboard/profile' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />  Profile
                         </NavLink>
 
 
-                        
+
                     </> : <>
-                    <NavLink to='/dashboard' className=' flex justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
-                            <FaHome ></FaHome> 
+                        <NavLink to='/' className=' flex justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                            <FaHome ></FaHome>
                         </NavLink>
-                        <NavLink to='/dashboard' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
-                            <FaUserCircle /> 
+                        <NavLink to='/dashboard/profile' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                            <FaUserCircle />
                         </NavLink>
                     </>}
                     <div onClick={() => { setOpenLayout(!openLayout) }} className={`absolute top-[50%] p-2 border rounded-full hover:scale-110 cursor-pointer transition-all duration-200 hover:right-3 right-1 `}>
-                            {openLayout ? <FaArrowLeft /> : <FaArrowRight></FaArrowRight>}
-                        </div>
+                        {openLayout ? <FaArrowLeft /> : <FaArrowRight></FaArrowRight>}
+                    </div>
                     {/* Navigation Links */}
 
                     {/* Add more NavLink components as needed */}
@@ -56,8 +65,38 @@ const DashboardLayout = () => {
             </div>
 
             {/* Main Content */}
-            <div className={`${openLayout ? 'xl:w-[80%]' :'xl:w-[95%]'}  ml-auto h-full min-h-screen w-full bg-[#E1EEFF] text-[#021526] transition-all duration-300`}>
+            <div className={`${openLayout ? 'xl:w-[80%]' : 'xl:w-[95%]'}  ml-auto h-full min-h-screen w-full bg-[#E1EEFF] text-[#021526] transition-all duration-300`}>
                 <div className='p-4'>
+
+                    <div className='flex gap-5 items-center lg:hidden '>
+                        <button className='text-3xl text-[#0360D9]' onClick={toggleDrawer}><PiDotsNineBold /></button>
+                        <Drawer
+                            open={isOpen}
+                            onClose={toggleDrawer}
+                            direction='left'
+                            className='bla bla bla '
+                        >
+                            <div className='mx-5 mt-10 '>
+                                <div className='flex items-center gap-6 text-xl font-semibold text-[#0360D9]'>
+                                    <h1>MedCareHub</h1>
+                                    <p><MdOutlineNotificationsActive></MdOutlineNotificationsActive></p>
+                                </div>
+                                <hr className='my-5 h-[2px]' />
+
+                                <div className='flex items-center gap-6 text-xl font-semibold text-[#0360D9]'>
+                                    <p> <FaHome /></p>
+                                    <NavLink to='/'>Home</NavLink>
+                                </div>
+
+                                <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
+                                    <p><FaUserCircle /></p>
+                                    <NavLink to='/dashboard/profile'>Profile</NavLink>
+                                </div>
+                            </div>
+
+                        </Drawer>
+                        <h1 className='text-xl font-semibold text-[#0360D9]'>Dashboard</h1>
+                    </div>
                     {/* Add your main content or use Outlet for nested routes */}
                     <Outlet></Outlet>
                 </div>
