@@ -13,37 +13,137 @@ const Profile = () => {
     return (
         <div>
 
-            <div className="mt-20 flex flex-col items-center justify-center text-[#0360D9]">
+            {
+                status === 'Unknown' && (
+                    <div className="mt-20 flex flex-col items-center justify-center text-[#0360D9]">
 
-                <img className='w-[230px] mb-5 border-[3px] border-[#0360D9] rounded-full' src={user?.photoURL} alt="" />
+                        <img className='w-[230px] mb-5 border-[3px] border-[#0360D9] rounded-full' src={user?.photoURL} alt="" />
 
-                <h1>Status: {status} </h1>
+                        <h1 className='mb-5 text-xl font-semibold'>Status: {status} </h1>
 
-                <div className="flex md:flex-row md:items-center md:space-x-6 space-y-6 md:space-y-0 bg-[#A5CCFF] p-6">
+                        <div className="flex md:flex-row md:items-center md:space-x-6 space-y-6 md:space-y-0 bg-[#A5CCFF] p-6">
 
 
-                    <div className="flex md:flex-row md:items-center md:space-x-12">
-                        <div className="flex flex-col space-y-2">
-                            <span>Your Name</span>
-                            <input
-                                className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
-                                readOnly defaultValue={user?.displayName}
-                            />
+                            <div className="flex md:flex-row md:items-center md:space-x-12">
+                                <div className="flex flex-col space-y-2">
+                                    <span>Your Name</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.displayName}
+                                    />
+                                </div>
+                                <div className="flex flex-col space-y-2">
+                                    <span>Your Email</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.email}
+                                        type="email"
+                                    />
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div className="flex flex-col space-y-2">
-                            <span>Your Email</span>
-                            <input
-                                className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
-                                readOnly defaultValue={user?.email}
-                                type="email"
-                            />
+
+                        <div className="flex mt-5 md:flex-row md:items-center md:space-x-6 space-y-6 md:space-y-0 bg-[#A5CCFF] p-6">
+
+
+                            <div className="flex md:flex-row md:items-center md:space-x-12">
+                                <div className="flex flex-col space-y-2">
+                                    <span>Phone Number</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.phone}
+                                    />
+                                </div>
+                                <div className="flex flex-col space-y-2">
+                                    <span>Address</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.address}
+                                        type="email"
+                                    />
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
+                )
+            }
+            {
+                status === 'Doctor' && (
+                    <div className="mt-20 flex flex-col items-center justify-center text-[#0360D9]">
 
-                </div>
+                        <img className='w-[230px] mb-5 border-[3px] border-[#0360D9] rounded-full' src={user?.photoURL} alt="" />
 
-            </div>
+                        <h1 className='mb-5 text-xl font-semibold'>Status: {status} </h1>
+
+                        <div className="flex md:flex-row md:items-center md:space-x-6 space-y-6 md:space-y-0 bg-[#A5CCFF] p-6">
+
+
+                            <div className="flex md:flex-row md:items-center md:space-x-12">
+                                <div className="flex flex-col space-y-2">
+                                    <span>Your Name</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.displayName}
+                                    />
+                                </div>
+                                <div className="flex flex-col space-y-2">
+                                    <span>Your Email</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.email}
+                                        type="email"
+                                    />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                )
+            }
+            {
+                status === 'Company User' && (
+                    <div className="mt-20 flex flex-col items-center justify-center text-[#0360D9]">
+
+                        <img className='w-[230px] mb-5 border-[3px] border-[#0360D9] rounded-full' src={user?.photoURL} alt="" />
+
+                        <h1 className='mb-5 text-xl font-semibold'>Status: {status} </h1>
+
+                        <div className="flex md:flex-row md:items-center md:space-x-6 space-y-6 md:space-y-0 bg-[#A5CCFF] p-6">
+
+
+                            <div className="flex md:flex-row md:items-center md:space-x-12">
+                                <div className="flex flex-col space-y-2">
+                                    <span>Company Name</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.displayName}
+                                    />
+                                </div>
+                                <div className="flex flex-col space-y-2">
+                                    <span>Company Email</span>
+                                    <input
+                                        className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm  text-[#0360D9] placeholder-gray-500"
+                                        readOnly defaultValue={user?.email}
+                                        type="email"
+                                    />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                )
+            }
+
 
         </div>
     );
