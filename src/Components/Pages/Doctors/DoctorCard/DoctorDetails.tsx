@@ -102,7 +102,7 @@ const DoctorDetails = () => {
                                 <span className="text-xs text-gray-500 ml-2">(16)</span>
                             </div>
                             <div className="text-xs text-gray-500">
-                                <span>Dharmshala, Dhaka, Bangladesh</span>
+                                <span>{foundData?.Address}</span>
                             </div>
 
                             <div className="mt-4 flex space-x-2 lg:block hidden">
@@ -125,18 +125,43 @@ const DoctorDetails = () => {
                     <h1 className='lg:text-xl font-bold my-2'>About Me</h1>
                     <p>{foundData?.aboutMe}</p>
                 </div>
-                <div className='text-gray-600'>
-                    <h1 className='lg:text-xl font-bold my-2'>Education</h1>
-                    <p>{foundData?.degree[1]} in {foundData?.degree[0]}</p>
-                </div>
 
-                <div className='lg:flex gap-96'>
+
+                <div className='lg:flex gap-96 mb-10'>
+
+                    <div className='text-gray-600'>
+                        <div className='text-gray-600'>
+                            <h1 className='lg:text-xl font-bold my-2'>Education</h1>
+                            <p>{foundData?.degree[1]} in {foundData?.degree[0]}</p>
+                        </div>
+                        <div>
+                            <h1 className='lg:text-xl font-bold my-2'>Specializations</h1>
+                            <ul className='list-disc mx-5'>
+                                <li>{foundData?.specialties[0]}</li>
+                                <li>{foundData?.specialties[1]}</li>
+                                <li>{foundData?.specialties[2]}</li>
+                                <li>{foundData?.specialties[3]}</li>
+                            </ul>
+                        </div>
+
+                        <div className='mt-6'>
+                            <h1 className='lg:text-xl font-bold my-2'>Services</h1>
+                            <ul className='list-disc mx-5'>
+                                <li>{foundData?.service[0]}</li>
+                                <li>{foundData?.service[1]}</li>
+                                <li>{foundData?.service[2]}</li>
+                                <li>{foundData?.service[3]}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+
                     <div >
                         <div className="text-gray-600">
                             <h1 className="text-xl font-bold my-2">Contact info</h1>
-                            <h1 className="mt-2">Call: +01 489 2394 23</h1>
-                            <h1 className="mt-2">afsana@gamil.com</h1>
-                            <h1 className="mt-2">4th Floor, 408 No chamber</h1>
+                            <h1 className="mt-2">Phone:  {foundData?.Phone}</h1>
+                            <h1 className="mt-2">Email: {foundData?.Email}</h1>
+                            <h1 className="mt-2">Address: {foundData?.Address}</h1>
                             <h1 className="text-xl font-bold mt-6">Working hours</h1>
                             <div className="flex gap-10">
                                 <div>
@@ -152,29 +177,6 @@ const DoctorDetails = () => {
                                     <h1 className="mt-2 mb-6">{foundData?.startAvail}.00-{foundData?.endAvail}.00</h1>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className='text-gray-600'>
-                        <div>
-                            <h1 className='lg:text-xl font-bold my-2'>Specializations</h1>
-                            <ul className='list-disc mx-5'>
-                                <li>{foundData?.specialties[0]}</li>
-                                <li>{foundData?.specialties[1]}</li>
-                                <li>{foundData?.specialties[2]}</li>
-                                <li>{foundData?.specialties[3]}</li>
-                            </ul>
-                        </div>
-
-                        <div className='mt-6'>
-                            <h1  className='lg:text-xl font-bold my-2'>Services</h1>
-                            <ul className='list-disc mx-5'>
-                                <li>{foundData?.service[0]}</li>
-                                <li>{foundData?.service[1]}</li>
-                                <li>{foundData?.service[2]}</li>
-                                <li>{foundData?.service[3]}</li>
-                                
-                            </ul>
                         </div>
                     </div>
 
