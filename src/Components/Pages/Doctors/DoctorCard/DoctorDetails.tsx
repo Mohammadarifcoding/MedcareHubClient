@@ -21,6 +21,7 @@ const DoctorDetails = () => {
                 <div className="text-center">
                     <div className="max-w-md">
                         <h1 className="text-2xl md:text-5xl text-slate-600  font-semibold">About {foundData?.DocName}</h1>
+                        <h3 className="text-xl md:text-2xl text-slate-600  font-semibold">Service: {foundData?.service}</h3>
                     </div>
                 </div>
             </div>
@@ -29,9 +30,11 @@ const DoctorDetails = () => {
                     className="flex flex-col rounded-xl mb-8 w-full lg:w-[30%] border
          border-gray-200"
                 >
-                    <div className="lg:h-[500px] md:h-[800px]">
-                        <img className="object-cover h-full w-full" src={foundData?.image} alt="" />
+                    <div className="lg:h-[450px] md:h-[800px] relative">
+                        <img className="object-cover h-full w-full rounded-xl" src={foundData?.image} alt="" />
+                        <p className="badge bg-[#0360D9] text-white absolute top-0 right-0">{foundData?.age} Year</p>
                     </div>
+
                     <div className="text-gray-600 mt-8 ml-12">
                         <h1 className="text-xl font-bold">Contact info</h1>
                         <h1 className="mt-2">Call: +01 489 2394 23</h1>
@@ -46,10 +49,18 @@ const DoctorDetails = () => {
                                 <h1 className="mt-2">Monday - Friday</h1>
                             </div>
                             <div>
-                                <h1 className="mt-2">{foundData?.startAvail}.00-{foundData?.endAvail}.00</h1>
-                                <h1 className="mt-2">{foundData?.startAvail}.00-{foundData?.endAvail}.00</h1>
-                                <h1 className="mt-2">{foundData?.startAvail}.00-{foundData?.endAvail}.00</h1>
-                                <h1 className="mt-2 mb-6">{foundData?.startAvail}.00-{foundData?.endAvail}.00</h1>
+                                <h1 className="mt-2">
+                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                </h1>
+                                <h1 className="mt-2">
+                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                </h1>
+                                <h1 className="mt-2">
+                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                </h1>
+                                <h1 className="mt-2 mb-6">
+                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                </h1>
                             </div>
                         </div>
                     </div>
