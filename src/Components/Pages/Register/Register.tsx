@@ -4,14 +4,14 @@ import UseAuth from '../../../Hook/UseAuth.tsx';
 import { Link, useNavigate } from 'react-router-dom';
 import loginAnimation from './../Login/login.json'
 import Swal from 'sweetalert2';
-import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
+
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { base_URL } from '../../../utills/BaseURL.ts';
 
 
 const Register = () => {
-    const axiosPublic = UseAxiosPublic();
+
 
     const { createUser, updateUser, load, signInWithGoogle } = UseAuth()
     const registerNavi = useNavigate()
