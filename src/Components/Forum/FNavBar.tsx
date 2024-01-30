@@ -2,8 +2,8 @@ import React from 'react';
 import UseAuth from '../../Hook/UseAuth.tsx';
 
 const FNavBar = () => {
-    const { user } = UseAuth();
-    console.log(user)
+
+    const {user} = UseAuth()
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">

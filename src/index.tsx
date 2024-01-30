@@ -19,7 +19,11 @@ import Doctors from './Components/Pages/Doctors/Doctors.tsx';
 import Medicines from './Components/Pages/Medicines/Medicines.tsx';
 import DashboardLayout from './Components/Dashboard/Layout/DashboardLayout.tsx';
 import Profile from './Components/Dashboard/Pages/Profile/Profile.tsx';
+import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.tsx';
 import Forum from './Components/Forum/Forum.tsx';
+import About from './Components/Pages/About/About.tsx';
+import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
+
 
 
 
@@ -52,8 +56,20 @@ const router = createBrowserRouter([
         element: <Doctors></Doctors>
       },
       {
+        path: '/doctors/:id',
+        element: <DoctorDetails></DoctorDetails>
+      },
+      {
         path: '/medicines',
         element: <Medicines></Medicines>
+      },
+      {
+        path: '/about',
+        element: <About></About>
+      },
+      {
+        path: '/company/:companyname',
+        element: <CompanyDetails></CompanyDetails>
       }
     ]
   },
@@ -62,7 +78,7 @@ const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: 'profile',
+        path: '/dashboard/profile',
         element: <Profile></Profile>
       }
     ]
@@ -80,9 +96,13 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <AuthProvider>
-        <div className='bg-[#EEF2FB]'>
-          <RouterProvider router={router} />
-        </div>
+        
+
+          <div className='bg-[#EEF2FB]'>
+            <RouterProvider router={router} />
+          </div>
+      
+
       </AuthProvider>
     </React.StrictMode>)
 

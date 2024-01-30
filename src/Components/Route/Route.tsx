@@ -3,6 +3,8 @@ import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 
+
+
 const Route = createBrowserRouter([
     {
       path: "/",
@@ -13,11 +15,12 @@ const Route = createBrowserRouter([
           element:<Home></Home>
         },
         {
-            path:'/',
+            path:'/login',
             element:<Login></Login>
         }
       ]
     },
+  
   ]);
 
   export default Route
