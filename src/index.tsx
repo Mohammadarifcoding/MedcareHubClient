@@ -23,6 +23,7 @@ import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.t
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
+import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
 
 
 
@@ -80,6 +81,9 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/profile',
         element: <Profile></Profile>
+      },{
+        path:'/dashboard/comproduct',
+        element:<CompanyProduct></CompanyProduct>
       }
     ]
   },

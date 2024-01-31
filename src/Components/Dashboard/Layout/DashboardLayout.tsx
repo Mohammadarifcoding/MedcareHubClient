@@ -38,6 +38,10 @@ const DashboardLayout = () => {
                         <NavLink to='/dashboard/profile' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />  Profile
                         </NavLink>
+                        <NavLink to='/dashboard/comproduct' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                            <FaUserCircle /> Company Product
+                        </NavLink>
+
 
 
 
@@ -46,6 +50,9 @@ const DashboardLayout = () => {
                             <FaHome ></FaHome>
                         </NavLink>
                         <NavLink to='/dashboard/profile' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                            <FaUserCircle />
+                        </NavLink>
+                        <NavLink to='/dashboard/comproduct' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />
                         </NavLink>
                     </>}
@@ -91,6 +98,10 @@ const DashboardLayout = () => {
                                 <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
                                     <p><FaUserCircle /></p>
                                     <NavLink to='/dashboard/profile'>Profile</NavLink>
+                                </div>
+                                <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
+                                    <p><FaUserCircle /></p>
+                                    <NavLink to='/dashboard/comproduct'>Company Product</NavLink>
                                 </div>
                             </div>
 
