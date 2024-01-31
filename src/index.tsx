@@ -24,9 +24,15 @@ import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
 import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
+<<<<<<< HEAD
 import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.tsx';
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
+=======
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
+>>>>>>> 273a8e55e986802a34ad3269bad5bc0a2cf8571a
 
+const queryClient = new QueryClient()
 
 
 
@@ -89,6 +95,10 @@ const router = createBrowserRouter([
       },{
         path:'/dashboard/comproduct',
         element:<CompanyProduct></CompanyProduct>
+      },
+      {
+        path: '/dashboard/alluser',
+        element: <AllUser></AllUser>
       }
     ]
   },
@@ -105,13 +115,11 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <AuthProvider>
-        
-
+        <QueryClientProvider client={queryClient}>
           <div className='bg-[#EEF2FB]'>
             <RouterProvider router={router} />
           </div>
-      
-
+        </QueryClientProvider>
       </AuthProvider>
     </React.StrictMode>)
 

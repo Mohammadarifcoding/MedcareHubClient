@@ -5,56 +5,109 @@ import { Link, useNavigate } from 'react-router-dom';
 import loginAnimation from './../Login/login.json'
 import Swal from 'sweetalert2';
 
+import { useForm } from "react-hook-form";
+import axios from 'axios';
+import { base_URL } from '../../../utills/BaseURL.ts';
+
+
 const Register = () => {
+
+
     const { createUser, updateUser, load, signInWithGoogle } = UseAuth()
     const registerNavi = useNavigate()
-    const [signError, setSignError] = useState();
-    const [signSuccess, setSignSuccess] = useState();
-    const handleSignup = e => {
-        e.preventDefault();
-        const form = e.target
-        const name = form.name.value
-        const photo = form.photo.value;
-        const email = form.email.value;
-        const password = form.password.value;
 
 
-        console.log(name, photo, email, password);
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm()
 
-        setSignError(" ");
-        setSignSuccess(" ");
 
-        if (password.length < 6) {
-            setSignError(" Password should be at least 6 characters ")
-            return;
-        } else if (!/[A-Z]/.test(password)) {
-            setSignError('you should use one uppercase character.')
-            return;
-        } else if (!/[!@#$%^&*]/.test(password))
-            setSignError('you should a special character')
+    const onSubmit = data => {
+        console.log(data);
 
-        createUser(email, password)
+        createUser(data.email, data.password)
+
             .then(result => {
-                console.log(result);
-                setSignSuccess("User Create Succesfully!")
-                e.target.reset()
-                registerNavi('/login')
-                Swal.fire({
-                    icon: "success",
-                    title: "Sign Up Successful",
-                    text: "You have successfully signed in!"
-                })
-            })
-            .catch(error => {
-                console.error(error);
-                setSignError(error.message);
-                Swal.fire({
-                    icon: "error",
-                    title: "Sign Up Failed",
-                    text: "An error occurred during sign in. Please try again."
-                })
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUser(data.name, data.photoURL)
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            imageURL: data.photoURL,
+                            
+                        }
+                        axios.post(`${base_URL}/User`, userInfo)
+                            .then(res => {
+                                console.log(res);
+                                if (res.statusText==='OK') {
+                                    console.log('user added to the database');
+                                    reset()
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Register Successfull",
+                                        text: "You have successfully registerd!"
+                                    })
+
+                                    
+                                    registerNavi('/')
+                                }
+                            })
+                    })
+                    .catch(error => console.log(error))
             })
     }
+
+    // const handleSignup = e => {
+    //     e.preventDefault();
+    //     const form = e.target
+    //     const name = form.name.value
+    //     const photo = form.photo.value;
+    //     const email = form.email.value;
+    //     const password = form.password.value;
+
+
+    //     console.log(name, photo, email, password);
+
+    //     setSignError(" ");
+    //     setSignSuccess(" ");
+
+    //     if (password.length < 6) {
+    //         setSignError(" Password should be at least 6 characters ")
+    //         return;
+    //     } else if (!/[A-Z]/.test(password)) {
+    //         setSignError('you should use one uppercase character.')
+    //         return;
+    //     } else if (!/[!@#$%^&*]/.test(password))
+    //         setSignError('you should a special character')
+
+    //     createUser(email, password)
+    //         .then(result => {
+    //             console.log(result);
+    //             setSignSuccess("User Create Succesfully!")
+    //             e.target.reset()
+    //             registerNavi('/login')
+    //             Swal.fire({
+    //                 icon: "success",
+    //                 title: "Sign Up Successful",
+    //                 text: "You have successfully signed in!"
+    //             })
+    //         })
+
+    //         .catch(error => {
+    //             console.error(error);
+    //             setSignError(error.message);
+    //             Swal.fire({
+    //                 icon: "error",
+    //                 title: "Sign Up Failed",
+    //                 text: "An error occurred during sign in. Please try again."
+    //             })
+    //         })
+    // }
 
     const handleGoogle = () => {
         signInWithGoogle()
@@ -92,49 +145,57 @@ const Register = () => {
                     <div className="lg:w-3/5 md:p-8 p-2">
                         <h1 className="text-2xl font-bold mb-2">MedCareHub</h1>
                         <h2 className="text-xl mb-8">Create a new Account</h2>
-                        <form onSubmit={handleSignup} className="space-y-6">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">
                                     User Name
                                 </label>
                                 <input
+                                    type="text"
+                                    {...register("name", { required: true, minLength: 6 })}
                                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                                     placeholder="User name"
-                                    type="name" name='name'
+
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">
+                                    User Email
+                                </label>
+                                <input type="email" {...register("email", { required: true })}
+                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                                    placeholder="User email"
+
+
                                 />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">
                                     User Photo URL
                                 </label>
-                                <input
+                                <input type="text"
+                                    {...register("photoURL", { required: true })}
                                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                    placeholder="User name"
-                                    type="name" name='photo'
+                                    placeholder="User PhotoURL"
 
                                 />
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">
-                                    User Email
-                                </label>
-                                <input
-                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                    placeholder="User email"
-                                    type="email" name='email'
 
-                                />
-                            </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">
                                     New Password
                                 </label>
-                                <input
+                                <input {...register("password", { required: true, pattern: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/ })}
                                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                                     placeholder="User new password"
                                     type="password" name='password'
 
                                 />
+                                {errors.password?.type === 'required' && <span className='text-red-800' >Password is required</span>}
+                                {errors.password?.type === 'minlength' && <span className='text-red-800' >Password must be 6 character</span>}
+                                {errors.password?.type === 'maxlength' && <span className='text-red-800'>Password must be less than 20 character</span>}
+                                {errors.password?.type === 'pattern' && <span className='text-red-800' >Password must have at least one upper case,at least one lower case, one number and one special character</span>}
                             </div>
                             <button className="btn bg-[#0360D9] text-white w-full">Sign up</button>
 
@@ -150,13 +211,6 @@ const Register = () => {
                                 </button>
                             </div>
                         </form>
-
-                        {
-                            signError && <p className="mx-8 text-red-600">{signError}</p>
-                        }
-                        {
-                            signSuccess && <p className="mx-8 text-green-600">{signSuccess}</p>
-                        }
 
 
                         <div className="mt-6 flex flex-col space-y-2">
