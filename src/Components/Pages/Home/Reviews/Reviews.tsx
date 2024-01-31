@@ -69,7 +69,7 @@ const Reviews = () => {
                     {
                         Reviews.map((review) => (
                             <div key={review.name}>
-                                <div className="container flex flex-col keen-slider__slide mx-auto divide-y rounded-md dark:divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+                                <div className="container flex flex-col keen-slider__slide mx-auto divide-y rounded-md ">
                                     <div className="flex justify-between p-4">
                                         <div className="flex space-x-4">
 
@@ -85,7 +85,7 @@ const Reviews = () => {
                                             <span className="text-xl font-bold">{review.rating}</span>
                                         </div>
                                     </div>
-                                    <div className="p-4 space-y-2 text-sm dark:text-gray-400">
+                                    <div className="p-4 space-y-2 text-sm">
                                         <p>{review.review}</p>
 
                                     </div>

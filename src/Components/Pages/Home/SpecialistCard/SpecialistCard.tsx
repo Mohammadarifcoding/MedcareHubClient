@@ -35,7 +35,7 @@ const SpecialistCard = () => {
                 {
                     Specialist?.map((data) => (
                         <div key={data.title}>
-                            <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow  lg:h-[240px] ">
+                            <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow  lg:h-[270px] ">
                                 <img className="bg-[#E6F5FC] p-2 rounded-full" src={data.image} alt="" />
                                 <a href="#">
                                     <h5 className="mb-2 mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.title}</h5>

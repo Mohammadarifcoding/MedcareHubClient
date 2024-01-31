@@ -23,6 +23,10 @@ import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.t
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
+
+const queryClient = new QueryClient()
 
 
 
@@ -55,20 +59,20 @@ const router = createBrowserRouter([
         element: <Doctors></Doctors>
       },
       {
-        path:'/doctors/:id',
-        element:<DoctorDetails></DoctorDetails>
+        path: '/doctors/:id',
+        element: <DoctorDetails></DoctorDetails>
       },
       {
         path: '/medicines',
         element: <Medicines></Medicines>
       },
       {
-        path:'/about',
-        element:<About></About>
+        path: '/about',
+        element: <About></About>
       },
       {
-        path:'/company/:companyname',
-        element:<CompanyDetails></CompanyDetails>
+        path: '/company/:companyname',
+        element: <CompanyDetails></CompanyDetails>
       }
     ]
   },
@@ -77,8 +81,12 @@ const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: 'profile',
+        path: '/dashboard/profile',
         element: <Profile></Profile>
+      },
+      {
+        path: '/dashboard/alluser',
+        element: <AllUser></AllUser>
       }
     ]
   },
@@ -95,9 +103,11 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <AuthProvider>
-        <div className='bg-[#EEF2FB]'>
-          <RouterProvider router={router} />
-        </div>
+        <QueryClientProvider client={queryClient}>
+          <div className='bg-[#EEF2FB]'>
+            <RouterProvider router={router} />
+          </div>
+        </QueryClientProvider>
       </AuthProvider>
     </React.StrictMode>)
 
