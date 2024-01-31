@@ -91,6 +91,7 @@ const DashboardLayout = () => {
                                 </div>
                                 <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
                                     <p><FaUserFriends /> </p>
+                                    <p><FaUserFriends/> </p>
                                     <NavLink to='/dashboard/alluser'>All User</NavLink>
                                     <p><FaUserCircle /></p>
                                     <NavLink to='/dashboard/comproduct'>Company Product</NavLink>
