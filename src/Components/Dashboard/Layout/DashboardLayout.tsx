@@ -18,8 +18,7 @@ const DashboardLayout = () => {
     }
     return (
 
-        <div className='flex h-full relative'>
-            {/* Sidebar */}
+        <div className='flex h-full relative'>    {/* Sidebar */}
             <div className={` ${openLayout ? 'xl:w-[20%]' : 'xl:w-[5%]'} fixed h-full  overflow-y-auto bg-[#0360D9] w-[0%] text-[#FFF] transition-all duration-300 `}>
                 <div className={`${openLayout ? 'flex' : 'hidden'} gap-5 border-b border-white  py-4  justify-around xl:text-xl 2xl:text-2xl`}>
                     <h2 className='font-semibold'>MedCareHub</h2>
@@ -38,12 +37,12 @@ const DashboardLayout = () => {
                         <NavLink to='/dashboard/profile' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />  Profile
                         </NavLink>
+                        <NavLink to='/dashboard/comproduct' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                            <FaUserCircle /> Company Product
+                        </NavLink>
                         <NavLink to='/dashboard/alluser' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaUserFriends/>  All User
                         </NavLink>
-
-
-
                     </> : <>
                         <NavLink to='/' className=' flex justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                             <FaHome ></FaHome>
@@ -51,6 +50,8 @@ const DashboardLayout = () => {
                         <NavLink to='/dashboard/profile' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />
                         </NavLink>
+                        <NavLink to='/dashboard/comproduct' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                            <FaUserCircle />
                         <NavLink to='/dashboard/alluser' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                         <FaUserFriends/> 
                         </NavLink>
@@ -97,6 +98,10 @@ const DashboardLayout = () => {
                                 <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
                                     <p><FaUserCircle /></p>
                                     <NavLink to='/dashboard/profile'>Profile</NavLink>
+                                </div>
+                                <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
+                                    <p><FaUserCircle /></p>
+                                    <NavLink to='/dashboard/comproduct'>Company Product</NavLink>
                                 </div>
                             </div>
 
