@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import UseAuth from '../../../../Hook/UseAuth.tsx';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -9,6 +9,10 @@ import { base_URL } from '../../../../utills/BaseURL.ts';
 
 const Profile = () => {
     const { user } = UseAuth()
+    const [userData, setUserData] = useState([]);
+
+
+
 
     // Determine the status based on the type of user
     const status = user?.role === 'doctor' ? 'Doctor' :
@@ -20,18 +24,19 @@ const Profile = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm()
 
     useEffect(() => {
         fetch(`${base_URL}/Users?email=${user?.email}`)
             .then(res => res.json())
-            .then(data=>console.log(data))
+            .then(data => setUserData(data))
 
     }, [user])
 
-    const onSubmit = async (data) => {
+
+
+    const handleUpdate = async (data) => {
         console.log(data);
         const formData = {
             name: data.name,
@@ -42,6 +47,8 @@ const Profile = () => {
             gender: data.gender,
             imageURL: data.imageURL
         }
+        console.log(data.id);
+
         await axios.put(`${base_URL}/User/${data.id}`, formData)
             .then((res) => {
                 console.log(res);
@@ -57,10 +64,11 @@ const Profile = () => {
 
     return (
         <>
+
             {
-                status === "Unknown" &&
-                (
-                    <div className="divide-y max-w-2xl mx-auto divide-gray-200">
+                userData?.data?.map((users) => (
+
+                    <div key={users._id} className="divide-y max-w-2xl mx-auto divide-gray-200">
                         <div className="py-4">
                             <h2 className="mb-2 lg:text-3xl text-lg my-5 text-center font-semibold">Profile Information</h2>
                             <div className="flex items-center justify-between">
@@ -69,25 +77,18 @@ const Profile = () => {
                                         <img
                                             className="aspect-square h-full w-full"
                                             alt=""
-                                            src={user?.photoURL}
+                                            src={users?.imageURL}
                                         />
                                     </span>
 
                                 </div>
                             </div>
                         </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Status</h2>
-                            <div className="flex justify-between">
-                                <span>{status}</span>
-
-                            </div>
-                        </div>
 
                         <div className="py-4">
                             <h2 className="mb-2 text-lg font-semibold">Username</h2>
                             <div className="flex justify-between">
-                                <span>{user?.displayName}</span>
+                                <span>{users?.name}</span>
 
                             </div>
                         </div>
@@ -96,7 +97,7 @@ const Profile = () => {
                             <div className="py-4">
                                 <h2 className="mb-2 text-lg font-semibold">Phone Number</h2>
                                 <div className="flex justify-between">
-                                    <span>{user?.phoneNumber}</span>
+                                    <span>{users?.phoneNumber}</span>
 
                                 </div>
                             </div>
@@ -105,7 +106,7 @@ const Profile = () => {
                                 <h2 className="mb-2 text-lg font-semibold">Email Address</h2>
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
-                                        <span>{user?.email}</span>
+                                        <span>{users?.email}</span>
                                     </div>
                                 </div>
                             </div>
@@ -114,21 +115,21 @@ const Profile = () => {
                         <div className="py-4">
                             <h2 className="mb-2 text-lg font-semibold">Age</h2>
                             <div className="flex justify-between">
-                                <span>{user?.age}</span>
+                                <span>{users?.age}</span>
 
                             </div>
                         </div>
                         <div className="py-4">
                             <h2 className="mb-2 text-lg font-semibold">Gender</h2>
                             <div className="flex justify-between">
-                                <span>{user?.gender}</span>
+                                <span>{users?.gender}</span>
 
                             </div>
                         </div>
                         <div className="py-4">
                             <h2 className="mb-2 text-lg font-semibold">Address</h2>
                             <div className="flex justify-between">
-                                <span>{user?.address}</span>
+                                <span>{users?.address}</span>
 
                             </div>
                         </div>
@@ -137,7 +138,11 @@ const Profile = () => {
                         <button className="block text-white bg-blue-700  font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={() => document.getElementById('my_modal_1').showModal()}> Update Profile</button>
                         <dialog id="my_modal_1" className="modal">
                             <div className="modal-box">
-                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+
+                                <form key={users._id} onSubmit={handleSubmit(handleUpdate)} className="space-y-6">
+
+
+                                    <input type="text" className='text-black' defaultValue={users?._id} {...register('id')} name="" id="" />
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700">
                                             User Name
@@ -146,7 +151,7 @@ const Profile = () => {
                                             type="text"
                                             {...register("name", { required: true, minLength: 6 })}
                                             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                            placeholder="User name" defaultValue={user?.displayName}
+                                            placeholder="User name" defaultValue={users?.name}
 
                                         />
                                     </div>
@@ -155,9 +160,9 @@ const Profile = () => {
                                         <label className="block text-sm font-medium text-gray-700">
                                             User Email
                                         </label>
-                                        <input type="email" {...register("email", { required: true })}
+                                        <input type="email" {...register("email")}
                                             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                            placeholder="User email" defaultValue={user?.email}
+                                            placeholder="User email" readOnly defaultValue={users?.email}
 
 
                                         />
@@ -167,9 +172,9 @@ const Profile = () => {
                                             User Photo URL
                                         </label>
                                         <input type="text"
-                                            {...register("photoURL", { required: true })}
+                                            {...register("photoURL")}
                                             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                            placeholder="User PhotoURL"
+                                            placeholder="User PhotoURL" defaultValue={users?.imageURL}
 
                                         />
                                     </div>
@@ -179,9 +184,9 @@ const Profile = () => {
                                             <label className="block text-sm font-medium text-gray-700">
                                                 Phone Number
                                             </label>
-                                            <input type="email" {...register("phoneNumber", { required: true })}
+                                            <input type="text" {...register("phoneNumber")}
                                                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                                placeholder="User Phone Number"
+                                                placeholder="User Phone Number" defaultValue={users?.phoneNumber}
 
 
                                             />
@@ -190,9 +195,20 @@ const Profile = () => {
                                             <label className="block text-sm font-medium text-gray-700">
                                                 Age
                                             </label>
-                                            <input type="email" {...register("age", { required: true })}
+                                            <input type="text" {...register("age")}
                                                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                                placeholder="User age"
+                                                placeholder="User age" defaultValue={users?.age}
+
+
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700">
+                                                Gender
+                                            </label>
+                                            <input type="text" {...register("gender")}
+                                                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                                                placeholder="User gender" defaultValue={users?.gender}
 
 
                                             />
@@ -202,150 +218,42 @@ const Profile = () => {
                                         <label className="block text-sm font-medium text-gray-700">
                                             Address
                                         </label>
-                                        <input type="email" {...register("address", { required: true })}
+                                        <input type="text" {...register("address")}
                                             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                                            placeholder="User address"
+                                            placeholder="User address" defaultValue={users?.address}
 
 
                                         />
                                     </div>
+                                    <div className='flex items-center justify-between'>
+                                        <div>
+                                            <button className="btn bg-[#0360D9] mt-5 text-white w-full" type='submit'> Update Profile</button>
+                                        </div>
 
-
-                                    <div className="modal-action">
-                                        <form method="dialog">
-                                            
-                                            <button className="btn bg-[#0360D9] text-white w-full">Updated</button>
-                                        </form>
+                                        <div className="modal-action">
+                                            <form method="dialog">
+                                                <button className="btn bg-red-500 text-white w-full">Close</button>
+                                            </form>
+                                        </div>
                                     </div>
 
 
 
                                 </form>
+
+
+
                             </div>
                         </dialog>
 
 
 
                     </div>
-                )
+                ))
+
             }
-            {/* {
-                status === "Company User" &&
-                (
-                    <div className="divide-y max-w-2xl mx-auto divide-gray-200">
-                        <div className="py-4">
-                            <h2 className="mb-2 lg:text-3xl text-lg my-5 text-center font-semibold">Profile Information</h2>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-3">
-                                    <span className="relative mt-5 flex h-48 w-48 shrink-0 overflow-hidden rounded-full">
-                                        <img
-                                            className="aspect-square h-full w-full"
-                                            alt=""
-                                            src={user?.photoURL}
-                                        />
-                                    </span>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Status</h2>
-                            <div className="flex justify-between">
-                                <span>{status}</span>
 
-                            </div>
-                        </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Username</h2>
-                            <div className="flex justify-between">
-                                <span>{user?.displayName}</span>
-
-                            </div>
-                        </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Email address</h2>
-                            <div className="space-y-2">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <span>{user?.email}</span>
-                                    </div>
-
-                                </div>
-
-                                <button className="inline-flex items-center justify-center  rounded-md text-sm font-medium hover:bg-[#0360D9] hover:text-white h-10 px-4 py-2 text-blue-600">
-                                    Update Profile
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
-            {
-                status === "Doctor" &&
-                (
-                    <div className="divide-y max-w-2xl mx-auto divide-gray-200">
-                        <div className="py-4">
-                            <h2 className="mb-2 lg:text-3xl text-lg my-5 text-center font-semibold">Profile Information</h2>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-3">
-                                    <span className="relative mt-5 flex h-48 w-48 shrink-0 overflow-hidden rounded-full">
-                                        <img
-                                            className="aspect-square h-full w-full"
-                                            alt=""
-                                            src={user?.photoURL}
-                                        />
-                                    </span>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Status</h2>
-                            <div className="flex justify-between">
-                                <span>{status}</span>
-
-                            </div>
-                        </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Username</h2>
-                            <div className="flex justify-between">
-                                <span>{user?.displayName}</span>
-
-                            </div>
-                        </div>
-
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Email Address</h2>
-                            <div className="flex justify-between">
-                                <span>{user?.email}</span>
-
-                            </div>
-                        </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Phone No</h2>
-                            <div className="flex justify-between">
-                                <span>{user?.phoneno}</span>
-
-                            </div>
-                        </div>
-                        <div className="py-4">
-                            <h2 className="mb-2 text-lg font-semibold">Address</h2>
-                            <div className="space-y-2">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <span>{user?.address}</span>
-                                    </div>
-
-                                </div>
-
-                                <button className="inline-flex items-center justify-center  rounded-md text-sm font-medium hover:bg-[#0360D9] hover:text-white h-10 px-4 py-2 text-blue-600">
-                                    Update Profile
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )
-            } */}
 
         </>
     );
