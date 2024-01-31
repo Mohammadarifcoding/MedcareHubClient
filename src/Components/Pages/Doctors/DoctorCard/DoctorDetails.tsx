@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import DocotrsData from './../../../../Data/Doctor.ts';
 
 const DoctorDetails = () => {
     const [foundData, setFoundData] = useState();
@@ -8,10 +7,15 @@ const DoctorDetails = () => {
     // console.log(id);
 
     useEffect(() => {
-        // console.log(DocotrsData);
-        const findData = DocotrsData?.find((item) => item.ID === id);
-        // console.log(foundData);
-        setFoundData(findData);
+        fetch(`https://medcarehubendgame.vercel.app/Doctor/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data);
+                setFoundData(data);
+            })
+            .catch((error) => {
+                console.log(error.message);
+              });
     }, [id]);
 
     return (

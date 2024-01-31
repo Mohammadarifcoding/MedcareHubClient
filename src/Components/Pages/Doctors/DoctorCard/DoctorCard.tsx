@@ -1,18 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import DocotrsData from './../../../../Data/Doctor.ts';
-
 const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
-    const [doctors, setDoctors] = useState([...DocotrsData]);
+    const [doctors, setDoctors] = useState([]);
     const [filteredDoctors, setFilteredDoctors] = useState([]);
-    // const linkVariants = {
-    //     hover: {
-    //         scale: 1.1,
-    //         transition: { duration: 0.2 }
-    //     }
-    // };
+
+    useEffect(() => {
+        fetch('https://medcarehubendgame.vercel.app/Doctors')
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data);
+                setDoctors(data)
+            })
+            .catch((error) => {
+                console.log(error.message);
+              });
+    }, []);
+
     useEffect(() => {
         const debounceFilter = setTimeout(() => {
             let tempFilteredDoctors = [...doctors];
