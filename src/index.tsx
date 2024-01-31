@@ -24,6 +24,8 @@ import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
 import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
+import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.tsx';
+import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
 
 
 
@@ -71,6 +73,9 @@ const router = createBrowserRouter([
       {
         path: '/company/:companyname',
         element: <CompanyDetails></CompanyDetails>
+      },{
+        path:'/detailsmedicines',
+        element:<MedicienDetails></MedicienDetails>
       }
     ]
   },
