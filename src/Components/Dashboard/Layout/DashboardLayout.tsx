@@ -6,7 +6,7 @@ import { MdOutlineNotificationsActive } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import Drawer from 'react-modern-drawer'
-
+import { FaUserFriends } from "react-icons/fa";
 import { PiDotsNineBold } from "react-icons/pi";
 
 const DashboardLayout = () => {
@@ -38,6 +38,9 @@ const DashboardLayout = () => {
                         <NavLink to='/dashboard/profile' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />  Profile
                         </NavLink>
+                        <NavLink to='/dashboard/alluser' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                            <FaUserFriends/>  All User
+                        </NavLink>
 
 
 
@@ -47,6 +50,9 @@ const DashboardLayout = () => {
                         </NavLink>
                         <NavLink to='/dashboard/profile' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />
+                        </NavLink>
+                        <NavLink to='/dashboard/alluser' className=' flex  justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                        <FaUserFriends/> 
                         </NavLink>
                     </>}
                     <div onClick={() => { setOpenLayout(!openLayout) }} className={`absolute top-[50%] p-2 border rounded-full hover:scale-110 cursor-pointer transition-all duration-200 hover:right-3 right-1 `}>

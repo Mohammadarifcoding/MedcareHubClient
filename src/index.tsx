@@ -23,7 +23,10 @@ import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.t
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
 
+const queryClient = new QueryClient()
 
 
 
@@ -80,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/profile',
         element: <Profile></Profile>
+      },
+      {
+        path: '/dashboard/alluser',
+        element: <AllUser></AllUser>
       }
     ]
   },
@@ -96,13 +103,11 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <AuthProvider>
-        
-
+        <QueryClientProvider client={queryClient}>
           <div className='bg-[#EEF2FB]'>
             <RouterProvider router={router} />
           </div>
-      
-
+        </QueryClientProvider>
       </AuthProvider>
     </React.StrictMode>)
 
