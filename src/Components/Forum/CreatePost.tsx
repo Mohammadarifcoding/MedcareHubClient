@@ -3,7 +3,11 @@ import { IoMdPhotos } from "react-icons/io";
 import UseAuth from '../../Hook/UseAuth.tsx';
 
 const CreatePost = () => {
-    const { user } = UseAuth()
+    const { user } = UseAuth();
+    const openModal = (event: MouseEvent<HTMLInputElement>) => {
+        const modal = document.getElementById('my_modal_7') as HTMLInputElement;
+        modal.checked = true;
+    }
     return (
         <>
             <div className="px-11 py-5 mx-auto bg-slate-200">
@@ -13,7 +17,9 @@ const CreatePost = () => {
                     </div>
                     <div className="w-full">
 
-                        <input id="u_email" type="u_email" placeholder="Share or Ask Somethings to Everyone" className="p-3  w-full outline-none border rounded-md invalid:border-red-700 valid:border-black" />
+                        <input onClick={openModal} id="u_email" type="u_email" placeholder="Share or Ask Somethings to Everyone" className="p-3  w-full outline-none border rounded-md invalid:border-red-700 valid:border-black" />
+
+
                     </div>
                 </div>
                 <div className="flex justify-between pt-5">
@@ -23,7 +29,8 @@ const CreatePost = () => {
                     </div>
 
 
-                    <label htmlFor="my_modal_7" className="btn">open modal</label>
+                    {/* <label htmlFor="my_modal_7" className="btn">open modal</label> */}
+                    <button className="flex items-center gap-1 p-3 bg-blue-300 rounded" onClick={openModal}>Add post</button>
                 </div>
             </div>
             <div>
