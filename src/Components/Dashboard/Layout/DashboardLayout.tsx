@@ -29,7 +29,7 @@ const DashboardLayout = () => {
                 </div>
                 <div className='p-4 flex gap-2 justify-center my-auto flex-col xl:text-lg 2xl:text-xl'>
                     {/* BIg layout  */}
-                    {openLayout ? <>
+                    {openLayout ?( <>
 
                         <NavLink to='/' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaHome className=''></FaHome>  Home
@@ -43,7 +43,7 @@ const DashboardLayout = () => {
                         <NavLink to='/dashboard/alluser' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaUserFriends/>  All User
                         </NavLink>
-                    </> : <>
+                    </>) : <>
                         <NavLink to='/' className=' flex justify-center   hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                             <FaHome ></FaHome>
                         </NavLink>
@@ -63,7 +63,7 @@ const DashboardLayout = () => {
 
                     {/* Add more NavLink components as needed */}
                     {/* small layout */}
-                </div>
+                   </div>
 
 
                 <div>
@@ -114,7 +114,7 @@ const DashboardLayout = () => {
             </div>
         </div>
 
-
+</div>
     );
 };
 
