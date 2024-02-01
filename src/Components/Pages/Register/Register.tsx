@@ -39,12 +39,12 @@ const Register = () => {
                             name: data.name,
                             email: data.email,
                             imageURL: data.photoURL,
-                            
+
                         }
                         axios.post(`${base_URL}/User`, userInfo)
                             .then(res => {
                                 console.log(res);
-                                if (res.statusText==='OK') {
+                                if (res.statusText === 'OK') {
                                     console.log('user added to the database');
                                     reset()
                                     Swal.fire({
@@ -53,7 +53,7 @@ const Register = () => {
                                         text: "You have successfully registerd!"
                                     })
 
-                                    
+
                                     registerNavi('/')
                                 }
                             })
@@ -112,26 +112,29 @@ const Register = () => {
     const handleGoogle = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user);
-                registerNavi('/');
-                Swal.fire({
-                    icon: "success",
-                    title: "Sign In Successful",
-                    text: "You have successfully signed in!",
-                });
+                const userInfo = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    imageURL: result.user.photoURL,
+                };
+                axios.post(`${base_URL}/User`, userInfo)
+                    .then(res => {
+                        console.log(res);
+                        if (res.statusText === 'OK') {
+                            console.log('user added to the database');
+                            reset();
+                            Swal.fire({
+                                icon: "success",
+                                title: "Register Successful",
+                                text: "You have successfully registered!"
+                            });
+                            registerNavi('/');
+                        }
+                    });
             })
+            .catch(error => console.log(error));
+    };
 
-            .catch(error => {
-                console.error(error);
-                Swal.fire({
-                    icon: "error",
-                    title: "Sign In Failed",
-                    text: "An error occurred during sign in. Please try again.",
-                })
-
-
-            })
-    }
 
 
 
