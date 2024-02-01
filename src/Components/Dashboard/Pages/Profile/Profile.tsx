@@ -62,7 +62,7 @@ const Profile = () => {
 
     }
 
-
+console.log(userData.data);
     return (
         <>
 
