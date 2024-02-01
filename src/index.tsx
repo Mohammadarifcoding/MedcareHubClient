@@ -29,7 +29,6 @@ import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetai
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
-// >>>>>>> 273a8e55e986802a34ad3269bad5bc0a2cf8571a
 
 const queryClient = new QueryClient()
 
