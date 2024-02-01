@@ -27,6 +27,7 @@ const DashboardLayout = () => {
                     </div>
                 </div>
                 <div className='p-4 flex gap-2 justify-center my-auto flex-col xl:text-lg 2xl:text-xl'>
+
                     {openLayout ? (
                         <>
                             <NavLink to='/' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
@@ -61,6 +62,7 @@ const DashboardLayout = () => {
                     <div onClick={() => { setOpenLayout(!openLayout) }} className={`absolute top-[50%] p-2 border rounded-full hover:scale-110 cursor-pointer transition-all duration-200 hover:right-3 right-1 `}>
                         {openLayout ? <FaArrowLeft /> : <FaArrowRight></FaArrowRight>}
                     </div>
+
                 </div>
             </div>
 
@@ -104,6 +106,8 @@ const DashboardLayout = () => {
                 </div>
             </div>
         </div>
+
+</div>
     );
 };
 
