@@ -1,6 +1,19 @@
 import React from 'react';
 import { IoMdPhotos } from "react-icons/io";
 import UseAuth from '../../Hook/UseAuth.tsx';
+import ReactDOM from "react-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+enum GenderEnum {
+    female = "female",
+    male = "male",
+    other = "other",
+}
+
+interface IFormInput {
+    firstName: string
+    gender: GenderEnum
+}
 
 const CreatePost = () => {
     const { user } = UseAuth();
@@ -8,6 +21,8 @@ const CreatePost = () => {
         const modal = document.getElementById('my_modal_7') as HTMLInputElement;
         modal.checked = true;
     }
+    const { register, handleSubmit } = useForm<IFormInput>()
+    const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
     return (
         <>
             <div className="px-11 py-5 mx-auto bg-slate-200">
@@ -48,7 +63,20 @@ const CreatePost = () => {
                             </div>
                             <input type="text" placeholder="Type here" className="input input-bordered w-full" />
 
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <label>First Name</label>
+                                <input className="input input-bordered w-full" {...register("firstName")} />
+                                <label>Gender Selection</label>
+                                <select {...register("gender")}>
+                                    <option value="female">female</option>
+                                    <option value="male">male</option>
+                                    <option value="other">other</option>
+                                </select>
+                                <input type="submit" />
+                            </form>
+
                         </label>
+
                     </div>
                     <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
                 </div>
