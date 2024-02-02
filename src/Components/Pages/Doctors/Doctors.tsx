@@ -110,6 +110,20 @@ const Doctors = () => {
                                 <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
                                 {/* Product Description Skeleton */}
                                 <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
                             </div>
                         </div>
                     )}
