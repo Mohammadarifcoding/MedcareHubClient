@@ -25,6 +25,7 @@ import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
+import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.jsx';
 
 const queryClient = new QueryClient()
 
@@ -102,6 +103,7 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
+       <MedicineProvider>
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <div className='bg-[#EEF2FB]'>
@@ -109,6 +111,7 @@ if (rootElement) {
           </div>
         </QueryClientProvider>
       </AuthProvider>
+      </MedicineProvider>
     </React.StrictMode>)
 
 } else {
