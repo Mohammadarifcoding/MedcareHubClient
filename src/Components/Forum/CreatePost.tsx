@@ -36,6 +36,7 @@ const CreatePost = () => {
     const { register, handleSubmit, reset } = useForm<IFormInput>()
     // const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
     // hello hello 
+    //hello hello
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
 
         reset()
