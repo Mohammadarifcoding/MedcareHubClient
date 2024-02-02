@@ -4,7 +4,8 @@ import { FaArrowRight, FaHome, FaUserCircle, FaUserFriends } from "react-icons/f
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 import UseAuth from '../../../Hook/UseAuth.tsx';
-import Drawer from 'react-modern-drawer';
+import Drawer from 'react-modern-drawer'
+import { FaFilePrescription } from "react-icons/fa";
 import { PiDotsNineBold } from "react-icons/pi";
 
 const DashboardLayout = () => {
@@ -27,6 +28,7 @@ const DashboardLayout = () => {
                     </div>
                 </div>
                 <div className='p-4 flex gap-2 justify-center my-auto flex-col xl:text-lg 2xl:text-xl'>
+
 
                     {openLayout ? (
                         <>
@@ -59,6 +61,7 @@ const DashboardLayout = () => {
                             </NavLink>
                         </>
                     )}
+
                     <div onClick={() => { setOpenLayout(!openLayout) }} className={`absolute top-[50%] p-2 border rounded-full hover:scale-110 cursor-pointer transition-all duration-200 hover:right-3 right-1 `}>
                         {openLayout ? <FaArrowLeft /> : <FaArrowRight></FaArrowRight>}
                     </div>
@@ -83,22 +86,31 @@ const DashboardLayout = () => {
                                     <p><MdOutlineNotificationsActive></MdOutlineNotificationsActive></p>
                                 </div>
                                 <hr className='my-5 h-[2px]' />
-                                <div className='flex items-center gap-6 text-xl font-semibold text-[#0360D9]'>
+                                <div className='flex items-center gap-6 text-lg font-semibold text-[#0360D9]'>
                                     <p> <FaHome /></p>
                                     <NavLink to='/'>Home</NavLink>
                                 </div>
-                                <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
+                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
                                     <p><FaUserCircle /></p>
                                     <NavLink to='/dashboard/profile'>Profile</NavLink>
                                 </div>
-                                <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
+                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
+
+                                    <p><FaFilePrescription /></p>
+                                    <NavLink to='/dashboard/docstatus'>Doctor Status</NavLink>
+                                </div>
+                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
                                     <p><FaUserFriends /> </p>
-                                    <p><FaUserFriends/> </p>
                                     <NavLink to='/dashboard/alluser'>All User</NavLink>
+                                </div>
+                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]' >
                                     <p><FaUserCircle /></p>
                                     <NavLink to='/dashboard/comproduct'>Company Product</NavLink>
                                 </div>
+
                             </div>
+
+
                         </Drawer>
                         <h1 className='text-xl font-semibold text-[#0360D9]'>Dashboard</h1>
                     </div>
@@ -107,7 +119,7 @@ const DashboardLayout = () => {
             </div>
         </div>
 
-</div>
+
     );
 };
 

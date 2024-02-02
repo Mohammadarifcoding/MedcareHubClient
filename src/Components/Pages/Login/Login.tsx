@@ -5,8 +5,10 @@ import UseAuth from '../../../Hook/UseAuth.tsx';
 import { useState, FC } from 'react';
 import Swal from 'sweetalert2';
 import loginAnimation from './login.json'
-import  Lottie  from 'lottie-react';
-const Login:FC = () => {
+import Lottie from 'lottie-react';
+import axios from 'axios';
+import { base_URL } from '../../../utills/BaseURL.ts';
+const Login: FC = () => {
 
     const { loginUser, signInWithGoogle } = UseAuth()
     const [signError, setSignError] = useState();
@@ -39,12 +41,13 @@ const Login:FC = () => {
 
                 setSignSuccess("User Created successfully!")
                 e.target.reset()
-                registerNavi("/");
+                
                 Swal.fire({
                     icon: "success",
                     title: "Sign In Successful",
                     text: "You have successfully signed in!",
                 });
+                registerNavi("/");
 
             })
             .catch(error => {
@@ -62,13 +65,28 @@ const Login:FC = () => {
     const handleGoogle = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user);
-                registerNavi('/');
-                Swal.fire({
-                    icon: "success",
-                    title: "Sign In Successful",
-                    text: "You have successfully signed in!",
-                });
+
+                const userInfo = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    imageURL: result.user.photoURL,
+                };
+
+                axios.post(`${base_URL}/User`, userInfo)
+
+                    .then(res => {
+                        console.log(res);
+                        if (res.statusText === 'OK') {
+                            console.log('user added to the database');
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "Login Successful",
+                                text: "You have successfully logged in!"
+                            });
+                            registerNavi('/');
+                        }
+                    });
             })
 
             .catch(error => {

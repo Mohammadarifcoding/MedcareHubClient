@@ -49,6 +49,9 @@ const DrawerRoute = () => {
                                 <li>
                                     <Link to='/forum' className="block py-2 px-4 hover:text-[#0360D9]">Forum</Link>
                                 </li>
+                                <li>
+                                    <Link to='/blogs' className="block py-2 px-4 hover:text-[#0360D9]">Forum</Link>
+                                </li>
 
 
                                

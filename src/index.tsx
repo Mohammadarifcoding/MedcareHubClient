@@ -23,13 +23,17 @@ import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.t
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
+import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
 import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
 import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.tsx';
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
-import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 
+import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.jsx';
+
+import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
+import Blog from './Components/Pages/Blogs/Blog.tsx';
 const queryClient = new QueryClient()
 
 
@@ -77,12 +81,15 @@ const router = createBrowserRouter([
       {
         path: '/company/:companyname',
         element: <CompanyDetails></CompanyDetails>
-      },{
-        path:'/detailsmedicines',
-        element:<MedicienDetails></MedicienDetails>
-      },{
-        path:'/addoctor',
-        element:<CreateDoctor></CreateDoctor>
+      }, {
+        path: '/detailsmedicines',
+        element: <MedicienDetails></MedicienDetails>
+      }, {
+        path: '/addoctor',
+        element: <CreateDoctor></CreateDoctor>
+      }, {
+        path: '/blogs',
+        element: <Blog></Blog>
       }
     ]
   },
@@ -93,9 +100,13 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/profile',
         element: <Profile></Profile>
-      },{
-        path:'/dashboard/comproduct',
-        element:<CompanyProduct></CompanyProduct>
+      },
+      {
+        path: '/dashboard/docstatus',
+        element: <DocStatus></DocStatus>
+      }, {
+        path: '/dashboard/comproduct',
+        element: <CompanyProduct></CompanyProduct>
       },
       {
         path: '/dashboard/alluser',
@@ -115,6 +126,7 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
+       <MedicineProvider>
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <div className='bg-[#EEF2FB]'>
@@ -122,6 +134,7 @@ if (rootElement) {
           </div>
         </QueryClientProvider>
       </AuthProvider>
+      </MedicineProvider>
     </React.StrictMode>)
 
 } else {

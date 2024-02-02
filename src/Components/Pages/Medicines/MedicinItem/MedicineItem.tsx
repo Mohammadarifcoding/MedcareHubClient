@@ -4,6 +4,7 @@ import MedicineData from '../../../../Data/Medicine.ts';
 import Cart from '../../../../assets/Icons/Cart.tsx';
 import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
+import { useMedicineContext } from '../MedicineContext/MedicineContext.jsx';
 
 const MedicineItem = ({ filter }) => {
     const [medicine, setMedicine] = useState([]);
@@ -11,6 +12,7 @@ const MedicineItem = ({ filter }) => {
     const [favorites, setFavorites] = useState([]);
     const [priceRange, setPriceRange] = useState(90);
     const [isLoading, setISLoading] = useState(true);
+    const { selectedCategory } = useMedicineContext();
 
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
@@ -48,22 +50,11 @@ const MedicineItem = ({ filter }) => {
             if (filter.keyword) {
                 tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Medname.toLowerCase().includes(filter.keyword.toLowerCase()));
             }
+            if (selectedCategory) {
+                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === selectedCategory);
+            }
 
-            if (filter.sortBy === 'category_Herbal_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Herbal Care');
-            } else if (filter.sortBy === 'category_Womens_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === "Women's Care");
-            } else if (filter.sortBy === 'category_COVID_Special') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'COVID Special');
-            } else if (filter.sortBy === 'category_Baby_and_Mom_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Baby and Mom Care');
-            } else if (filter.sortBy === 'category_Supplements') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Supplements');
-            } else if (filter.sortBy === 'category_Nutrition') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Nutrition');
-            } else if (filter.sortBy === 'category_Personal_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Personal Care');
-            } else if (filter.sortBy === 'price_asc') {
+            if (filter.sortBy === 'price_asc') {
                 tempFilteredMedicine = tempFilteredMedicine?.sort((a, b) => a.Price - b.Price);
             } else if (filter.sortBy === 'price_desc') {
                 tempFilteredMedicine = tempFilteredMedicine?.sort((a, b) => b.Price - a.Price);
@@ -72,7 +63,7 @@ const MedicineItem = ({ filter }) => {
             setFilteredMedicine(tempFilteredMedicine);
         }, 600);
         return () => clearTimeout(debounceFilter);
-    }, [filter, medicine]);
+    }, [filter, medicine, selectedCategory]);
 
     const isFavorite = (id) => favorites.includes(id);
     return (
@@ -157,56 +148,111 @@ const MedicineItem = ({ filter }) => {
                     ))}
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse">
-                        <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
-                        <div className="space-y-2">
-                            <div className="h-6 w-2/3 rounded bg-gray-300"></div>
-                            <div className="flex gap-1">
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
+                <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
                             </div>
                         </div>
-                        <div className="mt-5 flex justify-between items-center font-medium">
-                            <div className="h-6 w-1/4 rounded bg-gray-300"></div>
-                            <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden md:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                            </div>
+                        </div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden lg:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                            </div>
                         </div>
                     </div>
-                    <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden md:block">
-                        <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
-                        <div className="space-y-2">
-                            <div className="h-6 w-2/3 rounded bg-gray-300"></div>
-                            <div className="flex gap-1">
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 mt-4 lg:grid-cols-3 gap-6">
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
                             </div>
                         </div>
-                        <div className="mt-5 flex justify-between items-center font-medium">
-                            <div className="h-6 w-1/4 rounded bg-gray-300"></div>
-                            <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
-                        </div>
-                    </div>
-                    <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden lg:block">
-                        <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
-                        <div className="space-y-2">
-                            <div className="h-6 w-2/3 rounded bg-gray-300"></div>
-                            <div className="flex gap-1">
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden md:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
                             </div>
                         </div>
-                        <div className="mt-5 flex justify-between items-center font-medium">
-                            <div className="h-6 w-1/4 rounded bg-gray-300"></div>
-                            <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden lg:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
