@@ -10,6 +10,7 @@ import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 //     female = "female",
 //     male = "male",
 //     other = "other",
+//     other = "other",
 // }
 
 interface IFormInput {
