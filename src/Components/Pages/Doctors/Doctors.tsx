@@ -204,7 +204,7 @@ const Doctors = () => {
                         </div>
                     </fieldset>
 
-                    <button onClick={toggleDrawer} className="btn-sm md:hidden bg-[#0360D9]  rounded-lg text-white">
+                    <button onClick={toggleDrawer} className="btn-sm lg:hidden bg-[#0360D9]  rounded-lg text-white">
                         Filter
                     </button>
                     <Drawer open={isOpen} onClose={toggleDrawer} direction="left" className="bla bla bla">
