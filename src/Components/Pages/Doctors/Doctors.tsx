@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import component 👇
 import { motion } from 'framer-motion';
@@ -18,6 +18,23 @@ const Doctors = () => {
             max: ''
         }
     });
+    const [doctors, setDoctors] = useState([]);
+    const [isLoading, setISLoading] = useState(true);
+
+    useEffect(() => {
+        setISLoading(true);
+        fetch('https://medcarehubendgame.vercel.app/Doctors')
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data);
+                setDoctors(data);
+                setISLoading(false);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    }, []);
+    // console.log(doctors);
 
     const linkVariants = {
         hover: {
@@ -112,28 +129,41 @@ const Doctors = () => {
                 <h1 className="text-xl font-medium ">Category</h1>
                 <hr className="my-4" />
                 <div className="mb-3">
-                    {[
-                        'Cardiologist',
-                        'Pediatrician',
-                        'Dermatologist',
-                        'Orthopedic Surgeon',
-                        'Ophthalmologist',
-                        'Gynecologist',
-                        'Neurologist',
-                        'Dentist',
-                        'Psychiatrist',
-                        'Allergist',
-                        'Urologist',
-                        'Rheumatologist',
-                        'ENT Specialist',
-                        'Endocrinologist',
-                        'Pulmonologist'
-                    ].map((docType) => (
-                        <div key={docType} className="flex gap-2">
-                            <input type="checkbox" name={docType} id={docType} checked={filter.docTypes.includes(docType)} onChange={() => handleCheckboxChange(docType)} />
-                            <p>{docType}</p>
+                    {!isLoading ? (
+                        doctors?.map((docType) => (
+                            <div key={docType?.DocType} className="flex gap-2">
+                                <input
+                                    type="checkbox"
+                                    name={docType?.DocType}
+                                    id={docType?.DocType}
+                                    checked={filter.docTypes.includes(docType?.DocType)}
+                                    onChange={() => handleCheckboxChange(docType?.DocType)}
+                                />
+                                <p>{docType?.DocType}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="p-6 rounded-md  mx-auto max-w-fit ">
+                            <div className="animate-pulse">
+                                {/* Product Title Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                            </div>
                         </div>
-                    ))}
+                    )}
                 </div>
                 <h1 className="text-xl font-medium ">Session Price</h1>
                 <hr className="my-4" />
