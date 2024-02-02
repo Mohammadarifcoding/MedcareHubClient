@@ -8,7 +8,7 @@ interface PostData {
     comment: number;
     date: string;
     heading: string;
-    post_body: string;
+    discription: string;
 }
 
 
