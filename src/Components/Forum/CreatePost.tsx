@@ -22,9 +22,8 @@ interface IFormInput {
 
 const CreatePost = () => {
     let todayDate = new Date();
-    todayDate.setHours(0, 0, 0, 0);
     let formattedDate = todayDate.toLocaleString('en-US');
-    console.log(typeof (formattedDate));
+    console.log(formattedDate);
 
     const axiosPublic = UseAxiosPublic()
     const { user } = UseAuth();
