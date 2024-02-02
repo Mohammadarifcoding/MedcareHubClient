@@ -11,7 +11,7 @@ const AllUser = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/Users`)
+            const res = await axios.get(`https://medcarehubendgame.vercel.app/Users`)
             return res.data;
         }
     })
@@ -29,7 +29,7 @@ const AllUser = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/user/${user._id}`)
+                axios.delete(`https://medcarehubendgame.vercel.app/user/${user._id}`)
                     .then(res => {
 
 
