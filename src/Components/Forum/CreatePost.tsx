@@ -21,8 +21,13 @@ interface IFormInput {
 }
 
 const CreatePost = () => {
+    // let todayDate = new Date();
+    // todayDate.setHours(0, 0, 0, 0);
+    // todayDate.toLocaleString();
     let todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
+    let formattedDate = todayDate.toLocaleString('en-US');
+    console.log(typeof (formattedDate));
 
     const axiosPublic = UseAxiosPublic()
     const { user } = UseAuth();
@@ -39,7 +44,7 @@ const CreatePost = () => {
         const postItem = {
             name: user.displayName,
             userImg: user.photoURL,
-            date: todayDate,
+            date: formattedDate,
             title: data.title,
             discription: data.discription,
             category: data.category,
