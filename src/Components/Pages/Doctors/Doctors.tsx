@@ -52,6 +52,57 @@ const Doctors = () => {
             };
         });
     };
+     
+    // const [isButtonClicked, setIsButtonClicked] = useState(false);
+    // const AxiousPublic = UseAxiosPublic()
+    // const [gender,setGender] = useState('all')
+    // const [doctypeCategory, setDocTypeCategory] = useState('all')
+    // // const [filter, setFilter] = useState({
+    // //     keyword: '',
+    // //     docTypes: [],
+    // //     genders: [],
+    // //     priceRange: {
+    // //         min: '',
+    // //         max: ''
+    // //     }
+    // // });
+
+    // const { data: AllDcotorsData = [], isLoading } = useQuery({
+    //     queryKey: ['doctors'],
+    //     queryFn: async () => {
+    //         const result = await AxiousPublic.get(`/doctors?gender=${gender}&age=all&category=${doctypeCategory}&startfee=all&endfee=all&startAvail=all&endAvail=all`)
+    //         return result.data
+    //     }
+    // })
+
+    // const linkVariants = {
+    //     hover: {
+    //         scale: 1.1,
+    //         transition: { duration: 0.2 }
+    //     }
+    // };
+
+    // console.log(AllDcotorsData)
+
+    // const [isOpen, setIsOpen] = React.useState(false);
+    // const toggleDrawer = () => {
+    //     setIsOpen((prevState) => !prevState);
+    // };
+
+    // const handleCheckboxChange = (docType) => {
+    //     setDocTypeCategory(docType)
+    //     if (docType === '') {
+    //         setDocTypeCategory('all')
+    //     }
+    //     // setFilter((prevFilter) => {
+    //     //     const updatedDocTypes = prevFilter.docTypes.includes(docType) ? prevFilter.docTypes.filter((type) => type !== docType) : [...prevFilter.docTypes, docType];
+
+    //     //     return {
+    //     //         ...prevFilter,
+    //     //         docTypes: updatedDocTypes
+    //     //     };
+    //     // });
+    // };
 
     return (
         <div className="flex container mx-auto gap-10 justify-between">

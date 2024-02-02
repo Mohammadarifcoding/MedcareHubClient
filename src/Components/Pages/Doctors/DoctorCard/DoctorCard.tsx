@@ -43,7 +43,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
         }, 600);
         return () => clearTimeout(debounceFilter);
     }, [filter, doctors, isButtonClicked]);
-
+   console.log(filteredDoctors)
     return (
         <>
             {!isLoading ? (
@@ -59,7 +59,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                         <h3 className=" text-lg font-semibold text-[#0360D9]">{data.DocName}</h3>
                                         <p className="text-sm text-[#1F2937] ">{data.DocType}</p>
                                     </div>
-                                    LN
+
                                 </div>
                                 <div className="grid gap-2 p-6">
                                     <div className="flex items-center gap-2">
@@ -78,7 +78,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                             <line x1={12} x2={12} y1={2} y2={22} />
                                             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                                         </svg>
-                                        <span className="text-sm text-[#1F2937] ">${data.visit} per visit</span>
+                                        <span className="text-sm text-[#1F2937] ">${data.serviceFee} per visit</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <svg
@@ -102,29 +102,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                 </div>
                             </Link>
                         </div>
-                        // <div key={data.ID}>
-                        //     <div className="max-w-[350px] mx-auto bg-white border  border-gray-200 rounded-lg shadow">
-                        //         <figure className="px-3 pt-4">
-                        //             <img className="transition ease-in-out hover:scale-110 duration-300 hover:-translate-y-1 rounded-t-lg h-[200px] w-[500px]  lg:w-[700px]" src={data.image} alt="" />
-                        //         </figure>
-
-                        //         <div className="px-3 py-2">
-                        //             <a href="#">
-                        //                 <h5 className="lg: lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.DocName}</h5>
-                        //             </a>
-                        //             <p className="mb-3 font-normal lg:text-lg text-sm text-gray-700 dark:text-gray-400">{data.DocType}</p>
-                        //             <hr className="my-4" />
-
-                        //             <p className="flex items-center lg:text-lg text-sm gap-3"><SlCalender />Available {data.startAvail >= 12 ? data.startAvail % 12 : data.startAvail} {data.startAvail >= 12 ? 'PM' : 'AM'} to {data.endAvail >= 12 ? data.endAvail % 12 : data.endAvail} {data.endAvail >= 12 ? 'PM' : 'AM'}</p>
-
-                        //             <p className="flex items-center gap-3 lg:text-lg text-sm my-2"><TbCoinTaka />{data.serviceFee}</p>
-
-                        //             <p className="flex items-center gap-3 lg:text-lg text-sm my-2"><TbGenderGenderqueer /> {data.gender}</p>
-
-                        //             <motion.button whileHover="hover"  variants={linkVariants}  className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white  w-full">View Profile</motion.button>
-                        //         </div>
-                        //     </div>
-                        // </div>
+ 
                     ))}
                 </div>
             ) : (
