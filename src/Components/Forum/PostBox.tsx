@@ -13,6 +13,7 @@ interface PostData {
 
 
 const PostBox = () => {
+
     const [post, setPost] = useState<PostData[]>([]);
     useEffect(() => {
         fetch('http://localhost:5000/forum')
