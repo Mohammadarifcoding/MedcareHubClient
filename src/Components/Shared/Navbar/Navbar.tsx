@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import DrawerRoute from './DrawerRoute.tsx';
@@ -11,8 +11,13 @@ import Container from '../Container/Container.tsx';
 
 const Navbar = () => {
 
-    const { user } = UseAuth()
+    const { user, logoutUser } = UseAuth()
 
+    const handleLogOut = () => {
+        logoutUser()
+            .then(() => console.log("You logged out successfully"))
+            .catch(error => console.error(error))
+    }
 
     return (
         <div>
@@ -62,6 +67,11 @@ const Navbar = () => {
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Forum</p>
                                 </li>
                             </Link>
+                            <Link to={'/blogs'}>
+                                <li className="flex">
+                                    <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Blogs</p>
+                                </li>
+                            </Link>
 
 
 
@@ -75,7 +85,7 @@ const Navbar = () => {
 
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                             <div className="w-10 rounded-full">
-                                                <img className="rounded-full w-7 lg:w-14" src={user.photoURL}
+                                                <img className="rounded-full w-7 lg:w-14" src={user?.photoURL}
                                                     alt="" />
                                             </div>
                                         </div>
@@ -85,11 +95,11 @@ const Navbar = () => {
                                                     Profile
                                                 </p>
                                             </li>
-                                            <Link to={'/dashboard'}>
+                                            <Link to={'/dashboard/profile'}>
                                                 <li><p>DashBoard</p></li>
                                             </Link>
 
-                                            <li > <p>Log Out</p></li>
+                                            <li > <p onClick={handleLogOut}>Log Out</p></li>
                                         </ul>
                                     </div>
                                 </>

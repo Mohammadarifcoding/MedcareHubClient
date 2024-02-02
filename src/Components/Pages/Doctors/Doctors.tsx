@@ -8,9 +8,15 @@ import 'react-modern-drawer/dist/index.css';
 import DoctorCard from './DoctorCard/DoctorCard.tsx';
 
 const Doctors = () => {
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [filter, setFilter] = useState({
         keyword: '',
-        sortBy: ''
+        docTypes: [],
+        genders: [],
+        priceRange: {
+            min: '',
+            max: ''
+        }
     });
 
     const linkVariants = {
@@ -24,6 +30,80 @@ const Doctors = () => {
     const toggleDrawer = () => {
         setIsOpen((prevState) => !prevState);
     };
+
+    const handleCheckboxChange = (docType) => {
+        setFilter((prevFilter) => {
+            const updatedDocTypes = prevFilter.docTypes.includes(docType) ? prevFilter.docTypes.filter((type) => type !== docType) : [...prevFilter.docTypes, docType];
+
+            return {
+                ...prevFilter,
+                docTypes: updatedDocTypes
+            };
+        });
+    };
+
+    const handleGenderCheckboxChange = (gender) => {
+        setFilter((prevFilter) => {
+            const updatedGenders = gender === 'all' ? [] : prevFilter.genders.includes(gender) ? prevFilter.genders.filter((gen) => gen !== gender) : [...prevFilter.genders, gender];
+
+            return {
+                ...prevFilter,
+                genders: updatedGenders
+            };
+        });
+    };
+     
+    // const [isButtonClicked, setIsButtonClicked] = useState(false);
+    // const AxiousPublic = UseAxiosPublic()
+    // const [gender,setGender] = useState('all')
+    // const [doctypeCategory, setDocTypeCategory] = useState('all')
+    // // const [filter, setFilter] = useState({
+    // //     keyword: '',
+    // //     docTypes: [],
+    // //     genders: [],
+    // //     priceRange: {
+    // //         min: '',
+    // //         max: ''
+    // //     }
+    // // });
+
+    // const { data: AllDcotorsData = [], isLoading } = useQuery({
+    //     queryKey: ['doctors'],
+    //     queryFn: async () => {
+    //         const result = await AxiousPublic.get(`/doctors?gender=${gender}&age=all&category=${doctypeCategory}&startfee=all&endfee=all&startAvail=all&endAvail=all`)
+    //         return result.data
+    //     }
+    // })
+
+    // const linkVariants = {
+    //     hover: {
+    //         scale: 1.1,
+    //         transition: { duration: 0.2 }
+    //     }
+    // };
+
+    // console.log(AllDcotorsData)
+
+    // const [isOpen, setIsOpen] = React.useState(false);
+    // const toggleDrawer = () => {
+    //     setIsOpen((prevState) => !prevState);
+    // };
+
+    // const handleCheckboxChange = (docType) => {
+    //     setDocTypeCategory(docType)
+    //     if (docType === '') {
+    //         setDocTypeCategory('all')
+    //     }
+    //     // setFilter((prevFilter) => {
+    //     //     const updatedDocTypes = prevFilter.docTypes.includes(docType) ? prevFilter.docTypes.filter((type) => type !== docType) : [...prevFilter.docTypes, docType];
+
+    //     //     return {
+    //     //         ...prevFilter,
+    //     //         docTypes: updatedDocTypes
+    //     //     };
+    //     // });
+    // };
+
     return (
         <div className="flex container mx-auto gap-10 justify-between">
             <div className="mt-10 xl:w-[20%] w-0 xl:block hidden">
@@ -32,55 +112,73 @@ const Doctors = () => {
                 <h1 className="text-xl font-medium ">Category</h1>
                 <hr className="my-4" />
                 <div className="mb-3">
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>Health Suggestion</p>
-                    </div>
-
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>Skin Care Suggestion</p>
-                    </div>
-
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>Mental Health Suggestion</p>
-                    </div>
-
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>Psychiatrist</p>
-                    </div>
-
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>Gynecologist</p>
-                    </div>
+                    {[
+                        'Cardiologist',
+                        'Pediatrician',
+                        'Dermatologist',
+                        'Orthopedic Surgeon',
+                        'Ophthalmologist',
+                        'Gynecologist',
+                        'Neurologist',
+                        'Dentist',
+                        'Psychiatrist',
+                        'Allergist',
+                        'Urologist',
+                        'Rheumatologist',
+                        'ENT Specialist',
+                        'Endocrinologist',
+                        'Pulmonologist'
+                    ].map((docType) => (
+                        <div key={docType} className="flex gap-2">
+                            <input type="checkbox" name={docType} id={docType} checked={filter.docTypes.includes(docType)} onChange={() => handleCheckboxChange(docType)} />
+                            <p>{docType}</p>
+                        </div>
+                    ))}
                 </div>
                 <h1 className="text-xl font-medium ">Session Price</h1>
                 <hr className="my-4" />
                 <div className="flex items-center my-3">
-                    <input placeholder="min" className="border focus:outline-none px-2 rounded-lg w-[70px]" type="text" name="" id="" />
+                    <input
+                        placeholder="min"
+                        className="border focus:outline-none px-2 rounded-lg w-[70px]"
+                        type="text"
+                        name="minPrice"
+                        id="minPrice"
+                        value={filter.priceRange.min}
+                        onChange={(e) => setFilter((prevFilter) => ({ ...prevFilter, priceRange: { ...prevFilter.priceRange, min: e.target.value } }))}
+                    />
+
                     <p className="mx-3">-</p>
-                    <input placeholder="max" className="border focus:outline-none px-2 rounded-lg w-[70px]" type="text" name="" id="" />
-                    <motion.button whileHover="hover" variants={linkVariants} className="bg-[#0360D9] ml-3 p-2 rounded-lg text-white">
+
+                    <input
+                        placeholder="max"
+                        className="border focus:outline-none px-2 rounded-lg w-[70px]"
+                        type="text"
+                        name="maxPrice"
+                        id="maxPrice"
+                        value={filter.priceRange.max}
+                        onChange={(e) => setFilter((prevFilter) => ({ ...prevFilter, priceRange: { ...prevFilter.priceRange, max: e.target.value } }))}
+                    />
+                    <motion.button whileHover="hover" variants={linkVariants} className="bg-[#0360D9] ml-3 p-2 rounded-lg text-white" onClick={() => setIsButtonClicked(true)}>
                         Apply
                     </motion.button>
                 </div>
                 <div>
                     <h1 className="text-xl font-medium">Gender</h1>
                     <hr className="my-4" />
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>Male</p>
-                    </div>
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>Female</p>
-                    </div>
-                    <div className="flex gap-2">
-                        <input type="checkbox" name="" id="" />
-                        <p>All</p>
+                    <div className="mb-3">
+                        {['Male', 'Female', 'All'].map((gender) => (
+                            <div key={gender} className="flex gap-2">
+                                <input
+                                    type="checkbox"
+                                    name={gender}
+                                    id={gender}
+                                    checked={filter.genders.includes(gender.toLowerCase())}
+                                    onChange={() => handleGenderCheckboxChange(gender.toLowerCase())}
+                                />
+                                <p>{gender}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -177,7 +275,7 @@ const Doctors = () => {
                     <p className="text-lg">Meet our doctor—a beacon of knowledge, a guardian of health, and a partner in your wellness journey.</p>
                 </div>
                 <div className="mx-5 xl:w-[100%] w-full">
-                    <DoctorCard filter={filter} ></DoctorCard>
+                    <DoctorCard filter={filter} setFilter={setFilter} isButtonClicked={isButtonClicked}></DoctorCard>
                 </div>
             </div>
         </div>

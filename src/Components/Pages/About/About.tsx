@@ -6,6 +6,7 @@ import AboutPart2 from './AboutPart/AboutPart2.tsx';
 import AboutService from './AboutService/AboutService.tsx';
 import Container from '../../Shared/Container/Container.tsx';
 
+
 const About = () => {
     return (
         <Container>
@@ -28,6 +29,7 @@ const About = () => {
                <p className="text-sm font-medium pb-2 text-[#021526]">+8801834345678</p>
                <img className="h-8" src="https://i.ibb.co/sPM1cy7/pngtree-phone-icon-in-solid-circle-png-image-2380227-removebg-preview.png" alt="" />
                </div>
+         
              </div>
 
           </div>

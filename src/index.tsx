@@ -19,8 +19,21 @@ import Doctors from './Components/Pages/Doctors/Doctors.tsx';
 import Medicines from './Components/Pages/Medicines/Medicines.tsx';
 import DashboardLayout from './Components/Dashboard/Layout/DashboardLayout.tsx';
 import Profile from './Components/Dashboard/Pages/Profile/Profile.tsx';
+import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.tsx';
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
+import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
+import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
+import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
+import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.tsx';
+import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
+import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
+import Blog from './Components/Pages/Blogs/Blog.tsx';
+
+
+const queryClient = new QueryClient()
 
 
 
@@ -53,12 +66,29 @@ const router = createBrowserRouter([
         element: <Doctors></Doctors>
       },
       {
+        path: '/doctors/:id',
+        element: <DoctorDetails></DoctorDetails>
+      },
+      {
         path: '/medicines',
         element: <Medicines></Medicines>
       },
       {
-        path:'/about',
-        element:<About></About>
+        path: '/about',
+        element: <About></About>
+      },
+      {
+        path: '/company/:companyname',
+        element: <CompanyDetails></CompanyDetails>
+      }, {
+        path: '/detailsmedicines',
+        element: <MedicienDetails></MedicienDetails>
+      }, {
+        path: '/addoctor',
+        element: <CreateDoctor></CreateDoctor>
+      }, {
+        path: '/blogs',
+        element: <Blog></Blog>
       }
     ]
   },
@@ -67,8 +97,19 @@ const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: 'profile',
+        path: '/dashboard/profile',
         element: <Profile></Profile>
+      },
+      {
+        path: '/dashboard/docstatus',
+        element: <DocStatus></DocStatus>
+      }, {
+        path: '/dashboard/comproduct',
+        element: <CompanyProduct></CompanyProduct>
+      },
+      {
+        path: '/dashboard/alluser',
+        element: <AllUser></AllUser>
       }
     ]
   },
@@ -85,9 +126,11 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <AuthProvider>
-        <div className='bg-[#EEF2FB]'>
-          <RouterProvider router={router} />
-        </div>
+        <QueryClientProvider client={queryClient}>
+          <div className='bg-[#EEF2FB]'>
+            <RouterProvider router={router} />
+          </div>
+        </QueryClientProvider>
       </AuthProvider>
     </React.StrictMode>)
 
