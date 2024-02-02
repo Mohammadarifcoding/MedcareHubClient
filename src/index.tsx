@@ -29,10 +29,11 @@ import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.t
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
+
+import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.jsx';
+
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
-
-
 const queryClient = new QueryClient()
 
 
@@ -125,6 +126,7 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
+       <MedicineProvider>
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <div className='bg-[#EEF2FB]'>
@@ -132,6 +134,7 @@ if (rootElement) {
           </div>
         </QueryClientProvider>
       </AuthProvider>
+      </MedicineProvider>
     </React.StrictMode>)
 
 } else {

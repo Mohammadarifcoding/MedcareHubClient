@@ -1,33 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useMedicineContext } from '../MedicineContext/MedicineContext';
 
 const SideCategory = ({ filter, setFilter }) => {
-  return (
-    <div className="flex items-stretch my-4 px-2">
-      <select
-        className="cursor-pointer  w-full rounded-md border  md:px-1 py-2  focus:outline-none"
-        name="sortBy"
-        id="sortBy"
-        value={filter.sortBy}
-        onChange={(e) =>
-          setFilter((previousValue) => ({
+    const [medicines, setMedicines] = useState([]);
+    const { setSelectedCategory } = useMedicineContext();
+    const [isLoading, setISLoading] = useState(true);
+
+    useEffect(() => {
+        setISLoading(true);
+        fetch('https://medcarehubendgame.vercel.app/Medicines')
+            .then((res) => res.json())
+            .then((data) => {
+                setMedicines(data);
+                setISLoading(false);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    }, []);
+
+    const handleCategoryChange = (e) => {
+        const category = e.target.value;
+        setSelectedCategory(category);
+        setFilter((previousValue) => ({
             ...previousValue,
-            sortBy: e.target.value,
-          }))
-        }
-      >
-        <option value="">Sort By Category</option>
-        <option value="category_Herbal_Care">Herbal Care</option>
-        <option value="category_Womens_Care">Womens Care</option>
-        <option value="category_COVID_Special">COVID Special</option>
-        <option value="category_Baby_and_Mom_Care">Baby and Mom Care</option>
-        <option value="category_Supplements">Supplements</option>
-        <option value="category_Nutrition">Nutrition</option>
-        <option value="category_Personal_Care">Personal Care</option>
-        <option value="price_asc">Price (Lower to Higher)</option>
-        <option value="price_desc">Price (Higher to Lower)</option>
-      </select>
-    </div>
-  );
+            sortBy: category
+        }));
+    };
+
+
+    return (
+        <div className="flex items-stretch my-4 px-2">
+            {!isLoading ? (
+                <select className="cursor-pointer w-full rounded-md border  md:px-1 py-2 text-center text-[#0360D9]" name="sortBy" id="sortBy" value={filter.sortBy} onChange={handleCategoryChange}>
+                    <option value="">Sort By Category</option>
+                    {Array.from(new Set(medicines?.map((medicine) => medicine.Category))).map((category) => (
+                        <option key={category} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
+            ) : (
+                <div className=" rounded-md mx-auto max-w-fit ">
+                    <div className="animate-pulse">
+                        {/* Product Title Skeleton */}
+                        <div className=" w-[100px] lg:w-[170px] h-10 rounded-lg bg-[#9FADC2] mb-4"></div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default SideCategory;
