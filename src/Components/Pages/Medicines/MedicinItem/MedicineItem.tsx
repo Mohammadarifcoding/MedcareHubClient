@@ -63,7 +63,7 @@ const MedicineItem = ({ filter }) => {
             setFilteredMedicine(tempFilteredMedicine);
         }, 600);
         return () => clearTimeout(debounceFilter);
-    }, [filter, medicine]);
+    }, [filter, medicine, selectedCategory]);
 
     const isFavorite = (id) => favorites.includes(id);
     return (
