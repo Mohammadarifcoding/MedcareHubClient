@@ -67,6 +67,11 @@ const Navbar = () => {
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Forum</p>
                                 </li>
                             </Link>
+                            <Link to={'/blogs'}>
+                                <li className="flex">
+                                    <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Blogs</p>
+                                </li>
+                            </Link>
 
 
 

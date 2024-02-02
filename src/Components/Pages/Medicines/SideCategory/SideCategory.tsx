@@ -28,6 +28,7 @@ const SideCategory = ({ filter, setFilter }) => {
         }));
     };
 
+
     return (
         <div className="flex items-stretch my-4 px-2">
             {!isLoading ? (
