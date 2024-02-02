@@ -21,9 +21,6 @@ interface IFormInput {
 }
 
 const CreatePost = () => {
-    // let todayDate = new Date();
-    // todayDate.setHours(0, 0, 0, 0);
-    // todayDate.toLocaleString();
     let todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
     let formattedDate = todayDate.toLocaleString('en-US');
