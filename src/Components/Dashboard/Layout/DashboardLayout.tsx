@@ -6,6 +6,7 @@ import { MdOutlineNotificationsActive } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import Drawer from 'react-modern-drawer'
+import { FaFilePrescription } from "react-icons/fa";
 
 import { PiDotsNineBold } from "react-icons/pi";
 
@@ -38,7 +39,10 @@ const DashboardLayout = () => {
                         <NavLink to='/dashboard/profile' className=' flex gap-1 items-center    hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                             <FaUserCircle />  Profile
                         </NavLink>
-
+                        <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center   
+                         hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                            <FaFilePrescription />  Doctor status
+                        </NavLink>
 
 
                     </> : <>
@@ -92,6 +96,11 @@ const DashboardLayout = () => {
                                     <p><FaUserCircle /></p>
                                     <NavLink to='/dashboard/profile'>Profile</NavLink>
                                 </div>
+                                <div className='flex items-center gap-6 text-xl font-semibold my-2 text-[#0360D9]'>
+                                <p><FaFilePrescription /></p>
+                                    <NavLink to='/dashboard/docstatus'>Doctor Status</NavLink>
+                                </div>
+
                             </div>
 
                         </Drawer>
