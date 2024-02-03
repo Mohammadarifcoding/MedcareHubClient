@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import { useQuery } from '@tanstack/react-query';
 
 const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
-    const [doctors, setDoctors] = useState([]);
     const [filteredDoctors, setFilteredDoctors] = useState([]);
-    const [isLoading, setISLoading] = useState(true);
+    const AxiousPublic = UseAxiosPublic();
 
-    useEffect(() => {
-        setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Doctors')
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log(data);
-                setDoctors(data);
-                setISLoading(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }, []);
-
+    const { data: doctorData = [], isLoading } = useQuery({
+        queryKey: ['doctors'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Doctors');
+            return result.data;
+        }
+    });
+  
     useEffect(() => {
         const debounceFilter = setTimeout(() => {
-            let tempFilteredDoctors = [...doctors];
+            let tempFilteredDoctors = [...doctorData];
             if (filter.keyword) {
                 tempFilteredDoctors = tempFilteredDoctors?.filter((item) => item.DocName.toLowerCase().includes(filter.keyword.toLowerCase()));
             }
@@ -35,15 +30,16 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
 
             if (isButtonClicked) {
                 if (filter.priceRange.min !== '' && filter.priceRange.max !== '') {
-                    tempFilteredDoctors = tempFilteredDoctors.filter((item) => item.visit >= parseFloat(filter.priceRange.min) && item.visit <= parseFloat(filter.priceRange.max));
+                    tempFilteredDoctors = tempFilteredDoctors.filter((item) => item.serviceFee >= parseFloat(filter.priceRange.min) && item.serviceFee <= parseFloat(filter.priceRange.max));
                 }
             }
 
             setFilteredDoctors(tempFilteredDoctors);
         }, 600);
         return () => clearTimeout(debounceFilter);
-    }, [filter, doctors, isButtonClicked]);
-   console.log(filteredDoctors)
+    }, [filter, doctorData, isButtonClicked]);
+    //    console.log(filteredDoctors)
+
     return (
         <>
             {!isLoading ? (
@@ -59,7 +55,6 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                         <h3 className=" text-lg font-semibold text-[#0360D9]">{data.DocName}</h3>
                                         <p className="text-sm text-[#1F2937] ">{data.DocType}</p>
                                     </div>
-
                                 </div>
                                 <div className="grid gap-2 p-6">
                                     <div className="flex items-center gap-2">
@@ -102,7 +97,6 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                 </div>
                             </Link>
                         </div>
- 
                     ))}
                 </div>
             ) : (

@@ -1,6 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MedicineData from '../../../../Data/Medicine.ts';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import Cart from '../../../../assets/Icons/Cart.tsx';
 import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
@@ -11,8 +13,9 @@ const MedicineItem = ({ filter }) => {
     const [filteredMedicine, setFilteredMedicine] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [priceRange, setPriceRange] = useState(90);
-    const [isLoading, setISLoading] = useState(true);
+    // const [isLoading, setISLoading] = useState(false);
     const { selectedCategory } = useMedicineContext();
+    const AxiousPublic = UseAxiosPublic();
 
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
@@ -31,18 +34,17 @@ const MedicineItem = ({ filter }) => {
         }
     };
 
+    const { data: medicineData = [], isLoading } = useQuery({
+        queryKey: ['medicines'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Medicines');
+            return result.data;
+        }
+    });
+
     useEffect(() => {
-        setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Medicines')
-            .then((res) => res.json())
-            .then((data) => {
-                setMedicine(data);
-                setISLoading(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }, []);
+        setMedicine(medicineData);
+    }, [medicineData]);
 
     useEffect(() => {
         const debounceFilter = setTimeout(() => {

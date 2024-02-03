@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // import component 👇
 import { motion } from 'framer-motion';
 import Drawer from 'react-modern-drawer';
 //import styles 👇
+import { useQuery } from '@tanstack/react-query';
 import 'react-modern-drawer/dist/index.css';
+import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import DoctorCard from './DoctorCard/DoctorCard.tsx';
 
 const Doctors = () => {
@@ -18,24 +20,17 @@ const Doctors = () => {
             max: ''
         }
     });
-    const [doctors, setDoctors] = useState([]);
-    const [isLoading, setISLoading] = useState(true);
 
-    useEffect(() => {
-        setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Doctors')
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log(data);
-                setDoctors(data);
-                setISLoading(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }, []);
-    // console.log(doctors);
+    const AxiousPublic = UseAxiosPublic();
 
+    const { data: doctorData = [], isLoading } = useQuery({
+        queryKey: ['doctors'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Doctors');
+            return result.data;
+        }
+    });
+   
     const linkVariants = {
         hover: {
             scale: 1.1,
@@ -79,7 +74,7 @@ const Doctors = () => {
                 <hr className="my-4" />
                 <div className="mb-3">
                     {!isLoading ? (
-                        doctors?.map((docType) => (
+                        doctorData?.map((docType) => (
                             <div key={docType?.DocType} className="flex gap-2">
                                 <input
                                     type="checkbox"
@@ -215,7 +210,7 @@ const Doctors = () => {
                             <hr className="my-4" />
                             <div className="mb-3">
                                 {!isLoading ? (
-                                    doctors?.map((docType) => (
+                                    doctorData?.map((docType) => (
                                         <div key={docType?.DocType} className="flex gap-2">
                                             <input
                                                 type="checkbox"
