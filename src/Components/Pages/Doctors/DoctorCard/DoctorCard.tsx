@@ -8,7 +8,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
 
     useEffect(() => {
         setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Doctors')
+        fetch('http://localhost:5000/Doctors')
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
@@ -43,7 +43,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
         }, 600);
         return () => clearTimeout(debounceFilter);
     }, [filter, doctors, isButtonClicked]);
-   console.log(filteredDoctors)
+    console.log(filteredDoctors)
     return (
         <>
             {!isLoading ? (
@@ -102,7 +102,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                 </div>
                             </Link>
                         </div>
- 
+
                     ))}
                 </div>
             ) : (

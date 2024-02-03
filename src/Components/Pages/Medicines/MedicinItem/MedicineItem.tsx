@@ -33,7 +33,7 @@ const MedicineItem = ({ filter }) => {
 
     useEffect(() => {
         setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Medicines')
+        fetch('http://localhost:5000/Medicines')
             .then((res) => res.json())
             .then((data) => {
                 setMedicine(data);
@@ -135,9 +135,8 @@ const MedicineItem = ({ filter }) => {
                                     </button>
                                     <button
                                         onClick={() => handleToggleFavorite(medicine?.ID)}
-                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${
-                                            isFavorite(medicine?.ID) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
-                                        } py-1.5 transition-all lg:py-1.5`}
+                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${isFavorite(medicine?.ID) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
+                                            } py-1.5 transition-all lg:py-1.5`}
                                     >
                                         {isFavorite(medicine?.ID) ? <LoveFill /> : <LoveLine />}
                                         Favourite

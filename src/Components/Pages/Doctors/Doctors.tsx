@@ -23,7 +23,7 @@ const Doctors = () => {
 
     useEffect(() => {
         setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Doctors')
+        fetch('http://localhost:5000/Doctors')
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
