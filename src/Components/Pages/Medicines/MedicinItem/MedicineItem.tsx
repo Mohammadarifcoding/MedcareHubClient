@@ -13,6 +13,7 @@ const MedicineItem = ({ filter }) => {
     const [priceRange, setPriceRange] = useState(90);
     const [isLoading, setISLoading] = useState(true);
     const { selectedCategory } = useMedicineContext();
+    const [selectedMedicine, setSelectedMedicine] = useState(null);
 
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
@@ -65,7 +66,15 @@ const MedicineItem = ({ filter }) => {
         return () => clearTimeout(debounceFilter);
     }, [filter, medicine, selectedCategory]);
 
-    const isFavorite = (id) => favorites.includes(id);
+    const isFavorite = (id) => favorites.includes(id); const openMedicineModal = (medicine) => {
+        setSelectedMedicine(medicine);
+    };
+
+    const closeMedicineModal = () => {
+        setSelectedMedicine(null);
+    };
+
+
     return (
         <>
             <div className="mx-2 space-y-2 mb-5 -mt-2 mr-5">
@@ -135,9 +144,8 @@ const MedicineItem = ({ filter }) => {
                                     </button>
                                     <button
                                         onClick={() => handleToggleFavorite(medicine?.ID)}
-                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${
-                                            isFavorite(medicine?.ID) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
-                                        } py-1.5 transition-all lg:py-1.5`}
+                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${isFavorite(medicine?.ID) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
+                                            } py-1.5 transition-all lg:py-1.5`}
                                     >
                                         {isFavorite(medicine?.ID) ? <LoveFill /> : <LoveLine />}
                                         Favourite

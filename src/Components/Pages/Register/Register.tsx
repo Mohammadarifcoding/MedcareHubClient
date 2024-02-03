@@ -29,7 +29,6 @@ const Register = () => {
         console.log(data);
 
         createUser(data.email, data.password)
-
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
@@ -62,52 +61,7 @@ const Register = () => {
             })
     }
 
-    // const handleSignup = e => {
-    //     e.preventDefault();
-    //     const form = e.target
-    //     const name = form.name.value
-    //     const photo = form.photo.value;
-    //     const email = form.email.value;
-    //     const password = form.password.value;
-
-
-    //     console.log(name, photo, email, password);
-
-    //     setSignError(" ");
-    //     setSignSuccess(" ");
-
-    //     if (password.length < 6) {
-    //         setSignError(" Password should be at least 6 characters ")
-    //         return;
-    //     } else if (!/[A-Z]/.test(password)) {
-    //         setSignError('you should use one uppercase character.')
-    //         return;
-    //     } else if (!/[!@#$%^&*]/.test(password))
-    //         setSignError('you should a special character')
-
-    //     createUser(email, password)
-    //         .then(result => {
-    //             console.log(result);
-    //             setSignSuccess("User Create Succesfully!")
-    //             e.target.reset()
-    //             registerNavi('/login')
-    //             Swal.fire({
-    //                 icon: "success",
-    //                 title: "Sign Up Successful",
-    //                 text: "You have successfully signed in!"
-    //             })
-    //         })
-
-    //         .catch(error => {
-    //             console.error(error);
-    //             setSignError(error.message);
-    //             Swal.fire({
-    //                 icon: "error",
-    //                 title: "Sign Up Failed",
-    //                 text: "An error occurred during sign in. Please try again."
-    //             })
-    //         })
-    // }
+   
 
     const handleGoogle = () => {
         signInWithGoogle()

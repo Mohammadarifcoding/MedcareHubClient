@@ -20,15 +20,7 @@ const DoctorDetails = () => {
 
     return (
         <>
-            <div className="hero mb-8 h-[170px] md:h-[240px]" style={{ backgroundImage: 'url(https://i.ibb.co/zfS9gN2/doctor-medical-background-24834402.jpg)' }}>
-                <div className="bg-opacity-60"></div>
-                <div className="text-center">
-                    <div className="max-w-md">
-                        <h1 className="text-2xl md:text-5xl text-slate-600  font-semibold">About {foundData?.DocName}</h1>
-                        <h3 className="text-xl md:text-2xl text-slate-600  font-semibold">Service: {foundData?.service}</h3>
-                    </div>
-                </div>
-            </div>
+           
             <div className="mb-8 w-[95%] sm:w-[90%] md:w-[80%] lg:[70%] mx-auto lg:flex flex-row gap-20">
                 <div
                     className="flex flex-col rounded-xl mb-8 w-full lg:w-[30%] border
