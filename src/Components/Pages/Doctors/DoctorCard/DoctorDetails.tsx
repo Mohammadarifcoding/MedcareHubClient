@@ -7,7 +7,7 @@ const DoctorDetails = () => {
     // console.log(id);
 
     useEffect(() => {
-        fetch(`https://medcarehubendgame.vercel.app/Doctor/${id}`)
+        fetch(`http://localhost:5000/Doctor/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
@@ -15,7 +15,7 @@ const DoctorDetails = () => {
             })
             .catch((error) => {
                 console.log(error.message);
-              });
+            });
     }, [id]);
 
     return (
