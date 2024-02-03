@@ -4,23 +4,23 @@ import { FaRegCommentAlt } from "react-icons/fa";
 interface SinglePostProps {
     data: {
         name: string;
-        img: string;
-        tag: string;
+        userImg: string;
+        category: string;
         comment: number;
         date: string;
-        heading: string;
-        post_body: string;
+        title: string;
+        discription: string;
     }
 }
 
 const SinglePost = ({ data }: SinglePostProps) => {
-    const { name, img, tag, comment, date, heading, post_body } = data;
+    const { name, date, category, title, discription, userImg } = data;
     return (
         <div className="bg-slate-200 p-5 my-5">
             <div className="flex justify-between items-center">
                 <div className="flex gap-5 items-center">
                     <div >
-                        <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src={img} alt="" />
+                        <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src={userImg} alt="" />
                     </div>
                     <div>
                         <h1 className="text-3xl font-bold ">{name}</h1>
@@ -28,14 +28,14 @@ const SinglePost = ({ data }: SinglePostProps) => {
                     </div>
 
                 </div>
-                <button className="border-2 border-blue-500 p-2 rounded">{tag}</button>
+                <button className="border-2 border-blue-500 p-2 rounded">{category}</button>
             </div>
             <div className="pt-5">
-                <h1 className="text-2xl font-medium ">{heading}</h1>
-                <p className="text-xl font-normal pt-2">{post_body}</p>
+                <h1 className="text-2xl font-medium ">{title}</h1>
+                <p className="text-xl font-normal pt-2">{discription}</p>
                 <div className="pt-5 flex gap-2 items-center">
                     <FaRegCommentAlt />
-                    <p>{comment}comment</p>
+                    <p>comment</p>
                 </div>
             </div>
         </div>

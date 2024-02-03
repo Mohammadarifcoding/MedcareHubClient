@@ -11,6 +11,7 @@ const Profile = () => {
     const { user } = UseAuth()
     const [userData, setUserData] = useState([]);
     const [openModal, setOpenModal] = useState(false);
+    const [refetchData, setRefecthData] = useState(false)
 
 
 
@@ -33,7 +34,7 @@ const Profile = () => {
             .then(res => res.json())
             .then(data => setUserData(data))
 
-    }, [user])
+    }, [user, refetchData])
 
 
 
@@ -55,6 +56,8 @@ const Profile = () => {
                 console.log(res);
 
                 Swal.fire("Updated Your Profile!")
+                setOpenModal(false)
+                setRefecthData(!refetchData)
 
             })
             .catch((error) => console.error("Error updating status:", error))
@@ -62,7 +65,7 @@ const Profile = () => {
 
     }
 
-console.log(userData.data);
+    console.log(userData.data);
     return (
         <>
 
