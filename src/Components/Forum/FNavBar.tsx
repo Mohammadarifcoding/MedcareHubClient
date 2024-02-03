@@ -2,12 +2,10 @@ import React from 'react';
 import UseAuth from '../../Hook/UseAuth.tsx';
 
 const FNavBar = () => {
-
-    const {user} = UseAuth()
+    const { user } = UseAuth();
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
-
                 <a className="btn btn-ghost text-xl">HelpDesk</a>
             </div>
 
@@ -18,7 +16,6 @@ const FNavBar = () => {
                     <span className="h-4 w-4 bg-green-500 absolute rounded-full bottom-2 right-0 animate-ping"></span>
                 </div>
             </div>
-
         </div>
     );
 };
