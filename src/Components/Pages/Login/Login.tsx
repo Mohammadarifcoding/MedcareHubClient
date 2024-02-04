@@ -139,15 +139,15 @@ const Login: FC = () => {
                         {signSuccess && <p className="mx-8 text-green-600">{signSuccess}</p>}
 
                         <div className="mt-6 flex flex-col space-y-2">
-                            <a className="text-sm" href="#">
+                            <h3 className="text-sm" href="#">
                                 Don't have an account?<Link to="/register"> Register here</Link>
-                            </a>
+                            </h3>
                         </div>
                         <p className="mt-6 text-xs text-gray-600">
                             By logging into the Prominent application you are agreeing to the{' '}
-                            <a className="text-blue-600" href="#">
+                            <h3 className="text-blue-600" href="#">
                                 Terms &amp; Conditions
-                            </a>
+                            </h3>
                             .
                         </p>
                     </div>

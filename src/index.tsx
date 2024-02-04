@@ -35,6 +35,7 @@ import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/M
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
 import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx';
+import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 const queryClient = new QueryClient()
 
 
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/addproduct',
         element: <AddProduct></AddProduct>
+      },
+      {
+        path: '/dashboard/myproduct',
+        element: <MyProduct></MyProduct>
       },
     ]
   },
