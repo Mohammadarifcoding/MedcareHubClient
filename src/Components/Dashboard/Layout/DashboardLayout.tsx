@@ -129,6 +129,18 @@ const DashboardLayout = () => {
                                     </p>
                                     <NavLink to="/dashboard/comproduct">Company Product</NavLink>
                                 </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <MdOutlineAddToPhotos />
+                                    </p>
+                                    <NavLink to="/dashboard/addproduct">Add Medicine</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <FaBook />
+                                    </p>
+                                    <NavLink to="/dashboard/myproduct">My Medicine</NavLink>
+                                </div>
                             </div>
                         </Drawer>
                         <h1 className="text-xl font-semibold text-[#0360D9]">Dashboard</h1>

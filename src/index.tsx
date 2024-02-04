@@ -36,6 +36,7 @@ import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
 import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx';
 import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
+import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
 const queryClient = new QueryClient()
 
 
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/myproduct',
         element: <MyProduct></MyProduct>
+      },
+      {
+        path: '/dashboard/updateproduct/:id',
+        element: <UpdateProduct></UpdateProduct>
       },
     ]
   },

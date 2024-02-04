@@ -1,13 +1,15 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UseAuth from '../../../Hook/UseAuth.tsx';
 
+import UseCart from '../../../Hook/UseCart.tsx';
 import Container from '../Container/Container.tsx';
 import DrawerRoute from './DrawerRoute.tsx';
+import { FaCartShopping } from 'react-icons/fa6';
 
 const Navbar = () => {
     const { user, logoutUser } = UseAuth();
+    const [cart] = UseCart();
 
     const handleLogOut = () => {
         logoutUser()
@@ -17,7 +19,6 @@ const Navbar = () => {
 
     return (
         <div>
-
             <header className="px-2 py-7  bg-[#E1EEFF] ">
                 <Container>
                     <div className=" flex items-center justify-between  h-16 ">
@@ -27,10 +28,6 @@ const Navbar = () => {
                                 <img className="lg:w-[150px] w-[100px] ml-0 " src="/1.png" alt="" />
                             </div>
                         </div>
-
-
-
-
 
                         <ul className=" hidden space-x-3 lg:flex">
                             <Link to={'/'}>
@@ -68,17 +65,26 @@ const Navbar = () => {
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Blogs</p>
                                 </li>
                             </Link>
-
-
-
-
                         </ul>
+
+                        <div className="flex items-center flex-wrap justify-around">
+                            <div className="relative group">
+                             
+                                <div className="w-[40px] h-[40px] border-2 border-blue-300 bg-[#0360D9] object-cover rounded-full flex items-center justify-center">
+                                    {' '}
+                                    <FaCartShopping className="text-white" />
+                                </div>
+
+                                <div className=" bg-[#0360D9] text-white w-4 h-4 p-[3px] rounded-full flex justify-center items-center absolute top-0 right-0 text-[14px] font-semibold">
+                                    {cart?.length}
+                                </div>
+                            </div>
+                        </div>
+
                         <div className=" flex items-end  justify-end gap-5  ">
                             {user ? (
                                 <>
-
                                     <div className="dropdown  dropdown-end">
-                                        
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                             <div className="w-10 rounded-full">
                                                 <img className="rounded-full w-7 lg:w-14" src={user?.photoURL} alt="" />
@@ -118,15 +124,9 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
-
                     </div>
                 </Container>
-
-
-
             </header>
-
-
         </div>
     );
 };

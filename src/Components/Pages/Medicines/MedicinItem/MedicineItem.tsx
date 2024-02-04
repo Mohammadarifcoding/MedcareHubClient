@@ -1,14 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import MedicineData from '../../../../Data/Medicine.ts';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import UseCart from '../../../../Hook/UseCart.tsx';
 import Cart from '../../../../assets/Icons/Cart.tsx';
 import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
 import { useMedicineContext } from '../MedicineContext/MedicineContext.jsx';
 
 const MedicineItem = ({ filter }) => {
+    const { user } = UseAuth();
+    const [, refetch] = UseCart();
+    const navigate = useNavigate();
     const [medicine, setMedicine] = useState([]);
     const [filteredMedicine, setFilteredMedicine] = useState([]);
     const [favorites, setFavorites] = useState([]);
@@ -43,7 +49,9 @@ const MedicineItem = ({ filter }) => {
     });
 
     useEffect(() => {
-        setMedicine(medicineData);
+        if (medicineData.length > 0) {
+            setMedicine(medicineData);
+        }
     }, [medicineData]);
 
     useEffect(() => {
@@ -66,6 +74,46 @@ const MedicineItem = ({ filter }) => {
         }, 600);
         return () => clearTimeout(debounceFilter);
     }, [filter, medicine, selectedCategory]);
+
+    const handleAddtoCart = (item) => {
+        if (user && user?.email) {
+            const cartItem = {
+                medicineId: item?._id,
+                ourID: item?.ID,
+                email: user?.email,
+                medicine: item
+            };
+            console.log(cartItem);
+            AxiousPublic.post('/CartMedicine', cartItem).then((res) => {
+                console.log(res.data);
+                if (res.data) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `Medicine added to your cart`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'You are not Logged in?',
+                text: 'Please login to add to the cart!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //    send the user to the login page
+                    navigate('/login');
+                }
+            });
+        }
+    };
 
     const isFavorite = (id) => favorites.includes(id);
     return (
@@ -131,7 +179,10 @@ const MedicineItem = ({ filter }) => {
                                     </div>
                                 </div>
                                 <div className="flex  gap-3 text-xs lg:text-sm justify-between md:px-2">
-                                    <button className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5">
+                                    <button
+                                        className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5"
+                                        onClick={() => handleAddtoCart(medicine)}
+                                    >
                                         <Cart />
                                         Add to Cart
                                     </button>
