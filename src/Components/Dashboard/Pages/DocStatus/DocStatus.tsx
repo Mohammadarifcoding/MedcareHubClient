@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import StatusTable from "../StatusTable/StatusTable";
+import * as React from "react";
 
 const DocStatus = () => {
     const [patients, setPatients] = useState([])
@@ -10,6 +10,12 @@ const DocStatus = () => {
             .then(data => setPatients(data));
 
     }, [])
+
+    const handleBookingConfirm = id => {
+        fetch(`/patients.json/${id}`)
+            .then(res => res.json())
+            .then(data => setPatients(data));
+    }
     return (
         <div className="w-[90%] md:w-[80%] mx-auto">
             <div>
@@ -23,13 +29,14 @@ const DocStatus = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>description</th>
-                            <th>schedule</th>
+                            <th>Description</th>
+                            <th>Schedule</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
                     {
-                        patients.map(({ name, email, description, schedule }, index) => (
+                        patients.map(({ id, name, email, description, schedule, status }, index) => (
 
                             <tbody>
                                 {/* row 1 */}
@@ -39,6 +46,16 @@ const DocStatus = () => {
                                     <td>{email}</td>
                                     <td>{description}</td>
                                     <td>{schedule}</td>
+                                    <th>
+                                        {
+                                            status === 'confirm' ? <span className="
+                    font-bold text-primary">
+                                                Confirmed
+                                            </span> :
+                                                <button onClick={() => handleBookingConfirm(id)}
+                                                    className="btn btn-ghost btn-xs">Please Confirm</button>
+                                        }
+                                    </th>
                                 </tr>
                             </tbody>
                         ))
@@ -65,11 +82,10 @@ const DocStatus = () => {
             <div>
                 <h2 className="text-xl font-bold mt-6 mb-4">Next Patient:</h2>
                 <p>Name: Ava Jones <br />
-                Email: ava.jones@example.com <br />
-                Description: Neurology appointment <br />
-                Schedule: 2024-02-05T12:30:00
+                    Email: ava.jones@example.com <br />
+                    Description: Neurology appointment <br />
+                    Schedule: 2024-02-05T12:30:00
                 </p>
-
             </div>
         </div>
     )
