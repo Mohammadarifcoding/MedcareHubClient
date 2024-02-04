@@ -23,7 +23,7 @@ const Blog = () => {
                 <Modal></Modal>
 
             </div>
-\
+
             <div className='grid grid-cols-1 my-20 md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 gap-10' >
                 {
                     isLoading && [1,2,3,4,5,6,7,8].map(item => 

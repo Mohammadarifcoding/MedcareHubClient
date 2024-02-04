@@ -34,6 +34,7 @@ import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/M
 
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
+import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
 const queryClient = new QueryClient()
 
 
@@ -90,7 +91,8 @@ const router = createBrowserRouter([
       }, {
         path: '/blogs',
         element: <Blog></Blog>
-      }
+      },
+      
     ]
   },
   {
@@ -111,6 +113,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/alluser',
         element: <AllUser></AllUser>
+      },
+      {
+        path: '/dashboard/myblog',
+        element: <MyBlog></MyBlog>
       }
     ]
   },
@@ -126,14 +132,14 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-       <MedicineProvider>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          <div className='bg-[#EEF2FB]'>
-            <RouterProvider router={router} />
-          </div>
-        </QueryClientProvider>
-      </AuthProvider>
+      <MedicineProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <div className='bg-[#EEF2FB]'>
+              <RouterProvider router={router} />
+            </div>
+          </QueryClientProvider>
+        </AuthProvider>
       </MedicineProvider>
     </React.StrictMode>)
 
