@@ -94,7 +94,7 @@ const MedicineItem = ({ filter }) => {
                     {filteredMedicine?.map((medicine) => (
                         <div className="space-y-3 " key={medicine?.ID}>
                             <div className="flex items-center justify-center rounded-md border border-[#0360D9]/30 bg-white p-4">
-                                <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} />
+                             <Link to={`/detailsMed/${medicine.ID}`}>   <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
                             </div>
                             <div className="space-y-3">
                                 <div className="space-y-3 pl-2">
