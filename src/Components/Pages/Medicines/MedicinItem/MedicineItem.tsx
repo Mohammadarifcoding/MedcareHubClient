@@ -13,6 +13,7 @@ const MedicineItem = ({ filter }) => {
     const [priceRange, setPriceRange] = useState(90);
     const [isLoading, setISLoading] = useState(true);
     const { selectedCategory } = useMedicineContext();
+    const [selectedMedicine, setSelectedMedicine] = useState(null);
 
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
@@ -65,7 +66,15 @@ const MedicineItem = ({ filter }) => {
         return () => clearTimeout(debounceFilter);
     }, [filter, medicine, selectedCategory]);
 
-    const isFavorite = (id) => favorites.includes(id);
+    const isFavorite = (id) => favorites.includes(id); const openMedicineModal = (medicine) => {
+        setSelectedMedicine(medicine);
+    };
+
+    const closeMedicineModal = () => {
+        setSelectedMedicine(null);
+    };
+
+
     return (
         <>
             <div className="mx-2 space-y-2 mb-5 -mt-2 mr-5">
