@@ -67,21 +67,20 @@ const Navbar = () => {
                             </Link>
                         </ul>
 
-                        <div className="flex items-center flex-wrap justify-around">
-                            <div className="relative group">
-                             
-                                <div className="w-[40px] h-[40px] border-2 border-blue-300 bg-[#0360D9] object-cover rounded-full flex items-center justify-center">
-                                    {' '}
-                                    <FaCartShopping className="text-white" />
-                                </div>
+                        <div className=" flex items-end  justify-end gap-3  ">
+                            <div className="flex items-center justify-center mb-1">
+                                <div className="relative group">
+                                    <div className="w-[40px] h-[40px] border-2 border-blue-300 bg-[#0360D9] object-cover rounded-full flex items-center justify-center">
+                                        {' '}
+                                        <FaCartShopping className="text-white" />
+                                    </div>
 
-                                <div className=" bg-[#0360D9] text-white w-4 h-4 p-[3px] rounded-full flex justify-center items-center absolute top-0 right-0 text-[14px] font-semibold">
-                                    {cart?.length}
+                                    <div className=" bg-[#0360D9] text-white w-4 h-4 p-[3px] rounded-full flex justify-center items-center absolute top-0 right-0 text-[14px] font-semibold">
+                                        {cart?.length}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className=" flex items-end  justify-end gap-5  ">
                             {user ? (
                                 <>
                                     <div className="dropdown  dropdown-end">
