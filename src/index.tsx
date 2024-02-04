@@ -83,8 +83,9 @@ const router = createBrowserRouter([
         path: '/company/:companyname',
         element: <CompanyDetails></CompanyDetails>
       }, {
-        path: '/detailsmedicines',
-        element: <MedicienDetails></MedicienDetails>
+        path: '/detailsMed/:id',
+        element: <MedicienDetails></MedicienDetails>,
+        loader:({ params }) => fetch(`http://localhost:5000/detailsMed/${params?.id}`)
       }, {
         path: '/addoctor',
         element: <CreateDoctor></CreateDoctor>
