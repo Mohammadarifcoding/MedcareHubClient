@@ -42,7 +42,7 @@ const Navbar = () => {
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Home</p>
                                 </li>
                             </Link>
-                            <Link to={'/'}>
+                            <Link to={'/about'}>
                                 <li className="flex">
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">About Us</p>
                                 </li>
