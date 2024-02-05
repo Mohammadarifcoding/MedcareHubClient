@@ -10,7 +10,6 @@ const PostMenu = () => {
                         <button className="border-4 p-2 border-s-violet-200">All Post</button>
                         <button className="border-4 p-2 border-s-violet-200">My Post</button>
                         <button className="border-4 p-2 border-s-violet-200">Dr. Post</button>
-                        <button className="border-4 p-2 border-s-violet-200">Admin Post</button>
                         <button className="border-4 p-2 border-s-violet-200">Patient Post</button>
                     </ul>
                 </div>
