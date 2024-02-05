@@ -22,7 +22,7 @@ const PostBox = () => {
     return (
         <div>
             {
-                post.map(data => <SinglePost key={data._id} data={data}></SinglePost>)
+                post?.map(data => <SinglePost key={data._id} data={data}></SinglePost>)
             }
         </div>
     );

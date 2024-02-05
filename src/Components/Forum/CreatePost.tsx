@@ -39,7 +39,9 @@ const CreatePost = () => {
 
         reset()
         const postItem = {
+
             name: user.displayName,
+            userMail: user.email,
             userImg: user.photoURL,
             date: formattedDate,
             title: data.title,
@@ -121,7 +123,7 @@ const CreatePost = () => {
                                 <select  {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
                                     <option disabled value='default'>Category</option>
                                     <option>dr-post</option>
-                                    <option>patientpost</option>
+                                    <option>patient-post</option>
                                 </select><br />
                                 <input className='btn btn-ghost' type="submit" />
                             </form>
