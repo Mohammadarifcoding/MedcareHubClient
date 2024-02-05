@@ -61,7 +61,7 @@ const DashboardLayout = () => {
                                 <FaUserCircle />
                             </NavLink>
                             <NavLink to='/dashboard/myblog' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
-                                <ImBlog /> My blog
+                                <ImBlog />
                             </NavLink>
                             <NavLink to='/dashboard/alluser' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                                 <FaUserFriends />
@@ -105,6 +105,10 @@ const DashboardLayout = () => {
 
                                     <p><FaFilePrescription /></p>
                                     <NavLink to='/dashboard/docstatus'>Doctor Status</NavLink>
+                                </div>
+                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
+                                    <p> <ImBlog /> </p>
+                                    <NavLink to='/dashboard/myblog'>My blog</NavLink>
                                 </div>
                                 <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
                                     <p><FaUserFriends /> </p>

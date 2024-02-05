@@ -1,8 +1,7 @@
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
-import UseAuth from '../../../Hook/UseAuth';
+import React from 'react';
 import UseSingleBlog from '../../../Hook/UseSingleBlog.tsx';
-
+import { AiFillLike } from "react-icons/ai";
 
 
 const MyBlog = () => {
@@ -22,12 +21,17 @@ const MyBlog = () => {
                         <div className='p-3'>
                             <h2 className='text-lg font-semibold'>{blog.BlogName.slice(0, 28)}...</h2>
                             <p className='mt-2'>{blog.BlogWriting[0].slice(0, 65)}....</p>
-                            <div className='mt-4 flex gap-2 '>
-                                <img className='w-12 rounded-full' src={'https://source.unsplash.com/350x350/?profile'} alt="" />
-                                <div>
-                                    <h2 className='font-semibold'>{blog.BlogWriterName}</h2>
-                                    <h2>{moment(blog.BlogTime).format('LL')}</h2>
+                            <div className='flex items-center gap-16'>
+                                <div className='mt-4 flex gap-2'>
+                                    <img className='w-12 rounded-full' src={'https://source.unsplash.com/350x350/?profile'} alt="" />
+                                    <div>
+                                        <h2 className='font-semibold'>{blog.BlogWriterName}</h2>
+                                        <h2>{moment(blog.BlogTime).format('LL')}</h2>
+                                    </div>
+
                                 </div>
+
+                                <AiFillLike className='text-4xl mt-4 text-[#0360D9]' />
                             </div>
                             <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3'>Read More</button>
                         </div>
