@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { FaArrowLeft, FaArrowRight, FaBook, FaFilePrescription, FaHome, FaMapMarkedAlt, FaUserCircle, FaUserFriends } from 'react-icons/fa';
-import { MdOutlineNotificationsActive } from 'react-icons/md';
-import { PiDotsNineBold } from 'react-icons/pi';
-import Drawer from 'react-modern-drawer';
 import { NavLink, Outlet } from 'react-router-dom';
+import { FaArrowRight, FaBook, FaHome, FaUserCircle, FaUserFriends } from "react-icons/fa";
+import { MdOutlineNotificationsActive } from "react-icons/md";
+import { FaArrowLeft } from "react-icons/fa";
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import Drawer from 'react-modern-drawer'
 import { FaFilePrescription } from "react-icons/fa";
