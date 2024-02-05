@@ -45,8 +45,9 @@ const DashboardLayout = () => {
                             <NavLink to='/dashboard/myblog' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                                 <ImBlog /> My blog
                             </NavLink>
-                            <NavLink to='/dashboard/alluser' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
-                                <FaUserFriends />  All User
+                            <NavLink to='/dashboard/alluser' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                                <FaUserFriends />
+
                             </NavLink>
                             <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                             <MdOutlineAddToPhotos /> Add Medicine
