@@ -4,14 +4,14 @@ import UseAuth from '../../../Hook/UseAuth.tsx';
 import { Link, useNavigate } from 'react-router-dom';
 import loginAnimation from './../Login/login.json'
 import Swal from 'sweetalert2';
-import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
+
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { base_URL } from '../../../utills/BaseURL.ts';
 
 
 const Register = () => {
-    const axiosPublic = UseAxiosPublic();
+
 
     const { createUser, updateUser, load, signInWithGoogle } = UseAuth()
     const registerNavi = useNavigate()
@@ -29,7 +29,6 @@ const Register = () => {
         console.log(data);
 
         createUser(data.email, data.password)
-
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
@@ -39,12 +38,12 @@ const Register = () => {
                             name: data.name,
                             email: data.email,
                             imageURL: data.photoURL,
-                            
+
                         }
                         axios.post(`${base_URL}/User`, userInfo)
                             .then(res => {
                                 console.log(res);
-                                if (res.statusText==='OK') {
+                                if (res.statusText === 'OK') {
                                     console.log('user added to the database');
                                     reset()
                                     Swal.fire({
@@ -53,7 +52,7 @@ const Register = () => {
                                         text: "You have successfully registerd!"
                                     })
 
-                                    
+
                                     registerNavi('/')
                                 }
                             })
@@ -62,76 +61,34 @@ const Register = () => {
             })
     }
 
-    // const handleSignup = e => {
-    //     e.preventDefault();
-    //     const form = e.target
-    //     const name = form.name.value
-    //     const photo = form.photo.value;
-    //     const email = form.email.value;
-    //     const password = form.password.value;
-
-
-    //     console.log(name, photo, email, password);
-
-    //     setSignError(" ");
-    //     setSignSuccess(" ");
-
-    //     if (password.length < 6) {
-    //         setSignError(" Password should be at least 6 characters ")
-    //         return;
-    //     } else if (!/[A-Z]/.test(password)) {
-    //         setSignError('you should use one uppercase character.')
-    //         return;
-    //     } else if (!/[!@#$%^&*]/.test(password))
-    //         setSignError('you should a special character')
-
-    //     createUser(email, password)
-    //         .then(result => {
-    //             console.log(result);
-    //             setSignSuccess("User Create Succesfully!")
-    //             e.target.reset()
-    //             registerNavi('/login')
-    //             Swal.fire({
-    //                 icon: "success",
-    //                 title: "Sign Up Successful",
-    //                 text: "You have successfully signed in!"
-    //             })
-    //         })
-
-    //         .catch(error => {
-    //             console.error(error);
-    //             setSignError(error.message);
-    //             Swal.fire({
-    //                 icon: "error",
-    //                 title: "Sign Up Failed",
-    //                 text: "An error occurred during sign in. Please try again."
-    //             })
-    //         })
-    // }
+   
 
     const handleGoogle = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user);
-                registerNavi('/');
-                Swal.fire({
-                    icon: "success",
-                    title: "Sign In Successful",
-                    text: "You have successfully signed in!",
-                });
+                const userInfo = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    imageURL: result.user.photoURL,
+                };
+                axios.post(`${base_URL}/User`, userInfo)
+                    .then(res => {
+                        console.log(res);
+                        if (res.statusText === 'OK') {
+                            console.log('user added to the database');
+                            reset();
+                            Swal.fire({
+                                icon: "success",
+                                title: "Register Successful",
+                                text: "You have successfully registered!"
+                            });
+                            registerNavi('/');
+                        }
+                    });
             })
+            .catch(error => console.log(error));
+    };
 
-            .catch(error => {
-                console.error(error);
-                Swal.fire({
-                    icon: "error",
-                    title: "Sign In Failed",
-                    text: "An error occurred during sign in. Please try again.",
-                })
-
-
-            })
-    }
 
 
 

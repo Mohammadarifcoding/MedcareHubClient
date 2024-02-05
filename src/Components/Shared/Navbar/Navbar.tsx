@@ -5,7 +5,7 @@ import UseAuth from '../../../Hook/UseAuth.tsx';
 import DrawerRoute from './DrawerRoute.tsx';
 import Container from '../Container/Container.tsx';
 
-
+import { FaCartPlus } from "react-icons/fa";
 
 
 
@@ -42,7 +42,7 @@ const Navbar = () => {
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Home</p>
                                 </li>
                             </Link>
-                            <Link to={'/'}>
+                            <Link to={'/about'}>
                                 <li className="flex">
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">About Us</p>
                                 </li>
@@ -67,12 +67,26 @@ const Navbar = () => {
                                     <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Forum</p>
                                 </li>
                             </Link>
+                            <Link to={'/blogs'}>
+                                <li className="flex">
+                                    <p className="flex items-center px-4 -mb-1 text-xl hover:text-[#0360D9] hover:underline ">Blogs</p>
+                                </li>
+                            </Link>
 
 
 
 
                         </ul>
-                        <div className=" flex items-end  justify-end gap-5  ">
+
+                        <div className=" flex items-center  justify-end gap-5  ">
+                            <Link to='/cart'>
+                                <div className='relative cursor-pointer'>
+                                    <FaCartPlus className='text-2xl cursor-pointer ' />
+                                    <p className='absolute -top-4 -right-2 p-1 bg-[#0360D9] rounded-full text-white text-[12px]'>12</p>
+                                </div>
+                            </Link>
+
+
                             {user ?
                                 <>
 

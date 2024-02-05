@@ -32,7 +32,7 @@ export type doctor = {
     endAvail: number;
     degree: string[];
     gender: string;
-    visit:number;
+    serviceFee:number;
     aboutMe:string;
     specialties:string[];
     Email:string;
@@ -50,4 +50,13 @@ export  type Medicine = {
     Description: string;
   }
   
+ export interface Blog {
+    ID: number;
+    BlogName: string;
+    BlogWriting: string[];
+    BlogPic: string;
+    BlogTime: string; // Assuming this is a string representation of a date
+    BlogWriterName: string;
+    BlogWriterImage: string;
+  }
   

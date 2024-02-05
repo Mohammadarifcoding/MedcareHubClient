@@ -23,7 +23,23 @@ import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.t
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
+import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
+import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
+import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.tsx';
+import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
 
+import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.jsx';
+
+import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
+import Blog from './Components/Pages/Blogs/Blog.tsx';
+
+import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
+
+import Cart from './Components/Pages/Cart/Cart.tsx';
+
+const queryClient = new QueryClient()
 
 
 
@@ -70,7 +86,22 @@ const router = createBrowserRouter([
       {
         path: '/company/:companyname',
         element: <CompanyDetails></CompanyDetails>
+      }, {
+        path: '/detailsMed/:id',
+        element: <MedicienDetails></MedicienDetails>,
+        loader:({ params }) => fetch(`http://localhost:5000/detailsMed/${params?.id}`)
+      }, {
+        path: '/addoctor',
+        element: <CreateDoctor></CreateDoctor>
+      }, {
+        path: '/blogs',
+        element: <Blog></Blog>
+      },
+      {
+        path:'/cart',
+        element:<Cart></Cart>
       }
+
     ]
   },
   {
@@ -80,6 +111,21 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/profile',
         element: <Profile></Profile>
+      },
+      {
+        path: '/dashboard/docstatus',
+        element: <DocStatus></DocStatus>
+      }, {
+        path: '/dashboard/comproduct',
+        element: <CompanyProduct></CompanyProduct>
+      },
+      {
+        path: '/dashboard/alluser',
+        element: <AllUser></AllUser>
+      },
+      {
+        path: '/dashboard/myblog',
+        element: <MyBlog></MyBlog>
       }
     ]
   },
@@ -95,15 +141,15 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-      <AuthProvider>
-        
-
-          <div className='bg-[#EEF2FB]'>
-            <RouterProvider router={router} />
-          </div>
-      
-
-      </AuthProvider>
+      <MedicineProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <div className='bg-[#EEF2FB]'>
+              <RouterProvider router={router} />
+            </div>
+          </QueryClientProvider>
+        </AuthProvider>
+      </MedicineProvider>
     </React.StrictMode>)
 
 } else {

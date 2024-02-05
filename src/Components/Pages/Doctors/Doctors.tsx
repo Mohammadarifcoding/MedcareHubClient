@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import component 👇
 import { motion } from 'framer-motion';
@@ -8,11 +8,33 @@ import 'react-modern-drawer/dist/index.css';
 import DoctorCard from './DoctorCard/DoctorCard.tsx';
 
 const Doctors = () => {
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [filter, setFilter] = useState({
         keyword: '',
         docTypes: [],
-        genders: []
+        genders: [],
+        priceRange: {
+            min: '',
+            max: ''
+        }
     });
+    const [doctors, setDoctors] = useState([]);
+    const [isLoading, setISLoading] = useState(true);
+
+    useEffect(() => {
+        setISLoading(true);
+        fetch('http://localhost:5000/Doctors')
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data);
+                setDoctors(data);
+                setISLoading(false);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    }, []);
+    // console.log(doctors);
 
     const linkVariants = {
         hover: {
@@ -39,12 +61,7 @@ const Doctors = () => {
 
     const handleGenderCheckboxChange = (gender) => {
         setFilter((prevFilter) => {
-            const updatedGenders =
-                gender === 'all'
-                    ? [] 
-                    : prevFilter.genders.includes(gender)
-                    ? prevFilter.genders.filter((gen) => gen !== gender)
-                    : [...prevFilter.genders, gender];
+            const updatedGenders = gender === 'all' ? [] : prevFilter.genders.includes(gender) ? prevFilter.genders.filter((gen) => gen !== gender) : [...prevFilter.genders, gender];
 
             return {
                 ...prevFilter,
@@ -61,36 +78,81 @@ const Doctors = () => {
                 <h1 className="text-xl font-medium ">Category</h1>
                 <hr className="my-4" />
                 <div className="mb-3">
-                    {[
-                        'Cardiologist',
-                        'Pediatrician',
-                        'Dermatologist',
-                        'Orthopedic Surgeon',
-                        'Ophthalmologist',
-                        'Gynecologist',
-                        'Neurologist',
-                        'Dentist',
-                        'Psychiatrist',
-                        'Allergist',
-                        'Urologist',
-                        'Rheumatologist',
-                        'ENT Specialist',
-                        'Endocrinologist',
-                        'Pulmonologist'
-                    ].map((docType) => (
-                        <div key={docType} className="flex gap-2">
-                            <input type="checkbox" name={docType} id={docType} checked={filter.docTypes.includes(docType)} onChange={() => handleCheckboxChange(docType)} />
-                            <p>{docType}</p>
+                    {!isLoading ? (
+                        doctors?.map((docType) => (
+                            <div key={docType?.DocType} className="flex gap-2">
+                                <input
+                                    type="checkbox"
+                                    name={docType?.DocType}
+                                    id={docType?.DocType}
+                                    checked={filter.docTypes.includes(docType?.DocType)}
+                                    onChange={() => handleCheckboxChange(docType?.DocType)}
+                                />
+                                <p>{docType?.DocType}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="p-6 rounded-md  mx-auto max-w-fit ">
+                            <div className="animate-pulse">
+                                {/* Product Title Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Heading Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                {/* Product Description Skeleton */}
+                                <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                            </div>
                         </div>
-                    ))}
+                    )}
                 </div>
                 <h1 className="text-xl font-medium ">Session Price</h1>
                 <hr className="my-4" />
                 <div className="flex items-center my-3">
-                    <input placeholder="min" className="border focus:outline-none px-2 rounded-lg w-[70px]" type="text" name="" id="" />
+                    <input
+                        placeholder="min"
+                        className="border focus:outline-none px-2 rounded-lg w-[70px]"
+                        type="text"
+                        name="minPrice"
+                        id="minPrice"
+                        value={filter.priceRange.min}
+                        onChange={(e) => setFilter((prevFilter) => ({ ...prevFilter, priceRange: { ...prevFilter.priceRange, min: e.target.value } }))}
+                    />
+
                     <p className="mx-3">-</p>
-                    <input placeholder="max" className="border focus:outline-none px-2 rounded-lg w-[70px]" type="text" name="" id="" />
-                    <motion.button whileHover="hover" variants={linkVariants} className="bg-[#0360D9] ml-3 p-2 rounded-lg text-white">
+
+                    <input
+                        placeholder="max"
+                        className="border focus:outline-none px-2 rounded-lg w-[70px]"
+                        type="text"
+                        name="maxPrice"
+                        id="maxPrice"
+                        value={filter.priceRange.max}
+                        onChange={(e) => setFilter((prevFilter) => ({ ...prevFilter, priceRange: { ...prevFilter.priceRange, max: e.target.value } }))}
+                    />
+                    <motion.button whileHover="hover" variants={linkVariants} className="bg-[#0360D9] ml-3 p-2 rounded-lg text-white" onClick={() => setIsButtonClicked(true)}>
                         Apply
                     </motion.button>
                 </div>
@@ -152,30 +214,55 @@ const Doctors = () => {
                             <h1 className="text-xl font-medium ">Category</h1>
                             <hr className="my-4" />
                             <div className="mb-3">
-                                <div className="flex gap-2">
-                                    <input type="checkbox" name="" id="" />
-                                    <p>Health Suggestion</p>
-                                </div>
-
-                                <div className="flex gap-2">
-                                    <input type="checkbox" name="" id="" />
-                                    <p>Skin Care Suggestion</p>
-                                </div>
-
-                                <div className="flex gap-2">
-                                    <input type="checkbox" name="" id="" />
-                                    <p>Mental Health Suggestion</p>
-                                </div>
-
-                                <div className="flex gap-2">
-                                    <input type="checkbox" name="" id="" />
-                                    <p>Psychiatrist</p>
-                                </div>
-
-                                <div className="flex gap-2">
-                                    <input type="checkbox" name="" id="" />
-                                    <p>Gynecologist</p>
-                                </div>
+                                {!isLoading ? (
+                                    doctors?.map((docType) => (
+                                        <div key={docType?.DocType} className="flex gap-2">
+                                            <input
+                                                type="checkbox"
+                                                name={docType?.DocType}
+                                                id={docType?.DocType}
+                                                checked={filter.docTypes.includes(docType?.DocType)}
+                                                onChange={() => handleCheckboxChange(docType?.DocType)}
+                                            />
+                                            <p>{docType?.DocType}</p>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="p-6 rounded-md  mx-auto max-w-fit ">
+                                        <div className="animate-pulse">
+                                            {/* Product Title Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Heading Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Description Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Heading Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Description Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Heading Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Description Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Description Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Heading Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Description Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Description Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Heading Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                            {/* Product Description Skeleton */}
+                                            <div className="w-[200px] h-4 rounded-lg bg-[#9FADC2] mb-4"></div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                             <h1 className="text-xl font-medium ">Session Price</h1>
                             <hr className="my-4" />
@@ -206,7 +293,7 @@ const Doctors = () => {
                     <p className="text-lg">Meet our doctor—a beacon of knowledge, a guardian of health, and a partner in your wellness journey.</p>
                 </div>
                 <div className="mx-5 xl:w-[100%] w-full">
-                    <DoctorCard filter={filter} setFilter={setFilter}></DoctorCard>
+                    <DoctorCard filter={filter} setFilter={setFilter} isButtonClicked={isButtonClicked}></DoctorCard>
                 </div>
             </div>
         </div>
