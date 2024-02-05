@@ -29,6 +29,7 @@
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.10.4",
     "swiper": "^11.0.5",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
