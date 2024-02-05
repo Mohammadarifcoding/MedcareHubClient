@@ -7,6 +7,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
     const [filteredDoctors, setFilteredDoctors] = useState([]);
     const AxiousPublic = UseAxiosPublic();
 
+
     const { data: doctorData = [], isLoading } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
@@ -39,7 +40,6 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
         return () => clearTimeout(debounceFilter);
     }, [filter, doctorData, isButtonClicked]);
     //    console.log(filteredDoctors)
-
     return (
         <>
             {!isLoading ? (

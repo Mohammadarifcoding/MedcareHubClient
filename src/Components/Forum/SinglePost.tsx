@@ -5,6 +5,7 @@ interface SinglePostProps {
     data: {
         name: string;
         userImg: string;
+        postTag: string;
         category: string;
         comment: number;
         date: string;
@@ -14,7 +15,7 @@ interface SinglePostProps {
 }
 
 const SinglePost = ({ data }: SinglePostProps) => {
-    const { name, date, category, title, discription, userImg } = data;
+    const { name, date, postTag, title, discription, userImg } = data;
     return (
         <div className="bg-slate-200 p-5 my-5">
             <div className="flex justify-between items-center">
@@ -28,7 +29,7 @@ const SinglePost = ({ data }: SinglePostProps) => {
                     </div>
 
                 </div>
-                <button className="border-2 border-blue-500 p-2 rounded">{category}</button>
+                <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
             </div>
             <div className="pt-5">
                 <h1 className="text-2xl font-medium ">{title}</h1>

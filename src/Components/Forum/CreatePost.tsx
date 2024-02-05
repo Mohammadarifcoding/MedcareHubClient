@@ -39,7 +39,9 @@ const CreatePost = () => {
 
         reset()
         const postItem = {
+
             name: user.displayName,
+            userMail: user.email,
             userImg: user.photoURL,
             date: formattedDate,
             title: data.title,

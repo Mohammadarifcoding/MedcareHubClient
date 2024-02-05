@@ -10,6 +10,7 @@ import UseCart from '../../../Hook/UseCart.tsx';
 
 
 
+
 const Navbar = () => {
     const { user, logoutUser } = UseAuth();
     const [cart] = UseCart();
@@ -32,10 +33,6 @@ const Navbar = () => {
                             <img className="lg:w-[150px] w-[100px] ml-0 " src='/1.png' alt="" />
                         </div>
                     </div>
-
-
-
-
 
                     <ul className=" hidden space-x-3 lg:flex">
                         <Link to={'/'}>
@@ -97,6 +94,7 @@ const Navbar = () => {
                                         <div className="w-10 rounded-full">
                                             <img className="rounded-full w-7 lg:w-14" src={user?.photoURL}
                                                 alt="" />
+
                                         </div>
                                     </div>
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

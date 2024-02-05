@@ -23,6 +23,7 @@ const Doctors = () => {
 
     const AxiousPublic = UseAxiosPublic();
 
+
     const { data: doctorData = [], isLoading } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {

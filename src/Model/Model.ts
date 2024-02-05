@@ -32,7 +32,7 @@ export type doctor = {
     endAvail: number;
     degree: string[];
     gender: string;
-    visit:number;
+    serviceFee:number;
     aboutMe:string;
     specialties:string[];
     Email:string;

@@ -23,6 +23,7 @@ const MedicineItem = ({ filter }) => {
     const { selectedCategory } = useMedicineContext();
     const AxiousPublic = UseAxiosPublic();
 
+
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
     };
@@ -54,6 +55,7 @@ const MedicineItem = ({ filter }) => {
         }
     }, [medicineData]);
 
+
     useEffect(() => {
         const debounceFilter = setTimeout(() => {
             let tempFilteredMedicine = [...medicine];
@@ -74,6 +76,7 @@ const MedicineItem = ({ filter }) => {
         }, 600);
         return () => clearTimeout(debounceFilter);
     }, [filter, medicine, selectedCategory]);
+
 
     const handleAddtoCart = (item) => {
         if (user && user?.email) {
@@ -116,6 +119,7 @@ const MedicineItem = ({ filter }) => {
     };
 
     const isFavorite = (id) => favorites.includes(id);
+
     return (
         <>
             <div className="mx-2 space-y-2 mb-5 -mt-2 mr-5">
@@ -135,7 +139,7 @@ const MedicineItem = ({ filter }) => {
                     {filteredMedicine?.map((medicine) => (
                         <div className="space-y-3 " key={medicine?._id}>
                             <div className="flex items-center justify-center rounded-md border border-[#0360D9]/30 bg-white p-4">
-                                <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} />
+                             <Link to={`/detailsMed/${medicine.ID}`}>   <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
                             </div>
                             <div className="space-y-3">
                                 <div className="space-y-3 pl-2">

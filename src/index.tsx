@@ -38,7 +38,6 @@ import Blog from './Components/Pages/Blogs/Blog.tsx';
 import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
 
 import Cart from './Components/Pages/Cart/Cart.tsx';
-
 import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx';
 import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
@@ -91,8 +90,9 @@ const router = createBrowserRouter([
         path: '/company/:companyname',
         element: <CompanyDetails></CompanyDetails>
       }, {
-        path: '/detailsmedicines',
-        element: <MedicienDetails></MedicienDetails>
+        path: '/detailsMed/:id',
+        element: <MedicienDetails></MedicienDetails>,
+        loader:({ params }) => fetch(`http://localhost:5000/detailsMed/${params?.id}`)
       }, {
         path: '/addoctor',
         element: <CreateDoctor></CreateDoctor>
@@ -104,6 +104,7 @@ const router = createBrowserRouter([
         path:'/cart',
         element:<Cart></Cart>
       }
+
     ]
   },
   {
@@ -155,14 +156,14 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-       <MedicineProvider>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          <div className='bg-[#EEF2FB]'>
-            <RouterProvider router={router} />
-          </div>
-        </QueryClientProvider>
-      </AuthProvider>
+      <MedicineProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <div className='bg-[#EEF2FB]'>
+              <RouterProvider router={router} />
+            </div>
+          </QueryClientProvider>
+        </AuthProvider>
       </MedicineProvider>
     </React.StrictMode>)
 
