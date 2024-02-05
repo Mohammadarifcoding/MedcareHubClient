@@ -5,7 +5,12 @@ import { PiDotsNineBold } from 'react-icons/pi';
 import Drawer from 'react-modern-drawer';
 import { NavLink, Outlet } from 'react-router-dom';
 import UseAuth from '../../../Hook/UseAuth.tsx';
+import Drawer from 'react-modern-drawer'
+import { FaFilePrescription } from "react-icons/fa";
+import { PiDotsNineBold } from "react-icons/pi";
+import { ImBlog } from "react-icons/im";
 import { MdOutlineAddToPhotos } from 'react-icons/md';
+
 
 const DashboardLayout = () => {
     const [openLayout, setOpenLayout] = useState(true);
@@ -38,14 +43,17 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/comproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaUserCircle /> Company Product
                             </NavLink>
+                            <NavLink to='/dashboard/myblog' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <ImBlog /> My blog
+                            </NavLink>
+                            <NavLink to='/dashboard/alluser' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <FaUserFriends />  All User
+                            </NavLink>
                             <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                             <MdOutlineAddToPhotos /> Add Medicine
                             </NavLink>
                             <NavLink to="/dashboard/myproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaBook /> My Medicine
-                            </NavLink>
-                            <NavLink to="/dashboard/alluser" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <FaUserFriends /> All User
                             </NavLink>
                         </>
                     ) : (
@@ -59,15 +67,17 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/comproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <FaUserCircle />
                             </NavLink>
+                            <NavLink to='/dashboard/myblog' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                                <ImBlog /> My blog
+                            </NavLink>
+                            <NavLink to='/dashboard/alluser' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'></NavLink>
                             <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                             <MdOutlineAddToPhotos />
                             </NavLink>
                             <NavLink to="/dashboard/myproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaBook />
                             </NavLink>
-                            <NavLink to="/dashboard/alluser" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaUserFriends />
-                            </NavLink>
+                          
                         </>
                     )}
 

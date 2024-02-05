@@ -35,9 +35,13 @@ import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/M
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
 
+import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
+
+import Cart from './Components/Pages/Cart/Cart.tsx';
 import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx';
 import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
+
 const queryClient = new QueryClient()
 
 
@@ -115,6 +119,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/alluser',
         element: <AllUser></AllUser>
+      },
+      {
+        path: '/dashboard/myblog',
+        element: <MyBlog></MyBlog>
       },
       {
         path: '/dashboard/addproduct',
