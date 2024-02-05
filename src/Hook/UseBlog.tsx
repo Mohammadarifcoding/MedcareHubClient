@@ -6,7 +6,6 @@ const UseBlog = () => {
 
    const AxiousPublic = UseAxiosPublic()
 
-
     const {data:blogsData=[],isLoading} = useQuery({
         queryKey:['blogs'],
         queryFn:async()=>{

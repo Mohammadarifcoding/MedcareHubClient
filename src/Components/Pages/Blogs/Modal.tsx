@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import UseAuth from '../../../Hook/UseAuth.tsx';
 
 const Modal = () => {
-
+    const { user } = UseAuth()
     const [openModal, setOpenModal] = useState(false);
     const [refetchData, setRefecthData] = useState(false)
 
@@ -22,7 +23,8 @@ const Modal = () => {
             BlogWriterName: result.BlogWriterName,
             BlogWriterImage: result.BlogWriterImage,
             BlogWriting: result.BlogWriting,
-            BlogTime: result.BlogTime
+            BlogTime: result.BlogTime,
+            email: result.email
         };
         console.log(formData);
         axios.post(`http://localhost:5000/blog`, formData)
@@ -69,6 +71,13 @@ const Modal = () => {
                                                         <input {...register('BlogName')} type="text" placeholder="Blog name" className="p-3 block w-full  drop-shadow-lg rounded-lg outline-none" />
 
                                                     </div>
+                                                </div>
+
+                                                <div>
+                                                    <label htmlFor="text" className="block">Email</label>
+
+                                                    <input {...register('email')} type="text" value={user?.email} placeholder="email.." className="p-3 block w-full  drop-shadow-lg rounded-lg outline-none" />
+
                                                 </div>
                                                 <div>
                                                     <label htmlFor="email" className="block">Blog Photo</label>

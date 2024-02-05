@@ -14,9 +14,6 @@ const Profile = () => {
     const [refetchData, setRefecthData] = useState(false)
 
 
-
-
-    // Determine the status based on the type of user
     const status = user?.role === 'doctor' ? 'Doctor' :
         user?.role === 'patient' ? 'Patient' :
             user?.role === 'company' ? 'Company User' :
