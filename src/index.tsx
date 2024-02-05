@@ -34,6 +34,7 @@ import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/M
 
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
+
 import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
 import Cart from './Components/Pages/Cart/Cart.tsx';
 
@@ -95,7 +96,6 @@ const router = createBrowserRouter([
         path: '/blogs',
         element: <Blog></Blog>
       },
-      
       {
         path:'/cart',
         element:<Cart></Cart>
