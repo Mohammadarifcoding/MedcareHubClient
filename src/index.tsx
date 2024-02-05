@@ -38,6 +38,7 @@ import Blog from './Components/Pages/Blogs/Blog.tsx';
 import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
 
 import Cart from './Components/Pages/Cart/Cart.tsx';
+
 import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx';
 import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       }, {
         path: '/blogs',
         element: <Blog></Blog>
+      },
+      {
+        path:'/cart',
+        element:<Cart></Cart>
       }
     ]
   },
