@@ -1,8 +1,9 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { IoMdPhotos } from 'react-icons/io';
-import Swal from 'sweetalert2';
+import { IoMdPhotos } from "react-icons/io";
 import UseAuth from '../../Hook/UseAuth.tsx';
+import Swal from "sweetalert2";
+import ReactDOM from "react-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 
 // enum GenderEnum {
@@ -12,9 +13,12 @@ import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 // }
 
 interface IFormInput {
-    title: string;
-    discription: string;
-    category: string;
+    title: string,
+    discription: string,
+    postTag: string,
+    category: string
+
+
 }
 
 const CreatePost = () => {
@@ -22,38 +26,42 @@ const CreatePost = () => {
     let formattedDate = todayDate.toLocaleString('en-US');
     console.log(formattedDate);
 
-    const axiosPublic = UseAxiosPublic();
+    const axiosPublic = UseAxiosPublic()
     const { user } = UseAuth();
     console.log(user);
     const openModal = (event: MouseEvent<HTMLInputElement>) => {
         const modal = document.getElementById('my_modal_7') as HTMLInputElement;
         modal.checked = true;
-    };
-    const { register, handleSubmit, reset } = useForm<IFormInput>();
+    }
+    const { register, handleSubmit, reset } = useForm<IFormInput>()
     // const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-        reset();
+
+        reset()
         const postItem = {
             name: user.displayName,
             userImg: user.photoURL,
             date: formattedDate,
             title: data.title,
             discription: data.discription,
+            postTag: data.postTag,
             category: data.category
-        };
+
+        }
         console.log(postItem);
         const forumRes = await axiosPublic.post('/forum', postItem);
         console.log(forumRes);
         if (forumRes.data) {
             Swal.fire({
-                position: 'top-end',
-                icon: 'success',
+                position: "top-end",
+                icon: "success",
                 title: `post has been added!`,
                 showConfirmButton: false,
                 timer: 1500
             });
         }
-    };
+
+    }
 
     return (
         <>
@@ -63,13 +71,10 @@ const CreatePost = () => {
                         <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src={user?.photoURL} alt="" />
                     </div>
                     <div className="w-full">
-                        <input
-                            onClick={openModal}
-                            id="u_email"
-                            type="u_email"
-                            placeholder="Share or Ask Somethings to Everyone"
-                            className="p-3  w-full outline-none border rounded-md invalid:border-red-700 valid:border-black"
-                        />
+
+                        <input onClick={openModal} id="u_email" type="u_email" placeholder="Share or Ask Somethings to Everyone" className="p-3  w-full outline-none border rounded-md invalid:border-red-700 valid:border-black" />
+
+
                     </div>
                 </div>
                 <div className="flex justify-between pt-5">
@@ -78,12 +83,14 @@ const CreatePost = () => {
                         <h1>photo/video</h1>
                     </div>
 
-                    <button className="flex items-center gap-1 p-3 bg-blue-300 rounded" onClick={openModal}>
-                        Add post
-                    </button>
+
+
+                    <button className="flex items-center gap-1 p-3 bg-blue-300 rounded" onClick={openModal}>Add post</button>
                 </div>
             </div>
             <div>
+
+
                 {/* Put this part before </body> tag */}
                 <input type="checkbox" id="my_modal_7" className="modal-toggle" />
                 <div className="modal" role="dialog">
@@ -95,38 +102,41 @@ const CreatePost = () => {
 
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <label>Title</label>
-                                <input className="mt-2 mb-4 input input-bordered w-full" placeholder="Title" {...register('title')} />
-                                <label>Content</label>
-                                <br />
-                                <textarea
-                                    {...register('discription', { required: true })}
-                                    className="mt-2 mb-4 w-full textarea textarea-bordered h-24"
-                                    placeholder="Share or Ask Somethings to Everyone"
-                                ></textarea>
-                                <label className=" label">
+                                <input className="mt-2 mb-4 input input-bordered w-full" placeholder='Title' {...register("title")} />
+                                <label>Content</label><br />
+                                <textarea {...register("discription", { required: true })} className="mt-2 mb-4 w-full textarea textarea-bordered h-24" placeholder="Share or Ask Somethings to Everyone"></textarea>
+                                <label className=' label' >
                                     <span className="label-text">Post Tag</span>
                                 </label>
-                                <select {...register('category', { required: true })} className="mt-2 mb-4 select select-bordered">
-                                    <option disabled value="default">
-                                        Category
-                                    </option>
+                                <select  {...register("postTag", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled value='default'>Post Tag</option>
                                     <option>Help Post</option>
                                     <option>Suggestion</option>
                                     <option>Dr Post</option>
                                     <option>Awareness</option>
-                                </select>
-                                <br />
-                                <input className="btn btn-ghost" type="submit" />
+                                </select><br />
+                                <label className=' label' >
+                                    <span className="label-text">Category</span>
+                                </label>
+                                <select  {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled value='default'>Category</option>
+                                    <option>dr-post</option>
+                                    <option>patientpost</option>
+                                </select><br />
+                                <input className='btn btn-ghost' type="submit" />
                             </form>
+
                         </label>
+
                     </div>
-                    <label className="modal-backdrop" htmlFor="my_modal_7">
-                        Close
-                    </label>
+                    <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
                 </div>
             </div>
         </>
     );
+
+
+
 };
 
 export default CreatePost;
