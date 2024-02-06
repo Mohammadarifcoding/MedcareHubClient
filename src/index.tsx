@@ -29,14 +29,9 @@ import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.t
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
-<<<<<<< HEAD
-import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
-=======
->>>>>>> master
 
-import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.jsx';
 
-import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
+import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.tsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
 
 import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
@@ -44,6 +39,7 @@ import Cart from './Components/Pages/Cart/Cart.tsx';
 import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx';
 import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
+import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.tsx';
 
 const queryClient = new QueryClient()
 
@@ -99,19 +95,13 @@ const router = createBrowserRouter([
       }, {
         path: '/addoctor',
         element: <CreateDoctor></CreateDoctor>
-<<<<<<< HEAD
-=======
       }, {
         path: '/blogs',
         element: <Blog></Blog>
-<<<<<<< HEAD
->>>>>>> master
-=======
       },
       {
         path:'/cart',
         element:<Cart></Cart>
->>>>>>> 1bddff34bf504d288154b8d1c86b6ce11c91f760
       }
     ]
   },
