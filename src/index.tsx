@@ -23,16 +23,13 @@ import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.t
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
-<<<<<<< HEAD
 import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
-=======
 import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
 import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.tsx';
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
->>>>>>> 5a7a16edd2fc3914bb1445a9ba2653d60be89ab0
 
 const queryClient = new QueryClient()
 
@@ -81,12 +78,12 @@ const router = createBrowserRouter([
       {
         path: '/company/:companyname',
         element: <CompanyDetails></CompanyDetails>
-      },{
-        path:'/detailsmedicines',
-        element:<MedicienDetails></MedicienDetails>
-      },{
-        path:'/addoctor',
-        element:<CreateDoctor></CreateDoctor>
+      }, {
+        path: '/detailsmedicines',
+        element: <MedicienDetails></MedicienDetails>
+      }, {
+        path: '/addoctor',
+        element: <CreateDoctor></CreateDoctor>
       }
     ]
   },
@@ -97,20 +94,17 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/profile',
         element: <Profile></Profile>
-<<<<<<< HEAD
       },
       {
-        path:'/dashboard/docstatus',
-       element: <DocStatus></DocStatus>
-=======
-      },{
-        path:'/dashboard/comproduct',
-        element:<CompanyProduct></CompanyProduct>
+        path: '/dashboard/docstatus',
+        element: <DocStatus></DocStatus>
+      }, {
+        path: '/dashboard/comproduct',
+        element: <CompanyProduct></CompanyProduct>
       },
       {
         path: '/dashboard/alluser',
         element: <AllUser></AllUser>
->>>>>>> 5a7a16edd2fc3914bb1445a9ba2653d60be89ab0
       }
     ]
   },
