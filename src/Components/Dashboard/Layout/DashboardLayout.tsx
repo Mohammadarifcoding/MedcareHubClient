@@ -56,8 +56,8 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/alluser" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaUserFriends /> All User
                             </NavLink>
-                            <NavLink to="/dashboard/docstatus" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <FaFilePrescription /> Doctor Status
+                            <NavLink to="/dashboard/patientstatus" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                <FaFilePrescription /> Patient Status
                             </NavLink>
                             <NavLink to="/dashboard/addpatient" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaHospitalUser /> Patient Register

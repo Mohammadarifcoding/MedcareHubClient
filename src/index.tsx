@@ -23,7 +23,6 @@ import DoctorDetails from './Components/Pages/Doctors/DoctorCard/DoctorDetails.t
 import Forum from './Components/Forum/Forum.tsx';
 import About from './Components/Pages/About/About.tsx';
 import CompanyDetails from './Components/Pages/CompanyDetails/CompanyDetails.tsx';
-import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
 import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
 import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.tsx';
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
@@ -41,6 +40,8 @@ import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
 import PatientRegister from './Components/Dashboard/Pages/Patient/PatientRegister/PatientRegister.tsx';
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.tsx';
+import PatientStatus from './Components/Dashboard/Pages/PatientStatus/PatientStatus.tsx';
+import DocStatus from './Components/Pages/Doctors/DocStatus.tsx';
 
 const queryClient = new QueryClient()
 
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
       }, {
         path: '/detailsMed/:id',
         element: <MedicienDetails></MedicienDetails>,
-        loader:({ params }) => fetch(`http://localhost:5000/detailsMed/${params?.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/detailsMed/${params?.id}`)
       }, {
         path: '/addoctor',
         element: <CreateDoctor></CreateDoctor>
@@ -101,8 +102,8 @@ const router = createBrowserRouter([
         element: <Blog></Blog>
       },
       {
-        path:'/cart',
-        element:<Cart></Cart>
+        path: '/cart',
+        element: <Cart></Cart>
       }
     ]
   },
@@ -115,8 +116,8 @@ const router = createBrowserRouter([
         element: <Profile></Profile>
       },
       {
-        path: '/dashboard/docstatus',
-        element: <DocStatus></DocStatus>
+        path: '/dashboard/patientstatus',
+        element: <PatientStatus></PatientStatus>
       }, {
         path: '/dashboard/comproduct',
         element: <CompanyProduct></CompanyProduct>
@@ -142,9 +143,13 @@ const router = createBrowserRouter([
         element: <UpdateProduct></UpdateProduct>
       },
       {
-        path:'/dashboard/addpatient',
+        path: '/dashboard/addpatient',
         element: <PatientRegister></PatientRegister>
       },
+      {
+        path: '/dashboard/docstatus',
+        element: <DocStatus></DocStatus>
+      }
     ]
   },
   {
