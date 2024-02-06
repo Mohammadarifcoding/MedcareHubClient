@@ -85,7 +85,8 @@ const MedicineItem = ({ filter }) => {
                 medicineId: item?.ID,
                 OrderId: uuidv4(),
                 email: user?.email,
-                medicine: item
+                medicine: item,
+                quantity:1
             };
             console.log(cartItem);
             AxiousPublic.post('/CartMedicine', cartItem).then((res) => {

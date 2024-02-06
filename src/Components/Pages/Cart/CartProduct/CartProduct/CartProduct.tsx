@@ -45,7 +45,7 @@ const CartProduct = ({ Product }) => {
                     <div className="px-2 bg-red-500 text-white cursor-pointer rounded-full py-2 text-[12px]">
                         <FiMinus />
                     </div>
-                    <span className="text-lg md:text-xl">5</span>
+                    <span className="text-lg md:text-xl">{Product?.quantity}</span>
                     <div className="px-2 bg-[#0360D9] cursor-pointer text-white rounded-full py-2 text-[12px]">
                         <IoMdAdd />
                     </div>
