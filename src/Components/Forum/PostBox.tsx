@@ -3,16 +3,6 @@ import SinglePost from './SinglePost.tsx';
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from '../../Hook/UseAuth.tsx';
-// interface PostData {
-//     id: number;
-//     name: string;
-//     img: string;
-//     tag: string;
-//     comment: number;
-//     date: string;
-//     heading: string;
-//     discription: string;
-// }
 
 
 const PostBox = () => {
