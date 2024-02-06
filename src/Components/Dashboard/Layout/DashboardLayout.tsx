@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
+import { FaArrowLeft, FaArrowRight, FaBook, FaFilePrescription, FaHome, FaHospitalUser, FaUserCircle, FaUserFriends } from 'react-icons/fa';
+import { ImBlog } from 'react-icons/im';
+import { MdOutlineAddToPhotos, MdOutlineNotificationsActive } from 'react-icons/md';
+import { PiDotsNineBold } from 'react-icons/pi';
+import Drawer from 'react-modern-drawer';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaArrowRight, FaBook, FaHome, FaUserCircle, FaUserFriends } from "react-icons/fa";
-import { MdOutlineNotificationsActive } from "react-icons/md";
-import { FaArrowLeft } from "react-icons/fa";
 import UseAuth from '../../../Hook/UseAuth.tsx';
-import Drawer from 'react-modern-drawer'
-import { FaFilePrescription } from "react-icons/fa";
-import { PiDotsNineBold } from "react-icons/pi";
-import { ImBlog } from "react-icons/im";
-import { MdOutlineAddToPhotos } from 'react-icons/md';
-
-
 
 const DashboardLayout = () => {
     const [openLayout, setOpenLayout] = useState(true);
@@ -43,22 +38,24 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/comproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaUserCircle /> Company Product
                             </NavLink>
-                            <NavLink to='/dashboard/myblog' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                            <NavLink to="/dashboard/myblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <ImBlog /> My blog
                             </NavLink>
 
                             <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                            <MdOutlineAddToPhotos /> Add Medicine
+                                <MdOutlineAddToPhotos /> Add Medicine
                             </NavLink>
                             <NavLink to="/dashboard/myproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaBook /> My Medicine
-                               </NavLink>
-                            <NavLink to='/dashboard/alluser' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
-                                <FaUserFriends />  All User
-
                             </NavLink>
-                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
-                                <FaFilePrescription />  Doctor Status
+                            <NavLink to="/dashboard/alluser" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                <FaUserFriends /> All User
+                            </NavLink>
+                            <NavLink to="/dashboard/docstatus" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                <FaFilePrescription /> Doctor Status
+                            </NavLink>
+                            <NavLink to="/dashboard/addpatient" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                <FaHospitalUser /> Patient Register
                             </NavLink>
                         </>
                     ) : (
@@ -72,22 +69,27 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/comproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <FaUserCircle />
                             </NavLink>
-                            <NavLink to='/dashboard/myblog' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                            <NavLink to="/dashboard/myblog" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <ImBlog />
                             </NavLink>
-                            <NavLink to='/dashboard/alluser' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                            <NavLink to="/dashboard/alluser" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <FaUserFriends />
                             </NavLink>
-                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 mx-auto overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
-                                <FaFilePrescription className='mx-auto' />
+                            <NavLink
+                                to="/dashboard/docstatus"
+                                className=" flex gap-1 items-center hover:scale-105 mx-auto overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                            >
+                                <FaFilePrescription className="mx-auto" />
                             </NavLink>
                             <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                            <MdOutlineAddToPhotos />
+                                <MdOutlineAddToPhotos />
                             </NavLink>
                             <NavLink to="/dashboard/myproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaBook />
                             </NavLink>
-                          
+                            <NavLink to="/dashboard/addpatient" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                <FaHospitalUser />
+                            </NavLink>
                         </>
                     )}
 
@@ -120,7 +122,7 @@ const DashboardLayout = () => {
                                 <hr className="my-5 h-[2px]" />
                                 <div className="flex items-center gap-6 text-lg font-semibold text-[#0360D9]">
                                     <p>
-                                        {' '}
+                                        
                                         <FaHome />
                                     </p>
                                     <NavLink to="/">Home</NavLink>
@@ -138,19 +140,19 @@ const DashboardLayout = () => {
                                     <NavLink to="/dashboard/docstatus">Doctor Status</NavLink>
                                 </div>
 
-                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
-                                    <p> <ImBlog /> </p>
-                                    <NavLink to='/dashboard/myblog'>My blog</NavLink>
-                                </div>
-                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
-                                    <p><FaUserFriends /> </p>
-                                    <NavLink to='/dashboard/alluser'>All User</NavLink>
-                   <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
-                                        <FaUserFriends />{' '}
+                                        
+                                        <ImBlog />
+                                    </p>
+                                    <NavLink to="/dashboard/myblog">My blog</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <FaUserFriends />
                                     </p>
                                     <NavLink to="/dashboard/alluser">All User</NavLink>
-
+                                    
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
@@ -171,7 +173,6 @@ const DashboardLayout = () => {
                                     <NavLink to="/dashboard/myproduct">My Medicine</NavLink>
                                 </div>
                             </div>
-                            </div>
                         </Drawer>
                         <h1 className="text-xl font-semibold text-[#0360D9]">Dashboard</h1>
                     </div>
@@ -179,7 +180,6 @@ const DashboardLayout = () => {
                 </div>
             </div>
         </div>
-       
     );
 };
 
