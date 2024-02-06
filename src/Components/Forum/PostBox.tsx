@@ -47,7 +47,7 @@ const PostBox = () => {
             </div>
             <div>
                 {
-                    posts?.map(data => <SinglePost key={data._id} data={data}></SinglePost>)
+                    posts?.map(data => <SinglePost key={data._id} data={data} refetch={refetch}></SinglePost>)
                 }
 
             </div>

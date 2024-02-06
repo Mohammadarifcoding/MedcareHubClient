@@ -17,10 +17,10 @@ interface SinglePostProps {
     }
 }
 
-const SinglePost = ({ data }: SinglePostProps) => {
+const SinglePost = ({ data, refetch }: SinglePostProps) => {
     const { user } = UseAuth()
     const axiosPublic = UseAxiosPublic();
-    const { _id, name, date, postTag, title, discription, userImg } = data;
+    const { _id, name, date, postTag, title, discription, userImg, comments } = data;
 
     const handlAddComment = e => {
         e.preventDefault()
@@ -34,13 +34,13 @@ const SinglePost = ({ data }: SinglePostProps) => {
         console.log(commentInfo);
         axiosPublic.patch(`/forum/comment/${_id}`, commentInfo)
             .then(res => {
-                // console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    // refetch()
+                console.log(res.data, "here here");
+                if (res.data) {
+                    refetch()
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "your react added",
+                        title: "comment added successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -88,11 +88,11 @@ const SinglePost = ({ data }: SinglePostProps) => {
                         <input className="btn btn-block bg-[#93C5FD] text-black" type="submit" value="Add Comment" />
 
                     </form>
-                    {/* {
+                    {
                         comments?.map((comment, idx) => <p className="py-3" key={comment.id}>
                             {idx + 1}/ comment added by Pro-User {comment.user}:   {comment.comment}
                         </p>)
-                    } */}
+                    }
                 </div>
             </div>
         </div>
