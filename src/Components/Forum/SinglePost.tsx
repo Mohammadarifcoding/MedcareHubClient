@@ -1,5 +1,8 @@
 import React from 'react';
 import { FaRegCommentAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
+import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
+import UseAuth from '../../Hook/UseAuth.tsx';
 
 interface SinglePostProps {
     data: {
@@ -15,7 +18,35 @@ interface SinglePostProps {
 }
 
 const SinglePost = ({ data }: SinglePostProps) => {
-    const { name, date, postTag, title, discription, userImg } = data;
+    const { user } = UseAuth()
+    const axiosPublic = UseAxiosPublic();
+    const { _id, name, date, postTag, title, discription, userImg } = data;
+
+    const handlAddComment = e => {
+        e.preventDefault()
+        const comment = e.target.comment.value;
+        const commentInfo = {
+            user: user.displayName,
+            email: user.email,
+            userImg: user.photoURL,
+            comment
+        }
+        console.log(commentInfo);
+        axiosPublic.patch(`/forum/comment/${_id}`, commentInfo)
+            .then(res => {
+                // console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    // refetch()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "your react added",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
     return (
         <div className="bg-slate-200 p-5 my-5">
             <div className="flex justify-between items-center">
@@ -37,6 +68,31 @@ const SinglePost = ({ data }: SinglePostProps) => {
                 <div className="pt-5 flex gap-2 items-center">
                     <FaRegCommentAlt />
                     <p>comment</p>
+                </div>
+            </div>
+
+            <div>
+                <div className="container mx-auto my-6 bg-[#F6F6F6] p-5 rounded">
+                    <h1 className="text-2xl text-center my-2">Add Your Comment</h1>
+                    <form onSubmit={handlAddComment}>
+                        <div className="md:flex gap-3 px-2 md:px-1 mb-6">
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">Comment</span>
+                                </label>
+                                <label className="input-group">
+                                    <textarea name="comment" placeholder="Write your comment here" required className="textarea textarea-bordered textarea-xs w-full" ></textarea>
+                                </label>
+                            </div>
+                        </div>
+                        <input className="btn btn-block bg-[#93C5FD] text-black" type="submit" value="Add Comment" />
+
+                    </form>
+                    {/* {
+                        comments?.map((comment, idx) => <p className="py-3" key={comment.id}>
+                            {idx + 1}/ comment added by Pro-User {comment.user}:   {comment.comment}
+                        </p>)
+                    } */}
                 </div>
             </div>
         </div>
