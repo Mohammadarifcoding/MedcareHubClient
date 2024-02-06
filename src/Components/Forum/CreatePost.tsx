@@ -15,6 +15,7 @@ import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 interface IFormInput {
     title: string,
     discription: string,
+    postTag: string,
     category: string
 
 
@@ -38,12 +39,15 @@ const CreatePost = () => {
 
         reset()
         const postItem = {
+
             name: user.displayName,
+            userMail: user.email,
             userImg: user.photoURL,
             date: formattedDate,
             title: data.title,
             discription: data.discription,
-            category: data.category,
+            postTag: data.postTag,
+            category: data.category
 
         }
         console.log(postItem);
@@ -106,12 +110,20 @@ const CreatePost = () => {
                                 <label className=' label' >
                                     <span className="label-text">Post Tag</span>
                                 </label>
-                                <select  {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
-                                    <option disabled value='default'>Category</option>
+                                <select  {...register("postTag", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled value='default'>Post Tag</option>
                                     <option>Help Post</option>
                                     <option>Suggestion</option>
                                     <option>Dr Post</option>
                                     <option>Awareness</option>
+                                </select><br />
+                                <label className=' label' >
+                                    <span className="label-text">Category</span>
+                                </label>
+                                <select  {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled value='default'>Category</option>
+                                    <option>dr-post</option>
+                                    <option>patient-post</option>
                                 </select><br />
                                 <input className='btn btn-ghost' type="submit" />
                             </form>

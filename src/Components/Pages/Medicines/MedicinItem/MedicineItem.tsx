@@ -1,18 +1,29 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import MedicineData from '../../../../Data/Medicine.ts';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import UseCart from '../../../../Hook/UseCart.tsx';
 import Cart from '../../../../assets/Icons/Cart.tsx';
 import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
 import { useMedicineContext } from '../MedicineContext/MedicineContext.jsx';
+import { uuidv4 } from '@firebase/util';
 
 const MedicineItem = ({ filter }) => {
+    const { user } = UseAuth();
+    const [, refetch] = UseCart();
+    const navigate = useNavigate();
     const [medicine, setMedicine] = useState([]);
     const [filteredMedicine, setFilteredMedicine] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [priceRange, setPriceRange] = useState(90);
-    const [isLoading, setISLoading] = useState(true);
+    // const [isLoading, setISLoading] = useState(false);
     const { selectedCategory } = useMedicineContext();
+    const AxiousPublic = UseAxiosPublic();
+
 
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
@@ -31,18 +42,20 @@ const MedicineItem = ({ filter }) => {
         }
     };
 
+    const { data: medicineData = [], isLoading } = useQuery({
+        queryKey: ['medicines'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Medicines');
+            return result.data;
+        }
+    });
+
     useEffect(() => {
-        setISLoading(true);
-        fetch('http://localhost:5000/Medicines')
-            .then((res) => res.json())
-            .then((data) => {
-                setMedicine(data);
-                setISLoading(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }, []);
+        if (medicineData.length > 0) {
+            setMedicine(medicineData);
+        }
+    }, [medicineData]);
+
 
     useEffect(() => {
         const debounceFilter = setTimeout(() => {
@@ -65,7 +78,50 @@ const MedicineItem = ({ filter }) => {
         return () => clearTimeout(debounceFilter);
     }, [filter, medicine, selectedCategory]);
 
+
+    const handleAddtoCart = (item) => {
+        if (user && user?.email) {
+            const cartItem = {
+                medicineId: item?.ID,
+                OrderId: uuidv4(),
+                email: user?.email,
+                medicine: item,
+                quantity:1
+            };
+            console.log(cartItem);
+            AxiousPublic.post('/CartMedicine', cartItem).then((res) => {
+                console.log(res.data);
+                if (res.data) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `Medicine added to your cart`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'You are not Logged in?',
+                text: 'Please login to add to the cart!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //    send the user to the login page
+                    navigate('/login');
+                }
+            });
+        }
+    };
+
     const isFavorite = (id) => favorites.includes(id);
+
     return (
         <>
             <div className="mx-2 space-y-2 mb-5 -mt-2 mr-5">
@@ -83,9 +139,9 @@ const MedicineItem = ({ filter }) => {
             {!isLoading ? (
                 <div className="container mx-auto grid grid-cols-1 gap-6  md:grid-cols-2 lg:grid-cols-3">
                     {filteredMedicine?.map((medicine) => (
-                        <div className="space-y-3 " key={medicine?.ID}>
+                        <div className="space-y-3 " key={medicine?._id}>
                             <div className="flex items-center justify-center rounded-md border border-[#0360D9]/30 bg-white p-4">
-                                <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} />
+                             <Link to={`/detailsMed/${medicine.ID}`}>   <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
                             </div>
                             <div className="space-y-3">
                                 <div className="space-y-3 pl-2">
@@ -129,16 +185,20 @@ const MedicineItem = ({ filter }) => {
                                     </div>
                                 </div>
                                 <div className="flex  gap-3 text-xs lg:text-sm justify-between md:px-2">
-                                    <button className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5">
+                                    <button
+                                        className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5"
+                                        onClick={() => handleAddtoCart(medicine)}
+                                    >
                                         <Cart />
                                         Add to Cart
                                     </button>
                                     <button
-                                        onClick={() => handleToggleFavorite(medicine?.ID)}
-                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${isFavorite(medicine?.ID) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
-                                            } py-1.5 transition-all lg:py-1.5`}
+                                        onClick={() => handleToggleFavorite(medicine?._id)}
+                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${
+                                            isFavorite(medicine?._id) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
+                                        } py-1.5 transition-all lg:py-1.5`}
                                     >
-                                        {isFavorite(medicine?.ID) ? <LoveFill /> : <LoveLine />}
+                                        {isFavorite(medicine?._id) ? <LoveFill /> : <LoveLine />}
                                         Favourite
                                     </button>
                                 </div>

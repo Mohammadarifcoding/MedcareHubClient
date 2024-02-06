@@ -38,6 +38,13 @@ import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/M
 
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
+
+import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
+import Cart from './Components/Pages/Cart/Cart.tsx';
+import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx';
+import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
+import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
+
 const queryClient = new QueryClient()
 
 
@@ -86,8 +93,9 @@ const router = createBrowserRouter([
         path: '/company/:companyname',
         element: <CompanyDetails></CompanyDetails>
       }, {
-        path: '/detailsmedicines',
-        element: <MedicienDetails></MedicienDetails>
+        path: '/detailsMed/:id',
+        element: <MedicienDetails></MedicienDetails>,
+        loader:({ params }) => fetch(`http://localhost:5000/detailsMed/${params?.id}`)
       }, {
         path: '/addoctor',
         element: <CreateDoctor></CreateDoctor>
@@ -96,7 +104,14 @@ const router = createBrowserRouter([
       }, {
         path: '/blogs',
         element: <Blog></Blog>
+<<<<<<< HEAD
 >>>>>>> master
+=======
+      },
+      {
+        path:'/cart',
+        element:<Cart></Cart>
+>>>>>>> 1bddff34bf504d288154b8d1c86b6ce11c91f760
       }
     ]
   },
@@ -118,7 +133,23 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/alluser',
         element: <AllUser></AllUser>
-      }
+      },
+      {
+        path: '/dashboard/myblog',
+        element: <MyBlog></MyBlog>
+      },
+      {
+        path: '/dashboard/addproduct',
+        element: <AddProduct></AddProduct>
+      },
+      {
+        path: '/dashboard/myproduct',
+        element: <MyProduct></MyProduct>
+      },
+      {
+        path: '/dashboard/updateproduct/:id',
+        element: <UpdateProduct></UpdateProduct>
+      },
     ]
   },
   {
@@ -133,14 +164,14 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-       <MedicineProvider>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          <div className='bg-[#EEF2FB]'>
-            <RouterProvider router={router} />
-          </div>
-        </QueryClientProvider>
-      </AuthProvider>
+      <MedicineProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <div className='bg-[#EEF2FB]'>
+              <RouterProvider router={router} />
+            </div>
+          </QueryClientProvider>
+        </AuthProvider>
       </MedicineProvider>
     </React.StrictMode>)
 
