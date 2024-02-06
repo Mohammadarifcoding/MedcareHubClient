@@ -29,6 +29,10 @@ import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.t
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
+<<<<<<< HEAD
+import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
+=======
+>>>>>>> master
 
 import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.jsx';
 
@@ -95,13 +99,19 @@ const router = createBrowserRouter([
       }, {
         path: '/addoctor',
         element: <CreateDoctor></CreateDoctor>
+<<<<<<< HEAD
+=======
       }, {
         path: '/blogs',
         element: <Blog></Blog>
+<<<<<<< HEAD
+>>>>>>> master
+=======
       },
       {
         path:'/cart',
         element:<Cart></Cart>
+>>>>>>> 1bddff34bf504d288154b8d1c86b6ce11c91f760
       }
     ]
   },
