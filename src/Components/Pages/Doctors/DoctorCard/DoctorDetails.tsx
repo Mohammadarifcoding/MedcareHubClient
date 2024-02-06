@@ -5,6 +5,7 @@ const DoctorDetails = () => {
     const [foundData, setFoundData] = useState();
     const { id } = useParams();
     // console.log(id);
+    console.log(foundData);
 
     useEffect(() => {
         fetch(`http://localhost:5000/Doctor/${id}`)
@@ -20,26 +21,124 @@ const DoctorDetails = () => {
 
     return (
         <>
-           
-            <div className="mb-8 w-[95%] sm:w-[90%] md:w-[80%] lg:[70%] mx-auto lg:flex flex-row gap-20">
-                <div
-                    className="flex flex-col rounded-xl mb-8 w-full lg:w-[30%] border
-         border-gray-200"
-                >
-                    <div className="lg:h-[450px] md:h-[800px] relative">
-                        <img className="object-cover h-full w-full rounded-xl" src={foundData?.image} alt="" />
-                        <p className="badge bg-[#0360D9] text-white absolute top-0 right-0">{foundData?.age} Year</p>
-                    </div>
 
-                    <div className="text-gray-600 mt-8 ml-12">
-                        <h1 className="text-xl font-bold">Contact info</h1>
-                        <h1 className="mt-2">Call: +01 489 2394 23</h1>
-                        <h1 className="mt-2">afsana@gamil.com</h1>
-                        <h1 className="mt-2">4th Floor, 408 No chamber</h1>
-                        <h1 className="text-xl font-bold mt-6">Working hours</h1>
-                        <div className="grid grid-cols-2 gap-16">
+            <div className="bg-white p-8">
+                <img src={foundData?.image} alt="" />
+                <div>
+
+                    <div className="text-center">
+                        <h1 className="text-4xl font-semibold">{foundData?.DocName}</h1>
+                        <p className="text-xl">{foundData?.degree[1]} in {foundData?.degree[0]}</p>
+                        <div className="flex justify-center items-center space-x-2 my-2">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                className="text-yellow-400"
+                            >
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                className="text-yellow-400"
+                            >
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                className="text-yellow-400"
+                            >
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                className="text-yellow-400"
+                            >
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                className="text-gray-300"
+                            >
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <span>(35)</span>
+                        </div>
+                        <p className="text-sm text-gray-500">
+                            {foundData?.Address} -{" "}
+                            <a href="#" className="text-blue-600">
+                                Get Directions
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex justify-center space-x-4">
+                    <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
+                        Dental Filling
+                    </button>
+                    <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
+                        Teeth Whitening
+                    </button>
+                </div>
+
+
+
+                <div className="grid lg:grid-cols-2 gap-8 mt-10">
+                    <div>
+                        <h2 className="text-lg font-semibold mb-4">About Me</h2>
+                        <p className="text-sm mb-4">
+                            {foundData?.aboutMe}
+                        </p>
+
+                        <h3 className="text-lg font-semibold mb-2">Contact</h3>
+                        <p><span className='font-bold'>Phone:</span> {foundData?.Phone}</p>
+                        <p><span className='font-bold'>Email:</span> {foundData?.Email}</p>
+                        <p><span className='font-bold'>Address:</span> {foundData?.Address}</p>
+                        <p><span className='font-bold'>Service Fee:</span> {foundData?.serviceFee} tk</p>
+
+                        <h3 className="text-lg font-semibold my-2">Working Hour</h3>
+                        <div className="flex gap-16 text-sm ">
                             <div>
-                                <h1 className="mt-2">Monday - Fridayp</h1>
+                                <h1 className="mt-2">Monday - Friday</h1>
                                 <h1 className="mt-2">Saturday</h1>
                                 <h1 className="mt-2">Monday - Thusday</h1>
                                 <h1 className="mt-2">Monday - Friday</h1>
@@ -60,46 +159,35 @@ const DoctorDetails = () => {
                             </div>
                         </div>
                     </div>
+                    <div>
+
+                        <h3 className="text-lg font-semibold mb-2">Education</h3>
+                        <p className="text-sm mb-4">
+                            {foundData?.degree[1]} in {foundData?.degree[0]}
+                        </p>
+                        <h3 className="text-lg font-semibold mb-2">Services</h3>
+                        <ul className="list-disc list-inside text-sm">
+                            {/* <li>{foundData?.service[0]}</li>
+                                <li>{foundData?.service[1]}</li>
+                                <li>{foundData?.service[2]}</li>
+                                <li>{foundData?.service[3]}</li> */}
+
+                        </ul>
+
+                        <h2 className="text-lg font-semibold mb-4">Specializations</h2>
+                        <ul className="list-disc list-inside text-sm">
+                            <li>{foundData?.specialties[0]}</li>
+                            <li>{foundData?.specialties[1]}</li>
+                            <li>{foundData?.specialties[2]}</li>
+                            <li>{foundData?.specialties[3]}</li>
+
+                        </ul>
+                    </div>
                 </div>
-                <div className="mt-8 w-full px-[7%] lg:w-[60%]">
-                    <h1 className="text-3xl font-semibold text-black">{foundData?.DocName}</h1>
-                    <h1 className="mt-2 mb-4">
-                        {foundData?.degree[0]}
-                        <br />
-                        {foundData?.degree[1]} in {foundData?.degree[0]}
-                    </h1>
-                    <h1 className="text-3xl font-semibold mb-4 text-blue-600">Biography</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                        commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-                        <br /> <br />
-                        Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-                    </p>
-                    <h1
-                        className="text-3xl font-semibold mb-4 mt-4
-                     text-blue-600"
-                    >
-                        Education
-                    </h1>
-                    <p>
-                        PHD degree in Neorology at University of Mediserv (2006)
-                        <br /> Master of Neoro Surgery at University of Mediserv (2002)
-                        <br /> MBBS degree in Neurosciences at University of Mediserv (2002)
-                        <br /> Higher Secondary Certificate at Mediserv collage (1991)
-                    </p>
-                    <h1
-                        className="text-3xl font-semibold mb-4 mt-4
-                     text-blue-600"
-                    >
-                        Research Interests:
-                    </h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In addition to an illustrious career in clinical practice, Dr.Doctors Last Name has dedicated substantial time to
-                        advancing the field of neurology through groundbreaking research. Their primary research interests include mention specific research areas, e.g., neurodegenerative diseases,
-                        neuro-oncology, or neurological disorders in children.
-                    </p>
-                </div>
+
             </div>
+
+           
         </>
     );
 };
