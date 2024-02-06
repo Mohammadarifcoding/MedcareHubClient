@@ -10,6 +10,7 @@ import Cart from '../../../../assets/Icons/Cart.tsx';
 import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
 import { useMedicineContext } from '../MedicineContext/MedicineContext.jsx';
+import { uuidv4 } from '@firebase/util';
 
 const MedicineItem = ({ filter }) => {
     const { user } = UseAuth();
@@ -81,10 +82,11 @@ const MedicineItem = ({ filter }) => {
     const handleAddtoCart = (item) => {
         if (user && user?.email) {
             const cartItem = {
-                medicineId: item?._id,
-                ourID: item?.ID,
+                medicineId: item?.ID,
+                OrderId: uuidv4(),
                 email: user?.email,
-                medicine: item
+                medicine: item,
+                quantity:1
             };
             console.log(cartItem);
             AxiousPublic.post('/CartMedicine', cartItem).then((res) => {

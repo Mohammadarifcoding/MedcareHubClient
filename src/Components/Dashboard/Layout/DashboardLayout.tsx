@@ -24,7 +24,7 @@ const DashboardLayout = () => {
     return (
         <div className="flex h-full relative">
             {/* Sidebar */}
-            <div className={` ${openLayout ? 'xl:w-[20%]' : 'xl:w-[5%]'} fixed h-full overflow-y-auto bg-[#0360D9] w-[0%] text-[#FFF] transition-all duration-300 `}>
+            <div className={` ${openLayout ? 'xl:w-[20%]' : 'xl:w-[5%]'}  fixed h-full overflow-y-auto bg-[#0360D9] w-[0%] text-[#FFF] transition-all duration-300 `}>
                 <div className={`${openLayout ? 'flex' : 'hidden'} gap-5 border-b border-white py-4 justify-around xl:text-xl 2xl:text-2xl`}>
                     <h2 className="font-semibold">MedCareHub</h2>
                     <div className="p-1 border border-white rounded-full group-hover:p-3 transition-all duration-200 group cursor-pointer">
@@ -57,6 +57,9 @@ const DashboardLayout = () => {
                                 <FaUserFriends />  All User
 
                             </NavLink>
+                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <FaFilePrescription />  Doctor Status
+                            </NavLink>
                         </>
                     ) : (
                         <>
@@ -70,12 +73,14 @@ const DashboardLayout = () => {
                                 <FaUserCircle />
                             </NavLink>
                             <NavLink to='/dashboard/myblog' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
-                                <ImBlog /> My blog
+                                <ImBlog />
                             </NavLink>
                             <NavLink to='/dashboard/alluser' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                                 <FaUserFriends />
                             </NavLink>
-                   
+                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 mx-auto overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <FaFilePrescription className='mx-auto' />
+                            </NavLink>
                             <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                             <MdOutlineAddToPhotos />
                             </NavLink>
@@ -132,11 +137,20 @@ const DashboardLayout = () => {
                                     </p>
                                     <NavLink to="/dashboard/docstatus">Doctor Status</NavLink>
                                 </div>
-                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+
+                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
+                                    <p> <ImBlog /> </p>
+                                    <NavLink to='/dashboard/myblog'>My blog</NavLink>
+                                </div>
+                                <div className='flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]'>
+                                    <p><FaUserFriends /> </p>
+                                    <NavLink to='/dashboard/alluser'>All User</NavLink>
+                   <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
                                         <FaUserFriends />{' '}
                                     </p>
                                     <NavLink to="/dashboard/alluser">All User</NavLink>
+
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
@@ -157,6 +171,7 @@ const DashboardLayout = () => {
                                     <NavLink to="/dashboard/myproduct">My Medicine</NavLink>
                                 </div>
                             </div>
+                            </div>
                         </Drawer>
                         <h1 className="text-xl font-semibold text-[#0360D9]">Dashboard</h1>
                     </div>
@@ -164,6 +179,7 @@ const DashboardLayout = () => {
                 </div>
             </div>
         </div>
+       
     );
 };
 
