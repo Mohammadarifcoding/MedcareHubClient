@@ -24,7 +24,7 @@ const DashboardLayout = () => {
     return (
         <div className="flex h-full relative">
             {/* Sidebar */}
-            <div className={` ${openLayout ? 'xl:w-[20%]' : 'xl:w-[5%]'} fixed h-full overflow-y-auto bg-[#0360D9] w-[0%] text-[#FFF] transition-all duration-300 `}>
+            <div className={` ${openLayout ? 'xl:w-[20%]' : 'xl:w-[5%]'}  fixed h-full overflow-y-auto bg-[#0360D9] w-[0%] text-[#FFF] transition-all duration-300 `}>
                 <div className={`${openLayout ? 'flex' : 'hidden'} gap-5 border-b border-white py-4 justify-around xl:text-xl 2xl:text-2xl`}>
                     <h2 className="font-semibold">MedCareHub</h2>
                     <div className="p-1 border border-white rounded-full group-hover:p-3 transition-all duration-200 group cursor-pointer">
@@ -57,6 +57,9 @@ const DashboardLayout = () => {
                                 <FaUserFriends />  All User
 
                             </NavLink>
+                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <FaFilePrescription />  Doctor Status
+                            </NavLink>
                         </>
                     ) : (
                         <>
@@ -75,7 +78,9 @@ const DashboardLayout = () => {
                             <NavLink to='/dashboard/alluser' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                                 <FaUserFriends />
                             </NavLink>
-                   
+                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 mx-auto overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <FaFilePrescription className='mx-auto' />
+                            </NavLink>
                             <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                             <MdOutlineAddToPhotos />
                             </NavLink>
