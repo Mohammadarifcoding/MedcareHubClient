@@ -8,6 +8,7 @@ import loginAnimation from './login.json'
 import Lottie from 'lottie-react';
 import axios from 'axios';
 import { base_URL } from '../../../utills/BaseURL.ts';
+
 const Login: FC = () => {
 
     const { loginUser, signInWithGoogle } = UseAuth()

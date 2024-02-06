@@ -1,16 +1,28 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import MedicineData from '../../../../Data/Medicine.ts';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import UseCart from '../../../../Hook/UseCart.tsx';
 import Cart from '../../../../assets/Icons/Cart.tsx';
 import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
+import { useMedicineContext } from '../MedicineContext/MedicineContext.jsx';
 
 const MedicineItem = ({ filter }) => {
+    const { user } = UseAuth();
+    const [, refetch] = UseCart();
+    const navigate = useNavigate();
     const [medicine, setMedicine] = useState([]);
     const [filteredMedicine, setFilteredMedicine] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [priceRange, setPriceRange] = useState(90);
-    const [isLoading, setISLoading] = useState(true);
+    // const [isLoading, setISLoading] = useState(false);
+    const { selectedCategory } = useMedicineContext();
+    const AxiousPublic = UseAxiosPublic();
+
 
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
@@ -29,18 +41,20 @@ const MedicineItem = ({ filter }) => {
         }
     };
 
+    const { data: medicineData = [], isLoading } = useQuery({
+        queryKey: ['medicines'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Medicines');
+            return result.data;
+        }
+    });
+
     useEffect(() => {
-        setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Medicines')
-            .then((res) => res.json())
-            .then((data) => {
-                setMedicine(data);
-                setISLoading(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }, []);
+        if (medicineData.length > 0) {
+            setMedicine(medicineData);
+        }
+    }, [medicineData]);
+
 
     useEffect(() => {
         const debounceFilter = setTimeout(() => {
@@ -48,22 +62,11 @@ const MedicineItem = ({ filter }) => {
             if (filter.keyword) {
                 tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Medname.toLowerCase().includes(filter.keyword.toLowerCase()));
             }
+            if (selectedCategory) {
+                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === selectedCategory);
+            }
 
-            if (filter.sortBy === 'category_Herbal_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Herbal Care');
-            } else if (filter.sortBy === 'category_Womens_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === "Women's Care");
-            } else if (filter.sortBy === 'category_COVID_Special') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'COVID Special');
-            } else if (filter.sortBy === 'category_Baby_and_Mom_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Baby and Mom Care');
-            } else if (filter.sortBy === 'category_Supplements') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Supplements');
-            } else if (filter.sortBy === 'category_Nutrition') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Nutrition');
-            } else if (filter.sortBy === 'category_Personal_Care') {
-                tempFilteredMedicine = tempFilteredMedicine?.filter((item) => item.Category === 'Personal Care');
-            } else if (filter.sortBy === 'price_asc') {
+            if (filter.sortBy === 'price_asc') {
                 tempFilteredMedicine = tempFilteredMedicine?.sort((a, b) => a.Price - b.Price);
             } else if (filter.sortBy === 'price_desc') {
                 tempFilteredMedicine = tempFilteredMedicine?.sort((a, b) => b.Price - a.Price);
@@ -72,9 +75,51 @@ const MedicineItem = ({ filter }) => {
             setFilteredMedicine(tempFilteredMedicine);
         }, 600);
         return () => clearTimeout(debounceFilter);
-    }, [filter, medicine]);
+    }, [filter, medicine, selectedCategory]);
+
+
+    const handleAddtoCart = (item) => {
+        if (user && user?.email) {
+            const cartItem = {
+                medicineId: item?._id,
+                ourID: item?.ID,
+                email: user?.email,
+                medicine: item
+            };
+            console.log(cartItem);
+            AxiousPublic.post('/CartMedicine', cartItem).then((res) => {
+                console.log(res.data);
+                if (res.data) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `Medicine added to your cart`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'You are not Logged in?',
+                text: 'Please login to add to the cart!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //    send the user to the login page
+                    navigate('/login');
+                }
+            });
+        }
+    };
 
     const isFavorite = (id) => favorites.includes(id);
+
     return (
         <>
             <div className="mx-2 space-y-2 mb-5 -mt-2 mr-5">
@@ -92,9 +137,9 @@ const MedicineItem = ({ filter }) => {
             {!isLoading ? (
                 <div className="container mx-auto grid grid-cols-1 gap-6  md:grid-cols-2 lg:grid-cols-3">
                     {filteredMedicine?.map((medicine) => (
-                        <div className="space-y-3 " key={medicine?.ID}>
+                        <div className="space-y-3 " key={medicine?._id}>
                             <div className="flex items-center justify-center rounded-md border border-[#0360D9]/30 bg-white p-4">
-                                <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} />
+                             <Link to={`/detailsMed/${medicine.ID}`}>   <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
                             </div>
                             <div className="space-y-3">
                                 <div className="space-y-3 pl-2">
@@ -138,17 +183,20 @@ const MedicineItem = ({ filter }) => {
                                     </div>
                                 </div>
                                 <div className="flex  gap-3 text-xs lg:text-sm justify-between md:px-2">
-                                    <button className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5">
+                                    <button
+                                        className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5"
+                                        onClick={() => handleAddtoCart(medicine)}
+                                    >
                                         <Cart />
                                         Add to Cart
                                     </button>
                                     <button
-                                        onClick={() => handleToggleFavorite(medicine?.ID)}
+                                        onClick={() => handleToggleFavorite(medicine?._id)}
                                         className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${
-                                            isFavorite(medicine?.ID) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
+                                            isFavorite(medicine?._id) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
                                         } py-1.5 transition-all lg:py-1.5`}
                                     >
-                                        {isFavorite(medicine?.ID) ? <LoveFill /> : <LoveLine />}
+                                        {isFavorite(medicine?._id) ? <LoveFill /> : <LoveLine />}
                                         Favourite
                                     </button>
                                 </div>
@@ -157,56 +205,111 @@ const MedicineItem = ({ filter }) => {
                     ))}
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse">
-                        <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
-                        <div className="space-y-2">
-                            <div className="h-6 w-2/3 rounded bg-gray-300"></div>
-                            <div className="flex gap-1">
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
+                <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
                             </div>
                         </div>
-                        <div className="mt-5 flex justify-between items-center font-medium">
-                            <div className="h-6 w-1/4 rounded bg-gray-300"></div>
-                            <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden md:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                            </div>
+                        </div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden lg:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                            </div>
                         </div>
                     </div>
-                    <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden md:block">
-                        <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
-                        <div className="space-y-2">
-                            <div className="h-6 w-2/3 rounded bg-gray-300"></div>
-                            <div className="flex gap-1">
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 mt-4 lg:grid-cols-3 gap-6">
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
                             </div>
                         </div>
-                        <div className="mt-5 flex justify-between items-center font-medium">
-                            <div className="h-6 w-1/4 rounded bg-gray-300"></div>
-                            <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
-                        </div>
-                    </div>
-                    <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden lg:block">
-                        <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
-                        <div className="space-y-2">
-                            <div className="h-6 w-2/3 rounded bg-gray-300"></div>
-                            <div className="flex gap-1">
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
-                                <div className="h-4 w-4 rounded bg-gray-300"></div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden md:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
                             </div>
                         </div>
-                        <div className="mt-5 flex justify-between items-center font-medium">
-                            <div className="h-6 w-1/4 rounded bg-gray-300"></div>
-                            <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                        <div className="w-[400px] md:w-[300px] bg-slate-300/20 px-6 py-4 mx-auto rounded-2xl space-y-6 shadow-md animate-pulse hidden lg:block">
+                            <div className="w-full h-[190px] bg-gray-400 rounded-2xl"></div>
+                            <div className="space-y-2">
+                                <div className="h-6 w-2/3 rounded bg-gray-300"></div>
+                                <div className="flex gap-1">
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                    <div className="h-4 w-4 rounded bg-gray-300"></div>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex justify-between items-center font-medium">
+                                <div className="h-6 w-1/4 rounded bg-gray-300"></div>
+                                <div className="h-10 w-24  bg-gray-700 rounded-lg"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

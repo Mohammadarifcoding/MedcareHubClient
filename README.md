@@ -17,7 +17,7 @@ Our Project topic name is "Online application for medicines booking and health s
 * Advanced Dashboards: Customized dashboards for doctors, companies, admins, and moderators.
 
 
-## [ Live link:](https://medcarehub-68762.web.app/)
+## [ Live link:](https://medcarehub.vercel.app/)
 
 
 
