@@ -171,6 +171,7 @@ const DashboardLayout = () => {
                                     <NavLink to="/dashboard/myproduct">My Medicine</NavLink>
                                 </div>
                             </div>
+                            </div>
                         </Drawer>
                         <h1 className="text-xl font-semibold text-[#0360D9]">Dashboard</h1>
                     </div>
@@ -178,6 +179,7 @@ const DashboardLayout = () => {
                 </div>
             </div>
         </div>
+       
     );
 };
 
