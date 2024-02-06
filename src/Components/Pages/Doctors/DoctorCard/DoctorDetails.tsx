@@ -113,10 +113,10 @@ const DoctorDetails = () => {
 
                 <div className="flex justify-center space-x-4">
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                       {foundData?.sevice[0]}
+                    {foundData?.service[1]}
                     </button>
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                    {foundData?.sevice[1]}
+                    {foundData?.service[2]}
                     </button>
                 </div>
 
