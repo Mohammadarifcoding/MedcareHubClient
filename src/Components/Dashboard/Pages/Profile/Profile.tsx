@@ -14,12 +14,6 @@ const Profile = () => {
     const [refetchData, setRefecthData] = useState(false)
 
 
-    const status = user?.role === 'doctor' ? 'Doctor' :
-        user?.role === 'patient' ? 'Patient' :
-            user?.role === 'company' ? 'Company User' :
-                'Unknown';
-
-
     const {
         register,
         handleSubmit,
@@ -30,8 +24,9 @@ const Profile = () => {
         fetch(`${base_URL}/Users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserData(data))
+            .catch(error => console.error('Fetch error:', error));
+    }, [user, refetchData]);
 
-    }, [user, refetchData])
 
 
 
