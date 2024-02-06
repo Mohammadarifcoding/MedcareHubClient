@@ -44,7 +44,7 @@ const AddProduct = () => {
     return (
         <div className="mx-3">
             <div className="md:py-20 py-10 px-3">
-                <h1 className="text-center font-extrabold mb-10 text-purple-500 text-2xl md:text-4xl">Add Job</h1>
+                <h1 className="text-center font-extrabold mb-10 text-[#0360D9] text-2xl md:text-4xl">Add Medicine</h1>
                 <form onSubmit={handleAddMedicine}>
                     <div className="md:flex gap-6 justify-center mb-8">
                         <div className="form-control md:w-1/2">
@@ -114,7 +114,7 @@ const AddProduct = () => {
                             <textarea className="textarea rounded-md  w-full" name="Description" placeholder="Enter Short description" required></textarea>
                         </div>
                     </div>
-                    <input className="btn btn-block bg-[#0360D9] text-white" type="submit" value="Add Job" />
+                    <input className="btn btn-block bg-[#0360D9] text-white" type="submit" value="Add Medicine" />
                 </form>
             </div>
         </div>
