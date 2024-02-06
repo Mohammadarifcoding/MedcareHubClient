@@ -187,7 +187,7 @@ const DoctorDetails = () => {
 
             </div>
 
-           
+
         </>
     );
 };
