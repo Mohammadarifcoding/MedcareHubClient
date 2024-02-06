@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { base_URL } from '../../../../utills/BaseURL.ts';
 
 const RegiModal = () => {
 
@@ -29,16 +30,17 @@ const RegiModal = () => {
             specialties: data.specialties,
             services: data.services,
             degree: data.degree,
-            serviceFee: data.serviceFee
+            serviceFee: data.serviceFee,
+            image: data.image
         };
         console.log(formData);
         console.log(formData);
-        axios.post(`http://localhost:5000/Blog`, formData)
+        axios.post(`${base_URL}/Doctors`, formData)
             .then((res) => {
                 console.log(res);
                 Swal.fire("You registered for doctor successfully!");
                 setOpenModal(false)
-              
+
             })
             .catch((error) => console.error("Error updating status:", error));
     };
@@ -79,6 +81,15 @@ const RegiModal = () => {
 
 
                                                     <input {...register('DocName')} type="text" placeholder="Enter Doctor Name" className=" rounded-lg px-3 h-10 w-full border" required />
+
+                                                </div>
+                                                <div className="form-control md:w-full">
+                                                    <label className="label">
+                                                        <span className="label-text font-bold">Doctor Image</span>
+                                                    </label>
+
+
+                                                    <input {...register('image')} type="text" placeholder="Enter >Doctor Image" className=" rounded-lg px-3 h-10 w-full border" required />
 
                                                 </div>
 
