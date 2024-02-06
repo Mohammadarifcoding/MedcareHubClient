@@ -1,13 +1,13 @@
 import React from 'react';
 import CartProduct from './CartProduct/CartProduct.tsx';
 
-const CartProducts = () => {
+const CartProducts = ({ Products }) => {
   return (
     <div className="bg-white p-6 rounded-lg mt-5 shadow-md max-w-full mx-auto" id="4322kqlzlj">
-      <h2 className="text-lg font-semibold border-b pb-2">My cart (3)</h2>
+      <h2 className="text-lg font-semibold border-b pb-2">My cart ({Products?.length})</h2>
       <ul className="divide-y divide-gray-200">
         {
-          [1, 2, 3, 4].map(item => <CartProduct></CartProduct>)
+          Products?.map(item => <CartProduct Product={item}></CartProduct>)
         }
       </ul>
       <div className="flex justify-between items-center mt-4">
