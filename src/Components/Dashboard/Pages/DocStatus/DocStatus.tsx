@@ -11,6 +11,12 @@ const DocStatus = () => {
             .then(data => setPatients(data));
 
     }, [])
+
+    // const handleBookingConfirm = id => {
+    //     fetch(`/patients.json/${id}`)
+    //         .then(res => res.json())
+    //         .then(data => setPatients(data));
+    // }
     return (
         <div className="">
             <div>

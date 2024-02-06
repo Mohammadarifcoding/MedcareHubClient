@@ -8,21 +8,21 @@ interface PostData {
     comment: number;
     date: string;
     heading: string;
-    post_body: string;
+    discription: string;
 }
 
 
 const PostBox = () => {
     const [post, setPost] = useState<PostData[]>([]);
     useEffect(() => {
-        fetch('post.json')
+        fetch('http://localhost:5000/forum')
             .then(res => res.json())
             .then(data => setPost(data))
     }, [])
     return (
         <div>
             {
-                post.map(data => <SinglePost key={data.id} data={data}></SinglePost>)
+                post.map(data => <SinglePost key={data._id} data={data}></SinglePost>)
             }
         </div>
     );
