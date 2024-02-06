@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '../../../Shared/Container/Container.tsx';
 import { Link } from 'react-router-dom';
+import { Modal } from 'flowbite';
+import RegiModal from './RegiModal.tsx';
 
 
 
 const Banner = () => {
-    
+
     return (
 
         <div className='mb-[110px] bg-[#E1EEFF]'>
@@ -15,10 +17,13 @@ const Banner = () => {
                         <h1 className="lg:text-6xl mb-3 text-3xl font-bold">Find & Search Your <br />
                             <span className="text-[#0360D9]">Constituent</span> Medicine</h1>
                         <p className='mb-5'> MedCareHub is  one of the largest medical store that provides medicines on prescription & <br /> OTC. Order medicine online & get fastest delivery in your city.</p>
-                        <Link to='/contact'>
-                            <button className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white">Contact Us</button>
-                        </Link>
-                        <button className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white">Registration as Doctor</button>
+                        <div className='flex'>
+                            <Link to='/contact'>
+                                <button className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white">Contact Us</button>
+                            </Link>
+
+                            <RegiModal></RegiModal>
+                        </div>
                     </div>
 
                     <div>
