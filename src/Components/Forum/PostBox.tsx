@@ -38,7 +38,7 @@ const PostBox = () => {
                         <ul className="flex gap-2">
                             <button onClick={() => handleButtonClick('category', '')} className="border-4 p-2 border-s-violet-200">All Post</button>
                             <button onClick={() => handleButtonClick('userPost', userEmail)} className="border-4 p-2 border-s-violet-200">My Post</button>
-                            <button onClick={() => handleButtonClick('category', 'Dr-Post')} className="border-4 p-2 border-s-violet-200">Dr. Post</button>
+                            <button onClick={() => handleButtonClick('category', 'dr-post')} className="border-4 p-2 border-s-violet-200">Dr. Post</button>
                             <button onClick={() => handleButtonClick('category', 'patient-post')} className="border-4 p-2 border-s-violet-200">Patient Post</button>
                         </ul>
                     </div>
@@ -47,7 +47,7 @@ const PostBox = () => {
             </div>
             <div>
                 {
-                    posts?.map(data => <SinglePost key={data._id} data={data}></SinglePost>)
+                    posts?.map(data => <SinglePost key={data._id} data={data} refetch={refetch}></SinglePost>)
                 }
 
             </div>

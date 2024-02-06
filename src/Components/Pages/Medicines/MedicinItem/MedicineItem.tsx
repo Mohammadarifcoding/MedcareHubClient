@@ -9,7 +9,7 @@ import UseCart from '../../../../Hook/UseCart.tsx';
 import Cart from '../../../../assets/Icons/Cart.tsx';
 import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
-import { useMedicineContext } from '../MedicineContext/MedicineContext.jsx';
+import { useMedicineContext } from '../MedicineContext/MedicineContext.tsx';
 import { uuidv4 } from '@firebase/util';
 
 const MedicineItem = ({ filter }) => {
