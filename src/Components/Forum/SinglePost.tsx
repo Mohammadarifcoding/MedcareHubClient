@@ -3,17 +3,20 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import UseAuth from '../../Hook/UseAuth.tsx';
+import DisplayComment from './DisplayComment.tsx';
 
 interface SinglePostProps {
     data: {
-        name: string;
-        userImg: string;
+        _id: string,
+        name: string,
+        userImg: string,
         postTag: string;
-        category: string;
+        category: string,
         comment: number;
         date: string;
         title: string;
-        discription: string;
+        discription: string,
+        comments: Array,
     }
 }
 
@@ -67,7 +70,15 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                 <p className="text-xl font-normal pt-2">{discription}</p>
                 <div className="pt-5 flex gap-2 items-center">
                     <FaRegCommentAlt />
-                    <p>comment</p>
+                    <p>{comments.length} Comments</p>
+                </div>
+                <div>
+                    {/* {
+                        comments?.map((comment, idx) => <p className="py-3" key={comment.id}>
+                            {idx + 1}/ {comment.user}:   {comment.comment}
+                        </p>)
+                    } */}
+                    {comments.map(commentData => <DisplayComment key={commentData._id} commentData={commentData} />)}
                 </div>
             </div>
 
@@ -88,11 +99,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                         <input className="btn btn-block bg-[#93C5FD] text-black" type="submit" value="Add Comment" />
 
                     </form>
-                    {
-                        comments?.map((comment, idx) => <p className="py-3" key={comment.id}>
-                            {idx + 1}/ comment added by Pro-User {comment.user}:   {comment.comment}
-                        </p>)
-                    }
+
                 </div>
             </div>
         </div>
