@@ -113,10 +113,10 @@ const DoctorDetails = () => {
 
                 <div className="flex justify-center space-x-4">
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                        Dental Filling
+                       {foundData?.sevice[0]}
                     </button>
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                        Teeth Whitening
+                    {foundData?.sevice[1]}
                     </button>
                 </div>
 
@@ -167,10 +167,10 @@ const DoctorDetails = () => {
                         </p>
                         <h3 className="text-lg font-semibold mb-2">Services</h3>
                         <ul className="list-disc list-inside text-sm">
-                            {/* <li>{foundData?.service[0]}</li>
+                            <li>{foundData?.service[0]}</li>
                                 <li>{foundData?.service[1]}</li>
                                 <li>{foundData?.service[2]}</li>
-                                <li>{foundData?.service[3]}</li> */}
+                                <li>{foundData?.service[3]}</li>
 
                         </ul>
 

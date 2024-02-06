@@ -1,6 +1,8 @@
 
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const RegiModal = () => {
 
@@ -12,25 +14,33 @@ const RegiModal = () => {
 
     const handleRegistered = (data) => {
         console.log(data);
-        // const formData = {
-        //     ID: data.ID,
-        //     DocName: data.DocName,
-        //     DocType: data.DocType,
-        //     age: data.age,
-        //     startAvail: data.startAvail,
-        //     endAvail: data.endAvail,
-        //     gender: data.gender,
-        //     aboutMe: data.aboutMe,
-        //     Email: data.Email,
-        //     Phone: data.Phone,
-        //     Address: data.Address,
-        //     specialties: data.specialties,
-        //     services: data.services,
-        //     degree: data.degree,
-        //     serviceFee: data.serviceFee
-        // };
-        // console.log(formData);
-
+        const formData = {
+            ID: data.ID,
+            DocName: data.DocName,
+            DocType: data.DocType,
+            age: data.age,
+            startAvail: data.startAvail,
+            endAvail: data.endAvail,
+            gender: data.gender,
+            aboutMe: data.aboutMe,
+            Email: data.Email,
+            Phone: data.Phone,
+            Address: data.Address,
+            specialties: data.specialties,
+            services: data.services,
+            degree: data.degree,
+            serviceFee: data.serviceFee
+        };
+        console.log(formData);
+        console.log(formData);
+        axios.post(`http://localhost:5000/Blog`, formData)
+            .then((res) => {
+                console.log(res);
+                Swal.fire("You registered for doctor successfully!");
+                setOpenModal(false)
+              
+            })
+            .catch((error) => console.error("Error updating status:", error));
     };
     return (
         <div>
@@ -111,7 +121,7 @@ const RegiModal = () => {
                                                 <label className="label">
                                                     <span className="label-text font-bold">Address</span>
                                                 </label>
-                                                <input {...register('Address')} type="text" className="textarea rounded-md  w-full" name="Description" placeholder="Enter Your Address" required></input>
+                                                <input {...register('Address')} type="text" className=" rounded-lg px-3 h-10 w-full border" name="Description" placeholder="Enter Your Address" required></input>
                                             </div>
                                             <div className="space-y-2">
                                                 <div className="md:flex gap-6 justify-center mb-8">
@@ -205,7 +215,7 @@ const RegiModal = () => {
                                                     <label className="label">
                                                         <span className="label-text font-bold">Doctor's About</span>
                                                     </label>
-                                                    <input {...register('aboutMe')} type="text" className="textarea rounded-md  w-full" name="Description" placeholder="Enter Your About" required></input>
+                                                    <input {...register('aboutMe')} type="text" className=" rounded-lg px-3 h-10 w-full border" placeholder="Enter Your About" required></input>
                                                 </div>
                                             </div>
 
