@@ -128,7 +128,7 @@ const DoctorDetails = () => {
                         <p className="text-sm mb-4">
                             {foundData?.aboutMe}
                         </p>
-
+ 
                         <h3 className="text-lg font-semibold mb-2">Contact</h3>
                         <p><span className='font-bold'>Phone:</span> {foundData?.Phone}</p>
                         <p><span className='font-bold'>Email:</span> {foundData?.Email}</p>
