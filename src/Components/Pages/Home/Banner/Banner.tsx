@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const Banner = () => {
+    
     return (
 
         <div className='mb-[110px] bg-[#E1EEFF]'>
@@ -17,7 +18,7 @@ const Banner = () => {
                         <Link to='/contact'>
                             <button className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white">Contact Us</button>
                         </Link>
-
+                        <button className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white">Registration as Doctor</button>
                     </div>
 
                     <div>
