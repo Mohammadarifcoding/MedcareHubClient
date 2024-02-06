@@ -30,9 +30,8 @@ import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetai
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
 
-import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.jsx';
 
-import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.jsx';
+import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.tsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
 
 import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
@@ -41,6 +40,7 @@ import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx
 import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
 import PatientRegister from './Components/Dashboard/Pages/Patient/PatientRegister/PatientRegister.tsx';
+import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.tsx';
 
 const queryClient = new QueryClient()
 

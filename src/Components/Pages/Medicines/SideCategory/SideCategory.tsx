@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useMedicineContext } from '../MedicineContext/MedicineContext';
+import { useMedicineContext } from '../MedicineContext/MedicineContext.tsx';
 
 const SideCategory = ({ filter, setFilter }) => {
     const [medicines, setMedicines] = useState([]);

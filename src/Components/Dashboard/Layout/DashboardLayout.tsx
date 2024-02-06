@@ -38,7 +38,12 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/comproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaUserCircle /> Company Product
                             </NavLink>
-                            <NavLink to="/dashboard/myblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                      
+                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <FaUserCircle /> Doctor Status
+                            </NavLink>
+                      
+                            <NavLink to='/dashboard/myblog' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
                                 <ImBlog /> My blog
                             </NavLink>
 
@@ -69,7 +74,11 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/comproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <FaUserCircle />
                             </NavLink>
-                            <NavLink to="/dashboard/myblog" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+
+                            <NavLink to='/dashboard/docstatus' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
+                                <FaUserCircle />
+                           </NavLink>
+                            <NavLink to='/dashboard/myblog' className=' flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200'>
                                 <ImBlog />
                             </NavLink>
                             <NavLink to="/dashboard/alluser" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
