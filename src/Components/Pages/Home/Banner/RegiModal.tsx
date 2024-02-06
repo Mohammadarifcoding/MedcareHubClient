@@ -1,8 +1,37 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const RegiModal = () => {
 
     const [openModal, setOpenModal] = useState(false);
+    const {
+        register,
+        handleSubmit,
+    } = useForm()
+
+    const onSubmit = (data) => {
+        const formData = {
+            ID: data.ID,
+            DocName: data.DocName,
+            DocType: data.DocType,
+            age: data.age,
+            startAvail: data.startAvail,
+            endAvail: data.endAvail,
+            gender: data.gender,
+            aboutMe: data.aboutMe,
+            Email: data.Email,
+            Phone: data.Phone,
+            Address: data.Address,
+            specialties: data.specialties,
+            services: data.services,
+            degree: data.degree,
+            serviceFee: data.serviceFee
+        };
+        console.log(formData);
+      
+    };
     return (
         <div>
             <div className="w-72 mx-auto flex items-center justify-center">
@@ -20,8 +49,18 @@ const RegiModal = () => {
                                     </div>
                                     <div className="lg:p-6 p-2">
                                         {/* Shipping Details form */}
-                                        <form className="space-y-4">
+                                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                                             <div className="space-y-2">
+
+                                                <div className="form-control md:w-full">
+                                                    <label className="label">
+                                                        <span className="label-text font-bold">ID</span>
+                                                    </label>
+                                                    <label className="flex items-center">
+                                                        <span className="font-medium bg-[#0360D9] p-3 w-[110px] text-center rounded-l-md text-white">ID</span>
+                                                        <input {...register('ID')} type="text" name="Price" placeholder="Enter ID" className="input rounded-r-md rounded-l-none w-full" required />
+                                                    </label>
+                                                </div>
 
                                                 <div className="form-control md:w-full">
                                                     <label className="label">
@@ -29,7 +68,7 @@ const RegiModal = () => {
                                                     </label>
                                                     <label className="flex items-center">
                                                         <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Name</span>
-                                                        <input type="text" name="Price" placeholder="Enter Doctor Name" className="input rounded-r-md rounded-l-none w-full" required />
+                                                        <input {...register('DocName')} type="text" name="Price" placeholder="Enter Doctor Name" className="input rounded-r-md rounded-l-none w-full" required />
                                                     </label>
                                                 </div>
 
@@ -44,7 +83,7 @@ const RegiModal = () => {
                                                         </label>
                                                         <label className="flex items-center">
                                                             <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Email</span>
-                                                            <input type="text" name="Category" placeholder="Enter Doctor Email" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <input {...register('Email')} type="email" name="Category" placeholder="Enter Doctor Email" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
 
@@ -54,10 +93,25 @@ const RegiModal = () => {
                                                         </label>
                                                         <label className="flex items-center">
                                                             <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Number</span>
-                                                            <input type="text" name="Category" placeholder="Enter Doctor Phone Number" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <input {...register('Phone')} type="text" name="Category" placeholder="Enter Phone Number" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div className="form-control md:w-full">
+                                                <label className="label">
+                                                    <span className="label-text font-bold">Education</span>
+                                                </label>
+                                                <label className="flex items-center">
+                                                    <span className="font-medium bg-[#0360D9] p-3 w-[110px] text-center rounded-l-md text-white">Education</span>
+                                                    <input {...register('degree')} type="text" name="Price" placeholder="Enter Doctor Fee" className="input rounded-r-md rounded-l-none w-full" required />
+                                                </label>
+                                            </div>
+                                            <div className="form-control md:w-full">
+                                                <label className="label">
+                                                    <span className="label-text font-bold">Address</span>
+                                                </label>
+                                                <input {...register('Address')} type="text" className="textarea rounded-md  w-full" name="Description" placeholder="Enter Your Address" required></input>
                                             </div>
                                             <div className="space-y-2">
                                                 <div className="md:flex gap-6 justify-center mb-8">
@@ -67,7 +121,7 @@ const RegiModal = () => {
                                                         </label>
                                                         <label className="flex items-center">
                                                             <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Age</span>
-                                                            <input type="text" name="Category" placeholder="Enter Doctor Age" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <input {...register('age')} type="text" name="Category" placeholder="Enter Doctor Age" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
 
@@ -77,7 +131,7 @@ const RegiModal = () => {
                                                         </label>
                                                         <label className="flex items-center">
                                                             <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Gender</span>
-                                                            <input type="text" name="Category" placeholder="Enter Gender" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <input {...register('gender')} type="text" name="Category" placeholder="Enter Gender" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
                                                 </div>
@@ -88,7 +142,7 @@ const RegiModal = () => {
                                                 </label>
                                                 <label className="flex items-center">
                                                     <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Type</span>
-                                                    <input type="text" name="Price" placeholder="Enter Doctor Type" className="input rounded-r-md rounded-l-none w-full" required />
+                                                    <input {...register('DocType')} type="text" name="Price" placeholder="Enter Doctor Type" className="input rounded-r-md rounded-l-none w-full" required />
                                                 </label>
                                             </div>
 
@@ -100,8 +154,8 @@ const RegiModal = () => {
                                                             <span className="label-text font-bold">Start Available Time</span>
                                                         </label>
                                                         <label className="flex items-center">
-                                                            <span className="font-medium bg-[#0360D9] p-3 w-[110px] text-center rounded-l-md text-white w-[110px] text-center">Start</span>
-                                                            <input type="number" name="Price" placeholder="Enter Start Available Time" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <span className="font-medium bg-[#0360D9] p-3 w-[110px] text-center rounded-l-md text-white">Start</span>
+                                                            <input {...register('startAvail')} type="number" name="Price" placeholder="Enter Start Available Time" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
                                                     <div className="form-control md:w-1/2">
@@ -110,7 +164,7 @@ const RegiModal = () => {
                                                         </label>
                                                         <label className="flex items-center">
                                                             <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">End</span>
-                                                            <input type="number" name="Category" placeholder="Enter End Available Time" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <input {...register('endAvail')} type="number" name="Category" placeholder="Enter End Available Time" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
                                                 </div>
@@ -121,7 +175,7 @@ const RegiModal = () => {
                                                 </label>
                                                 <label className="flex items-center">
                                                     <span className="font-medium bg-[#0360D9] p-3 w-[110px] text-center rounded-l-md text-white">Fee</span>
-                                                    <input type="number" name="Price" placeholder="Enter Doctor Fee" className="input rounded-r-md rounded-l-none w-full" required />
+                                                    <input {...register('serviceFee')} type="number" name="Price" placeholder="Enter Doctor Fee" className="input rounded-r-md rounded-l-none w-full" required />
                                                 </label>
                                             </div>
                                             <div className="space-y-2">
@@ -132,7 +186,7 @@ const RegiModal = () => {
                                                         </label>
                                                         <label className="flex items-center">
                                                             <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Service</span>
-                                                            <input type="text" name="Price" placeholder="Enter Doctor Service" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <input {...register('services')} type="text" name="Price" placeholder="Enter Doctor Service" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
                                                     <div className="form-control md:w-1/2">
@@ -141,7 +195,7 @@ const RegiModal = () => {
                                                         </label>
                                                         <label className="flex items-center">
                                                             <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white w-[110px] text-center">Specialists</span>
-                                                            <input type="text" name="Category" placeholder="Enter Doctor Specialists" className="input rounded-r-md rounded-l-none w-full" required />
+                                                            <input {...register('specialties')} type="text" name="Category" placeholder="Enter Doctor Specialists" className="input rounded-r-md rounded-l-none w-full" required />
                                                         </label>
                                                     </div>
 
@@ -151,18 +205,21 @@ const RegiModal = () => {
                                                     <label className="label">
                                                         <span className="label-text font-bold">Doctor's About</span>
                                                     </label>
-                                                    <textarea className="textarea rounded-md  w-full" name="Description" placeholder="Enter Your About" required></textarea>
+                                                    <input {...register('aboutMe')} type="text" className="textarea rounded-md  w-full" name="Description" placeholder="Enter Your About" required></input>
                                                 </div>
                                             </div>
 
+
+                                            <div className='flex justify-between'>
+                                                <button className="py-2 px-5 mb-4 mt-6 shadow-lg rounded-lg before:block before:-left-1 before:-top-1 before:bg-black before:rounded-lg before:absolute before:h-0 before:w-0 before:hover:w-[100%] before:hover:h-[100%] before:duration-500 before:-z-40 after:block after:-right-1 after:-bottom-1 after:bg-black after:rounded-lg after:absolute after:h-0 after:w-0 after:hover:w-[100%] after:hover:h-[100%] after:duration-500 after:-z-40 bg-white relative inline-block" type="submit">Submit</button>
+                                                <button onClick={() => { setOpenModal(false) }} className="py-2 px-5 mb-4 mt-6 shadow-lg rounded-lg before:block before:-left-1 before:-top-1 before:bg-black before:rounded-lg before:absolute before:h-0 before:w-0 before:hover:w-[100%] before:hover:h-[100%] before:duration-500 before:-z-40 after:block after:-right-1 after:-bottom-1 after:bg-black after:rounded-lg after:absolute after:h-0 after:w-0 after:hover:w-[100%] after:hover:h-[100%] after:duration-500 after:-z-40 bg-white relative inline-block" >Close</button>
+                                            </div>
                                         </form>
+
+
                                     </div>
                                 </div>
 
-                            </div>
-                            <div className='flex justify-between'>
-                                <button className="py-2 px-5 mb-4 mt-6 shadow-lg rounded-lg before:block before:-left-1 before:-top-1 before:bg-black before:rounded-lg before:absolute before:h-0 before:w-0 before:hover:w-[100%] before:hover:h-[100%] before:duration-500 before:-z-40 after:block after:-right-1 after:-bottom-1 after:bg-black after:rounded-lg after:absolute after:h-0 after:w-0 after:hover:w-[100%] after:hover:h-[100%] after:duration-500 after:-z-40 bg-white relative inline-block" type="submit">Submit</button>
-                                <button onClick={() => { setOpenModal(false) }} className="py-2 px-5 mb-4 mt-6 shadow-lg rounded-lg before:block before:-left-1 before:-top-1 before:bg-black before:rounded-lg before:absolute before:h-0 before:w-0 before:hover:w-[100%] before:hover:h-[100%] before:duration-500 before:-z-40 after:block after:-right-1 after:-bottom-1 after:bg-black after:rounded-lg after:absolute after:h-0 after:w-0 after:hover:w-[100%] after:hover:h-[100%] after:duration-500 after:-z-40 bg-white relative inline-block" >Close</button>
                             </div>
 
 
