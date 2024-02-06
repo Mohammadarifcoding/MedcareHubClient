@@ -123,7 +123,7 @@ const DoctorDetails = () => {
 
 
                 <div className="grid lg:grid-cols-2 gap-8 mt-10">
-                    <div>
+                    <div> 
                         <h2 className="text-lg font-semibold mb-4">About Me</h2>
                         <p className="text-sm mb-4">
                             {foundData?.aboutMe}
