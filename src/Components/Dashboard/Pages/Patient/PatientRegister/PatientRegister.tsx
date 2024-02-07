@@ -17,7 +17,6 @@ const PatientRegister = () => {
         const patientEmail = form.email.value;
         const patientName = form.patientName.value;
         const Age = form.Age.value;
-        const Image = form.Image.value;
         const bloodGroup = form.bloodGroup.value;
         const Gender = form.Gender.value;
         const patientIssue = form.patientIssue.value;
@@ -42,13 +41,32 @@ const PatientRegister = () => {
             })
         );
 
+        let imageUrl;
+
+        const formData = new FormData();
+        const singleImageFile = form.Image.files[0];
+        formData.append('image', singleImageFile);
+
+        try {
+            const response = await axios.post(image_hosting_api, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            imageUrl = response.data.data.url;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+
+            return;
+        }
+
         const newPatient = {
             ID,
             patientEmail,
             patientName,
             previousTests: imageUrls?.filter((url) => url !== null),
             Age,
-            Image,
+            Image: imageUrl,
             bloodGroup,
             Gender,
             patientIssue
@@ -105,8 +123,14 @@ const PatientRegister = () => {
                                 <span className="label-text font-bold">Patient Image URL</span>
                             </label>
                             <label className="flex items-center">
-                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">URL</span>
-                                <input type="text" name="Image" placeholder="Enter Image URL" className="input rounded-r-md rounded-l-none w-full" required />
+                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">Image:</span>
+                                <input
+                                    type="file"
+                                    name="Image"
+                                    className="input rounded-r-md rounded-l-none w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                    accept="image/*"
+                                    required
+                                />
                             </label>
                         </div>
                         <div className="form-control md:w-1/2">
