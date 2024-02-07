@@ -123,7 +123,7 @@ const PatientRegister = () => {
                                 <span className="label-text font-bold">Patient Image URL</span>
                             </label>
                             <label className="flex items-center">
-                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">URL:</span>
+                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">Image:</span>
                                 <input
                                     type="file"
                                     name="Image"
