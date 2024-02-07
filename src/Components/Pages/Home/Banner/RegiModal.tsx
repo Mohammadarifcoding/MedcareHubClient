@@ -57,6 +57,7 @@ const RegiModal = () => {
         };
         console.log(doctorData);
         axios.post(`${base_URL}/Doctors`, doctorData)
+
             .then((res) => {
                 console.log(res);
                 Swal.fire("You registered for doctor successfully!");

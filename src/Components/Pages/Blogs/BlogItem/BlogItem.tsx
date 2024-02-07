@@ -4,7 +4,8 @@ import moment from 'moment';
 import { AiFillLike } from "react-icons/ai";
 import axios from 'axios';
 import { base_URL } from '../../../../utills/BaseURL.ts';
-
+import { MdDelete } from "react-icons/md";
+import Swal from 'sweetalert2';
 interface myProps {
     blog: Blog
 }
@@ -33,6 +34,36 @@ const BlogItem: FC<myProps> = ({ blog }) => {
         }
 
     };
+
+
+    const handleDeleteUser = blog => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`http://localhost:5000/Blog/${blog?._id}`)
+                    .then(res => {
+
+
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "User has been deleted.",
+                            icon: "success"
+                        });
+                        setRefecthData(!refetchData)
+                    })
+            }
+        });
+    }
+
+   
     return (
         <div>
 
@@ -53,9 +84,21 @@ const BlogItem: FC<myProps> = ({ blog }) => {
 
                     </div>
 
-                    <button disabled={updateLike} onClick={handleLikeClick} className='flex items-center mt-4 text-xl'>
-                        <AiFillLike className='text-4xl text-[#0360D9]' />{blog?.like}
-                    </button>
+                    <div className='flex  items-center justify-between mt-5'>
+                        <div>
+                            <button disabled={updateLike} onClick={handleLikeClick} className='flex text-3xl'>
+                                <AiFillLike className='text-4xl text-[#0360D9]' />{blog?.like}
+                            </button>
+                        </div>
+
+                        <div className='flex' >
+                            {/* <button> <BlogModal></BlogModal></button> */}
+
+                            <button onClick={() => handleDeleteUser(blog)} className='text-4xl text-red-700'><MdDelete /></button>
+                        </div>
+                    </div>
+
+
 
                     <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3'>Read More</button>
                 </div>
