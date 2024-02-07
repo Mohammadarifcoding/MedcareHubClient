@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import React from 'react'
 import { TiTickOutline } from "react-icons/ti";
 
-const PatientStatus = () => {
+const DoctorStatus = () => {
     const [patients, setPatients] = useState([])
 
     useEffect(() => {
@@ -108,4 +108,4 @@ const PatientStatus = () => {
         </div>
     )
 }
-export default PatientStatus;
+export default DoctorStatus;
