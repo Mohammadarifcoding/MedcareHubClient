@@ -39,8 +39,8 @@ const DashboardLayout = () => {
                                 <FaUserCircle /> Company Product
                             </NavLink>
                       
-                            <NavLink to='/dashboard/docstatus' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
-                                <FaUserCircle /> Doctor Status
+                            <NavLink to='/dashboard/docque' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
+                                <FaUserCircle /> Doctor Que
                             </NavLink>
                       
                             <NavLink to='/dashboard/myblog' className=' flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200'>
@@ -86,17 +86,17 @@ const DashboardLayout = () => {
                             </NavLink>
                             <NavLink
                                 to="/dashboard/docstatus"
-                                className=" flex gap-1 items-center hover:scale-105 mx-auto overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                                className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                             >
                                 <FaFilePrescription className="mx-auto" />
                             </NavLink>
-                            <NavLink to="/dashboard/addproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                            <NavLink to="/dashboard/addproduct"  className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <MdOutlineAddToPhotos />
                             </NavLink>
-                            <NavLink to="/dashboard/myproduct" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                            <NavLink to="/dashboard/myproduct"  className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <FaBook />
                             </NavLink>
-                            <NavLink to="/dashboard/addpatient" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                            <NavLink to="/dashboard/addpatient"  className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <FaHospitalUser />
                             </NavLink>
                         </>

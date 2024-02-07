@@ -1,6 +1,9 @@
 import React from 'react';
 
-const Checkout = () => {
+const Checkout = ({ priceData }) => {
+
+    const Tax = 14.00
+
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg w-full" id="3ista3a82nf">
             <div className="flex items-center justify-between flex-col mb-6">
@@ -17,20 +20,20 @@ const Checkout = () => {
             <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-lg">
                     <span>Subtotal:</span>
-                    <span>$1403.97</span>
+                    <span>${priceData}</span>
                 </div>
                 <div className="flex justify-between text-lg">
                     <span>Discount:</span>
-                    <span className="text-[#bd1e59]">- $60.00</span>
+                    <span className="text-[#bd1e59]">- ${'0.00'}</span>
                 </div>
                 <div className="flex justify-between text-lg">
                     <span>Tax:</span>
-                    <span>+ $14.00</span>
+                    <span>+ ${priceData > 0 ?  Tax.toFixed(2) : '0.00'}</span>
                 </div>
             </div>
             <div className="flex justify-between font-semibold text-xl mb-6">
                 <span>Total:</span>
-                <span>$1357.97</span>
+                <span>${priceData > 0 ? (parseInt(priceData) + Tax).toFixed(2) : '0.00'}</span>
             </div>
             <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground hover:bg-primary/90 h-10 px-4 bg-[#22c55e] w-full mb-6 py-2 text-lg">
                 Checkout

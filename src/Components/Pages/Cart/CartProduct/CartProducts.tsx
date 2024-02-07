@@ -1,7 +1,21 @@
 import React from 'react';
 import CartProduct from './CartProduct/CartProduct.tsx';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
+import UseCart from '../../../../Hook/UseCart.tsx';
 
 const CartProducts = ({ Products }) => {
+  const Axious = UseAxiosPublic()
+  const {user} = UseAuth()
+  const [cartData,refetchCart] = UseCart()
+  const DeleteFullCart = ()=>{
+      Axious.delete(`/deleteFullCart/${user?.email}`)
+      .then(res => {
+        refetchCart()
+      })
+  }
+
+
   return (
     <div className="bg-white p-6 rounded-lg mt-5 shadow-md max-w-full mx-auto" id="4322kqlzlj">
       <h2 className="text-lg font-semibold border-b pb-2">My cart ({Products?.length})</h2>
@@ -18,7 +32,7 @@ const CartProducts = ({ Products }) => {
           </svg>
           <span>Back to shop</span>
         </button>
-        <button className=" h-10 px-4 py-2 bg-red-600 hover:scale-110 scale-100 rounded transition-all duration-200  text-white ">
+        <button onClick={DeleteFullCart} className=" h-10 px-4 py-2 bg-red-600 hover:scale-110 scale-100 rounded transition-all duration-200  text-white ">
           Remove all
         </button>
       </div>

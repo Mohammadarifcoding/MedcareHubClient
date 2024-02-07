@@ -113,22 +113,22 @@ const DoctorDetails = () => {
 
                 <div className="flex justify-center space-x-4">
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                        Dental Filling
+                    {foundData?.service[1]}
                     </button>
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                        Teeth Whitening
+                    {foundData?.service[2]}
                     </button>
                 </div>
 
 
 
                 <div className="grid lg:grid-cols-2 gap-8 mt-10">
-                    <div>
+                    <div> 
                         <h2 className="text-lg font-semibold mb-4">About Me</h2>
                         <p className="text-sm mb-4">
                             {foundData?.aboutMe}
                         </p>
-
+ 
                         <h3 className="text-lg font-semibold mb-2">Contact</h3>
                         <p><span className='font-bold'>Phone:</span> {foundData?.Phone}</p>
                         <p><span className='font-bold'>Email:</span> {foundData?.Email}</p>
@@ -167,10 +167,10 @@ const DoctorDetails = () => {
                         </p>
                         <h3 className="text-lg font-semibold mb-2">Services</h3>
                         <ul className="list-disc list-inside text-sm">
-                            {/* <li>{foundData?.service[0]}</li>
+                            <li>{foundData?.service[0]}</li>
                                 <li>{foundData?.service[1]}</li>
                                 <li>{foundData?.service[2]}</li>
-                                <li>{foundData?.service[3]}</li> */}
+                                <li>{foundData?.service[3]}</li>
 
                         </ul>
 
@@ -187,7 +187,7 @@ const DoctorDetails = () => {
 
             </div>
 
-           
+
         </>
     );
 };

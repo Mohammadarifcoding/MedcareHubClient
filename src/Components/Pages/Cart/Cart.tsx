@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../../Shared/Container/Container.tsx';
 
 import CartProducts from './CartProduct/CartProducts.tsx';
@@ -8,7 +8,15 @@ import UseCart from '../../../Hook/UseCart.tsx';
 const Cart = () => {
     
     const [cartProduct,refetchCart] = UseCart()
-  
+    const [AllPrice,setAllPrice] =  useState(0)
+    useEffect(()=>{
+      let price = 0
+      for(let item of cartProduct){
+        price += (item.medicine.Price * item.quantity )
+      }
+      setAllPrice(price.toFixed(3))
+    },[cartProduct])
+    
 
     return (
         <Container>
@@ -21,7 +29,7 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className='lg:w-[25%] w-full mt-16'>
-                    <Checkout></Checkout>
+                    <Checkout priceData={AllPrice}></Checkout>
                 </div>
             </div>
         </Container>

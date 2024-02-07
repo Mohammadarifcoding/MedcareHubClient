@@ -15,7 +15,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
             return result.data;
         }
     });
-  
+
     useEffect(() => {
         const debounceFilter = setTimeout(() => {
             let tempFilteredDoctors = [...doctorData];
