@@ -35,7 +35,7 @@ const Checkout = ({ priceData }) => {
                 <span>Total:</span>
                 <span>${priceData > 0 ? (parseInt(priceData) + Tax).toFixed(2) : '0.00'}</span>
             </div>
-            <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground hover:bg-primary/90 h-10 px-4 bg-[#22c55e] w-full mb-6 py-2 text-lg">
+            <button className="inline-flex scale-100 hover:scale-105 duration-150 items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground hover:bg-[#22c55e]  h-10 px-4 bg-[#22c55e] w-full mb-6 py-2 text-lg">
                 Checkout
             </button>
             <div className="flex justify-center space-x-3">
