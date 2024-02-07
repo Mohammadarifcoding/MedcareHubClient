@@ -5,6 +5,9 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 
+const image_hosting_key = '140f2d0db1502e65c2c0ee7bfc66be98';
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const RegiModal = () => {
 
     const [openModal, setOpenModal] = useState(false);
@@ -15,7 +18,26 @@ const RegiModal = () => {
 
     const handleRegistered = (data) => {
         console.log(data);
-        const formData = {
+
+        let imageUrl;
+
+        const formData = new FormData();
+        const singleImageFile = data.image[0];
+        formData.append('image', singleImageFile);
+    
+        try {
+            const response = await axios.post(image_hosting_api, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            imageUrl = response.data.data.url;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            return;
+        }
+
+        const doctorData = {
             ID: data.ID,
             DocName: data.DocName,
             DocType: data.DocType,
@@ -31,11 +53,10 @@ const RegiModal = () => {
             services: data.services,
             degree: data.degree,
             serviceFee: data.serviceFee,
-            image: data.image
+            image: imageUrl
         };
-        console.log(formData);
-        console.log(formData);
-        axios.post(`${base_URL}/Doctors`, formData)
+        console.log(doctorData);
+        axios.post(`${base_URL}/Doctors`, doctorData)
             .then((res) => {
                 console.log(res);
                 Swal.fire("You registered for doctor successfully!");
@@ -89,7 +110,14 @@ const RegiModal = () => {
                                                     </label>
 
 
-                                                    <input {...register('image')} type="text" placeholder="Enter >Doctor Image" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                    {/* <input {...register('image')} type="text" placeholder="Enter >Doctor Image" className=" rounded-lg px-3 h-10 w-full border" required /> */}
+                                                    <input
+                                    type="file"
+                                    {...register('image', { required: true })}
+                                    className="input rounded-r-md  w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                    accept="image/*"
+                                    required
+                                />
 
                                                 </div>
 
