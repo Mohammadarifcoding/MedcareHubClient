@@ -1,13 +1,42 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useState } from 'react';
 import UseSingleBlog from '../../../Hook/UseSingleBlog.tsx';
 import { AiFillLike } from "react-icons/ai";
-
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import { MdDelete } from "react-icons/md";
 
 const MyBlog = () => {
     const [blogsData] = UseSingleBlog()
-
+    const [refetchData, setRefecthData] = useState(false)
     console.log(blogsData);
+
+    const handleDeleteUser = blog => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`http://localhost:5000/Blog/${blog?._id}`)
+                    .then(res => {
+
+
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "User has been deleted.",
+                            icon: "success"
+                        });
+                        setRefecthData(!refetchData)
+                    })
+            }
+        });
+    }
 
     return (
         <div className='grid grid-cols-1 my-20 md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 gap-10'>
@@ -34,6 +63,8 @@ const MyBlog = () => {
                                 <AiFillLike className='text-4xl mt-4 text-[#0360D9]' />
                             </div>
                             <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3'>Read More</button>
+
+                            <button onClick={() => handleDeleteUser(blog)} className='text-4xl text-red-700'><MdDelete /></button>
                         </div>
 
                     </div>
