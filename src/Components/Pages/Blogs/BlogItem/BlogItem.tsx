@@ -5,9 +5,7 @@ import { AiFillLike } from "react-icons/ai";
 import axios from 'axios';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 import { MdDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
 import Swal from 'sweetalert2';
-import BlogModal from '../BlogModal.tsx';
 interface myProps {
     blog: Blog
 }
@@ -38,30 +36,34 @@ const BlogItem: FC<myProps> = ({ blog }) => {
     };
 
 
-    const handleUpdate = async (blogInfo) => {
-        console.log(blogInfo);
-        const formData = {
-            BlogName: blogInfo.BlogName,
-            BlogWriting: blogInfo.BlogWriting,
-            BlogPic: blogInfo.BlogPic,
-            BlogWriterName: blogInfo.BlogWriterName,
-            BlogWriterImage: blogInfo.BlogWriterImage
-        }
-        console.log(blogInfo.id);
+    const handleDeleteUser = blog => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-        await axios.put(`${base_URL}/User/${blogInfo.id}`, formData)
-            .then((res) => {
-                console.log(res);
-
-                Swal.fire("Updated Your Profile!")
-
-                setRefecthData(!refetchData)
-
-            })
-            .catch((error) => console.error("Error updating status:", error))
+                axios.delete(`http://localhost:5000/Blog/${blog?._id}`)
+                    .then(res => {
 
 
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "User has been deleted.",
+                            icon: "success"
+                        });
+                        setRefecthData(!refetchData)
+                    })
+            }
+        });
     }
+
+   
     return (
         <div>
 
@@ -90,9 +92,9 @@ const BlogItem: FC<myProps> = ({ blog }) => {
                         </div>
 
                         <div className='flex' >
-                            <button> <BlogModal></BlogModal></button>
+                            {/* <button> <BlogModal></BlogModal></button> */}
 
-                            <button className='text-4xl text-red-700'><MdDelete /></button>
+                            <button onClick={() => handleDeleteUser(blog)} className='text-4xl text-red-700'><MdDelete /></button>
                         </div>
                     </div>
 

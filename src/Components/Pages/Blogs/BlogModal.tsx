@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 import { FaEdit } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { base_URL } from '../../../utills/BaseURL.ts';
+import { useQuery } from '@tanstack/react-query';
 
 const BlogModal = () => {
-
+  
     const [openModal, setOpenModal] = useState(false);
     const [blog, setBlog] = useState()
     const {
@@ -31,15 +32,17 @@ const BlogModal = () => {
             BlogWriterImage: data.BlogWriterImage
         };
         console.log(formData);
-        // axios.put(`${base_URL}/Blogs/${data.id}`, formData)
-        //     .then((res) => {
-        //         console.log(res);
-        //         Swal.fire("You registered for doctor successfully!");
-        //         setOpenModal(false)
+        axios.put(`${base_URL}/Blogs/${data.id}`, formData)
+            .then((res) => {
+                console.log(res);
+                Swal.fire("You registered for doctor successfully!");
+                setOpenModal(false)
 
-        //     })
-        //     .catch((error) => console.error("Error updating status:", error));
+            })
+            .catch((error) => console.error("Error updating status:", error));
     };
+
+
     return (
         <div >
 
