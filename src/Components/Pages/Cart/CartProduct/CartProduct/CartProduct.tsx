@@ -5,10 +5,11 @@ import UseAxiosPublic from '../../../../../Hook/UseAxiosPublic.tsx';
 import UseCart from '../../../../../Hook/UseCart.tsx';
 const CartProduct = ({ Product }) => {
 
-    const { Medname, Image, Price, Category, Company } = Product.medicine
+    const { Medname, Image, Price, Category, Company , _id } = Product.medicine
    const Axious = UseAxiosPublic()
        
    const [cartdata,refetchCart] = UseCart()
+
 
 
     const handleRemove =()=>{
@@ -17,6 +18,20 @@ const CartProduct = ({ Product }) => {
             console.log(res.data)
             refetchCart()
         })
+    }
+    const UpdateQuantity = (way,id)=>{
+         let final = Product?.quantity
+        if(way === 'add'){
+            final = final + 1
+        }
+      else if(way === 'minus'){
+            final -= 1
+        }
+        Axious.put(`/updateQuantity/${id}`,{quantity : final})
+         .then(res => {
+            console.log(res.data)
+            refetchCart()
+         })
     }
 
     return (
@@ -42,16 +57,26 @@ const CartProduct = ({ Product }) => {
             </div>
             <div className='flex justify-between w-full'>
                 <div className="flex gap-2 items-center  md:text-xl sm:text-lg text-sm ">
-                    <div className="px-2 bg-red-500 text-white cursor-pointer rounded-full py-2 text-[12px]">
+                    {
+                        Product?.quantity === 1 ? <>
+                         <div  className="px-2 bg-red-300 text-white  rounded-full py-2 text-[12px]">
                         <FiMinus />
                     </div>
+                        </> : <>
+                        
+                        <div onClick={()=>{UpdateQuantity('minus',Product?.OrderId)}} className="px-2 bg-red-500 text-white cursor-pointer rounded-full py-2 text-[12px]">
+                        <FiMinus />
+                    </div>
+                        </>
+                    }
+                   
                     <span className="text-lg md:text-xl">{Product?.quantity}</span>
-                    <div className="px-2 bg-[#0360D9] cursor-pointer text-white rounded-full py-2 text-[12px]">
+                    <div onClick={()=>{UpdateQuantity('add',Product?.OrderId)}} className="px-2 bg-[#0360D9] cursor-pointer text-white rounded-full py-2 text-[12px]">
                         <IoMdAdd />
                     </div>
                 </div>
                 <div className="text-right ">
-                    <p className="text-lg font-semibold">${Price}</p>
+                    <p className="text-lg font-semibold">${Price * Product?.quantity}</p>
                 </div>
             </div>
 
