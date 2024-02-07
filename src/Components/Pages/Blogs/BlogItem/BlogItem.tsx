@@ -4,7 +4,10 @@ import moment from 'moment';
 import { AiFillLike } from "react-icons/ai";
 import axios from 'axios';
 import { base_URL } from '../../../../utills/BaseURL.ts';
-
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import Swal from 'sweetalert2';
+import BlogModal from '../BlogModal.tsx';
 interface myProps {
     blog: Blog
 }
@@ -33,6 +36,32 @@ const BlogItem: FC<myProps> = ({ blog }) => {
         }
 
     };
+
+
+    const handleUpdate = async (blogInfo) => {
+        console.log(blogInfo);
+        const formData = {
+            BlogName: blogInfo.BlogName,
+            BlogWriting: blogInfo.BlogWriting,
+            BlogPic: blogInfo.BlogPic,
+            BlogWriterName: blogInfo.BlogWriterName,
+            BlogWriterImage: blogInfo.BlogWriterImage
+        }
+        console.log(blogInfo.id);
+
+        await axios.put(`${base_URL}/User/${blogInfo.id}`, formData)
+            .then((res) => {
+                console.log(res);
+
+                Swal.fire("Updated Your Profile!")
+
+                setRefecthData(!refetchData)
+
+            })
+            .catch((error) => console.error("Error updating status:", error))
+
+
+    }
     return (
         <div>
 
@@ -53,9 +82,21 @@ const BlogItem: FC<myProps> = ({ blog }) => {
 
                     </div>
 
-                    <button disabled={updateLike} onClick={handleLikeClick} className='flex items-center mt-4 text-xl'>
-                        <AiFillLike className='text-4xl text-[#0360D9]' />{blog?.like}
-                    </button>
+                    <div className='flex  items-center justify-between mt-5'>
+                        <div>
+                            <button disabled={updateLike} onClick={handleLikeClick} className='flex text-3xl'>
+                                <AiFillLike className='text-4xl text-[#0360D9]' />{blog?.like}
+                            </button>
+                        </div>
+
+                        <div className='flex' >
+                            <button> <BlogModal></BlogModal></button>
+
+                            <button className='text-4xl text-red-700'><MdDelete /></button>
+                        </div>
+                    </div>
+
+
 
                     <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3'>Read More</button>
                 </div>

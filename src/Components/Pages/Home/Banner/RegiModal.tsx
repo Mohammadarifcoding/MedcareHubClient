@@ -34,7 +34,6 @@ const RegiModal = () => {
             image: data.image
         };
         console.log(formData);
-        console.log(formData);
         axios.post(`${base_URL}/Doctors`, formData)
             .then((res) => {
                 console.log(res);

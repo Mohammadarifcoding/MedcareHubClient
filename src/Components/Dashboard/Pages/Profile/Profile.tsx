@@ -17,7 +17,6 @@ const Profile = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },   
     } = useForm()
  
     useEffect(() => {
