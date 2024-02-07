@@ -16,7 +16,7 @@ const RegiModal = () => {
         handleSubmit,
     } = useForm()
 
-    const handleRegistered = (data) => {
+    const handleRegistered = async(data) => {
         console.log(data);
 
         let imageUrl;
