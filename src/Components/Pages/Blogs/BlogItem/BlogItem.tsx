@@ -4,7 +4,7 @@ import moment from 'moment';
 import { AiFillLike } from "react-icons/ai";
 import axios from 'axios';
 import { base_URL } from '../../../../utills/BaseURL.ts';
-
+import Swal from 'sweetalert2';
 interface myProps {
     blog: Blog
 }
@@ -33,6 +33,11 @@ const BlogItem: FC<myProps> = ({ blog }) => {
         }
 
     };
+
+
+   
+
+   
     return (
         <div>
 
@@ -53,9 +58,16 @@ const BlogItem: FC<myProps> = ({ blog }) => {
 
                     </div>
 
-                    <button disabled={updateLike} onClick={handleLikeClick} className='flex items-center mt-4 text-xl'>
-                        <AiFillLike className='text-4xl text-[#0360D9]' />{blog?.like}
-                    </button>
+                        <div className='mt-3'>
+                            <button disabled={updateLike} onClick={handleLikeClick} className='flex text-3xl'>
+                                <AiFillLike className='text-4xl text-[#0360D9]' />{blog?.like}
+                            </button>
+                        </div>
+
+                      
+                   
+
+
 
                     <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3'>Read More</button>
                 </div>
