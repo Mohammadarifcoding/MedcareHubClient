@@ -45,6 +45,66 @@ const Testing = () => {
             </div>
          </div>
 
+         {/* review */}
+
+         <div className='px-24'>
+           <div className='flex flex-row items-center py-4 gap-2'>
+           <h1 className='md:text-3xl font-bold  text-blue-600'>Users Feedback</h1> 
+           <img className='h-10' src="https://i.ibb.co/ynSfLjH/images-4-removebg-preview.png" alt="" />
+           </div>
+           <div className='bg-blue-600 h-1 '>
+            <span></span>
+           </div>
+           <div className='pt-4'></div>
+
+           {/* reviewwwwww */}
+
+           <div>
+            
+           <div  className='flex flex-row items-center gap-2 py-4'>
+        <img className='w-12  h-12 rounded-full' src="https://i.ibb.co/ZVzp4WD/Medical-health-logo-design-on-transparent-background-PNG.png" alt="" />
+        <h1 className='md:text-2xl font-bold  '>Umme Homa</h1>
+       </div>
+        <div className='flex flex-row gap-1 items-center pb-4 ml-2'>
+          <img className='h-10 w-10' src="https://i.ibb.co/9t8zHn7/png-clipart-quotation-marks-in-english-computer-icons-comma-linkedin-blue-angle-removebg-preview.png" alt="" />
+          <p className='text-black font-bold text-xl'>jjjjj</p>
+          <img className='h-10 w-10' src="https://i.ibb.co/9t8zHn7/png-clipart-quotation-marks-in-english-computer-icons-comma-linkedin-blue-angle-removebg-preview.png" alt="" />
+        </div>
+        <div className='bg-black h-1 '>
+      <span></span>
+     </div>
+     <div className='pt-4'></div>
+
+           </div>
+
+           {/* give review */}
+         <form >
+
+         <div className='pb-24'>
+           <div className='flex flex-row items-center py-4 gap-2'>
+           <h1 className='md:text-3xl font-bold  text-blue-600'>Reviews</h1> 
+           <img className='h-10' src="https://i.ibb.co/ZBLwWth/download-removebg-preview.png" alt="" />
+           </div>
+           <div className='py-3'>
+          <input type='text' name='name' value="Umme homaira" placeholder='Customer Name' className=' pl-5 md:w-[400px] h-[50px] border-blue-600  text-black font-bold border-x-2 border-y-2 rounded-md'></input>
+          </div>
+          <div className='py-3'>
+          <input type='email' name='email' value="x@gmail.cpm" placeholder='Customer Email' className=' pl-5 md:w-[400px] h-[50px] border-blue-600  text-black font-bold border-x-2 border-y-2 rounded-md'></input>
+          </div>
+           <div className='pb-3'>
+
+           <input type='textarea' name='description' placeholder='Put your Review' className=' pl-5 md:w-[600px] h-[150px] border-blue-600  text-black border-x-2 border-y-2 rounded-md  font-bold'></input>
+           </div>
+             
+             <button type='submit' className='btn bg-blue-600 text-white'>Give REVIEW</button>
+             <button type='submit' className='btn bg-blue-600 text-white'>Give REVIEW</button>
+           </div>
+         </form>
+
+        </div>
+    
+
+
 
          {/* Related Product */}
     <div>
