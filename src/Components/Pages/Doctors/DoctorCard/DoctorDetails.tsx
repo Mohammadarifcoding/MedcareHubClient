@@ -23,7 +23,7 @@ const DoctorDetails = () => {
         <>
 
             <div className="bg-white p-8">
-                <img src={foundData?.image} alt="" />
+
                 <div>
 
                     <div className="text-center">
@@ -113,76 +113,82 @@ const DoctorDetails = () => {
 
                 <div className="flex justify-center space-x-4">
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                    {foundData?.service[1]}
+                        {foundData?.service[1]}
                     </button>
                     <button class=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
-                    {foundData?.service[2]}
+                        {foundData?.service[2]}
                     </button>
                 </div>
 
 
 
-                <div className="grid lg:grid-cols-2 gap-8 mt-10">
-                    <div> 
+                <div className='lg:mx-[100px]'>
+                    <div>
                         <h2 className="text-lg font-semibold mb-4">About Me</h2>
                         <p className="text-sm mb-4">
                             {foundData?.aboutMe}
                         </p>
- 
-                        <h3 className="text-lg font-semibold mb-2">Contact</h3>
-                        <p><span className='font-bold'>Phone:</span> {foundData?.Phone}</p>
-                        <p><span className='font-bold'>Email:</span> {foundData?.Email}</p>
-                        <p><span className='font-bold'>Address:</span> {foundData?.Address}</p>
-                        <p><span className='font-bold'>Service Fee:</span> {foundData?.serviceFee} tk</p>
+                    </div>
 
-                        <h3 className="text-lg font-semibold my-2">Working Hour</h3>
-                        <div className="flex gap-16 text-sm ">
-                            <div>
-                                <h1 className="mt-2">Monday - Friday</h1>
-                                <h1 className="mt-2">Saturday</h1>
-                                <h1 className="mt-2">Monday - Thusday</h1>
-                                <h1 className="mt-2">Monday - Friday</h1>
-                            </div>
-                            <div>
-                                <h1 className="mt-2">
-                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
-                                </h1>
-                                <h1 className="mt-2">
-                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
-                                </h1>
-                                <h1 className="mt-2">
-                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
-                                </h1>
-                                <h1 className="mt-2 mb-6">
-                                    {foundData?.startAvail}.00-{foundData?.endAvail}.00
-                                </h1>
+                    <div className='lg:flex justify-between'>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-2">Contact</h3>
+                            <p><span className='font-bold'>Phone:</span> {foundData?.Phone}</p>
+                            <p><span className='font-bold'>Email:</span> {foundData?.Email}</p>
+                            <p><span className='font-bold'>Address:</span> {foundData?.Address}</p>
+                            <p><span className='font-bold'>Service Fee:</span> {foundData?.serviceFee} tk</p>
+
+                            <h3 className="text-lg font-semibold my-2">Working Hour</h3>
+                            <div className="flex gap-16 text-sm ">
+                                <div>
+                                    <h1 className="mt-2">Monday - Friday</h1>
+                                    <h1 className="mt-2">Saturday</h1>
+                                    <h1 className="mt-2">Monday - Thusday</h1>
+                                    <h1 className="mt-2">Monday - Friday</h1>
+                                </div>
+                                <div>
+                                    <h1 className="mt-2">
+                                        {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                    </h1>
+                                    <h1 className="mt-2">
+                                        {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                    </h1>
+                                    <h1 className="mt-2">
+                                        {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                    </h1>
+                                    <h1 className="mt-2 mb-6">
+                                        {foundData?.startAvail}.00-{foundData?.endAvail}.00
+                                    </h1>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
 
-                        <h3 className="text-lg font-semibold mb-2">Education</h3>
-                        <p className="text-sm mb-4">
-                            {foundData?.degree[1]} in {foundData?.degree[0]}
-                        </p>
-                        <h3 className="text-lg font-semibold mb-2">Services</h3>
-                        <ul className="list-disc list-inside text-sm">
-                            <li>{foundData?.service[0]}</li>
+
+                        <div>
+                            <h3 className="text-lg font-semibold mb-2">Education</h3>
+                            <p className="text-sm mb-4">
+                                {foundData?.degree[1]} in {foundData?.degree[0]}
+                            </p>
+                            <h3 className="text-lg font-semibold mb-2">Services</h3>
+                            <ul className="list-disc list-inside text-sm">
+                                <li>{foundData?.service[0]}</li>
                                 <li>{foundData?.service[1]}</li>
                                 <li>{foundData?.service[2]}</li>
                                 <li>{foundData?.service[3]}</li>
 
-                        </ul>
+                            </ul>
 
-                        <h2 className="text-lg font-semibold mb-4">Specializations</h2>
-                        <ul className="list-disc list-inside text-sm">
-                            <li>{foundData?.specialties[0]}</li>
-                            <li>{foundData?.specialties[1]}</li>
-                            <li>{foundData?.specialties[2]}</li>
-                            <li>{foundData?.specialties[3]}</li>
+                            <h2 className="text-lg font-semibold mb-4">Specializations</h2>
+                            <ul className="list-disc list-inside text-sm">
+                                <li>{foundData?.specialties[0]}</li>
+                                <li>{foundData?.specialties[1]}</li>
+                                <li>{foundData?.specialties[2]}</li>
+                                <li>{foundData?.specialties[3]}</li>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
