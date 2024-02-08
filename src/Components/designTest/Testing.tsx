@@ -16,7 +16,7 @@ const Testing = () => {
 
 
 
-            <h1 className='font-bold text-3xl py-7 pb-4'>LG C2 42 (106cm) 4K Smart OLED evo TV </h1>
+            <h1 className='font-bold text-3xl py-7 pb-4' >LG C2 42 (106cm) 4K Smart OLED evo TV </h1>
              
            <div className='flex md:flex-row flex-col items-center gap-24 pb-8' >
 
@@ -45,8 +45,15 @@ const Testing = () => {
                 <button className='btn bg-blue-200  border-x-4 text-black border-blue-500   w-[180px] h-[30px]'><div className='flex flex-row justify-center items-center gap-2'>
                     <img className='h-7' src="https://i.ibb.co/vVmLxkr/add-to-favorites-icon-vector-22798686-removebg-preview.png" alt="" /> <h1>Add To Favorite</h1></div></button>
              </div>
-             <div className='py-6'>
-                <button className='btn bg-blue-500 text-white'>See Proucts Reviews</button>
+             <div className='py-6 flex flex-row items-center gap-6 '>
+             <div >
+                <button className='btn bg-blue-500 text-white border-x-5 border-black'  ><div className='flex flex-row justify-center items-center gap-1' >
+                  <img className='h-8' src="https://i.ibb.co/qjLjp8G/73962736-customer-reviews-rating-user-feedback-concept-vector-icon-flat-illustration-on-orange-backg.png" alt="" />
+                  <h1>See Product Reviews</h1></div></button>
+             </div>
+             <div>
+              <img className='h-12 w-12' src="https://i.ibb.co/G7jgThR/images-8-removebg-preview.png" alt="" />
+             </div>
              </div>
             </div>
          </div>
@@ -103,7 +110,7 @@ const Testing = () => {
            </div>
              
              <button type='submit' className='btn bg-blue-600 text-white'>Give REVIEW</button>
-             <button type='submit' className='btn bg-blue-600 text-white'>Give REVIEW</button>
+           
            </div>
          </form>
 
@@ -118,66 +125,79 @@ const Testing = () => {
 
     <div className='flex md:flex-row flex-col justify-center gap-12 pb-24'>
        
-       <div className='w-[300px] justify-center items-center'>
-           <div className='w-[320px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+       <div className='w-[300px] justify-center items-center  border-blue-950'>
+           <div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
             <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-           <div className='py-4 '>
+           <div className='py-4 shadow-md'>
            <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
            </div>
              
            </div>
            <div>
-            <h1 className='text-xl text-center'>Product Name</h1>
-            <p  className='text-xl text-center'>Price</p>
+          <div className='flex flex-row justify-center items-center pt-5'>
+          <img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+            <h1 className='text-xl text-center font-medium ' >Product Name</h1>
+          </div>
+            <h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
            </div>
 
        </div>
 
-       <div className='w-[320px] justify-center items-center'>
-           <div className='w-[300px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+       <div className='w-[300px] justify-center items-center  border-blue-950'>
+           <div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
             <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-           <div className='py-4 '>
+           <div className='py-4 shadow-md'>
            <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
            </div>
              
            </div>
            <div>
-            <h1 className='text-xl text-center'>Product Name</h1>
-            <p  className='text-xl text-center'>Price</p>
+          <div className='flex flex-row justify-center items-center pt-5'>
+          <img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+            <h1 className='text-xl text-center font-medium ' >Product Name</h1>
+          </div>
+            <h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
            </div>
 
        </div>
 
-       <div className='w-[320px] justify-center items-center'>
-           <div className='w-[300px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+
+       <div className='w-[300px] justify-center items-center  border-blue-950'>
+           <div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
             <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-           <div className='py-4 '>
+           <div className='py-4 shadow-md'>
            <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
            </div>
              
            </div>
            <div>
-            <h1 className='text-xl text-center'>Product Name</h1>
-            <p  className='text-xl text-center'>Price</p>
+          <div className='flex flex-row justify-center items-center pt-5'>
+          <img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+            <h1 className='text-xl text-center font-medium ' >Product Name</h1>
+          </div>
+            <h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
            </div>
 
        </div>
 
-       <div className='w-[320px] justify-center items-center'>
-           <div className='w-[300px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+       <div className='w-[300px] justify-center items-center  border-blue-950'>
+           <div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
             <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-           <div className='py-4 '>
+           <div className='py-4 shadow-md'>
            <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
            </div>
              
            </div>
            <div>
-            <h1 className='text-xl text-center'>Product Name</h1>
-            <p  className='text-xl text-center'>Price</p>
+          <div className='flex flex-row justify-center items-center pt-5'>
+          <img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+            <h1 className='text-xl text-center font-medium ' >Product Name</h1>
+          </div>
+            <h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
            </div>
 
        </div>
-       
+
 
     </div>
 
