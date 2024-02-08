@@ -1,27 +1,57 @@
 import Swal from 'sweetalert2';
 import UseAuth from '../../../../Hook/UseAuth.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import axios from 'axios';
+
+const image_hosting_key = '140f2d0db1502e65c2c0ee7bfc66be98';
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddProduct = () => {
     const { user } = UseAuth();
     const AxiousPublic = UseAxiosPublic();
 
-    const handleAddMedicine = (event) => {
+    const handleAddMedicine = async(event) => {
         event.preventDefault();
         const form = event.target;
         const ID = crypto.randomUUID();
         const companyEmail = form.email.value;
         const Medname = form.Medname.value;
-        const Image = form.Image.value;
         const Company = form.Company.value;
         const Price = form.Price.value;
         const Category = form.Category.value;
         const Description = form.Description.value;
 
-        const newMedicine = { ID, companyEmail, Image, Price, Medname, Company, Category, Description };
+        let imageUrl;
+
+        const formData = new FormData();
+        const singleImageFile = form.Image.files[0];
+        formData.append('image', singleImageFile);
+
+        try {
+            const response = await axios.post(image_hosting_api, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            imageUrl = response.data.data.url;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+
+            return;
+        }
+
+        const newMedicine = { 
+            ID, 
+            companyEmail, 
+            Image: imageUrl, 
+            Price, 
+            Medname, 
+            Company, 
+            Category, 
+            Description 
+        };
         // console.log(newMedicine);
 
-        // send data to the server
         AxiousPublic.post('/Medicines', newMedicine)
             .then((response) => {
                 // console.log('Data sent successfully:', response.data);
@@ -72,8 +102,14 @@ const AddProduct = () => {
                                 <span className="label-text font-bold">Medicine Image URL</span>
                             </label>
                             <label className="flex items-center">
-                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">URL</span>
-                                <input type="text" name="Image" placeholder="Enter Image URL" className="input rounded-r-md rounded-l-none w-full" required />
+                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">Image:</span>
+                                <input
+                                    type="file"
+                                    name="Image"
+                                    className="input rounded-r-md rounded-l-none w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                    accept="image/*"
+                                    required
+                                />
                             </label>
                         </div>
                         <div className="form-control md:w-1/2">

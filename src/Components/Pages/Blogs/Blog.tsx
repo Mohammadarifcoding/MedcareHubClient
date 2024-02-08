@@ -7,6 +7,9 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+const image_hosting_key = '140f2d0db1502e65c2c0ee7bfc66be98';
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const Blog = () => {
     const [BlogsData, setBlogsData] = UseBlog()
     const [isLoading, setIsLoading] = useState()
@@ -19,11 +22,28 @@ const Blog = () => {
         handleSubmit,
     } = useForm()
 
-    const onSubmit = (result) => {
-        const formData = {
+    const onSubmit = async(result) => {
+        let imageUrl;
+
+        const formData = new FormData();
+        const singleImageFile = result.BlogPic[0];
+        formData.append('image', singleImageFile);
+    
+        try {
+            const response = await axios.post(image_hosting_api, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            imageUrl = response.data.data.url;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            return;
+        }
+        const blogData = {
             ID: result.ID,
             BlogName: result.BlogName,
-            BlogPic: result.BlogPic,
+            BlogPic: imageUrl,
             BlogWriterName: result.BlogWriterName,
             BlogWriterImage: result.BlogWriterImage,
             BlogWriting: result.BlogWriting,
@@ -31,8 +51,8 @@ const Blog = () => {
             email: user.email,
             like:0
         };
-        console.log(formData);
-        axios.post(`http://localhost:5000/Blog`, formData)
+        console.log(blogData);
+        axios.post(`http://localhost:5000/Blog`, blogData)
             .then((res) => {
                 console.log(res);
                 Swal.fire("You post a blog successfully!");
@@ -92,7 +112,14 @@ const Blog = () => {
                                                 <div>
                                                     <label htmlFor="email" className="block">Blog Photo</label>
 
-                                                    <input {...register('BlogPic')} type="text" placeholder="Blog photo" className="p-3 block w-full  drop-shadow-lg rounded-lg outline-none" />
+                                                    {/* <input {...register('BlogPic')} type="text" placeholder="Blog photo" className="p-3 block w-full  drop-shadow-lg rounded-lg outline-none" /> */}
+                                                    <input
+                                    type="file"
+                                    {...register('BlogPic', { required: true })}
+                                    className="input rounded-r-md  w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                    accept="image/*"
+                                    required
+                                />
                                                 </div>
 
 
