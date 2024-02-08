@@ -14,7 +14,7 @@ const WriteBlogModal = () => {
     const [refetchData, setRefecthData] = useState(false)
 
     const {
-        register, 
+        register,
         handleSubmit,
     } = useForm()
 
@@ -37,7 +37,7 @@ const WriteBlogModal = () => {
             return;
         }
         const blogData = {
-            ID : crypto.randomUUID(),
+            ID: crypto.randomUUID(),
             BlogName: result.BlogName,
             BlogPic: imageUrl,
             BlogWriterName: result.BlogWriterName,
@@ -57,11 +57,33 @@ const WriteBlogModal = () => {
     };
     return (
         <div>
+
+
             <div>
 
-                <button onClick={() => setOpenModal(true)} className="text-5xl flex items-center relative z-10 mt-3">
-                    <BiEditAlt /><span className='text-lg'> Write</span>
-                </button>
+                <div className="px-11 py-5 mx-auto bg-slate-200">
+                    <div className="flex gap-5">
+                        <div>
+                            <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-lg hover:blur-[2px] duration-500" src={user?.photoURL} alt="" />
+                        </div>
+                        <div className="w-full">
+
+                            <input onClick={() => setOpenModal(true)} id="u_email" type="u_email" placeholder="Share your blog to Everyone" className="p-3  w-full outline-none border rounded-md invalid:border-red-700 valid:border-black" />
+
+
+                        </div>
+                    </div>
+                    <div className="flex justify-between pt-5">
+                        <div className="flex items-center gap-2">
+                            {/* <IoMdPhotos /> */}
+                            <h1>photo/video</h1>
+                        </div>
+
+
+
+                        <button className="flex items-center gap-1 p-3 bg-blue-300 rounded" onClick={() => setOpenModal(true)} >Write</button>
+                    </div>
+                </div>
 
                 <div className={`fixed flex justify-center items-center z-[100] ${openModal ? 'visible opacity-1' : 'invisible opacity-0'} duration-300 inset-0 w-full h-full`}>
                     <div onClick={(e_) => e_.stopPropagation()} className={`absolute overflow-x-hidden overflow-y-scroll w-full h-full flex justify-center bg-white drop-shadow-2xl rounded-lg ${openModal ? 'translate-y-0 opacity-1 duration-300' : 'translate-y-32 opacity-0 duration-1000'}`}>
