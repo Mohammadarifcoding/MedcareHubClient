@@ -3,8 +3,6 @@ import UseAuth from '../../../Hook/UseAuth.tsx';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { v4 as uuidv4 } from 'uuid';
-import { BiEditAlt } from "react-icons/bi";
 const image_hosting_key = '140f2d0db1502e65c2c0ee7bfc66be98';
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const WriteBlogModal = () => {
@@ -100,11 +98,6 @@ const WriteBlogModal = () => {
 
                                             <div className="space-y-5">
                                                 <div className='lg:flex gap-3'>
-                                                    {/* <div>
-                                                        <label htmlFor="text" className="block">ID</label>
-
-                                                        <input {...register('ID')} type="text" placeholder="ID" className="p-3 block md:w-full w-[365px]  drop-shadow-lg rounded-lg outline-none" />
-                                                    </div> */}
 
 
                                                     <div>
