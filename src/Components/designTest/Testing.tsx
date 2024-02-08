@@ -16,7 +16,7 @@ const Testing = () => {
 
 
 
-            <h1 className='font-bold text-3xl py-3 pb-4'>LG C2 42 (106cm) 4K Smart OLED evo TV </h1>
+            <h1 className='font-bold text-3xl py-7 pb-4'>LG C2 42 (106cm) 4K Smart OLED evo TV </h1>
              
            <div className='flex md:flex-row flex-col items-center gap-24 pb-8' >
 
@@ -39,8 +39,14 @@ const Testing = () => {
              </div>
 
              <div className='flex md:flex-row gap-4'>
-                <button className='btn bg-blue-600 text-white w-[150px] h-[30px]'>Add To Cart</button>
-                <button className='btn bg-blue-200  border-x-4 text-black border-blue-500   w-[150px] h-[30px]'>Add To Cart</button>
+                <button className='btn bg-blue-600 text-white w-[150px] h-[30px]'><div className='flex flex-row justify-center items-center gap-1'>
+                    <img className='h-7' src="https://i.ibb.co/12cZS5V/1972381-removebg-preview.png" alt="" />
+                    <h1 >Add To Cart</h1></div></button>
+                <button className='btn bg-blue-200  border-x-4 text-black border-blue-500   w-[180px] h-[30px]'><div className='flex flex-row justify-center items-center gap-2'>
+                    <img className='h-7' src="https://i.ibb.co/vVmLxkr/add-to-favorites-icon-vector-22798686-removebg-preview.png" alt="" /> <h1>Add To Favorite</h1></div></button>
+             </div>
+             <div className='py-6'>
+                <button className='btn bg-blue-500 text-white'>See Proucts Reviews</button>
              </div>
             </div>
          </div>
