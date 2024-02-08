@@ -39,7 +39,7 @@ const RegiModal = () => {
 
         const doctorData = {
             ID : crypto.randomUUID(),
-            DocName: data.DocName,
+            DocName: data.DocName, 
             DocType: data.DocType,
             age: data.age,
             startAvail: data.startAvail,
