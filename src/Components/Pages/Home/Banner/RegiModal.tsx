@@ -5,6 +5,9 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 
+const image_hosting_key = '140f2d0db1502e65c2c0ee7bfc66be98';
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const RegiModal = () => {
 
     const [openModal, setOpenModal] = useState(false);
@@ -13,10 +16,29 @@ const RegiModal = () => {
         handleSubmit,
     } = useForm()
 
-    const handleRegistered = (data) => {
+    const handleRegistered = async (data) => {
         console.log(data);
-        const formData = {
-            ID: data.ID,
+
+        let imageUrl;
+
+        const formData = new FormData();
+        const singleImageFile = data.image[0];
+        formData.append('image', singleImageFile);
+
+        try {
+            const response = await axios.post(image_hosting_api, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            imageUrl = response.data.data.url;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            return;
+        }
+
+        const doctorData = {
+            ID : crypto.randomUUID(),
             DocName: data.DocName,
             DocType: data.DocType,
             age: data.age,
@@ -31,10 +53,11 @@ const RegiModal = () => {
             services: data.services,
             degree: data.degree,
             serviceFee: data.serviceFee,
-            image: data.image
+            image: imageUrl
         };
-        console.log(formData);
-        axios.post(`${base_URL}/Doctors`, formData)
+        console.log(doctorData);
+        axios.post(`${base_URL}/Doctor`, doctorData)
+
             .then((res) => {
                 console.log(res);
                 Swal.fire("You registered for doctor successfully!");
@@ -65,16 +88,6 @@ const RegiModal = () => {
 
                                                 <div className="form-control md:w-full">
                                                     <label className="label">
-                                                        <span className="label-text font-bold">ID</span>
-                                                    </label>
-
-
-                                                    <input {...register('ID')} type="text" placeholder="Enter ID" className="rounded-lg px-3 h-10 w-full border" required />
-
-                                                </div>
-
-                                                <div className="form-control md:w-full">
-                                                    <label className="label">
                                                         <span className="label-text font-bold">Doctor Name</span>
                                                     </label>
 
@@ -88,7 +101,14 @@ const RegiModal = () => {
                                                     </label>
 
 
-                                                    <input {...register('image')} type="text" placeholder="Enter >Doctor Image" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                    {/* <input {...register('image')} type="text" placeholder="Enter >Doctor Image" className=" rounded-lg px-3 h-10 w-full border" required /> */}
+                                                    <input
+                                                        type="file"
+                                                        {...register('image', { required: true })}
+                                                        className="input rounded-r-md  w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                                        accept="image/*"
+                                                        required
+                                                    />
 
                                                 </div>
 
@@ -120,11 +140,11 @@ const RegiModal = () => {
                                             </div>
                                             <div className="form-control md:w-full">
                                                 <label className="label">
-                                                    <span className="label-text font-bold">Education</span>
+                                                    <span className="label-text font-bold">Education</span> 
                                                 </label>
 
 
-                                                <input {...register('degree')} type="text" placeholder="Enter Doctor Fee" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                <input {...register('degree')} type="text" placeholder="Enter education" className=" rounded-lg px-3 h-10 w-full border" required />
 
                                             </div>
                                             <div className="form-control md:w-full">
@@ -149,9 +169,13 @@ const RegiModal = () => {
                                                         <label className="label">
                                                             <span className="label-text font-bold">Gender</span>
                                                         </label>
+                                                        <select {...register('gender')} className="select select-bordered w-full max-w-xs">
+                                                            <option disabled selected>Gender</option>
+                                                            <option>Female</option>
+                                                            <option>Male</option>
+                                                        </select>
 
-
-                                                        <input {...register('gender')} type="text" placeholder="Enter Gender" className=" rounded-lg px-3 h-10 w-full border" required />
+                                
 
                                                     </div>
                                                 </div>
@@ -225,7 +249,8 @@ const RegiModal = () => {
                                                     <label className="label">
                                                         <span className="label-text font-bold">Doctor's About</span>
                                                     </label>
-                                                    <input {...register('aboutMe')} type="text" className=" rounded-lg px-3 h-10 w-full border" placeholder="Enter Your About" required></input>
+                                                    <textarea {...register('aboutMe')}  className='w-full border h-[200px]' required></textarea>
+                                                    
                                                 </div>
                                             </div>
 
