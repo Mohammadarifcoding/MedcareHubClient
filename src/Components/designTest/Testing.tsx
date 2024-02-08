@@ -6,7 +6,7 @@ const Testing = () => {
             {/* ban */}
          <div className='flex md:flex-row flex-col justify-center  py-24 '>
            
-           <div className='w-[550px] h-[450px] justify-center items-center flex mx-auto bg-slate-300' >
+           <div className='w-[550px] h-[450px] justify-center items-center flex mx-auto border-x-2 border-blue-950 bg-slate-300' >
              
              <img className='w-[390px] h-[300px]' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
             
@@ -44,6 +44,81 @@ const Testing = () => {
              </div>
             </div>
          </div>
+
+
+         {/* Related Product */}
+    <div>
+        <h1 className='text-3xl text-center font-bold pb-12'>Related Services</h1>
+
+    <div className='flex md:flex-row flex-col justify-center gap-12 pb-24'>
+       
+       <div className='w-[300px] justify-center items-center'>
+           <div className='w-[320px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+            <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+           <div className='py-4 '>
+           <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+           </div>
+             
+           </div>
+           <div>
+            <h1 className='text-xl text-center'>Product Name</h1>
+            <p  className='text-xl text-center'>Price</p>
+           </div>
+
+       </div>
+
+       <div className='w-[320px] justify-center items-center'>
+           <div className='w-[300px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+            <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+           <div className='py-4 '>
+           <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+           </div>
+             
+           </div>
+           <div>
+            <h1 className='text-xl text-center'>Product Name</h1>
+            <p  className='text-xl text-center'>Price</p>
+           </div>
+
+       </div>
+
+       <div className='w-[320px] justify-center items-center'>
+           <div className='w-[300px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+            <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+           <div className='py-4 '>
+           <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+           </div>
+             
+           </div>
+           <div>
+            <h1 className='text-xl text-center'>Product Name</h1>
+            <p  className='text-xl text-center'>Price</p>
+           </div>
+
+       </div>
+
+       <div className='w-[320px] justify-center items-center'>
+           <div className='w-[300px] flex flex-col  mx-auto items-center h-[300px] bg-slate-200 '>
+            <img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+           <div className='py-4 '>
+           <button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+           </div>
+             
+           </div>
+           <div>
+            <h1 className='text-xl text-center'>Product Name</h1>
+            <p  className='text-xl text-center'>Price</p>
+           </div>
+
+       </div>
+       
+
+    </div>
+
+
+    </div>
+
+
 
 
         </div>
