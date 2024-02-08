@@ -16,7 +16,9 @@ const RegiModal = () => {
         handleSubmit,
     } = useForm()
 
-    const handleRegistered = async (data) => {
+
+    const handleRegistered = async(data) => {
+
         console.log(data);
 
         let imageUrl;
@@ -38,6 +40,7 @@ const RegiModal = () => {
         }
 
         const doctorData = {
+
             ID : crypto.randomUUID(),
             DocName: data.DocName, 
             DocType: data.DocType,
@@ -56,7 +59,9 @@ const RegiModal = () => {
             image: imageUrl
         };
         console.log(doctorData);
-        axios.post(`${base_URL}/Doctor`, doctorData)
+
+     axios.post(`${base_URL}/Doctor`, doctorData)
+
 
             .then((res) => {
                 console.log(res);
@@ -101,14 +106,18 @@ const RegiModal = () => {
                                                     </label>
 
 
-                                                    {/* <input {...register('image')} type="text" placeholder="Enter >Doctor Image" className=" rounded-lg px-3 h-10 w-full border" required /> */}
+                                                
                                                     <input
+
                                                         type="file"
                                                         {...register('image', { required: true })}
                                                         className="input rounded-r-md  w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
                                                         accept="image/*"
                                                         required
                                                     />
+
+        
+
 
                                                 </div>
 
