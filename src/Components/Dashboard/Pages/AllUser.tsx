@@ -56,6 +56,7 @@ const AllUser = () => {
                             <th className="px-6 py-3 text-center"> Name</th>
                             <th className="px-6 py-3 text-center"> Email</th>
                             <th className="px-6 py-3 text-center">Gender</th>
+                            <th className="px-6 py-3 text-center">Role</th>
                             <th className="px-6 py-3 text-center">Delete User</th>
                         </tr>
                     </thead>
@@ -64,7 +65,9 @@ const AllUser = () => {
                             <td className="border-t px-6 py-4 text-center "><img className='w-[40px] h-[40px] rounded-full' src={user?.imageURL} alt="" /></td>
                             <td className="border-t px-6 py-4 text-center ">{user?.name}</td>
                             <td className="border-t px-6 py-4 text-center">{user?.email}</td>
+
                             <td className="border-t px-6 py-4 text-center">{user?.gender}</td>
+                            <td className="border-t px-6 py-4 text-center">{user?.role}</td>
 
 
 
