@@ -1,13 +1,15 @@
 import React from 'react';
-
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { FaTimes } from "react-icons/fa";
 import Swal from 'sweetalert2';
+import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
+import UseAuth from '../../../Hook/UseAuth.tsx';
 
 const AllUser = () => {
 
-
+    const axiosPublic = UseAxiosPublic();
+    const { user } = UseAuth();
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -15,7 +17,24 @@ const AllUser = () => {
             return res.data;
         }
     })
+    const handleChangeUserRole = (user, role) => {
+        console.log(user._id, role);
+        axiosPublic.patch(`user/role/${user._id}`, { role })
+            .then(res => {
+                console.log(res);
+                if (res.data.role) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${user.name} is now ${role}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch()
+                }
+            })
 
+    }
 
     const handleDeleteUser = user => {
         Swal.fire({
