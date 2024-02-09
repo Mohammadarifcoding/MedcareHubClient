@@ -32,7 +32,7 @@ const MyBlog = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/Blog/${blog?._id}`)
+                axios.delete(`http://localhost:5000/Blog/${blog?.ID}`)
                     .then(res => {
 
 
@@ -42,6 +42,9 @@ const MyBlog = () => {
                             icon: "success"
                         });
                         setRefecthData(!refetchData)
+                    })
+                    .catch(err=>{
+                        console.log(err)
                     })
             }
         });
