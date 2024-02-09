@@ -80,7 +80,7 @@ const MedicineItem = ({ filter }) => {
 
 
     const handleAddtoCart = (item) => {
-        if (user && user?.email) {
+
             const cartItem = {
                 medicineId: item?.ID,
                 OrderId: uuidv4(),
@@ -88,8 +88,8 @@ const MedicineItem = ({ filter }) => {
                 medicine: item,
                 quantity:1
             };
-            console.log(cartItem);
-            AxiousPublic.post('/CartMedicine', cartItem).then((res) => {
+            AxiousPublic.post('/CartMedicine', cartItem)
+            .then((res) => {
                 console.log(res.data);
                 if (res.data) {
                     Swal.fire({
@@ -101,23 +101,10 @@ const MedicineItem = ({ filter }) => {
                     });
                     refetch();
                 }
-            });
-        } else {
-            Swal.fire({
-                title: 'You are not Logged in?',
-                text: 'Please login to add to the cart!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, Login!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    //    send the user to the login page
-                    navigate('/login');
-                }
-            });
-        }
+            }).catch(err=>{
+                console.log(err)
+            })
+   
     };
 
     const isFavorite = (id) => favorites.includes(id);

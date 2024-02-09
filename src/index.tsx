@@ -40,8 +40,14 @@ import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProdu
 import PatientRegister from './Components/Dashboard/Pages/Patient/PatientRegister/PatientRegister.tsx';
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.tsx';
 import DoctorQue from './Components/Pages/Doctors/DoctorQue.tsx';
+<<<<<<< HEAD
 import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
 import CompanyRegister from './Components/Dashboard/Pages/CompanyRegister/CompanyRegister.tsx';
+=======
+import Testing from './Components/designTest/Testing.tsx';
+import BlogDetails from './Components/Pages/Blogs/BlogDetails.jsx';
+import { base_URL } from './utills/BaseURL.ts';
+>>>>>>> c28cf80e4a6607fd4029d048887df688022160d7
 
 
 const queryClient = new QueryClient()
@@ -87,6 +93,9 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About></About>
+      },{
+          path:'/data',
+          element:<Testing></Testing>
       },
       {
         path: '/company/:companyname',
@@ -105,6 +114,11 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart></Cart>
+      },
+      {
+        path: '/blogdetails/:id',
+        element: <BlogDetails></BlogDetails>,
+        loader: ({ params }) => fetch(`${base_URL}/Blog/${params?.id}`)
       }
     ]
   },
