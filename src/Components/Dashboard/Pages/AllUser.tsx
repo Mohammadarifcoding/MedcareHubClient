@@ -57,6 +57,7 @@ const AllUser = () => {
                             <th className="px-6 py-3 text-center"> Email</th>
                             <th className="px-6 py-3 text-center">Gender</th>
                             <th className="px-6 py-3 text-center">Role</th>
+                            <th className="px-6 py-3 text-center">Change Role</th>
                             <th className="px-6 py-3 text-center">Delete User</th>
                         </tr>
                     </thead>
@@ -69,7 +70,23 @@ const AllUser = () => {
                             <td className="border-t px-6 py-4 text-center">{user?.gender}</td>
                             <td className="border-t px-6 py-4 text-center">{user?.role}</td>
 
+                            <td>
+                                <ul className="menu menu-horizontal">
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                select
+                                            </summary>
+                                            <ul className=" bg-base-100 rounded-t-none z-10">
+                                                <li onClick={() => handleChangeUserRole(user, 'admin')}><a>admin</a></li>
+                                                <li onClick={() => handleChangeUserRole(user, 'moderator')}><a>moderator</a></li>
 
+                                                <li onClick={() => handleChangeUserRole(user, 'user')}><a>user</a></li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </td>
 
                             <td className="px-6 py-4 border-t text-center">
                                 <button onClick={() => handleDeleteUser(user)} className="text-red-600 btn btn-ghost  hover:bg-[#393E46] bg-[#0360D9] hover:text-red-800">
