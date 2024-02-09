@@ -19,7 +19,7 @@ const DoctorDetails = () => {
     }, [id]);
 
     return (
-        <>
+             <>
 
             <div>
                 <div className="border max-w-[1500px] mx-auto my-10  bg-[#E1EEFF] p-4 rounded-lg shadow-md">

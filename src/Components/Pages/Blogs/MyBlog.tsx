@@ -28,7 +28,7 @@ const MyBlog = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/Blog/${blog?._id}`)
+                axios.delete(`http://localhost:5000/Blog/${blog?.ID}`)
                     .then(res => {
                         Swal.fire({
                             title: "Deleted!",
@@ -36,6 +36,9 @@ const MyBlog = () => {
                             icon: "success"
                         });
                         refetch()
+                    })
+                    .catch(err=>{
+                        console.log(err)
                     })
             }
         });

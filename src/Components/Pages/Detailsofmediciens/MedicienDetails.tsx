@@ -15,12 +15,12 @@ const{user}=UseAuth()
 const [data,setData] = useState();
 const { id } = useParams();
 // console.log(id);
-
+console.log(id)
 useEffect(() => {
     fetch(`http://localhost:5000/detailsMed/${id}`)
         .then((res) => res.json())
         .then((data) => {
-            // console.log(data);
+            console.log(data);
             setData(data);
         })
         .catch((error) => {
