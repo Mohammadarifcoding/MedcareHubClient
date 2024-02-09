@@ -14,7 +14,7 @@ const BlogDetails = () => {
             <div className="max-w-7xl mx-auto my-8 px-4">
                 <div className="grid md:grid-cols-3 gap-8">
                     <div className="col-span-2">
-                        <h1 className="text-3xl font-bold mb-4">Tech is growing</h1>
+                        <h1 className="text-3xl font-bold mb-4">Blog Details</h1>
                         <img
                             src={BlogPic}
                             alt="Tech is growing"
