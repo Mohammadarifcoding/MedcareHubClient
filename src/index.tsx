@@ -39,8 +39,9 @@ import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
 import PatientRegister from './Components/Dashboard/Pages/Patient/PatientRegister/PatientRegister.tsx';
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.tsx';
-import DoctorStatus from './Components/Dashboard/Pages/PatientStatus/DoctorStatus.tsx';
 import DoctorQue from './Components/Pages/Doctors/DoctorQue.tsx';
+import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
+import CompanyRegister from './Components/Dashboard/Pages/CompanyRegister/CompanyRegister.tsx';
 
 
 const queryClient = new QueryClient()
@@ -117,7 +118,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/docstatus',
-        element: <DoctorStatus></DoctorStatus>
+        element: <DocStatus></DocStatus>
       }, {
         path: '/dashboard/comproduct',
         element: <CompanyProduct></CompanyProduct>
@@ -149,6 +150,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/docque',
         element: <DoctorQue></DoctorQue>
+      },
+      {
+        path: '/dashboard/comregister',
+        element: <CompanyRegister></CompanyRegister>
       }
     ]
   },
