@@ -41,6 +41,7 @@ import PatientRegister from './Components/Dashboard/Pages/Patient/PatientRegiste
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.tsx';
 import DoctorStatus from './Components/Dashboard/Pages/PatientStatus/DoctorStatus.tsx';
 import DoctorQue from './Components/Pages/Doctors/DoctorQue.tsx';
+import Testing from './Components/designTest/Testing.tsx';
 import BlogDetails from './Components/Pages/Blogs/BlogDetails.jsx';
 import { base_URL } from './utills/BaseURL.ts';
 
@@ -88,6 +89,9 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About></About>
+      },{
+          path:'/data',
+          element:<Testing></Testing>
       },
       {
         path: '/company/:companyname',
