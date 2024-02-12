@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import Container from '../../../Shared/Container/Container.tsx';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Modal } from 'flowbite';
 import RegiModal from './RegiModal.tsx';
 
 
 
 const Banner = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/contact');
+    }
 
     return (
 
@@ -18,9 +23,12 @@ const Banner = () => {
                             <span className="text-[#0360D9]">Constituent</span> Medicine</h1>
                         <p className='mb-5'> MedCareHub is  one of the largest medical store that provides medicines on prescription & <br /> OTC. Order medicine online & get fastest delivery in your city.</p>
                         <div className='flex'>
-                            <Link to='/contact'>
-                                <button className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white">Contact Us</button>
-                            </Link>
+                            <button
+                                onClick={handleClick}
+                                className="btn bg-[#0360D9] hover:bg-[#0360D9] text-white"
+                            >
+                                Contact Us
+                            </button>
 
                             <RegiModal></RegiModal>
                         </div>
