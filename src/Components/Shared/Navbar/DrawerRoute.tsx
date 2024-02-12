@@ -52,7 +52,12 @@ const DrawerRoute = () => {
                     </li>
                     <li>
                         <Link to="/blogs" className="block py-2 px-4 hover:text-[#0360D9]">
-                            Forum
+                            Blog
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/doctors" className="block py-2 px-4 hover:text-[#0360D9]">
+                            Doctors
                         </Link>
                     </li>
                 </ul>
