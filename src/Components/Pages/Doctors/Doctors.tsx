@@ -23,7 +23,6 @@ const Doctors = () => {
 
     const AxiousPublic = UseAxiosPublic();
 
-
     const { data: doctorData = [], isLoading } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
@@ -31,7 +30,7 @@ const Doctors = () => {
             return result.data;
         }
     });
-   
+
     const linkVariants = {
         hover: {
             scale: 1.1,
@@ -69,22 +68,16 @@ const Doctors = () => {
     return (
         <div className="flex container mx-auto gap-10 justify-between">
             <div className="mt-10 xl:w-[20%] w-0 xl:block hidden">
-                <h1 className="text-2xl font-semibold">Filters</h1>
+                <h1 className="text-2xl font-semibold text-[#0360D9] ">Filters</h1>
                 <hr className="my-4" />
                 <h1 className="text-xl font-medium ">Category</h1>
                 <hr className="my-4" />
                 <div className="mb-3">
                     {!isLoading ? (
-                        doctorData?.map((docType) => (
-                            <div key={docType?.DocType} className="flex gap-2">
-                                <input
-                                    type="checkbox"
-                                    name={docType?.DocType}
-                                    id={docType?.DocType}
-                                    checked={filter.docTypes.includes(docType?.DocType)}
-                                    onChange={() => handleCheckboxChange(docType?.DocType)}
-                                />
-                                <p>{docType?.DocType}</p>
+                        Array.from(new Set(doctorData?.map((doctor) => doctor.DocType)))?.map((docType) => (
+                            <div key={docType} className="flex gap-2">
+                                <input type="checkbox" name={docType} id={docType} checked={filter.docTypes.includes(docType)} onChange={() => handleCheckboxChange(docType)} />
+                                <p>{docType}</p>
                             </div>
                         ))
                     ) : (
@@ -176,7 +169,7 @@ const Doctors = () => {
                     <fieldset className="w-full space-y-1 ">
                         <label className="hidden">Search</label>
                         <div className="relative">
-                            <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                            <span className="absolute inset-y-0 left-0 text-[#0360D9]  flex items-center pl-2">
                                 <button type="button" title="search" className="p-1">
                                     <svg fill="currentColor" viewBox="0 0 512 512" className="w-4 h-4 ">
                                         <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
@@ -195,14 +188,19 @@ const Doctors = () => {
                                         keyword: e.target.value
                                     }))
                                 }
-                                className="w-48 py-2 pl-10 text-sm rounded-md lg:w-[400px] border"
+                                className="w-48 py-2 pl-10 text-sm rounded-full border-[#0360D9] text-[#0360D9] focus:outline-none lg:w-[400px] border"
                             />
                         </div>
                     </fieldset>
 
-                    <button onClick={toggleDrawer} className="btn-sm lg:hidden bg-[#0360D9]  rounded-lg text-white">
+                    <button onClick={toggleDrawer} className="w-36 h-10 ml-3 border-2 lg:hidden border-sky-300 text-sky-800 font-black rounded-full hover:text-white duration-300 relative group">
+                        <span className="absolute w-12 group-hover:w-[88%] duration-300 flex group-hover:justify-start rounded-full inset-2 bg-sky-300 group-hover:bg-sky-500 group-hover:duration-500 -z-10"></span>
                         Filter
                     </button>
+
+                    {/* <button onClick={toggleDrawer} className="btn-sm lg:hidden bg-[#0360D9]  rounded-full text-white">
+                        Filter
+                    </button> */}
                     <Drawer open={isOpen} onClose={toggleDrawer} direction="left" className="bla bla bla">
                         <div className="mt-5 ml-5 lg:hidden">
                             <h1 className="text-2xl font-semibold">Filters</h1>
@@ -288,7 +286,7 @@ const Doctors = () => {
                     <h1 className="lg:text-4xl text-2xl font-bold ">Our Expert Doctors</h1>
                     <p className="text-lg">Meet our doctor—a beacon of knowledge, a guardian of health, and a partner in your wellness journey.</p>
                 </div>
-                <div className="mx-5 xl:w-[100%] w-full">
+                <div className="md:mx-5 xl:w-[100%] w-full">
                     <DoctorCard filter={filter} setFilter={setFilter} isButtonClicked={isButtonClicked}></DoctorCard>
                 </div>
             </div>
