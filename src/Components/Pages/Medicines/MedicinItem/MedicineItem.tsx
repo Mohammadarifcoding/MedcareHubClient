@@ -90,7 +90,7 @@ const MedicineItem = ({ filter }) => {
             };
             AxiousPublic.post('/CartMedicine', cartItem)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data) {
                     Swal.fire({
                         position: 'top-end',
