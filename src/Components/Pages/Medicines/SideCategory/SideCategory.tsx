@@ -1,24 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { useMedicineContext } from '../MedicineContext/MedicineContext.tsx';
+import { useQuery } from '@tanstack/react-query';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 
 const SideCategory = ({ filter, setFilter }) => {
     const [medicines, setMedicines] = useState([]);
     const { setSelectedCategory } = useMedicineContext();
-    const [isLoading, setISLoading] = useState(true);
+    // const [isLoading, setISLoading] = useState(true);
+    const AxiousPublic = UseAxiosPublic();
+
+    // useEffect(() => {
+    //     setISLoading(true);
+    //     fetch('http://localhost:5000/Medicines')
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setMedicines(data);
+    //             setISLoading(false);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.message);
+    //         });
+    // }, []);
+
+    const { data: medicineData = [], isLoading } = useQuery({
+        queryKey: ['medicines'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Medicines');
+            return result.data;
+        }
+    });
 
     useEffect(() => {
-        setISLoading(true);
-        fetch('http://localhost:5000/Medicines')
-            .then((res) => res.json())
-            .then((data) => {
-                setMedicines(data);
-                setISLoading(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }, []);
+        if (medicineData.length > 0) {
+            setMedicines(medicineData);
+        }
+    }, [medicineData]);
 
+    // console.log(medicineData);
     const handleCategoryChange = (e) => {
         const category = e.target.value;
         setSelectedCategory(category);
