@@ -45,6 +45,7 @@ import CompanyRegister from './Components/Dashboard/Pages/CompanyRegister/Compan
 import Testing from './Components/designTest/Testing.tsx';
 import BlogDetails from './Components/Pages/Blogs/BlogDetails.jsx';
 import { base_URL } from './utills/BaseURL.ts';
+import ComDesh from './Components/companyDash/ComDesh.tsx';
 
 
 const queryClient = new QueryClient()
@@ -157,6 +158,9 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/addpatient',
         element: <PatientRegister></PatientRegister>
+      },{
+          path:'/dashboard/comde',
+          element:<ComDesh></ComDesh>
       },
       {
         path: '/dashboard/docque',

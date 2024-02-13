@@ -106,6 +106,13 @@ const Navbar = () => {
                                         <Link to={'/dashboard/profile'}>
                                             <li><p>DashBoard</p></li>
                                         </Link>
+                                        <Link to={'/admindasbord/data'}>
+                                            <li><p>AdminDashborad</p></li>
+                                        </Link>
+                                        <Link to={'/company/data'}>
+                                            <li><p>CompanyDashboard</p></li>
+                                        </Link>
+
 
                                         <li > <p onClick={handleLogOut}>Log Out</p></li>
                                     </ul>
