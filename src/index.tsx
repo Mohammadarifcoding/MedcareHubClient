@@ -39,8 +39,13 @@ import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
 import PatientRegister from './Components/Dashboard/Pages/Patient/PatientRegister/PatientRegister.tsx';
 import CreateDoctor from './Components/Pages/CreateDoctors/CreateDoctor.tsx';
-import DoctorStatus from './Components/Dashboard/Pages/PatientStatus/DoctorStatus.tsx';
 import DoctorQue from './Components/Pages/Doctors/DoctorQue.tsx';
+import DocStatus from './Components/Dashboard/Pages/DocStatus/DocStatus.tsx';
+import CompanyRegister from './Components/Dashboard/Pages/CompanyRegister/CompanyRegister.tsx';
+import Testing from './Components/designTest/Testing.tsx';
+import BlogDetails from './Components/Pages/Blogs/BlogDetails.jsx';
+import { base_URL } from './utills/BaseURL.ts';
+import AllPatient from './Components/Dashboard/Pages/Patient/AllPatient.tsx';
 
 
 const queryClient = new QueryClient()
@@ -86,6 +91,9 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About></About>
+      }, {
+        path: '/data',
+        element: <Testing></Testing>
       },
       {
         path: '/company/:companyname',
@@ -104,6 +112,11 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart></Cart>
+      },
+      {
+        path: '/blogdetails/:id',
+        element: <BlogDetails></BlogDetails>,
+        loader: ({ params }) => fetch(`${base_URL}/Blog/${params?.id}`)
       }
     ]
   },
@@ -117,7 +130,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/docstatus',
-        element: <DoctorStatus></DoctorStatus>
+        element: <DocStatus></DocStatus>
       }, {
         path: '/dashboard/comproduct',
         element: <CompanyProduct></CompanyProduct>
@@ -149,7 +162,16 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/docque',
         element: <DoctorQue></DoctorQue>
+      },
+      {
+        path: '/dashboard/comregister',
+        element: <CompanyRegister></CompanyRegister>
+      },
+      {
+        path: '/dashboard/allpateint',
+        element: <AllPatient></AllPatient>
       }
+
     ]
   },
   {
