@@ -45,6 +45,7 @@ import CompanyRegister from './Components/Dashboard/Pages/CompanyRegister/Compan
 import Testing from './Components/designTest/Testing.tsx';
 import BlogDetails from './Components/Pages/Blogs/BlogDetails.jsx';
 import { base_URL } from './utills/BaseURL.ts';
+import AllPatient from './Components/Dashboard/Pages/Patient/AllPatient.tsx';
 
 
 const queryClient = new QueryClient()
@@ -165,7 +166,12 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/comregister',
         element: <CompanyRegister></CompanyRegister>
+      },
+      {
+        path: '/dashboard/allpateint',
+        element: <AllPatient></AllPatient>
       }
+
     ]
   },
   {
