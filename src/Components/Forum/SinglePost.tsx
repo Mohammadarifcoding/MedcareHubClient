@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import UseAuth from '../../Hook/UseAuth.tsx';
 import DisplayComment from './DisplayComment.tsx';
+import { SlLike, SlDislike } from "react-icons/sl";
 
 interface SinglePostProps {
     data: {
@@ -68,16 +69,24 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             <div className="pt-5">
                 <h1 className="text-2xl font-medium ">{title}</h1>
                 <p className="text-xl font-normal pt-2">{discription}</p>
-                <div className="pt-5 flex gap-2 items-center">
-                    <FaRegCommentAlt />
-                    <p>{comments.length} Comments</p>
+                <div className='flex justify-between items-center'>
+                    <div className="pt-5 flex gap-2 items-center">
+                        <FaRegCommentAlt />
+                        <p>{comments.length} Comments</p>
+                    </div>
+                    <div className="flex justify-center gap-5">
+                        <div>
+                            <button onClick={() => handleLikeDislike(1, 0)}><SlLike className="text-3xl"></SlLike></button>
+                            <p className="text-xl">Like: like</p>
+                        </div>
+                        <div>
+                            <button onClick={() => handleLikeDislike(0, 1)}><SlDislike className="text-3xl"></SlDislike></button>
+                            <p className="text-xl">Dislike: dislike</p>
+                        </div>
+                    </div>
                 </div>
                 <div>
-                    {/* {
-                        comments?.map((comment, idx) => <p className="py-3" key={comment.id}>
-                            {idx + 1}/ {comment.user}:   {comment.comment}
-                        </p>)
-                    } */}
+
                     {comments.map(commentData => <DisplayComment key={commentData._id} commentData={commentData} />)}
                 </div>
             </div>
