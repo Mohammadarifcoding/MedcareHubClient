@@ -23,7 +23,7 @@ const Register = () => {
         formState: { errors }
     } = useForm();
 
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
         console.log(data);
 
         let imageUrl;
@@ -31,7 +31,7 @@ const Register = () => {
         const formData = new FormData();
         const singleImageFile = data.photoURL[0];
         formData.append('image', singleImageFile);
-    
+
         try {
             const response = await axios.post(image_hosting_api, formData, {
                 headers: {
@@ -161,10 +161,10 @@ const Register = () => {
                                     <span className="text-red-800">Password must have at least one upper case,at least one lower case, one number and one special character</span>
                                 )}
                             </div>
-                            <button className="btn bg-[#0360D9] text-white w-full">Sign up</button>
+                            <button type='submit' className="btn bg-[#0360D9] text-white w-full">Sign up</button>
 
                             <div className="mt-4 gap-10">
-                                <button onClick={handleGoogle} type="button" className="btn bg-[#0360D9] text-white w-full">
+                                <button onClick={handleGoogle} type="submit" className="btn bg-[#0360D9] text-white w-full">
                                     <svg className="w-4 h-auto" width="46" height="47" viewBox="0 0 46 47" fill="none">
                                         <path
                                             d="M46 24.0287C46 22.09 45.8533 20.68 45.5013 19.2112H23.4694V27.9356H36.4069C36.1429 30.1094 34.7347 33.37 31.5957 35.5731L31.5663 35.8669L38.5191 41.2719L38.9885 41.3306C43.4477 37.2181 46 31.1669 46 24.0287Z"
