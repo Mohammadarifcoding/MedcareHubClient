@@ -46,6 +46,7 @@ import Testing from './Components/designTest/Testing.tsx';
 import BlogDetails from './Components/Pages/Blogs/BlogDetails.jsx';
 import { base_URL } from './utills/BaseURL.ts';
 import AllPatient from './Components/Dashboard/Pages/Patient/AllPatient.tsx';
+import AllCompany from './Components/Dashboard/Pages/CompanyRegister/AllCompany.tsx';
 
 
 const queryClient = new QueryClient()
@@ -170,6 +171,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/allpateint',
         element: <AllPatient></AllPatient>
+      },
+      {
+        path: '/dashboard/companys',
+        element: <AllCompany></AllCompany>
       }
 
     ]

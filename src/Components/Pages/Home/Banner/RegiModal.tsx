@@ -44,8 +44,12 @@ const RegiModal = () => {
             Email: data.Email,
             Phone: data.Phone,
             Address: data.Address,
-            specialties: data.specialties,
-            services: data.services,
+            specialties: {
+                specialties: data.specialties
+            },
+            services: {
+                services: data.services
+            },
             degree: data.degree,
             serviceFee: data.serviceFee,
             image: imageUrl
@@ -72,9 +76,8 @@ const RegiModal = () => {
                 <div className={`fixed flex justify-center items-center z-[100] ${openModal ? 'visible opacity-1' : 'invisible opacity-0'} duration-300 inset-0 w-full h-full`}>
                     <div
                         onClick={(e_) => e_.stopPropagation()}
-                        className={`absolute overflow-x-hidden overflow-y-scroll w-full h-full flex justify-center bg-white drop-shadow-2xl rounded-lg ${
-                            openModal ? 'translate-y-0 opacity-1 duration-300' : 'translate-y-32 opacity-0 duration-1000'
-                        }`}
+                        className={`absolute overflow-x-hidden overflow-y-scroll w-full h-full flex justify-center bg-white drop-shadow-2xl rounded-lg ${openModal ? 'translate-y-0 opacity-1 duration-300' : 'translate-y-32 opacity-0 duration-1000'
+                            }`}
                     >
                         <main className="px-4 sm:px-6 lg:px-8 py-8">
                             <div className="space-y-8 lg:mb-6">

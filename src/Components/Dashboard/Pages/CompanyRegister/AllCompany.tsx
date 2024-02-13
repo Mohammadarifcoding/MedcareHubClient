@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 import { TiTickOutline } from "react-icons/ti";
 import { MdDelete } from "react-icons/md";
-const AllPatient = () => {
-    const [patient, setPatient] = useState()
-    useEffect(() => {
-        fetch(`${base_URL}/Patients`)
-            .then(res => res.json())
-            .then(data => setPatient(data))
-    })
 
-    // console.log(patient);
+const AllCompany = () => {
+    const [company, setCompany] = useState()
+    useEffect(() => {
+        fetch(`${base_URL}/Companys`)
+            .then(res => res.json())
+            .then(data => setCompany(data))
+    })
+    console.log(company);
     return (
         <div className="overflow-x-auto">
 
@@ -19,25 +19,23 @@ const AllPatient = () => {
                 <thead className="bg-[#0360D9] text-white">
                     <tr>
 
-                        <th className="px-6 py-3 text-center"> Name</th>
-                        <th className="px-6 py-3 text-center"> Age</th>
-                        <th className="px-6 py-3 text-center">Blood Group</th>
-                        <th className="px-6 py-3 text-center">Patient Issue</th>
-                        <th className="px-6 py-3 text-center">Gender</th>
+                        <th className="px-6 py-3 text-center">Company Image</th>
+                        <th className="px-6 py-3 text-center">Company Name</th>
+                        <th className="px-6 py-3 text-center">Company Email</th>
+                        <th className="px-6 py-3 text-center">Owner Email</th>
                         <th className="px-6 py-3 text-center">Status</th>
                         <th className="px-6 py-3 text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody className="rounded-xl">
-                    {patient?.map((user) => <tr key={user?._id}>
+                    {company?.map((user) => <tr key={user?._id}>
 
-                        <td className="border-t px-6 py-4 text-center ">{user?.patientName}</td>
-                        <td className="border-t px-6 py-4 text-center ">{user?.Age}</td>
-                        <td className="border-t px-6 py-4 text-center">{user?.bloodGroup}</td>
-                        <td className="border-t px-6 py-4 text-center">{user?.patientIssue}</td>
-                        <td className="border-t px-6 py-4 text-center">{user?.Gender}</td>
-
-
+                        <td className='items-center justify-center flex mx-auto'>
+                            <img className='h-[60px] w-[60px] rounded-full' src={user?.comimage} alt="" />
+                        </td>
+                        <td className="border-t px-6 py-4 text-center ">{user?.comname}</td>
+                        <td className="border-t px-6 py-4 text-center ">{user?.comemail}</td>
+                        <td className="border-t px-6 py-4 text-center">{user?.owneremail}</td>
 
                         <td className="px-6 py-4 border-t text-center">
                             <button className="text-white btn btn-ghost  hover:bg-[#393E46] bg-[#0360D9] hover:text-red-800">
@@ -68,4 +66,4 @@ const AllPatient = () => {
     );
 };
 
-export default AllPatient;
+export default AllCompany;
