@@ -286,7 +286,7 @@ const Doctors = () => {
                     <h1 className="lg:text-4xl text-2xl font-bold ">Our Expert Doctors</h1>
                     <p className="text-lg">Meet our doctor—a beacon of knowledge, a guardian of health, and a partner in your wellness journey.</p>
                 </div>
-                <div className="md:mx-4 xl:w-[100%] w-full">
+                <div className="md:mx-4 xl:w-[100%] w-full ">
                     <DoctorCard filter={filter} setFilter={setFilter} isButtonClicked={isButtonClicked}></DoctorCard>
                 </div>
             </div>

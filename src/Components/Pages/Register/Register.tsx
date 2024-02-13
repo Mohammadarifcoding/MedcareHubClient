@@ -20,7 +20,7 @@ const Register = () => {
         register,
         handleSubmit,
         reset,
-        formState: { errors }
+        formState: { errors } 
     } = useForm();
 
     const onSubmit = async (data) => {
