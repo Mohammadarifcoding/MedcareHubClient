@@ -6,6 +6,7 @@ import { PiDotsNineBold } from 'react-icons/pi';
 import Drawer from 'react-modern-drawer';
 import { NavLink, Outlet } from 'react-router-dom';
 import UseAuth from '../../../Hook/UseAuth.tsx';
+import { MdOutlineSick } from "react-icons/md";
 
 const DashboardLayout = () => {
     const [openLayout, setOpenLayout] = useState(true);
@@ -65,6 +66,9 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/comregister" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaHospitalUser /> Company Register
                             </NavLink>
+                            <NavLink to="/dashboard/allpateint" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                <MdOutlineSick /> All Patients
+                            </NavLink>
                         </>
                     ) : (
                         <>
@@ -104,6 +108,9 @@ const DashboardLayout = () => {
                             </NavLink>
                             <NavLink to="/dashboard/comregister" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <FaHospitalUser />
+                            </NavLink>
+                            <NavLink to="/dashboard/allpateint" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                <MdOutlineSick />
                             </NavLink>
                         </>
                     )}
@@ -192,6 +199,12 @@ const DashboardLayout = () => {
                                         <FaBook />
                                     </p>
                                     <NavLink to="/dashboard/comregister">Company Register</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <MdOutlineSick />
+                                    </p>
+                                    <NavLink to="/dashboard/allpateint">All Patient</NavLink>
                                 </div>
                             </div>
                         </Drawer>
