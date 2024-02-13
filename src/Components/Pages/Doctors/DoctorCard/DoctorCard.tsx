@@ -43,7 +43,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
     return (
         <>
             {!isLoading ? (
-                <div className="container mx-auto grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 lg:gap-6 my-10 ">
+                <div className="container mx-auto grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 lg:gap-6 my-10  ">
                     {filteredDoctors?.map((data) => (
                         <div key={data?.ID} className=" w-full max-w-[350px] shadow-lg border border-gray-200 rounded-lg overflow-hidden">
                             <Link to={`/doctors/${data?.ID}`}>

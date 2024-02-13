@@ -66,7 +66,7 @@ const Doctors = () => {
     };
 
     return (
-        <div className="flex container mx-auto gap-10 justify-between">
+        <div className="flex container lg:mx-auto  gap-10 justify-between">
             <div className="mt-10 xl:w-[20%] w-0 xl:block hidden">
                 <h1 className="text-2xl font-semibold text-[#0360D9] ">Filters</h1>
                 <hr className="my-4" />
@@ -286,7 +286,7 @@ const Doctors = () => {
                     <h1 className="lg:text-4xl text-2xl font-bold ">Our Expert Doctors</h1>
                     <p className="text-lg">Meet our doctor—a beacon of knowledge, a guardian of health, and a partner in your wellness journey.</p>
                 </div>
-                <div className="md:mx-5 xl:w-[100%] w-full">
+                <div className="md:mx-4 xl:w-[100%] w-full">
                     <DoctorCard filter={filter} setFilter={setFilter} isButtonClicked={isButtonClicked}></DoctorCard>
                 </div>
             </div>

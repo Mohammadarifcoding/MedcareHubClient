@@ -166,7 +166,7 @@ const MedicineItem = ({ filter }) => {
                                             : {medicine.Company}
                                         </p>
                                     </Link>
-
+ 
                                     <div className="flex items-center justify-between">
                                         <h4 className="text-lg font-bold lg:text-xl">Price : ${medicine?.Price}</h4>
                                     </div>
