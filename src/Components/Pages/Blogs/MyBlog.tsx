@@ -6,19 +6,15 @@ import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useForm } from 'react-hook-form';
-import { base_URL } from '../../../utills/BaseURL.ts';
 import BlogModal from './BlogModal.tsx';
+
 
 const MyBlog = () => {
 
-    const [blogsData] = UseSingleBlog()
-    const [refetchData, setRefecthData] = useState(false)
+
+    const { blogsData, isLoading, refetch } = UseSingleBlog()
     const [openModal, setOpenModal] = useState(false);
-    const [blog, setBlog] = useState()
-    const {
-        register,
-        handleSubmit,
-    } = useForm()
+
 
     const handleDeleteUser = blog => {
         Swal.fire({
@@ -32,43 +28,22 @@ const MyBlog = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/Blog/${blog?._id}`)
+                axios.delete(`http://localhost:5000/Blog/${blog?.ID}`)
                     .then(res => {
-
-
                         Swal.fire({
                             title: "Deleted!",
                             text: "User has been deleted.",
                             icon: "success"
                         });
-                        setRefecthData(!refetchData)
+                        refetch()
+                    })
+                    .catch(err=>{
+                        console.log(err)
                     })
             }
         });
     }
 
-
-
-
-    // const handleBlogEdit = (data) => {
-    //     console.log(data);
-    //     const formData = {
-    //         BlogName: data.BlogName,
-    //         BlogWriting: data.BlogWriting,
-    //         BlogPic: data.BlogPic,
-    //         BlogWriterName: data.BlogWriterName,
-    //         BlogWriterImage: data.BlogWriterImage
-    //     };
-    //     console.log(formData);
-    //     axios.put(`${base_URL}/Blogs/${data.id}`, formData)
-    //         .then((res) => {
-    //             console.log(res);
-    //             Swal.fire("You registered for doctor successfully!");
-    //             setOpenModal(false)
-
-    //         })
-    //         .catch((error) => console.error("Error updating status:", error));
-    // };
 
 
 
