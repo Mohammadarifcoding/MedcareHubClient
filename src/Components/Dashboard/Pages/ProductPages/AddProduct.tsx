@@ -10,7 +10,7 @@ const AddProduct = () => {
     const { user } = UseAuth();
     const AxiousPublic = UseAxiosPublic();
 
-    const handleAddMedicine = async(event) => {
+    const handleAddMedicine = async (event) => {
         event.preventDefault();
         const form = event.target;
         const ID = crypto.randomUUID();
@@ -40,15 +40,15 @@ const AddProduct = () => {
             return;
         }
 
-        const newMedicine = { 
-            ID, 
-            companyEmail, 
-            Image: imageUrl, 
-            Price, 
-            Medname, 
-            Company, 
-            Category, 
-            Description 
+        const newMedicine = {
+            ID,
+            companyEmail,
+            Image: imageUrl,
+            Price,
+            Medname,
+            Company,
+            Category,
+            Description
         };
         // console.log(newMedicine);
 
@@ -72,8 +72,8 @@ const AddProduct = () => {
     };
 
     return (
-        <div className="mx-3">
-            <div className="md:py-20 py-10 px-3">
+        <div className="md:mx-3">
+            <div className="md:py-20 py-8 md:px-3">
                 <h1 className="text-center font-extrabold mb-10 text-[#0360D9] text-2xl md:text-4xl">Add Medicine</h1>
                 <form onSubmit={handleAddMedicine}>
                     <div className="md:flex gap-6 justify-center mb-8">
@@ -102,11 +102,11 @@ const AddProduct = () => {
                                 <span className="label-text font-bold">Medicine Image URL</span>
                             </label>
                             <label className="flex items-center">
-                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">Image:</span>
+                                <span className="font-medium md:block hidden bg-[#0360D9] p-3 rounded-l-md text-white">Image:</span>
                                 <input
                                     type="file"
                                     name="Image"
-                                    className="input rounded-r-md rounded-l-none w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                    className="input rounded-r-md md:rounded-l-none rounded-l-md w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
                                     accept="image/*"
                                     required
                                 />
