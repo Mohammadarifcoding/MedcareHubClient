@@ -174,10 +174,9 @@ const MedicienDetails = () => {
                             ></input>
                         </div>
 
-                        <button type="submit" className="btn bg-blue-600 text-white block w-full">
+                        <button type="submit" className="btn bg-blue-600 text-white block w-full md:w-[600px]">
                             Give REVIEW
                         </button>
-                     
                     </div>
                 </form>
             </div>
