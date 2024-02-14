@@ -21,7 +21,7 @@ const MedWishList = () => {
                 setWishFilter(filteredData);
             })
             .catch(error => console.error('Error fetching data:', error));
-    }, [])
+    }, [user])
     console.log(wishFilter);
 
     const handleAddtoCart = (item) => {
