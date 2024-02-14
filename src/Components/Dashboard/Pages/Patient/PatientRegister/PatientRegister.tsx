@@ -93,8 +93,8 @@ const PatientRegister = () => {
     };
 
     return (
-        <div className="mx-3">
-            <div className="md:py-20 py-10 px-3">
+        <div className="md:mx-3">
+            <div className="md:py-20 py-8 md:px-3">
                 <h1 className="text-center font-extrabold mb-10 text-purple-500 text-2xl md:text-4xl">Register Patient</h1>
                 <form onSubmit={handleAddPatient}>
                     <div className="md:flex gap-6 justify-center mb-8">
@@ -123,11 +123,11 @@ const PatientRegister = () => {
                                 <span className="label-text font-bold">Patient Image URL</span>
                             </label>
                             <label className="flex items-center">
-                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">Image:</span>
+                                <span className="font-medium hidden md:block bg-[#0360D9] p-3 rounded-l-md text-white">Image:</span>
                                 <input
                                     type="file"
                                     name="Image"
-                                    className="input rounded-r-md rounded-l-none w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                    className="input rounded-r-md md:rounded-l-none rounded-l-md w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
                                     accept="image/*"
                                     required
                                 />
@@ -192,12 +192,12 @@ const PatientRegister = () => {
                                 <span className="label-text font-bold">Patient Previous Tests</span>
                             </label>
                             <label className="flex items-center">
-                                <span className="font-medium bg-[#0360D9] p-3 rounded-l-md text-white">Tests:</span>
+                                <span className="font-medium hidden md:block bg-[#0360D9] p-3 rounded-l-md text-white">Tests:</span>
                                 <input
                                     type="file"
                                     name="previousTests"
                                     multiple
-                                    className="input rounded-r-md rounded-l-none w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
+                                    className="input rounded-r-md md:rounded-l-none rounded-l-md w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
                                     accept="image/*"
                                 />
                             </label>
