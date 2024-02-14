@@ -28,8 +28,6 @@ import DetailsMedicien from '../public/Asset/DetailsOfMedicine/DetailsMedicien.t
 import MedicienDetails from './Components/Pages/Detailsofmediciens/MedicienDetails.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AllUser from './Components/Dashboard/Pages/AllUser.tsx';
-
-
 import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.tsx';
 import Blog from './Components/Pages/Blogs/Blog.tsx';
 import MyBlog from './Components/Pages/Blogs/MyBlog.tsx';
@@ -49,6 +47,7 @@ import AllPatient from './Components/Dashboard/Pages/Patient/AllPatient.tsx';
 import AllCompany from './Components/Dashboard/Pages/CompanyRegister/AllCompany.tsx';
 import ComDesh from './Components/companyDash/ComDesh.tsx';
 import MedWishList from './Components/Pages/Medicines/MedicinItem/MedWishList.tsx';
+import CheckoutPage from './Components/Pages/CheckOut/CheckoutPage.tsx';
 
 
 const queryClient = new QueryClient()
@@ -124,6 +123,10 @@ const router = createBrowserRouter([
       {
         path: '/wishlist',
         element: <MedWishList></MedWishList>
+      },
+      {
+        path:'/checkout/:amount',
+        element:<CheckoutPage></CheckoutPage>
       }
     ]
   },

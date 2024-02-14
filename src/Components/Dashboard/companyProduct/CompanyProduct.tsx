@@ -1,138 +1,122 @@
 import React from 'react';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
 
 const CompanyProduct = () => {
     return (
-        <div className='md:pt-0 pt-8'>
-            <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-        {/* row 1 */}
-      <tr className='bg-blue-600 text-white md:text-2xl h-[60px] text-center'>
-        <th>Image</th>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Type</th>
-        <th>Edit</th>
-        <th>Delete</th>
-       
-      </tr>
-    </thead>
-    <tbody className=' bg-base-300 text-center md:text-xl '>
-      {/* row 1 */}
-      <tr>
-      <td className='items-center justify-center flex mx-auto'>
-            
-            <img className='w-24 h-20 rounded-md' src="https://i.ibb.co/6JZMKrD/71m5-N6h-4-JL-AC-UF1000-1000-QL80.jpg" alt="" />
-        </td>
-        <td>
-            <div>
-              <div className="font-bold">Echinacea Extract</div>
-             
+        <>
+            <div className="mt-5 ml-3 md:ml-0 md:my-5">
+                <h1 className="text-2xl font-semibold">Company Product</h1>
+                <p>Explore and mange your Company Product inventory effortlessly in one place.</p>
             </div>
-        
-        </td>
-        
-        <td className='font-bold'>
-        19.99
-          
-        </td>
-        <td className='font-bold'>Herbal Care</td>
-        <th>
-          <button className="btn bg-orange-500 text-white ">Edit</button>
-        </th>
-        <th>
-          <button className="btn bg-red-600 text-white ">Delete</button>
-        </th>
-      </tr>
-      {/* row2 */}
-      <tr>
-      <td className='items-center justify-center flex mx-auto'>
-            
-            <img className='w-24 h-20 rounded-md' src="https://i.ibb.co/8NKrrSt/download-5.jpg" alt="" />
-        </td>
-        <td>
-            <div>
-              <div className="font-bold">Turmeric Capsules</div>
-             
-            </div>
-        
-        </td>
-        
-        <td className='font-bold'>
-        24.99
-          
-        </td>
-        <td className='font-bold'>Herbal Care</td>
-        <th>
-          <button className="btn bg-orange-500 text-white ">Edit</button>
-        </th>
-        <th>
-          <button className="btn bg-red-600 text-white ">Delete</button>
-        </th>
-      </tr>
 
-        {/* row3 */}
-        <tr>
-      <td className='items-center justify-center flex mx-auto'>
-            
-            <img className='w-24 h-20 rounded-md' src="https://i.ibb.co/1qvg3yG/images-2.jpg" alt="" />
-        </td>
-        <td>
-            <div>
-              <div className="font-bold">Ginger Tea</div>
-             
-            </div>
-        
-        </td>
-        
-        <td className='font-bold'>
-        9.99
-          
-        </td>
-        <td className='font-bold'>Herbal Care</td>
-        <th>
-          <button className="btn bg-orange-500 text-white ">Edit</button>
-        </th>
-        <th>
-          <button className="btn bg-red-600 text-white ">Delete</button>
-        </th>
-      </tr>
+            <div className="md:pt-0 pt-8 md:ml-4">
+                <div className="overflow-x-auto w-full rounded-lg">
+                    <table className="table w-full">
+                        {/* head */}
+                        <thead>
+                            {/* row 1 */}
+                            <tr className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
+                                <th>Medicine Name</th>
+                                <th>Category</th>
+                                <th>Company</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-base-300">
+                            {/* row 1 */}
+                            <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] ">
+                                <td className=" flex items-center gap-1.5 pt-5 md:pt-3  md:gap-2">
+                                    <img className="w-12 h-12 rounded-md" src="https://i.ibb.co/6JZMKrD/71m5-N6h-4-JL-AC-UF1000-1000-QL80.jpg" alt="Echinacea Extract" />
+                                    <h3 className="font-medium text-sm">Echinacea Extract</h3>
+                                </td>
 
-        {/* row4*/}
-        <tr>
-      <td className='items-center justify-center flex mx-auto'>
-            
-            <img className='w-24 h-20 rounded-md' src="https://i.ibb.co/bRqBTFh/download-6.jpg" alt="" />
-        </td>
-        <td>
-            <div>
-              <div className="font-bold">Peppermint Oil</div>
-             
+                                <td className="font-medium text-sm">Herbal Care</td>
+                                <td className="font-medium text-sm ">NatureWellness</td>
+                                <td className="">
+                                    <p className="font-medium text-sm "> $19.99</p>
+                                </td>
+                                <td className="">
+                                    <button className="text-xl mb-5  ml-4 md:ml-0 md:mb-0 mr-5">
+                                        <FiEdit />
+                                    </button>
+                                    <button className="text-red-600 text-xl ml-4 md:ml-0">
+                                        <AiOutlineDelete />
+                                    </button>
+                                </td>
+                            </tr>
+                            {/* row2 */}
+                            <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] ">
+                                <td className=" flex items-center gap-1.5 pt-5 md:pt-3  md:gap-2">
+                                    <img className="w-12 h-12 rounded-md" src="https://i.ibb.co/8NKrrSt/download-5.jpg" alt="Echinacea Extract" />
+                                    <h3 className="font-medium text-sm">Turmeric Capsules</h3>
+                                </td>
+
+                                <td className="font-medium text-sm">Herbal Care</td>
+                                <td className="font-medium text-sm ">GreenBotanicals</td>
+                                <td className="">
+                                    <p className="font-medium text-sm "> $24.99</p>
+                                </td>
+                                <td className="">
+                                    <button className="text-xl mb-5  ml-4 md:ml-0 md:mb-0 mr-5">
+                                        <FiEdit />
+                                    </button>
+                                    <button className="text-red-600 text-xl ml-4 md:ml-0">
+                                        <AiOutlineDelete />
+                                    </button>
+                                </td>
+                            </tr>
+
+                            {/* row3 */}
+                            <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] ">
+                                <td className=" flex items-center gap-1.5 pt-5 md:pt-3  md:gap-2">
+                                    <img className="w-12 h-12 rounded-md" src="https://i.ibb.co/1qvg3yG/images-2.jpg" alt="Echinacea Extract" />
+                                    <h3 className="font-medium text-sm">Ginger Tea</h3>
+                                </td>
+
+                                <td className="font-medium text-sm">Herbal Care</td>
+                                <td className="font-medium text-sm ">HarmonyHerbs</td>
+                                <td className="">
+                                    <p className="font-medium text-sm "> $9.99</p>
+                                </td>
+                                <td className="">
+                                    <button className="text-xl mb-5  ml-4 md:ml-0 md:mb-0 mr-5">
+                                        <FiEdit />
+                                    </button>
+                                    <button className="text-red-600 text-xl ml-4 md:ml-0">
+                                        <AiOutlineDelete />
+                                    </button>
+                                </td>
+                            </tr>
+
+                            {/* row4*/}
+                            <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] ">
+                                <td className=" flex items-center gap-1.5 pt-5 md:pt-3  md:gap-2">
+                                    <img className="w-12 h-12 rounded-md" src="https://i.ibb.co/bRqBTFh/download-6.jpg" alt="Echinacea Extract" />
+                                    <h3 className="font-medium text-sm">Peppermint Oil</h3>
+                                </td>
+
+                                <td className="font-medium text-sm">Herbal Care</td>
+                                <td className="font-medium text-sm ">EssentialWell</td>
+                                <td className="">
+                                    <p className="font-medium text-sm "> $14.99</p>
+                                </td>
+                                <td className="">
+                                    <button className="text-xl mb-5  ml-4 md:ml-0 md:mb-0 mr-5">
+                                        <FiEdit />
+                                    </button>
+                                    <button className="text-red-600 text-xl ml-4 md:ml-0">
+                                        <AiOutlineDelete />
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {/* foot */}
+                    </table>
+                </div>
             </div>
-        
-        </td>
-        
-        <td className='font-bold'>
-        14.99
-          
-        </td>
-        <td className='font-bold'>Herbal Care</td>
-        <th>
-          <button className="btn bg-orange-500 text-white ">Edit</button>
-        </th>
-        <th>
-          <button className="btn bg-red-600 text-white ">Delete</button>
-        </th>
-      </tr>
-    
-    </tbody>
-    {/* foot */}
-    
-    
-  </table>
-</div>
-        </div>
+        </>
     );
 };
 
