@@ -34,7 +34,8 @@ const ShippingInfo = () => {
         "Brunei",
         "Maldives"
     ];
-
+    
+    console.log(address)
     return (
         <div className='w-full mt-10'>
             <div className='flex flex-col gap-2'>
