@@ -22,7 +22,7 @@ const MyProductRow = ({ handleDeleteMedicine, medicine }) => {
                         <FiEdit />
                     </button>
                 </Link>
-                <button className="text-red-600 text-xl ml-4 md:ml-0" onClick={() => handleDeleteMedicine(_id)}>
+                <button className="text-red-600 hover:text-red-800 text-xl ml-4 md:ml-0" onClick={() => handleDeleteMedicine(_id)}>
                     <AiOutlineDelete />
                 </button>
             </td>
