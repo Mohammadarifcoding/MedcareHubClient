@@ -60,7 +60,7 @@ const ComDesh = () => {
 
       {/* visitors */}
 
-      <div className='md:w-[700px] md:mt-0 mt-[30px]  w-full sm:w-[300px] h-[270px] bg-base-100  rounded-md'>
+      <div className='md:w-[700px] md:mt-0 mt-[30px]  w-full  h-[270px] bg-base-100  rounded-md'>
       <h1 className='md:text-3xl pl-5 font-bold pt-4 '>Visitors</h1>
        <div>
          
@@ -73,7 +73,7 @@ const ComDesh = () => {
 
          <div className='flex md:flex-row flex-col gap-4'>
 
-         <div className='bg-white mt-2  md:w-[800px] w-full sm:w-[200px] h-[300px]'>
+         <div className='bg-white mt-2  md:w-[800px] w-full h-[300px]'>
           <h1 className='text-3xl pl-5 font-bold pt-2 '>Top Product</h1>
           <TopProduct />
           </div>
