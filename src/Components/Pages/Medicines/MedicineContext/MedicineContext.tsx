@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react';
 const MedicineContext = createContext(null);
 
 export const useMedicineContext = () => {
-  return useContext(MedicineContext);
+  return useContext(MedicineContext); 
 };
 
 export const MedicineProvider = ({ children }) => {
