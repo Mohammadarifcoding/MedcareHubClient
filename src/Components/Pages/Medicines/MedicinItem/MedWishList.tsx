@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 import UseAuth from '../../../../Hook/UseAuth.tsx';
-import Cart from '../../../../assets/Icons/Cart.tsx';
+// import Cart from '../../../../assets/Icons/Cart.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import UseCart from '../../../../Hook/UseCart.tsx';
 import Swal from 'sweetalert2';
@@ -12,6 +12,7 @@ const MedWishList = () => {
     const { user } = UseAuth();
     const AxiousPublic = UseAxiosPublic();
     const [, refetch] = UseCart();
+    
     useEffect(() => {
         fetch(`${base_URL}/Medicines?email=${user?.email}`)
             .then(res => res.json())
@@ -21,7 +22,7 @@ const MedWishList = () => {
                 setWishFilter(filteredData);
             })
             .catch(error => console.error('Error fetching data:', error));
-    }, [])
+    }, [user])
     console.log(wishFilter);
 
     const handleAddtoCart = (item) => {
@@ -52,12 +53,32 @@ const MedWishList = () => {
 
     };
 
+
     const handleRemove = (id) => {
-        AxiousPublic.delete(`/Medicines/${id}`)
-            .then(res => {
-                console.log(res.data)
-                refetch()
-            })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                AxiousPublic.delete(`/Medicines/${id}`)
+                    .then(res => {
+
+
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Item has been deleted.",
+                            icon: "success"
+                        });
+                        refetch();
+                    })
+            }
+        });
     }
     return (
         <div>
@@ -87,7 +108,7 @@ const MedWishList = () => {
                                         className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5"
                                         onClick={() => handleAddtoCart(item)}
                                     >
-                                        <Cart />
+                                        {/* <Cart /> */}
                                         Add to Cart
                                     </button>
                                 </div>
