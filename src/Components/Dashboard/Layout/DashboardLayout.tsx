@@ -222,8 +222,10 @@ const DashboardLayout = () => {
                                     </p>
                                 <NavLink to="/dashboard/addpatient">Patient Register</NavLink>
 
+
                                 </div>
                                   <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+
                                     <p>
                                         <FaBook />
                                     </p>

@@ -11,6 +11,8 @@ import LoveFill from '../../../../assets/Icons/LoveFill.tsx';
 import LoveLine from '../../../../assets/Icons/LoveLine.tsx';
 import { useMedicineContext } from '../MedicineContext/MedicineContext.tsx';
 import { uuidv4 } from '@firebase/util';
+import axios from 'axios';
+import { base_URL } from '../../../../utills/BaseURL.ts';
 
 const MedicineItem = ({ filter }) => {
     const { user } = UseAuth();
@@ -40,6 +42,13 @@ const MedicineItem = ({ filter }) => {
         } else {
             setFavorites([...favorites, id]);
         }
+        axios.put(`${base_URL}/MedicineWish/${id}`)
+            .then((res) => {
+                console.log(res);
+                Swal.fire("You added this in your wish List");
+
+            })
+            .catch((error) => console.error("Error updating status:", error));
     };
 
     const { data: medicineData = [], isLoading } = useQuery({
@@ -81,14 +90,14 @@ const MedicineItem = ({ filter }) => {
 
     const handleAddtoCart = (item) => {
 
-            const cartItem = {
-                medicineId: item?.ID,
-                OrderId: uuidv4(),
-                email: user?.email,
-                medicine: item,
-                quantity:1
-            };
-            AxiousPublic.post('/CartMedicine', cartItem)
+        const cartItem = {
+            medicineId: item?.ID,
+            OrderId: uuidv4(),
+            email: user?.email,
+            medicine: item,
+            quantity: 1
+        };
+        AxiousPublic.post('/CartMedicine', cartItem)
             .then((res) => {
                 // console.log(res.data);
                 if (res.data) {
@@ -101,13 +110,14 @@ const MedicineItem = ({ filter }) => {
                     });
                     refetch();
                 }
-            }).catch(err=>{
+            }).catch(err => {
                 console.log(err)
             })
-   
+
     };
 
     const isFavorite = (id) => favorites.includes(id);
+
 
     return (
         <>
@@ -128,7 +138,8 @@ const MedicineItem = ({ filter }) => {
                     {filteredMedicine?.map((medicine) => (
                         <div className="space-y-3 " key={medicine?._id}>
                             <div className="flex items-center justify-center rounded-md border border-[#0360D9]/30 bg-white p-4">
-                             <Link to={`/detailsMed/${medicine.ID}`}>   <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
+                                <Link to={`/detailsMed/${medicine._id}`}>   
+                                <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
                             </div>
                             <div className="space-y-3">
                                 <div className="space-y-3 pl-2">
@@ -166,7 +177,7 @@ const MedicineItem = ({ filter }) => {
                                             : {medicine.Company}
                                         </p>
                                     </Link>
- 
+
                                     <div className="flex items-center justify-between">
                                         <h4 className="text-lg font-bold lg:text-xl">Price : ${medicine?.Price}</h4>
                                     </div>
@@ -181,9 +192,8 @@ const MedicineItem = ({ filter }) => {
                                     </button>
                                     <button
                                         onClick={() => handleToggleFavorite(medicine?._id)}
-                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${
-                                            isFavorite(medicine?._id) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
-                                        } py-1.5 transition-all lg:py-1.5`}
+                                        className={`flex min-w-[132px] items-center justify-center gap-1 rounded-md ${isFavorite(medicine?._id) ? 'bg-[#DC2954]/[14%] text-[#0360D9] hover:bg-[#DC2954]/[24%]' : 'bg-[#0360D9]/[14%] text-[#1C4336] hover:bg-[#0360D9]/[24%]'
+                                            } py-1.5 transition-all lg:py-1.5`}
                                     >
                                         {isFavorite(medicine?._id) ? <LoveFill /> : <LoveLine />}
                                         Favourite
