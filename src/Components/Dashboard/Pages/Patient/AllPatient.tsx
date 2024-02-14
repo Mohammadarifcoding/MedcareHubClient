@@ -8,7 +8,7 @@ const AllPatient = () => {
         fetch(`${base_URL}/Patients`)
             .then(res => res.json())
             .then(data => setPatient(data))
-    })
+    },[])
 
     // console.log(patient);
     return (

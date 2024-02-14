@@ -119,10 +119,6 @@ const MedicineItem = ({ filter }) => {
     const isFavorite = (id) => favorites.includes(id);
 
 
-    const handleWishList = (data) => {
-        console.log(data);
-
-    }
     return (
         <>
             <div className="mx-2 space-y-2 mb-5 -mt-2 mr-5">
