@@ -7,6 +7,7 @@ import Drawer from 'react-modern-drawer';
 import { NavLink, Outlet } from 'react-router-dom';
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import { MdOutlineSick } from 'react-icons/md';
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 
 const DashboardLayout = () => {
     const [openLayout, setOpenLayout] = useState(true);
@@ -72,6 +73,10 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/companys" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <MdOutlineSick /> All Company
                             </NavLink>
+
+                            <NavLink to="/dashboard/comde" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                            <HiOutlineBuildingOffice2 /> Company Dashborad
+                            </NavLink>
                         </>
                     ) : (
                         <>
@@ -113,6 +118,9 @@ const DashboardLayout = () => {
                                 <MdOutlineSick />
                             </NavLink>
                             <NavLink to="/dashboard/companys" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                <MdOutlineSick />
+                            </NavLink>
+                            <NavLink to="/dashboard/comde" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
                                 <MdOutlineSick />
                             </NavLink>
                         </>
@@ -215,7 +223,8 @@ const DashboardLayout = () => {
                                 <NavLink to="/dashboard/addpatient">Patient Register</NavLink>
 
                                 </div>
-
+                                  <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
                                         <FaBook />
                                     </p>
                                     <NavLink to='/dashboard/comde'>Company Dashboard</NavLink>
