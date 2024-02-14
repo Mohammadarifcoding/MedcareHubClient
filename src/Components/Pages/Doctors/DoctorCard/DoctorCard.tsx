@@ -45,7 +45,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
             {!isLoading ? (
                 <div className="container mx-auto grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 lg:gap-6 my-10  ">
                     {filteredDoctors?.map((data) => (
-                        <div key={data?.ID} className=" w-full max-w-[350px] shadow-lg border border-gray-200 rounded-lg overflow-hidden">
+                        <div key={data?.ID} className=" w-full max-w-[350px] mx-auto shadow-lg border border-gray-200 rounded-lg overflow-hidden">
                             <Link to={`/doctors/${data?.ID}`}>
                                 <div className="flex-col space-y-1.5 flex items-center gap-4 p-6 bg-[#E1EEFF] ">
                                     <span className="relative flex shrink-0 overflow-hidden rounded-full w-14 h-14">

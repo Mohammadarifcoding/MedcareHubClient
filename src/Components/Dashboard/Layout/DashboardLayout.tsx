@@ -202,6 +202,7 @@ const DashboardLayout = () => {
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
+
                                         <MdOutlineSick />
                                     </p>
                                     <NavLink to="/dashboard/allpateint">All Patient</NavLink>
@@ -213,7 +214,16 @@ const DashboardLayout = () => {
                                     </p>
                                 <NavLink to="/dashboard/addpatient">Patient Register</NavLink>
 
+                                    </div>
+                                    <div>
+                                    <p>
+                                        <FaBook />
+                                    </p>
+                                    <NavLink to='/dashboard/comde'>Company Dashboard</NavLink>
                                 </div>
+
+                            
+
                             </div>
                         </Drawer>
                         <h1 className="text-xl font-semibold text-[#0360D9]">Dashboard</h1>

@@ -4,6 +4,7 @@ import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import UseAuth from '../../../../Hook/UseAuth.tsx';
 import UseCart from '../../../../Hook/UseCart.tsx';
 import { Link } from 'react-router-dom';
+import { FaHeartCirclePlus } from "react-icons/fa6";
 
 const CartProducts = ({ Products }) => {
   const Axious = UseAxiosPublic()
@@ -19,7 +20,13 @@ const CartProducts = ({ Products }) => {
 
   return (
     <div className="bg-white p-6 rounded-lg mt-5 shadow-md max-w-full mx-auto" id="4322kqlzlj">
-      <h2 className="text-lg font-semibold border-b pb-2">My cart ({Products?.length})</h2>
+      <div className='border-b pb-2 flex justify-between'>
+        <h2 className="text-lg font-semibold ">My cart ({Products?.length})</h2>
+        <Link to='/wishlist'>
+          <p className='text-lg  font-semibold flex items-center gap-2'>My Wishlist<FaHeartCirclePlus className='text-2xl' /></p>
+        </Link>
+      </div>
+
       <ul className="divide-y divide-gray-200">
         {
           Products?.map(item => <CartProduct Product={item}></CartProduct>)

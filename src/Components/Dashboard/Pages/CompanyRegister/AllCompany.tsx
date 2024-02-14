@@ -9,7 +9,7 @@ const AllCompany = () => {
         fetch(`${base_URL}/Companys`)
             .then(res => res.json())
             .then(data => setCompany(data))
-    })
+    },[])
     console.log(company);
     return (
         <div className="overflow-x-auto">

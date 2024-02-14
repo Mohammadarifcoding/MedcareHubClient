@@ -82,7 +82,7 @@ const AllUser = () => {
                     </thead>
                     <tbody className="rounded-xl">
                         {users?.data?.map((user) => <tr key={user?._id}>
-                            <td className="border-t px-6 py-4 text-center "><img className='w-[40px] h-[40px] rounded-full' src={user?.imageURL} alt="" /></td>
+                            <td className='items-center justify-center flex mx-auto'><img className='w-[40px] h-[40px] rounded-full' src={user?.imageURL} alt="" /></td>
                             <td className="border-t px-6 py-4 text-center ">{user?.name}</td>
                             <td className="border-t px-6 py-4 text-center">{user?.email}</td>
 
