@@ -10,181 +10,179 @@ import { v4 as uuidv4 } from 'uuid';
 import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import UseCart from '../../../Hook/UseCart.tsx';
 
-
 const MedicienDetails = () => {
-  const [, refetch] = UseCart();
-  const AxiousPublic = UseAxiosPublic();
-  const { user } = UseAuth()
-  const [data, setData] = useState();
-  const { id } = useParams();
-  // console.log(id);
-  console.log(id)
-  useEffect(() => {
-    fetch(`http://localhost:5000/detailsMed/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setData(data);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, [id]);
+    const [, refetch] = UseCart();
+    const AxiousPublic = UseAxiosPublic();
+    const { user } = UseAuth();
+    const [data, setData] = useState();
+    const { id } = useParams();
+    // console.log(id);
+    console.log(id);
+    useEffect(() => {
+        fetch(`http://localhost:5000/detailsMed/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setData(data);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    }, [id]);
 
-  const handlereview = (result) => {
-    result.preventDefault();
-    console.log(result.target.description.value); // Corrected "descripton" to "description"
-    const RevData = {
-      name: user?.displayName,
-      ID: uuidv4(),
-      email: user?.email,
-      description: result.target.description.value, // Corrected "descripton" to "description"
-      ProductID: data?.ID,
-      companyname: data?.Company
+    const handlereview = (result) => {
+        result.preventDefault();
+        console.log(result.target.description.value); // Corrected "descripton" to "description"
+        const RevData = {
+            name: user?.displayName,
+            ID: uuidv4(),
+            email: user?.email,
+            description: result.target.description.value, // Corrected "descripton" to "description"
+            ProductID: data?.ID,
+            companyname: data?.Company
+        };
+
+        console.log(RevData);
+
+        axios
+            .post(`http://localhost:5000/reviewdata`, RevData)
+            .then((res) => {
+                console.log(res);
+                Swal.fire('You posted a review successfully!');
+            })
+            .catch((error) => console.error('Error updating status:', error));
     };
 
-    console.log(RevData);
-
-    axios.post(`http://localhost:5000/reviewdata`, RevData)
-      .then((res) => {
-        console.log(res);
-        Swal.fire("You posted a review successfully!");
-      })
-      .catch((error) => console.error("Error updating status:", error));
-  };
-
-  const handleAddtoCart = (item) => {
-
-    const cartItem = {
-      medicineId: item?.ID,
-      OrderId: uuidv4(),
-      email: user?.email,
-      medicine: item,
-      quantity: 1
+    const handleAddtoCart = (item) => {
+        const cartItem = {
+            medicineId: item?.ID,
+            OrderId: uuidv4(),
+            email: user?.email,
+            medicine: item,
+            quantity: 1
+        };
+        AxiousPublic.post('/CartMedicine', cartItem)
+            .then((res) => {
+                // console.log(res.data);
+                if (res.data) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `Medicine added to your cart`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
-    AxiousPublic.post('/CartMedicine', cartItem)
-      .then((res) => {
-        // console.log(res.data);
-        if (res.data) {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: `Medicine added to your cart`,
-            showConfirmButton: false,
-            timer: 1500
-          });
-          refetch();
-        }
-      }).catch(err => {
-        console.log(err)
-      })
 
-  };
+    return (
+        <div className="bg-white">
+            <div className="flex md:flex-row flex-col justify-center items-center gap-12 py-24">
+                <div className="md:w-[600px]">
+                    <img className="md:w-[700px] w-[300px] md:h-[600px]" src={data?.Image} alt="" />
+                </div>
+                <div className="md:w-[700px] md:h-[650px]">
+                    <div className="flex  items-center justify-center text-center">
+                        <h1 className="md:text-4xl font-bold ml-2  text-blue-600">{data?.Medname}</h1>
+                        <img className="w-20 md:w-36" src="https://i.ibb.co/RBpjTyF/Medical-Logo-Design-Symbol-Icon-on-transparent-background-PNG-removebg-preview.png" alt="" />
+                    </div>
+                    <p className="md:text-2xl text-[#2E2E2E] pb-4 px-4 font-medium ">{data?.Description}</p>
 
+                    <div>
+                        <div>
+                            <div className="flex flex-row  items-center">
+                                <img className="w-16" src="https://i.ibb.co/Pc5QjmM/images-7-removebg-preview.png" alt="" />
+                                <h1 className="md:text-2xl text-[#2E2E2E] font-medium ">{data?.Category}</h1>
+                            </div>
 
-  return (
-    <div className='bg-white'>
+                            <div className="flex flex-row  items-center">
+                                <img className="h-16" src="https://i.ibb.co/4gC038L/pngtree-wind-global-solution-logo-design-vector-image-291454-removebg-preview.png" alt="" />
+                                <a href="jj">
+                                    <h1 className="md:text-2xl text-[#2E2E2E] font-medium ">{data?.Company}</h1>
+                                </a>
+                            </div>
+                            <div className="flex flex-row  items-center ml-3 pb-2">
+                                <img className="h-12" src="https://i.ibb.co/XxvTMjc/images-2-removebg-preview-1.png" alt="" />
+                                <h1 className="md:text-2xl text-[#2E2E2E] font-medium  "> {data?.Price}</h1>
+                            </div>
+                        </div>
+                    </div>
 
-
-      <div className='flex md:flex-row flex-col justify-center items-center gap-12 py-24'>
-        <div className='md:w-[600px]'>
-          <img className='md:w-[700px] w-[300px] md:h-[600px]' src={data?.Image} alt="" />
-        </div>
-        <div className='md:w-[700px] md:h-[650px]'>
-          <div className='flex flex-row  items-center '>
-
-            <h1 className='md:text-4xl font-bold ml-2  text-blue-600'>{data?.Medname}</h1>
-            <img className='md:w-36' src="https://i.ibb.co/RBpjTyF/Medical-Logo-Design-Symbol-Icon-on-transparent-background-PNG-removebg-preview.png" alt="" />
-          </div>
-          <p className='md:text-2xl text-[#2E2E2E] pb-4 px-4 font-medium '>{data?.Description}</p>
-
-
-          <div>
-
-            <div>
-
-              <div className='flex flex-row  items-center'>
-
-                <img className='w-16' src="https://i.ibb.co/Pc5QjmM/images-7-removebg-preview.png" alt="" />
-                <h1 className='md:text-2xl text-[#2E2E2E] font-medium '>{data?.Category}</h1>
-
-              </div>
-
-
-              <div className='flex flex-row  items-center'>
-                <img className='h-16' src="https://i.ibb.co/4gC038L/pngtree-wind-global-solution-logo-design-vector-image-291454-removebg-preview.png" alt="" />
-                <a href='jj'><h1 className='md:text-2xl text-[#2E2E2E] font-medium '>{data?.Company}</h1></a>
-              </div>
-              <div className='flex flex-row  items-center ml-3 pb-2'>
-                <img className='h-12' src="https://i.ibb.co/XxvTMjc/images-2-removebg-preview-1.png" alt="" />
-                <h1 className='md:text-2xl text-[#2E2E2E] font-medium  '> {data?.Price}</h1>
-              </div>
+                    <div className="flex flex-wrap items-center justify-center gap-5">
+                        <button onClick={() => handleAddtoCart(data)} className="bg-[#E1EEFF] text-blue-600 border-blue-600 btn rounded-full h-[60px] p-4 w-[180px] text-xl">
+                            Add to Cart
+                        </button>
+                        <button className="bg-[#E1EEFF] text-blue-600 border-blue-600 btn rounded-full h-[60px] p-4 w-[200px] text-xl">Add to Favorite</button>
+                    </div>
+                </div>
             </div>
 
-          </div>
+            {/* review */}
 
-          <div className='pt-5'>
-            <button onClick={() => handleAddtoCart(data)} className='bg-[#E1EEFF] text-blue-600 border-blue-600 btn rounded-full h-[60px] p-4 w-[180px] text-xl'>Add to Cart</button>
-            <button className='bg-[#E1EEFF] text-blue-600 border-blue-600 btn rounded-full h-[60px] p-4 w-[200px] text-xl'>Add to Favorite</button>
-          </div>
+            <div className="px-5 md:px-24">
+                <div className="flex flex-row items-center py-4 gap-2">
+                    <h1 className="md:text-4xl font-bold  text-blue-600">Users Feedback</h1>
+                    <img className="h-12" src="https://i.ibb.co/ynSfLjH/images-4-removebg-preview.png" alt="" />
+                </div>
+                <div className="bg-blue-600 h-1 ">
+                    <span></span>
+                </div>
+                <div className="pt-4"></div>
 
-        </div>
+                {/* reviewwwwww */}
 
+                <div>
+                    <Review id={data?.ID}></Review>
+                </div>
 
-      </div>
+                {/* give review */}
+                <form action="" onSubmit={handlereview}>
+                    <div className="pb-24">
+                        <div className="flex flex-row items-center py-4 gap-2">
+                            <h1 className="md:text-4xl font-bold  text-blue-600">Reviews</h1>
+                            <img className="h-12" src="https://i.ibb.co/ZBLwWth/download-removebg-preview.png" alt="" />
+                        </div>
+                        <div className="py-3">
+                            <input
+                                type="text"
+                                name="name"
+                                value={user?.displayName}
+                                placeholder="Customer Name"
+                                className="w-full pl-5 md:w-[400px] h-[50px] border-blue-600  text-black font-bold border-x-2 border-y-2 rounded-md"
+                            ></input>
+                        </div>
+                        <div className="py-3">
+                            <input
+                                type="email"
+                                name="email"
+                                value={user?.email}
+                                placeholder="Customer Email"
+                                className=" pl-5 w-full md:w-[400px] h-[50px] border-blue-600  text-black font-bold border-x-2 border-y-2 rounded-md"
+                            ></input>
+                        </div>
+                        <div className="pb-3">
+                            <input
+                                type="textarea"
+                                name="description"
+                                placeholder="Put your Review"
+                                className=" pl-5 w-full md:w-[600px] h-[150px] border-blue-600  text-black border-x-2 border-y-2 rounded-md  font-bold"
+                            ></input>
+                        </div>
 
-
-
-      {/* review */}
-
-      <div className='px-24'>
-        <div className='flex flex-row items-center py-4 gap-2'>
-          <h1 className='md:text-4xl font-bold  text-blue-600'>Users Feedback</h1>
-          <img className='h-12' src="https://i.ibb.co/ynSfLjH/images-4-removebg-preview.png" alt="" />
-        </div>
-        <div className='bg-blue-600 h-1 '>
-          <span></span>
-        </div>
-        <div className='pt-4'></div>
-
-        {/* reviewwwwww */}
-
-        <div>
-
-          <Review id={data?.ID} ></Review>
-
-
-        </div>
-
-        {/* give review */}
-        <form action="" onSubmit={handlereview}>
-
-          <div className='pb-24'>
-            <div className='flex flex-row items-center py-4 gap-2'>
-              <h1 className='md:text-4xl font-bold  text-blue-600'>Reviews</h1>
-              <img className='h-12' src="https://i.ibb.co/ZBLwWth/download-removebg-preview.png" alt="" />
+                        <button type="submit" className="btn bg-blue-600 text-white block w-full">
+                            Give REVIEW
+                        </button>
+                     
+                    </div>
+                </form>
             </div>
-            <div className='py-3'>
-              <input type='text' name='name' value={user?.displayName} placeholder='Customer Name' className=' pl-5 md:w-[400px] h-[50px] border-blue-600  text-black font-bold border-x-2 border-y-2 rounded-md'></input>
-            </div>
-            <div className='py-3'>
-              <input type='email' name='email' value={user?.email} placeholder='Customer Email' className=' pl-5 md:w-[400px] h-[50px] border-blue-600  text-black font-bold border-x-2 border-y-2 rounded-md'></input>
-            </div>
-            <div className='pb-3'>
-
-              <input type='textarea' name='description' placeholder='Put your Review' className=' pl-5 md:w-[600px] h-[150px] border-blue-600  text-black border-x-2 border-y-2 rounded-md  font-bold'></input>
-            </div>
-
-            <button type='submit' className='btn bg-blue-600 text-white'>Give REVIEW</button>
-            <button type='submit' className='btn bg-blue-600 text-white'>Give REVIEW</button>
-          </div>
-        </form>
-
-      </div>
-
-
-    </div>
-  );
+        </div>
+    );
 };
 
 export default MedicienDetails;
