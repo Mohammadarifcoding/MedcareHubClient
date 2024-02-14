@@ -214,8 +214,9 @@ const DashboardLayout = () => {
                                     </p>
                                 <NavLink to="/dashboard/addpatient">Patient Register</NavLink>
 
-                                </div>
-
+                                    </div>
+                                    <div>
+                                    <p>
                                         <FaBook />
                                     </p>
                                     <NavLink to='/dashboard/comde'>Company Dashboard</NavLink>
