@@ -15,8 +15,6 @@ const BlogModal = ({ openModal, setOpenModal, blog }) => {
     console.log("Blog Modal Rendered with Blog:", blog);
 
     const handleBlogEdit =  (data) => {
-
-    
         console.log(data);
         const blogData = {
             BlogName: data.BlogName,
