@@ -191,7 +191,7 @@ const Testing = () => {
            <div>
           <div className='flex flex-row justify-center items-center pt-5'>
           <img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
-            <h1 className='text-xl text-center font-medium ' >Product Name</h1>
+            <h1 className='text-xl text-center font-medium gap-1' >Product Name</h1>
           </div>
             <h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
            </div>
