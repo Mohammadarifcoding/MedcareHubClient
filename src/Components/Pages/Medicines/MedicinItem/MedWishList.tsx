@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 import UseAuth from '../../../../Hook/UseAuth.tsx';
-import Cart from '../../../../assets/Icons/Cart.tsx';
+// import Cart from '../../../../assets/Icons/Cart.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import UseCart from '../../../../Hook/UseCart.tsx';
 import Swal from 'sweetalert2';
@@ -53,14 +53,6 @@ const MedWishList = () => {
 
     };
 
-    // const handleRemove = (id) => {
-
-    //     AxiousPublic.delete(`/Medicines/${id}`)
-    //         .then(res => {
-    //             console.log(res.data)
-    //             refetch()
-    //         })
-    // }
 
     const handleRemove = (id) => {
         Swal.fire({
@@ -116,7 +108,7 @@ const MedWishList = () => {
                                         className="flex min-w-[132px] items-center justify-center gap-1 rounded-md bg-[#0360D9] py-1.5 text-white transition-all hover:opacity-80 lg:py-1.5"
                                         onClick={() => handleAddtoCart(item)}
                                     >
-                                        <Cart />
+                                        {/* <Cart /> */}
                                         Add to Cart
                                     </button>
                                 </div>
