@@ -12,6 +12,7 @@ const MedWishList = () => {
     const { user } = UseAuth();
     const AxiousPublic = UseAxiosPublic();
     const [, refetch] = UseCart();
+    
     useEffect(() => {
         fetch(`${base_URL}/Medicines?email=${user?.email}`)
             .then(res => res.json())
@@ -52,12 +53,40 @@ const MedWishList = () => {
 
     };
 
+    // const handleRemove = (id) => {
+
+    //     AxiousPublic.delete(`/Medicines/${id}`)
+    //         .then(res => {
+    //             console.log(res.data)
+    //             refetch()
+    //         })
+    // }
+
     const handleRemove = (id) => {
-        AxiousPublic.delete(`/Medicines/${id}`)
-            .then(res => {
-                console.log(res.data)
-                refetch()
-            })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                AxiousPublic.delete(`/Medicines/${id}`)
+                    .then(res => {
+
+
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Item has been deleted.",
+                            icon: "success"
+                        });
+                        refetch();
+                    })
+            }
+        });
     }
     return (
         <div>
