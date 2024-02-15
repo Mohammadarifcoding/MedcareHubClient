@@ -92,49 +92,62 @@ const DashboardLayout = () => {
                         </>
                     ) : (
                         <>
-                            <NavLink to="/" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaHome></FaHome>
-                            </NavLink>
-                            <NavLink to="/dashboard/profile" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaUserCircle />
-                            </NavLink>
-                            <NavLink to="/dashboard/comproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaUserCircle />
-                            </NavLink>
+                            {
+                                isAdmin ? <>
+                                    <NavLink to="/" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaHome></FaHome>
+                                    </NavLink>
+                                    <NavLink to="/dashboard/profile" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaUserCircle />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/comproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaUserCircle />
+                                    </NavLink>
 
-                            <NavLink to="/dashboard/docstatus" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaUserCircle />
-                            </NavLink>
-                            <NavLink to="/dashboard/myblog" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <ImBlog />
-                            </NavLink>
-                            <NavLink to="/dashboard/alluser" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaUserFriends />
-                            </NavLink>
-                            <NavLink to="/dashboard/docstatus" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaFilePrescription className="mx-auto" />
-                            </NavLink>
-                            <NavLink to="/dashboard/addproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <MdOutlineAddToPhotos />
-                            </NavLink>
-                            <NavLink to="/dashboard/myproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaBook />
-                            </NavLink>
-                            <NavLink to="/dashboard/addpatient" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaHospitalUser />
-                            </NavLink>
-                            <NavLink to="/dashboard/comregister" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <FaHospitalUser />
-                            </NavLink>
-                            <NavLink to="/dashboard/allpateint" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <MdOutlineSick />
-                            </NavLink>
-                            <NavLink to="/dashboard/companys" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <MdOutlineSick />
-                            </NavLink>
-                            <NavLink to="/dashboard/comde" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
-                                <MdOutlineSick />
-                            </NavLink>
+                                    <NavLink to="/dashboard/docstatus" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaUserCircle />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/myblog" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <ImBlog />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/alluser" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaUserFriends />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/docstatus" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaFilePrescription className="mx-auto" />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/addproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <MdOutlineAddToPhotos />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/myproduct" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaBook />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/addpatient" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaHospitalUser />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/comregister" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <FaHospitalUser />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/allpateint" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <MdOutlineSick />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/companys" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <MdOutlineSick />
+                                    </NavLink>
+                                    <NavLink to="/dashboard/comde" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                        <MdOutlineSick />
+                                    </NavLink>
+
+                                </> :
+                                    <>
+                                        <NavLink to="/" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                            <FaHome></FaHome>
+                                        </NavLink>
+                                        <NavLink to="/dashboard/profile" className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200">
+                                            <FaUserCircle />
+                                        </NavLink>
+                                    </>
+                            }
                         </>
                     )}
 
