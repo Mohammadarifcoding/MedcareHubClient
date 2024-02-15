@@ -18,6 +18,7 @@ interface SinglePostProps {
         title: string;
         discription: string,
         comments: Array,
+        value: string
     }
 }
 
@@ -35,10 +36,10 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             userImg: user.photoURL,
             comment
         }
-        console.log(commentInfo);
+        // console.log(commentInfo);
         axiosPublic.patch(`/forum/comment/${_id}`, commentInfo)
             .then(res => {
-                console.log(res.data, "here here");
+                // console.log(res.data, "here here");
                 if (res.data) {
                     refetch()
                     Swal.fire({
@@ -50,6 +51,53 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     });
                 }
             })
+    }
+    const handleLikeDislike = (like, dislike, userValue) => {
+        // console.log(like, dislike, userValue);
+        if (user) {
+            const reactInfo = {
+                value: {
+                    like,
+                    dislike,
+                },
+                user: {
+                    name: user?.displayName,
+                    email: user?.email,
+                    react: userValue
+                }
+            }
+
+            axiosPublic.patch(`/forum/like/dislike/${_id}`, reactInfo)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.modifiedCount > 0) {
+                        refetch()
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your vote is succfully counted",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "You Have already participated the survey!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+        } else {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "login first to participated the survey.",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
     return (
         <div className="bg-slate-200 p-5 my-5">
@@ -76,11 +124,11 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     </div>
                     <div className="flex justify-center gap-5">
                         <div>
-                            <button onClick={() => handleLikeDislike(1, 0)}><SlLike className="text-3xl"></SlLike></button>
+                            <button onClick={() => handleLikeDislike(1, 0, 'like')}><SlLike className="text-3xl"></SlLike></button>
                             <p className="text-xl">Like: like</p>
                         </div>
                         <div>
-                            <button onClick={() => handleLikeDislike(0, 1)}><SlDislike className="text-3xl"></SlDislike></button>
+                            <button onClick={() => handleLikeDislike(0, 1, 'dislike')}><SlDislike className="text-3xl"></SlDislike></button>
                             <p className="text-xl">Dislike: dislike</p>
                         </div>
                     </div>
