@@ -1,17 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { base_URL } from '../../../../utills/BaseURL.ts';
-import { TiTickOutline } from 'react-icons/ti';
-import { MdDelete } from 'react-icons/md';
 import AllPatientRow from './AllPatientRow.tsx';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 const AllPatient = () => {
-    const [patient, setPatient] = useState();
-    useEffect(() => {
-        fetch(`${base_URL}/Patients`)
-            .then((res) => res.json())
-            .then((data) => setPatient(data));
-    }, []);
+    // const [patient, setPatient] = useState();
+    // useEffect(() => {
+    //     fetch(`${base_URL}/Patients`)
+    //         .then((res) => res.json())
+    //         .then((data) => setPatient(data));
+    // }, []);
 
+    const axiosPublic = UseAxiosPublic()
+
+
+    const { data: patient = [], refetch } = useQuery({
+        queryKey: ['patient'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/Patients`);
+            return res.data;
+        }
+    });
     // console.log(patient);
+
+    const handleChangePatientStatus = (user, status) => {
+        console.log(user);
+        axiosPublic.patch(`Patient/status/${user?._id}`, { status }).then((res) => {
+            console.log(res);
+            if (res.data.status) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.patientName} is now ${status}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                refetch();
+            }
+        });
+    };
     return (
         <>
             <div className="mt-5 ml-3 md:ml-0 md:my-5">
@@ -34,7 +62,7 @@ const AllPatient = () => {
                         </thead>
                         <tbody className="bg-base-300 ">
                             {patient?.map((user) => (
-                                <AllPatientRow key={user?._id} user={user}></AllPatientRow>
+                                <AllPatientRow key={user?._id} user={user} handleChangePatientStatus={handleChangePatientStatus}></AllPatientRow>
                             ))}
 
                             {/* Add more rows with user details */}
