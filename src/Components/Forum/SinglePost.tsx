@@ -18,14 +18,16 @@ interface SinglePostProps {
         title: string;
         discription: string,
         comments: Array,
-        value: string
+        value: string,
+        like: number,
+        dislike: number
     }
 }
 
 const SinglePost = ({ data, refetch }: SinglePostProps) => {
     const { user } = UseAuth()
     const axiosPublic = UseAxiosPublic();
-    const { _id, name, date, postTag, title, discription, userImg, comments } = data;
+    const { _id, name, date, postTag, title, discription, userImg, comments, like, dislike } = data;
 
     const handlAddComment = e => {
         e.preventDefault()
@@ -125,11 +127,11 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     <div className="flex justify-center gap-5">
                         <div>
                             <button onClick={() => handleLikeDislike(1, 0, 'like')}><SlLike className="text-3xl"></SlLike></button>
-                            <p className="text-xl">Like: like</p>
+                            <p className="text-xl">Like: {like}</p>
                         </div>
                         <div>
                             <button onClick={() => handleLikeDislike(0, 1, 'dislike')}><SlDislike className="text-3xl"></SlDislike></button>
-                            <p className="text-xl">Dislike: dislike</p>
+                            <p className="text-xl">Dislike: {dislike}</p>
                         </div>
                     </div>
                 </div>
