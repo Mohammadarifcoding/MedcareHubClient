@@ -22,7 +22,7 @@ const DoctorQueRow = ({ doctor, handleChangeDoctorStatus }) => {
                     <button onClick={() => handleChangeDoctorStatus(doctor, "Accepted")} className="text-blue-700">
                         <TiTickOutline />
                     </button>
-                    <button className="text-red-600">
+                    <button onClick={() => handleChangeDoctorStatus(doctor, "Rejected")} className="text-red-600">
                         <AiOutlineDelete />
                     </button>
                 </div>
