@@ -70,12 +70,12 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             axiosPublic.patch(`/forum/like/dislike/${_id}`, reactInfo)
                 .then(res => {
                     console.log(res.data);
-                    if (res.data.modifiedCount > 0) {
+                    if (res.data.like) {
                         refetch()
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
-                            title: "Your vote is succfully counted",
+                            title: "Your react is succfully counted",
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -83,7 +83,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                         Swal.fire({
                             position: "top-end",
                             icon: "error",
-                            title: "You Have already participated the survey!",
+                            title: "You Have already participated the post react!",
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -93,7 +93,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: "login first to participated the survey.",
+                title: "login first to participated the post like or dislike.",
                 showConfirmButton: false,
                 timer: 1500
             });
