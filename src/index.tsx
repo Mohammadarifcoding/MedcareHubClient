@@ -194,7 +194,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/forum',
-    element: <AdminRoute><Forum></Forum></AdminRoute>
+    element: <Forum></Forum>
   }
 ]);
 
