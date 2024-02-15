@@ -125,7 +125,7 @@ const router = createBrowserRouter([
         element: <MedWishList></MedWishList>
       },
       {
-        path:'/checkout/:amount',
+        path:'/checkout',
         element:<CheckoutPage></CheckoutPage>
       }
     ]
