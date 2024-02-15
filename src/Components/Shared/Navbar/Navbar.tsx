@@ -117,26 +117,6 @@ const Navbar = () => {
                                     <Link to='/login' className=" rounded-full lg:px-10 p-1 font-semibold lg:text-xl bg-[#E1EEFF] hover:bg-[#0360D9] text-[#0360D9] hover:text-white border-2 border-[#0360D9]">Log in</Link>
                                     <Link to='/register' className=" rounded-full lg:px-10 p-1 font-semibold lg:text-xl bg-[#E1EEFF] hover:bg-[#0360D9] text-[#0360D9] hover:text-white border-2 border-[#0360D9]">Sign up</Link>
 
-                                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li>
-                                            <p className="justify-between">
-                                                Profile
-                                            </p>
-                                        </li>
-                                        <Link to={'/dashboard/profile'}>
-                                            <li><p>DashBoard</p></li>
-                                        </Link>
-                                        <Link to={'/admindasbord/data'}>
-                                            <li><p>AdminDashborad</p></li>
-                                        </Link>
-                                        <Link to={'/company/data'}>
-                                            <li><p>CompanyDashboard</p></li>
-                                        </Link>
-
-
-                                        <li > <p onClick={handleLogOut}>Log Out</p></li>
-                                    </ul>
-
                                 </div>
                             }
 

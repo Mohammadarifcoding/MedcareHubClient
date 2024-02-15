@@ -48,36 +48,40 @@ const MyBlog = () => {
 
 
     return (
+<>
+<div className="mt-5 ml-3 md:ml-0 md:my-5">
+                <h1 className="text-2xl font-semibold">My Blog</h1>
+                <p>Explore and mange your Blog inventory effortlessly in one place.</p>
+            </div>
+        <div className="md:pt-0 pt-8 md:ml-4">
+            <div className="overflow-x-auto w-full rounded-lg">
 
-        <div>
-            <div className="overflow-x-auto">
 
-
-                <table className="min-w-full border  border-[#0360D9] rounded-xl">
-                    <thead className="bg-[#0360D9] text-white">
+                <table className="table w-full">
+                    <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
                         <tr>
-                            {/* <th className="px-6 py-3 text-center"> Blog Image</th> */}
-                            <th className="px-6 py-3 text-center">Writer  Name</th>
-                            <th className="px-6 py-3 text-center">Blog  Name</th>
-                            <th className="px-6 py-3 text-center"> Email</th>
-                            <th className="px-6 py-3 text-center"> Blog Time</th>
-                            <th className="px-6 py-3 text-center">Action</th>
+                            {/* <th className="px-6 py-3 "> Blog Image</th> */}
+                            <th >Writer  Name</th>
+                            <th >Blog  Name</th>
+                            <th > Email</th>
+                            <th > Blog Time</th>
+                            <th >Action</th>
                         </tr>
                     </thead>
-                    <tbody className="rounded-xl">
-                        {blogsData?.map((blog) => <tr key={blog?._id}>
+                    <tbody className="bg-base-300 ">
+                        {blogsData?.map((blog) => <tr className='bg-[#FFFFFF] hover:bg-[#fafafa7e] ' key={blog?._id}>
 
-                            {/* <td className="border-t px-6 py-4 text-center "><img className='w-[40px] h-[40px] rounded-full' src={blog?.BlogPic} alt="" /></td> */}
-                            <td className="border-t px-6 py-4 text-center">{blog?.BlogWriterName}</td>
-                            <td className="border-t px-6 py-4 text-center ">{blog?.BlogName.slice(0, 18)}...</td>
+                            {/* <td className="border-t px-6 py-4  "><img className='w-[40px] h-[40px] rounded-full' src={blog?.BlogPic} alt="" /></td> */}
+                            <td className="border-t px-6 py-4 ">{blog?.BlogWriterName}</td>
+                            <td className="border-t px-6 py-4  ">{blog?.BlogName.slice(0, 18)}...</td>
 
-                            <td className="border-t px-6 py-4 text-center">{blog?.email}</td>
-                            <td className="border-t px-6 py-4 text-center">{blog?.BlogTime}</td>
-
-
+                            <td className="border-t px-6 py-4 ">{blog?.email}</td>
+                            <td className="border-t px-6 py-4 ">{blog?.BlogTime}</td>
 
 
-                            <td className=" py-4 border-t text-center">
+
+
+                            <td className=" py-4 border-t ">
 
                                 <div className='flex '>
                                     <BlogModal openModal={openModal} setOpenModal={setOpenModal} blog={blog} />
@@ -96,7 +100,7 @@ const MyBlog = () => {
             </div>
         </div>
 
-
+        </>
     );
 };
 
