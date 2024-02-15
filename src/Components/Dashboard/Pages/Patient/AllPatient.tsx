@@ -1,70 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { base_URL } from '../../../../utills/BaseURL.ts';
-import { TiTickOutline } from "react-icons/ti";
-import { MdDelete } from "react-icons/md";
+import { TiTickOutline } from 'react-icons/ti';
+import { MdDelete } from 'react-icons/md';
+import AllPatientRow from './AllPatientRow.tsx';
 const AllPatient = () => {
-    const [patient, setPatient] = useState()
+    const [patient, setPatient] = useState();
     useEffect(() => {
         fetch(`${base_URL}/Patients`)
-            .then(res => res.json())
-            .then(data => setPatient(data))
-    },[])
+            .then((res) => res.json())
+            .then((data) => setPatient(data));
+    }, []);
 
     // console.log(patient);
     return (
-        <div className="overflow-x-auto">
+        <>
+            <div className="mt-5 ml-3 md:ml-0 md:my-5">
+                <h1 className="text-2xl font-semibold">All Patient</h1>
+                <p>Explore and mange your All Patient effortlessly in one place.</p>
+            </div>
+            <div className="md:pt-0 pt-8 md:ml-4">
+                <div className="overflow-x-auto w-full rounded-lg">
+                    <table className="table w-full ">
+                        <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
+                            <tr className="">
+                                <th> Name</th>
+                                <th> Age</th>
+                                <th>Blood Group</th>
+                                <th>Patient Issue</th>
+                                <th>Gender</th>
+                                <th className="text-center">Status</th>
+                                <th className="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-base-300 ">
+                            {patient?.map((user) => (
+                                <AllPatientRow key={user?._id} user={user}></AllPatientRow>
+                            ))}
 
-
-            <table className="min-w-full border  border-[#0360D9] rounded-xl">
-                <thead className="bg-[#0360D9] text-white">
-                    <tr>
-
-                        <th className="px-6 py-3 text-center"> Name</th>
-                        <th className="px-6 py-3 text-center"> Age</th>
-                        <th className="px-6 py-3 text-center">Blood Group</th>
-                        <th className="px-6 py-3 text-center">Patient Issue</th>
-                        <th className="px-6 py-3 text-center">Gender</th>
-                        <th className="px-6 py-3 text-center">Status</th>
-                        <th className="px-6 py-3 text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="rounded-xl">
-                    {patient?.map((user) => <tr key={user?._id}>
-
-                        <td className="border-t px-6 py-4 text-center ">{user?.patientName}</td>
-                        <td className="border-t px-6 py-4 text-center ">{user?.Age}</td>
-                        <td className="border-t px-6 py-4 text-center">{user?.bloodGroup}</td>
-                        <td className="border-t px-6 py-4 text-center">{user?.patientIssue}</td>
-                        <td className="border-t px-6 py-4 text-center">{user?.Gender}</td>
-
-
-
-                        <td className="px-6 py-4 border-t text-center">
-                            <button className="text-white btn btn-ghost  hover:bg-[#393E46] bg-[#0360D9] hover:text-red-800">
-                                Pending
-                            </button>
-
-
-                        </td>
-
-                        <td className="px-6 py-4 border-t text-center">
-                            <div className='text-3xl flex gap-6'>
-                                <button className='text-blue-700'>
-                                    <TiTickOutline />
-                                </button>
-                                <button className='text-red-700'>
-                                    <MdDelete />
-                                </button>
-                            </div>
-                        </td>
-                    </tr>)}
-
-                    {/* Add more rows with user details */}
-                </tbody>
-            </table>
-
-
-        </div>
+                            {/* Add more rows with user details */}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </>
     );
 };
 
