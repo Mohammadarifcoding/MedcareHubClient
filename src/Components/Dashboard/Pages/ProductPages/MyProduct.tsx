@@ -59,22 +59,25 @@ const MyProduct = () => {
 
     return (
         <>
+            <div className="mt-5 ml-3 md:ml-0 md:my-5">
+                <h1 className="text-2xl font-semibold">My Medicine</h1>
+                <p>Explore and mange your medicine inventory effortlessly in one place.</p>
+            </div>
             {!isLoading ? (
-                <div className="md:pt-0 pt-8">
+                <div className="md:pt-0 pt-8 md:ml-4">
                     {medicineData?.length !== 0 ? (
                         <div className="overflow-x-auto w-full rounded-lg">
                             <table className="table w-full ">
                                 <thead>
-                                    <tr className="bg-blue-600 text-white md:text-2xl h-[60px] text-center">
-                                        <th>Image</th>
+                                    <tr className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
                                         <th>Medicine Name</th>
+                                        <th>Category</th>
+                                        <th>Company</th>
                                         <th>Price</th>
-                                        <th>Type</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody className=" bg-base-300 text-center md:text-xl ">
+                                <tbody className=" bg-base-300 ">
                                     {medicineData?.map((medicine) => (
                                         <MyProductRow key={medicine._id} medicine={medicine} handleDeleteMedicine={handleDeleteMedicine}></MyProductRow>
                                     ))}
