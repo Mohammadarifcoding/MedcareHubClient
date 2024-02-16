@@ -4,44 +4,37 @@ import { uuidv4 } from '@firebase/util';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import  Swal  from 'sweetalert2';
 
-const ShippingInfo = () => {
-    const [cart, refectchCart] = UseCart()
-    const Axious = UseAxiosPublic()
-    const [address, setAddress] = useState({
-        name: '',
-        mobile: '',
-        Emergency_Mobile: '',
-        Email: '',
-        Country: 'Bangladesh',
-        City: '',
-        Address: ''
-    })
-    const SubmitShippingInfor = (e) => {
-        const time = new Date()
-        e.preventDefault()
-        const order = {
-            ...address, time, Products: cart, ID: uuidv4()
-        }
-        console.log(order)
-        Axious.post('/order',order)
-        .then(res => {
-            console.log(res.data)
-            refectchCart()
-            Swal.fire({
-                icon: "success",
-                title: "Your order is done",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              setAddress({name: '',
-              mobile: '',
-              Emergency_Mobile: '',
-              Email: '',
-              Country: 'Bangladesh',
-              City: '',
-              Address: ''})
-        })
-    }
+const ShippingInfo = ({address,setAddress,submit}) => {
+    // const [cart, refectchCart] = UseCart()
+    // const Axious = UseAxiosPublic()
+    // const SubmitShippingInfor = (e) => {
+    //     const time = new Date()
+    //     e.preventDefault()
+    //     const order = {
+    //         ...address, time, Products: cart, ID: uuidv4()
+    //     }
+    //     console.log(order)
+    //     Axious.post('/order',order)
+    //     .then(res => {
+    //         console.log(res.data)
+    //         refectchCart()
+    //         Swal.fire({
+    //             icon: "success",
+    //             title: "Your order is done",
+    //             showConfirmButton: false,
+    //             timer: 1500
+    //           });
+
+    //           setProcess(true)
+    //           setAddress({name: '',
+    //           mobile: '',
+    //           Emergency_Mobile: '',
+    //           Email: '',
+    //           Country: 'Bangladesh',
+    //           City: '',
+    //           Address: ''})
+    //     })
+    // }
     const asianCountries = [
         "Bangladesh",
         "China",
@@ -69,7 +62,7 @@ const ShippingInfo = () => {
 
     console.log(address)
     return (
-        <form onSubmit={SubmitShippingInfor} className='w-full mt-10'>
+        <form onSubmit={submit} className='w-full mt-10'>
             <div className='flex flex-col gap-2'>
                 <label className='text-lg font-medium' htmlFor="name">Name</label>
                 <input value={address.name} required onChange={(e) => { setAddress({ ...address, name: e.target.value }) }} className='p-3 border-2 border-[#E1EEFF] focus:outline-none rounded-md' type="text" name="name" id="" />
