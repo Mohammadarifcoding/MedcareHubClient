@@ -102,6 +102,7 @@ const DoctorQue = () => {
                         </table>
                     </div>
                 </div>
+                </div>
             </div>
             );
 };
