@@ -24,11 +24,11 @@ interface IFormInput {
 const CreatePost = () => {
     let todayDate = new Date();
     let formattedDate = todayDate.toLocaleString('en-US');
-    console.log(formattedDate);
+    // console.log(formattedDate);
 
     const axiosPublic = UseAxiosPublic()
     const { user } = UseAuth();
-    console.log(user);
+    // console.log(user);
     const openModal = (event: MouseEvent<HTMLInputElement>) => {
         const modal = document.getElementById('my_modal_7') as HTMLInputElement;
         modal.checked = true;
@@ -50,9 +50,9 @@ const CreatePost = () => {
             category: data.category
 
         }
-        console.log(postItem);
+        // console.log(postItem);
         const forumRes = await axiosPublic.post('/forum', postItem);
-        console.log(forumRes);
+        // console.log(forumRes);
         if (forumRes.data) {
             Swal.fire({
                 position: "top-end",

@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../../Shared/Container/Container.tsx';
-import { useParams } from 'react-router-dom';
 import ShippingInfo from './ShippingInfo/ShippingInfo.tsx';
 import Check from './Check/Check.tsx';
 import ShippingProduct from './ShippingProducts/ShippingProducts.tsx';
+import UseCart from '../../../Hook/UseCart.tsx';
 
 const CheckoutPage = () => {
-    const { amount } = useParams()
+    const [cart,refectchCart] = UseCart()
+    const [AllPrice,setAllPrice] =  useState(0)
+
+    useEffect(()=>{
+        let price = 0
+        for(let item of cart){
+          price += (item.medicine.Price * item.quantity )
+        }
+
+        const priceTotal = price.toFixed(3)
+        setAllPrice(priceTotal)
+      },[cart])
 
     return (
         <Container>
@@ -20,7 +31,7 @@ const CheckoutPage = () => {
                 </div>
                 <div className='lg:w-[50%] w-full mt-16 flex flex-col gap-5'>
                     <ShippingProduct></ShippingProduct>
-                    <Check priceData={amount}></Check>
+                    <Check priceData={AllPrice}></Check>
                 </div>
             </div>
         </Container>

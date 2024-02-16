@@ -6,7 +6,7 @@ const Check = ({ priceData }) => {
 
     const Tax = 14.00
     return (
-        <div className="bg-white p-6 rounded-lg shadow-lg w-full" id="3ista3a82nf">
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full" >
 
         <div className="space-y-3 mb-6">
             <div className="flex justify-between text-lg">

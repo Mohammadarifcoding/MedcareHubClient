@@ -7,23 +7,20 @@ import UseCart from '../../../../Hook/UseCart.tsx';
 import Swal from 'sweetalert2';
 import { uuidv4 } from '@firebase/util';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
 const MedWishList = () => {
-    const [wishFilter, setWishFilter] = useState()
     const { user } = UseAuth();
     const AxiousPublic = UseAxiosPublic();
-    const [, refetch] = UseCart();
-    
-    useEffect(() => {
-        fetch(`${base_URL}/Medicines?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                // Filter the data where wishList is true
-                const filteredData = data.filter(item => item.wishList === true);
-                setWishFilter(filteredData);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, [user])
-    console.log(wishFilter);
+    // const [, refetch] = UseCart();
+
+    const { data: wishList = [], refetch } = useQuery({
+        queryKey: ['Medicines', user?.email],
+        queryFn: async () => {
+            const res = await AxiousPublic.get(`/Medicines?email=${user?.email}`);
+            return res.data;
+        }
+    });
 
     const handleAddtoCart = (item) => {
 
@@ -84,9 +81,9 @@ const MedWishList = () => {
         <div>
             <h1 className='lg:text-3xl my-10 sm:text-2xl max-w-[1350px] mx-auto text-xl font-medium'>Your Wishlist</h1>
             <div className="bg-white p-6 rounded-lg pt-5 shadow-md max-w-[1400px] mx-auto ">
-                <h2 className="text-lg font-semibold border-b pb-2">My Wishlist ({wishFilter?.length})</h2>
+                <h2 className="text-lg font-semibold border-b pb-2">My Wishlist ({wishList?.filter(item => item.wishList === true)?.length})</h2>
                 {
-                    wishFilter?.map((item) => (
+                    wishList?.filter(item => item.wishList === true)?.map((item) => (
                         <div key={item?._id} className="flex flex-row items-center gap-8 sm:min-w-[500px] space-y-4 md:space-y-0 md:space-x-4 border-b pb-2 my-2 ">
                             <img
                                 alt="T-shirt"
