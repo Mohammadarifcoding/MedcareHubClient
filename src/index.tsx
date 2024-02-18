@@ -49,6 +49,8 @@ import ComDesh from './Components/companyDash/ComDesh.tsx';
 import MedWishList from './Components/Pages/Medicines/MedicinItem/MedWishList.tsx';
 import CheckoutPage from './Components/Pages/CheckOut/CheckoutPage.tsx';
 import AdminRoute from './Components/RelatedProduct/AdminRoute.tsx';
+import Orders from './Components/Dashboard/Pages/Orders/Orders.jsx';
+import DoctorVisiting from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisiting.jsx';
 
 
 const queryClient = new QueryClient()
@@ -188,7 +190,15 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/companys',
         element: <AllCompany></AllCompany>
-      }
+      },
+      {
+        path: '/dashboard/orders',
+        element: <Orders/>
+      },
+      {
+        path: '/dashboard/doctorvisiting',
+        element: <DoctorVisiting/>
+      },
 
     ]
   },
