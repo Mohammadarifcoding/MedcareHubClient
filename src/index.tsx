@@ -51,6 +51,8 @@ import CheckoutPage from './Components/Pages/CheckOut/CheckoutPage.tsx';
 import AdminRoute from './Components/RelatedProduct/AdminRoute.tsx';
 import Orders from './Components/Dashboard/Pages/Orders/Orders.jsx';
 import DoctorVisiting from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisiting.jsx';
+import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
+import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 
 
 const queryClient = new QueryClient()
@@ -199,6 +201,13 @@ const router = createBrowserRouter([
         path: '/dashboard/doctorvisiting',
         element: <DoctorVisiting/>
       },
+        path: '/dashboard/allmedicine',
+        element: <AllMedicine></AllMedicine>
+      },
+      {
+        path: '/dashboard/allblog',
+        element: <AllBlog></AllBlog>
+      }
 
     ]
   },

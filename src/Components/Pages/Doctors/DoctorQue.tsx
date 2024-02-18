@@ -22,7 +22,7 @@ const DoctorQue = () => {
 
     const handleChangeDoctorStatus = (user, status) => {
         console.log(user);
-        axiosPublic.patch(`doctor/status/${user?._id}`, { status }).then((res) => {
+        axiosPublic.patch(`Doctor/status/${user?._id}`, { status }).then((res) => {
             console.log(res);
             if (res.data.status) {
                 Swal.fire({
@@ -37,12 +37,32 @@ const DoctorQue = () => {
         });
     };
 
+    const handleDeleteDoctor = (user) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`Doctor/${user._id}`).then((res) => {
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: 'Patient has been deleted.',
+                        icon: 'success'
+                    });
+                    refetch();
+                });
+            }
+        });
+    };
+
     return (
         <div>
             <div className="overflow-x-auto">
-
-
-
 
                 <div className="mt-5 ml-3 md:ml-0 md:my-5">
                     <h1 className="text-2xl font-semibold">Doctor Que</h1>
@@ -58,20 +78,22 @@ const DoctorQue = () => {
                                     <th> Email</th>
                                     <th>Gender</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th className="text-center">Accept</th>
+                                    <th className="text-center">Reject</th>
+                                    <th className="text-center">Delete</th>
                                 </tr>
                             </thead>
                             <tbody className=" bg-base-300 ">
                                 {doctors?.map((doctor) => (
-                                    <DoctorQueRow key={doctor._id} doctor={doctor} handleChangeDoctorStatus={handleChangeDoctorStatus}></DoctorQueRow>
+                                    <DoctorQueRow key={doctor._id} doctor={doctor} handleChangeDoctorStatus={handleChangeDoctorStatus} handleDeleteDoctor={handleDeleteDoctor}></DoctorQueRow>
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                </div>
             </div>
-            );
+        </div>
+    );
 };
 
-            export default DoctorQue;
+export default DoctorQue;

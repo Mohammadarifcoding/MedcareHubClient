@@ -2,15 +2,64 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { TiTickOutline } from 'react-icons/ti';
 import { base_URL } from '../../../../utills/BaseURL.ts';
+import { RxCross2 } from "react-icons/rx";
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import { useQuery } from '@tanstack/react-query';
+import AllCompanyrow from './AllCompanyrow.jsx';
+import Swal from 'sweetalert2';
 
 const AllCompany = () => {
-    const [company, setCompany] = useState();
-    useEffect(() => {
-        fetch(`${base_URL}/Companys`)
-            .then((res) => res.json())
-            .then((data) => setCompany(data));
-    }, []);
-    console.log(company);
+
+    const axiosPublic = UseAxiosPublic()
+
+
+    const { data: companys = [], refetch } = useQuery({
+        queryKey: ['companys'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/Companys`);
+            return res.data;
+        }
+    });
+
+    const handleChangeCompanyStatus = (user, status) => {
+        console.log(user);
+        axiosPublic.patch(`Company/status/${user?._id}`, { status }).then((res) => {
+            console.log(res);
+            if (res.data.status) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.comname} is now ${status}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                refetch();
+            }
+        });
+    };
+
+    const handleDeleteCompany = (user) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`Company/${user._id}`).then((res) => {
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: 'Comapany has been deleted.',
+                        icon: 'success'
+                    });
+                    refetch();
+                });
+            }
+        });
+    };
     return (
         <>
             <div className="mt-5 ml-3 md:ml-0 md:my-5">
@@ -26,34 +75,15 @@ const AllCompany = () => {
                                 <th>Company Email</th>
                                 <th>Owner Email</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th className="text-center">Accept</th>
+                                <th className="text-center">Reject</th>
+                                <th className="text-center">Delete</th>
                             </tr>
                         </thead>
+
                         <tbody className="bg-base-300 ">
-                            {company?.map((user) => (
-                                <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] " key={user?._id}>
-                                    <td className="flex flex-col md:flex-row items-center justify-center text-center md:justify-start gap-1.5 pt-5 md:pt-3  md:gap-2">
-                                        <img className="w-12 h-12 rounded-full" src={user?.comimage} alt={user?.comname} />
-                                        <h3 className="font-medium text-sm">{user?.comname}</h3>
-                                    </td>
-
-                                    <td className="border-t px-6 py-4 text-center ">{user?.comemail}</td>
-                                    <td className="border-t px-6 py-4 text-center">{user?.owneremail}</td>
-
-                                    <td className="px-6 py-4 border-t text-center">
-                                        <button className="text-white btn btn-ghost  hover:bg-[#393E46] bg-[#0360D9] hover:text-red-800">Pending</button>
-                                    </td>
-                                    <td className="px-6 py-4 border-t text-center">
-                                        <div className="text-2xl flex justify-center flex-col md:flex-row gap-5">
-                                            <button className="text-blue-500 hover:text-blue-800">
-                                                <TiTickOutline />
-                                            </button>
-                                            <button className="text-red-500 hover:text-red-800">
-                                                <AiOutlineDelete />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                            {companys?.map((company) => (
+                                <AllCompanyrow key={company?._id} company={company} handleChangeCompanyStatus={handleChangeCompanyStatus} handleDeleteCompany={handleDeleteCompany} ></AllCompanyrow>
                             ))}
 
                             {/* Add more rows with user details */}

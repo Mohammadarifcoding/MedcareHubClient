@@ -10,6 +10,12 @@ import { MdOutlineSick } from 'react-icons/md';
 import { HiOutlineBuildingOffice2 } from 'react-icons/hi2';
 import UseAdmin from '../../../Hook/UseAdmin.tsx';
 import { LuFileStack } from 'react-icons/lu';
+import { GiMedicines } from "react-icons/gi";
+import { FaHouseMedical } from "react-icons/fa6";
+import { FaBriefcaseMedical } from "react-icons/fa6";
+import { FaHandHoldingMedical } from "react-icons/fa";
+import { GiRemedy } from "react-icons/gi";
+
 
 const DashboardLayout = () => {
     const [openLayout, setOpenLayout] = useState(true);
@@ -54,7 +60,7 @@ const DashboardLayout = () => {
                                     </NavLink>
 
                                     <NavLink to="/dashboard/docque" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                        <FaUserCircle /> Doctor Que
+                                        <FaHandHoldingMedical /> Doctor Que
                                     </NavLink>
 
                                     <NavLink to="/dashboard/myblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
@@ -71,7 +77,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/myproduct"
                                         className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
                                     >
-                                        <FaBook /> My Medicine
+                                        <GiMedicines /> My Medicine
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/alluser"
@@ -95,7 +101,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/comregister"
                                         className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
                                     >
-                                        <FaHospitalUser /> Company Register
+                                        <FaBriefcaseMedical /> Company Register
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/allpateint"
@@ -107,7 +113,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/companys"
                                         className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
                                     >
-                                        <MdOutlineSick /> All Company
+                                        <FaHouseMedical /> All Company
                                     </NavLink>
 
                                     <NavLink to="/dashboard/comde" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
@@ -118,6 +124,12 @@ const DashboardLayout = () => {
                                     </NavLink>
                                     <NavLink to="/dashboard/doctorvisiting" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <LuFileStack /> Doctor visiting
+
+                                    <NavLink to="/dashboard/allmedicine" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <GiRemedy /> All Medicine
+                                    </NavLink>
+                                    <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <GiRemedy /> All Blog
                                     </NavLink>
                                 </>
                             ) : (
@@ -158,7 +170,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/docstatus"
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
-                                        <FaUserCircle />
+                                        <FaHandHoldingMedical />
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/myblog"
@@ -188,7 +200,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/myproduct"
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
-                                        <FaBook />
+                                        <GiMedicines />
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/addpatient"
@@ -200,7 +212,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/comregister"
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
-                                        <FaHospitalUser />
+                                        <FaBriefcaseMedical />
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/allpateint"
@@ -212,7 +224,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/companys"
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
-                                        <MdOutlineSick />
+                                        <FaHouseMedical />
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/comde"
@@ -231,6 +243,17 @@ const DashboardLayout = () => {
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
                                         <LuFileStack />
+
+                                        to="/dashboard/allmedicine"
+                                        className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
+                                    >
+                                        <GiRemedy />
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/allblog"
+                                        className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
+                                    >
+                                        <GiRemedy />
                                     </NavLink>
                                 </>
                             ) : (
@@ -290,6 +313,12 @@ const DashboardLayout = () => {
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
+                                        <FaHandHoldingMedical />
+                                    </p>
+                                    <NavLink to="/dashboard/profile">Doctor Que</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
                                         <FaFilePrescription />
                                     </p>
                                     <NavLink to="/dashboard/docstatus">Doctor Status</NavLink>
@@ -315,7 +344,7 @@ const DashboardLayout = () => {
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
-                                        <MdOutlineAddToPhotos />
+                                        <GiMedicines />
                                     </p>
                                     <NavLink to="/dashboard/addproduct">Add Medicine</NavLink>
                                 </div>
@@ -325,12 +354,7 @@ const DashboardLayout = () => {
                                     </p>
                                     <NavLink to="/dashboard/myproduct">My Medicine</NavLink>
                                 </div>
-                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
-                                    <p>
-                                        <FaBook />
-                                    </p>
-                                    <NavLink to="/dashboard/comregister">Company Register</NavLink>
-                                </div>
+
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
                                         <MdOutlineSick />
@@ -345,9 +369,36 @@ const DashboardLayout = () => {
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
+                                        <FaHandHoldingMedical />
+                                    </p>
+                                    <NavLink to="/dashboard/comregister">Company Register</NavLink>
+                                </div>
+
+
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <FaHouseMedical />
+                                    </p>
+                                    <NavLink to="/dashboard/comregister">All Company</NavLink>
+                                </div>
+
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
                                         <FaBook />
                                     </p>
                                     <NavLink to="/dashboard/comde">Company Dashboard</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <GiRemedy />
+                                    </p>
+                                    <NavLink to="/dashboard/allmedicine">All Medicine</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <GiRemedy />
+                                    </p>
+                                    <NavLink to="/dashboard/allblog">All blog</NavLink>
                                 </div>
                             </div>
                         </Drawer>

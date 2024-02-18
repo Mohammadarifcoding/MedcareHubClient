@@ -1,8 +1,8 @@
 import { TiTickOutline } from 'react-icons/ti';
-import { MdDelete } from 'react-icons/md';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { RxCross2 } from "react-icons/rx";
 
-const DoctorQueRow = ({ doctor, handleChangeDoctorStatus }) => {
+const DoctorQueRow = ({ doctor, handleChangeDoctorStatus, handleDeleteDoctor }) => {
     const { DocName, DocType, Email, gender, status } = doctor;
     return (
         <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] ">
@@ -18,15 +18,23 @@ const DoctorQueRow = ({ doctor, handleChangeDoctorStatus }) => {
             </td>
 
             <td className="px-6 py-4 border-t text-center">
-                <div className="text-3xl flex flex-col md:flex-row items-center justify-center gap-6">
-                    <button onClick={() => handleChangeDoctorStatus(doctor, "Accepted")} className="text-blue-700">
-                        <TiTickOutline />
-                    </button>
-                    <button onClick={() => handleChangeDoctorStatus(doctor, "Rejected")} className="text-red-600">
-                        <AiOutlineDelete />
-                    </button>
-                </div>
+                <button className="text-2xl flex justify-center flex-col md:flex-row gap-5 text-blue-700 lg:ml-11" onClick={() => handleChangeDoctorStatus(doctor, "Accepted")} >
+                    <TiTickOutline />
+                </button>
             </td>
+
+            <td className="px-6 py-4 border-t text-center">
+                <button className="text-2xl flex justify-center flex-col md:flex-row gap-5 text-red-700  lg:ml-11" onClick={() => handleChangeDoctorStatus(doctor, "Rejected")} >
+                    <RxCross2 />
+                </button>
+            </td>
+
+            <td className="px-6 py-4 border-t text-center">
+                <button className="text-2xl flex justify-center flex-col md:flex-row gap-5 text-red-700  lg:ml-11" onClick={() => handleDeleteDoctor(doctor)} >
+                    <AiOutlineDelete />
+                </button>
+            </td>
+
         </tr>
     );
 };
