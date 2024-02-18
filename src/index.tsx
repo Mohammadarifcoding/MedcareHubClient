@@ -49,6 +49,8 @@ import ComDesh from './Components/companyDash/ComDesh.tsx';
 import MedWishList from './Components/Pages/Medicines/MedicinItem/MedWishList.tsx';
 import CheckoutPage from './Components/Pages/CheckOut/CheckoutPage.tsx';
 import AdminRoute from './Components/RelatedProduct/AdminRoute.tsx';
+import Orders from './Components/Dashboard/Pages/Orders/Orders.jsx';
+import DoctorVisiting from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisiting.jsx';
 import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 
@@ -192,13 +194,20 @@ const router = createBrowserRouter([
         element: <AllCompany></AllCompany>
       },
       {
-        path: '/dashboard/allmedicine',
+        path: '/dashboard/orders',
+        element: <Orders/>
+      },
+      {
+        path: '/dashboard/doctorvisiting',
+        element: <DoctorVisiting/>
+      },
+        {path: '/dashboard/allmedicine',
         element: <AllMedicine></AllMedicine>
       },
       {
         path: '/dashboard/allblog',
         element: <AllBlog></AllBlog>
-      }
+      },
 
     ]
   },
