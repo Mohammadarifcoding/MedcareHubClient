@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { AiOutlineDelete } from 'react-icons/ai';
-import { TiTickOutline } from 'react-icons/ti';
-import { base_URL } from '../../../../utills/BaseURL.ts';
-import { RxCross2 } from "react-icons/rx";
+import React from 'react';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import { useQuery } from '@tanstack/react-query';
-import AllCompanyrow from './AllCompanyrow.jsx';
+import AllMedicineRow from './AllMedicineRow.tsx';
 import Swal from 'sweetalert2';
 
-const AllCompany = () => {
-
+const AllMedicine = () => {
     const axiosPublic = UseAxiosPublic()
 
 
-    const { data: companys = [], refetch } = useQuery({
-        queryKey: ['companys'],
+    const { data: allMedicine = [], refetch } = useQuery({
+        queryKey: ['allMedicine'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/Companys`);
+            const res = await axiosPublic.get(`/Medicines`);
             return res.data;
         }
     });
 
-    const handleChangeCompanyStatus = (user, status) => {
+    const handleChangeMedicineStatus = (user, status) => {
         console.log(user);
-        axiosPublic.patch(`Company/status/${user?._id}`, { status }).then((res) => {
+        axiosPublic.patch(`Medicine/status/${user?._id}`, { status }).then((res) => {
             console.log(res);
             if (res.data.status) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: `${user.comname} is now ${status}`,
+                    title: `${user.Medname} is ${status}`,
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -38,7 +33,7 @@ const AllCompany = () => {
         });
     };
 
-    const handleDeleteCompany = (user) => {
+    const handleDeleteMed = (user) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -49,7 +44,7 @@ const AllCompany = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`Company/${user._id}`).then((res) => {
+                axiosPublic.delete(`Med/${user._id}`).then((res) => {
                     Swal.fire({
                         title: 'Deleted!',
                         text: 'Patient has been deleted.',
@@ -63,27 +58,26 @@ const AllCompany = () => {
     return (
         <>
             <div className="mt-5 ml-3 md:ml-0 md:my-5">
-                <h1 className="text-2xl font-semibold">All Company</h1>
-                <p>Explore and mange All Company effortlessly in one place.</p>
+                <h1 className="text-2xl font-semibold">All Medicine</h1>
+                <p>Explore and mange your All Medicine effortlessly in one place.</p>
             </div>
             <div className="md:pt-0 pt-8 md:ml-4">
                 <div className="overflow-x-auto w-full rounded-lg">
                     <table className="table w-full ">
-                        <thead className="bg-[#fafafad5] px-6 py-3 text-center h-12 md:h-14 text-black text-sm lg:text-lg ">
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Company Email</th>
-                                <th>Owner Email</th>
-                                <th>Status</th>
+                        <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
+                            <tr className="">
+                                <th className="text-center">Medicine Name</th>
+                                <th > Category</th>
+                                <th className="text-center">Company</th>
+                                <th className="text-center">Status</th>
                                 <th className="text-center">Accept</th>
                                 <th className="text-center">Reject</th>
                                 <th className="text-center">Delete</th>
                             </tr>
                         </thead>
-
                         <tbody className="bg-base-300 ">
-                            {companys?.map((company) => (
-                                <AllCompanyrow key={company?._id} company={company} handleChangeCompanyStatus={handleChangeCompanyStatus} handleDeleteCompany={handleDeleteCompany} ></AllCompanyrow>
+                            {allMedicine?.map((medicine) => (
+                                <AllMedicineRow key={medicine?._id} medicine={medicine} handleChangeMedicineStatus={handleChangeMedicineStatus} handleDeleteMed={handleDeleteMed}></AllMedicineRow>
                             ))}
 
                             {/* Add more rows with user details */}
@@ -95,4 +89,4 @@ const AllCompany = () => {
     );
 };
 
-export default AllCompany;
+export default AllMedicine;
