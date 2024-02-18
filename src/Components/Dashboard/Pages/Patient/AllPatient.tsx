@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { base_URL } from '../../../../utills/BaseURL.ts';
+import React from 'react';
 import AllPatientRow from './AllPatientRow.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 const AllPatient = () => {
-    // const [patient, setPatient] = useState();
-    // useEffect(() => {
-    //     fetch(`${base_URL}/Patients`)
-    //         .then((res) => res.json())
-    //         .then((data) => setPatient(data));
-    // }, []);
-
     const axiosPublic = UseAxiosPublic()
 
 
@@ -40,6 +32,31 @@ const AllPatient = () => {
             }
         });
     };
+
+    const handleDeletePatient = (user) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`Patient/${user._id}`).then((res) => {
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: 'Patient has been deleted.',
+                        icon: 'success'
+                    });
+                    refetch();
+                });
+            }
+        });
+    };
+
+
     return (
         <>
             <div className="mt-5 ml-3 md:ml-0 md:my-5">
@@ -57,12 +74,14 @@ const AllPatient = () => {
                                 <th>Patient Issue</th>
                                 <th>Gender</th>
                                 <th className="text-center">Status</th>
-                                <th className="text-center">Action</th>
+                                <th className="text-center">Accept</th>
+                                <th className="text-center">Reject</th>
+                                <th className="text-center">Delete</th>
                             </tr>
                         </thead>
                         <tbody className="bg-base-300 ">
                             {patient?.map((user) => (
-                                <AllPatientRow key={user?._id} user={user} handleChangePatientStatus={handleChangePatientStatus}></AllPatientRow>
+                                <AllPatientRow key={user?._id} user={user} handleChangePatientStatus={handleChangePatientStatus} handleDeletePatient={handleDeletePatient}></AllPatientRow>
                             ))}
 
                             {/* Add more rows with user details */}

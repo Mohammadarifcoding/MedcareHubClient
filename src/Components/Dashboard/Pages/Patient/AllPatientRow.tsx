@@ -1,7 +1,8 @@
 import { AiOutlineDelete } from 'react-icons/ai';
 import { TiTickOutline } from 'react-icons/ti';
+import { RxCross2 } from "react-icons/rx";
 
-const AllPatientRow = ({ user, handleChangePatientStatus }) => {
+const AllPatientRow = ({ user, handleChangePatientStatus, handleDeletePatient }) => {
     const { patientName, Age, bloodGroup, patientIssue, Gender, status } = user;
 
     return (
@@ -17,17 +18,24 @@ const AllPatientRow = ({ user, handleChangePatientStatus }) => {
                     {status}
                 </button>
             </td>
+            <td className="px-6 py-4 border-t text-center">
+                <button className="text-2xl flex justify-center flex-col md:flex-row gap-5 text-blue-700 lg:ml-11" onClick={() => handleChangePatientStatus(user, "Accepted")} >
+                    <TiTickOutline />
+                </button>
+            </td>
 
             <td className="px-6 py-4 border-t text-center">
-                <div className="text-2xl flex justify-center flex-col md:flex-row gap-5">
-                    <button onClick={() => handleChangePatientStatus(user, "Accepted")} className="text-blue-700">
-                        <TiTickOutline />
-                    </button>
-                    <button onClick={() => handleChangePatientStatus(user, "Accepted")} className="text-red-700">
-                        <AiOutlineDelete />
-                    </button>
-                </div>
+                <button className="text-2xl flex justify-center flex-col md:flex-row gap-5 text-red-700  lg:ml-11" onClick={() => handleChangePatientStatus(user, "Rejected")} >
+                    <RxCross2 />
+                </button>
             </td>
+
+            <td className="px-6 py-4 border-t text-center">
+                <button className="text-2xl flex justify-center flex-col md:flex-row gap-5 text-red-700  lg:ml-11" onClick={() => handleDeletePatient(user)} >
+                    <AiOutlineDelete />
+                </button>
+            </td>
+
         </tr>
     );
 };
