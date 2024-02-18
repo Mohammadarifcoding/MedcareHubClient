@@ -13,6 +13,8 @@ import { GiMedicines } from "react-icons/gi";
 import { FaHouseMedical } from "react-icons/fa6";
 import { FaBriefcaseMedical } from "react-icons/fa6";
 import { FaHandHoldingMedical } from "react-icons/fa";
+import { GiRemedy } from "react-icons/gi";
+
 
 const DashboardLayout = () => {
     const [openLayout, setOpenLayout] = useState(true);
@@ -97,7 +99,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/comregister"
                                         className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
                                     >
-                                         <FaBriefcaseMedical/> Company Register
+                                        <FaBriefcaseMedical /> Company Register
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/allpateint"
@@ -114,6 +116,12 @@ const DashboardLayout = () => {
 
                                     <NavLink to="/dashboard/comde" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <HiOutlineBuildingOffice2 /> Company Dashborad
+                                    </NavLink>
+                                    <NavLink to="/dashboard/allmedicine" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <GiRemedy /> All Medicine
+                                    </NavLink>
+                                    <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <GiRemedy /> All Blog
                                     </NavLink>
                                 </>
                             ) : (
@@ -196,7 +204,7 @@ const DashboardLayout = () => {
                                         to="/dashboard/comregister"
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
-                                        <FaBriefcaseMedical/>
+                                        <FaBriefcaseMedical />
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/allpateint"
@@ -215,6 +223,18 @@ const DashboardLayout = () => {
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
                                         <MdOutlineSick />
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/allmedicine"
+                                        className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
+                                    >
+                                        <GiRemedy />
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/allblog"
+                                        className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
+                                    >
+                                        <GiRemedy />
                                     </NavLink>
                                 </>
                             ) : (
@@ -348,6 +368,18 @@ const DashboardLayout = () => {
                                         <FaBook />
                                     </p>
                                     <NavLink to="/dashboard/comde">Company Dashboard</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <GiRemedy />
+                                    </p>
+                                    <NavLink to="/dashboard/allmedicine">All Medicine</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <GiRemedy />
+                                    </p>
+                                    <NavLink to="/dashboard/allblog">All blog</NavLink>
                                 </div>
                             </div>
                         </Drawer>
