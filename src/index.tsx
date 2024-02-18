@@ -50,6 +50,7 @@ import MedWishList from './Components/Pages/Medicines/MedicinItem/MedWishList.ts
 import CheckoutPage from './Components/Pages/CheckOut/CheckoutPage.tsx';
 import AdminRoute from './Components/RelatedProduct/AdminRoute.tsx';
 import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
+import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 
 
 const queryClient = new QueryClient()
@@ -193,6 +194,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/allmedicine',
         element: <AllMedicine></AllMedicine>
+      },
+      {
+        path: '/dashboard/allblog',
+        element: <AllBlog></AllBlog>
       }
 
     ]

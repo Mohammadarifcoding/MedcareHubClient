@@ -120,6 +120,9 @@ const DashboardLayout = () => {
                                     <NavLink to="/dashboard/allmedicine" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <GiRemedy /> All Medicine
                                     </NavLink>
+                                    <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <GiRemedy /> All Blog
+                                    </NavLink>
                                 </>
                             ) : (
                                 <>
@@ -223,6 +226,12 @@ const DashboardLayout = () => {
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/allmedicine"
+                                        className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
+                                    >
+                                        <GiRemedy />
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/allblog"
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
                                         <GiRemedy />
@@ -365,6 +374,12 @@ const DashboardLayout = () => {
                                         <GiRemedy />
                                     </p>
                                     <NavLink to="/dashboard/allmedicine">All Medicine</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <GiRemedy />
+                                    </p>
+                                    <NavLink to="/dashboard/allblog">All blog</NavLink>
                                 </div>
                             </div>
                         </Drawer>
