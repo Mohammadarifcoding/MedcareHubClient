@@ -201,13 +201,13 @@ const router = createBrowserRouter([
         path: '/dashboard/doctorvisiting',
         element: <DoctorVisiting/>
       },
-        path: '/dashboard/allmedicine',
+        {path: '/dashboard/allmedicine',
         element: <AllMedicine></AllMedicine>
       },
       {
         path: '/dashboard/allblog',
         element: <AllBlog></AllBlog>
-      }
+      },
 
     ]
   },
