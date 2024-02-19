@@ -53,6 +53,7 @@ import Orders from './Components/Dashboard/Pages/Orders/Orders.jsx';
 import DoctorVisiting from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisiting.jsx';
 import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
+import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
 
 
 const queryClient = new QueryClient()
@@ -195,19 +196,24 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/orders',
-        element: <Orders/>
+        element: <Orders />
       },
       {
         path: '/dashboard/doctorvisiting',
-        element: <DoctorVisiting/>
+        element: <DoctorVisiting />
       },
-        {path: '/dashboard/allmedicine',
+      {
+        path: '/dashboard/allmedicine',
         element: <AllMedicine></AllMedicine>
       },
       {
         path: '/dashboard/allblog',
         element: <AllBlog></AllBlog>
       },
+      {
+        path: '/dashboard/myorder',
+        element: <MyOrder></MyOrder>
+      }
 
     ]
   },

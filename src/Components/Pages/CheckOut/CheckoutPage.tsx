@@ -25,7 +25,7 @@ const CheckoutPage = () => {
     })
     const SubmitShippingInfor = (e) => {
         const time = new Date()
-        e.preventDefault()
+        e?.preventDefault()
         const order = {
             ...address, time, Products: cart, ID: uuidv4()
         }
