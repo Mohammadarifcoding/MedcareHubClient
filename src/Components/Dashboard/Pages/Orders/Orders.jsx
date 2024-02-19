@@ -6,14 +6,18 @@ import OrdersRow from './OrdersRow';
 const Orders = () => {
     const axiosPublic = UseAxiosPublic();
 
-    const { data: orders = [], refetch,isLoading } = useQuery({
+    const {
+        data: orders = [],
+        refetch,
+        isLoading
+    } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/orders`);
             return res.data;
         }
     });
-    console.log(orders[0]);
+    // console.log(orders[0]);
 
     const handleDeleteOrder = (id) => {
         // console.log(id);
@@ -45,33 +49,38 @@ const Orders = () => {
                 <h1 className="text-2xl font-semibold">All Orders</h1>
                 <p>Explore and mange All your Orders effortlessly in one place.</p>
             </div>
-           {!isLoading ?( 
-            orders?.length ? (<div className="md:pt-0 pt-8 md:ml-4">
-                <div className="overflow-x-auto w-full rounded-lg">
-                    <table className="table w-full ">
-                        <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
-                            <tr className="text-center">
-                                <th> Name</th>
-                                <th> Mobile</th>
-                                <th>Order Address</th>
-                                <th>Products Name</th>
-                                <th>Quentity</th>
-                                <th className="text-center">Cencel</th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-base-300 text-center">
-                            {orders?.map((user) => (
-                                <OrdersRow key={user?._id} user={user} handleDeleteOrder={handleDeleteOrder}></OrdersRow>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>) : (<div className="text-center mx-auto col-span-1 md:col-span-2 lg:col-span-3 my-20 md:my-32 lg:my-40">
-            <h1 className="font-bold loading-10  text-3xl">
-                <span className="font-extrabold text-red-600"> Oops, </span> <br />
-                it seems like there are currently no <br /> Order has been added. Please <br /> Order to see them.
-            </h1>
-        </div>))  : (
+            {!isLoading ? (
+                orders?.length ? (
+                    <div className="md:pt-0 pt-8 md:ml-4">
+                        <div className="overflow-x-auto w-full rounded-lg">
+                            <table className="table w-full ">
+                                <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
+                                    <tr className="text-center">
+                                        <th> Name</th>
+                                        <th> Mobile</th>
+                                        <th>Order Address</th>
+                                        <th>Products Name</th>
+                                        <th>Quentity</th>
+                                        <th className="text-center">Cencel</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-base-300 text-center">
+                                    {orders?.map((user) => (
+                                        <OrdersRow key={user?._id} user={user} handleDeleteOrder={handleDeleteOrder}></OrdersRow>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="text-center mx-auto col-span-1 md:col-span-2 lg:col-span-3 my-20 md:my-32 lg:my-40">
+                        <h1 className="font-bold loading-10  text-3xl">
+                            <span className="font-extrabold text-red-600"> Oops, </span> <br />
+                            it seems like there are currently no <br /> Order has been added. Please <br /> Order to see them.
+                        </h1>
+                    </div>
+                )
+            ) : (
                 <div className="space-y-14">
                     <div className=" w-full animate-pulse bg-[#657287] flex justify-center flex-col items-start mx-auto p-6 rounded-md shadow-xl">
                         {/* User profile  Skeleton */}
