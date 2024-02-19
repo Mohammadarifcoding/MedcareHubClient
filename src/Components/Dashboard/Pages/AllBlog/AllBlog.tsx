@@ -58,8 +58,8 @@ const AllBlog = () => {
     return (
         <>
             <div className="mt-5 ml-3 md:ml-0 md:my-5">
-                <h1 className="text-2xl font-semibold">All Company</h1>
-                <p>Explore and mange All Company effortlessly in one place.</p>
+                <h1 className="text-2xl font-semibold">All Blog</h1>
+                <p>Explore and mange All Blog effortlessly in one place.</p>
             </div>
             <div className="md:pt-0 pt-8 md:ml-4">
                 <div className="overflow-x-auto w-full rounded-lg">
@@ -78,7 +78,7 @@ const AllBlog = () => {
 
                         <tbody className="bg-base-300 ">
                             {Blogs?.map((blog) => (
-                                <AllBlogRow key={blog?._id} blog={blog} handleChangeBlogStatus={handleChangeBlogStatus}  handleDeleteBlog={handleDeleteBlog} ></AllBlogRow>
+                                <AllBlogRow key={blog?._id} blog={blog} handleChangeBlogStatus={handleChangeBlogStatus} handleDeleteBlog={handleDeleteBlog} ></AllBlogRow>
                             ))}
 
                             {/* Add more rows with user details */}

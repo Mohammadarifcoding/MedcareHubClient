@@ -25,7 +25,7 @@ const MedicineItem = ({ filter }) => {
     // const [isLoading, setISLoading] = useState(false);
     const { selectedCategory } = useMedicineContext();
     const AxiousPublic = UseAxiosPublic();
-
+    console.log(medicine);
 
     const handlePriceChange = (event) => {
         setPriceRange(event.target.value);
@@ -135,11 +135,11 @@ const MedicineItem = ({ filter }) => {
             </div>
             {!isLoading ? (
                 <div className="container mx-auto grid grid-cols-1 gap-6  md:grid-cols-2 lg:grid-cols-3">
-                    {filteredMedicine?.map((medicine) => (
+                    {filteredMedicine?.filter(medicine => medicine.status === "Accepted")?.map((medicine) => (
                         <div className="space-y-3 " key={medicine?._id}>
                             <div className="flex items-center justify-center rounded-md border border-[#0360D9]/30 bg-white p-4">
-                                <Link to={`/detailsMed/${medicine._id}`}>   
-                                <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
+                                <Link to={`/detailsMed/${medicine._id}`}>
+                                    <img className="max-w-[144px] h-40" src={medicine?.Image} alt={medicine?.Medname} /></Link>
                             </div>
                             <div className="space-y-3">
                                 <div className="space-y-3 pl-2">

@@ -13,7 +13,7 @@ const MyBlog = () => {
 
 
     const { blogsData, isLoading, refetch } = UseSingleBlog()
-    const [openModal, setOpenModal] = useState(false);
+    // const [openModal, setOpenModal] = useState();
 
 
     const handleDeleteUser = blog => {
@@ -84,7 +84,7 @@ const MyBlog = () => {
                             <td className=" py-4 border-t ">
 
                                 <div className='flex '>
-                                    <BlogModal openModal={openModal} setOpenModal={setOpenModal} blog={blog} />
+                                    <BlogModal blog={blog} />
                                     <button onClick={() => handleDeleteUser(blog)} className="text-red-600 text-3xl">
                                         <MdDelete />
                                     </button>
