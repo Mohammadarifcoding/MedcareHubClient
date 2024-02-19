@@ -7,9 +7,9 @@ import WriteBlogModal from './WriteBlogModal.tsx';
 const Blog = () => {
     const [BlogsData, setBlogsData] = UseBlog()
     const [isLoading, setIsLoading] = useState()
- 
 
-  
+
+
 
 
 
@@ -36,7 +36,7 @@ const Blog = () => {
                     )
                 }
                 {
-                    BlogsData.map(item => <BlogItem blog={item}></BlogItem>)
+                    BlogsData?.filter(item => item.status === "Accepted")?.map(item => <BlogItem blog={item}></BlogItem>)
                 }
             </div>
         </Container>

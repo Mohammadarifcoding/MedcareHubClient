@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import UseAuth from '../../Hook/UseAuth.tsx';
 import DisplayComment from './DisplayComment.tsx';
+import { SlLike, SlDislike } from "react-icons/sl";
 
 interface SinglePostProps {
     data: {
@@ -17,13 +18,16 @@ interface SinglePostProps {
         title: string;
         discription: string,
         comments: Array,
+        value: string,
+        like: number,
+        dislike: number
     }
 }
 
 const SinglePost = ({ data, refetch }: SinglePostProps) => {
     const { user } = UseAuth()
     const axiosPublic = UseAxiosPublic();
-    const { _id, name, date, postTag, title, discription, userImg, comments } = data;
+    const { _id, name, date, postTag, title, discription, userImg, comments, like, dislike } = data;
 
     const handlAddComment = e => {
         e.preventDefault()
@@ -34,10 +38,10 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             userImg: user.photoURL,
             comment
         }
-        console.log(commentInfo);
+        // console.log(commentInfo);
         axiosPublic.patch(`/forum/comment/${_id}`, commentInfo)
             .then(res => {
-                console.log(res.data, "here here");
+                // console.log(res.data, "here here");
                 if (res.data) {
                     refetch()
                     Swal.fire({
@@ -49,6 +53,53 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     });
                 }
             })
+    }
+    const handleLikeDislike = (like, dislike, userValue) => {
+        // console.log(like, dislike, userValue);
+        if (user) {
+            const reactInfo = {
+                value: {
+                    like,
+                    dislike,
+                },
+                user: {
+                    name: user?.displayName,
+                    email: user?.email,
+                    react: userValue
+                }
+            }
+
+            axiosPublic.patch(`/forum/like/dislike/${_id}`, reactInfo)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.like) {
+                        refetch()
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your react is succfully counted",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "You Have already participated the post react!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+        } else {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "login first to participated the post like or dislike.",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
     return (
         <div className="bg-slate-200 p-5 my-5">
@@ -68,16 +119,24 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             <div className="pt-5">
                 <h1 className="text-2xl font-medium ">{title}</h1>
                 <p className="text-xl font-normal pt-2">{discription}</p>
-                <div className="pt-5 flex gap-2 items-center">
-                    <FaRegCommentAlt />
-                    <p>{comments.length} Comments</p>
+                <div className='flex justify-between items-center'>
+                    <div className="pt-5 flex gap-2 items-center">
+                        <FaRegCommentAlt />
+                        <p>{comments.length} Comments</p>
+                    </div>
+                    <div className="flex justify-center gap-5">
+                        <div>
+                            <button onClick={() => handleLikeDislike(1, 0, 'like')}><SlLike className="text-3xl"></SlLike></button>
+                            <p className="text-xl">Like: {like}</p>
+                        </div>
+                        <div>
+                            <button onClick={() => handleLikeDislike(0, 1, 'dislike')}><SlDislike className="text-3xl"></SlDislike></button>
+                            <p className="text-xl">Dislike: {dislike}</p>
+                        </div>
+                    </div>
                 </div>
                 <div>
-                    {/* {
-                        comments?.map((comment, idx) => <p className="py-3" key={comment.id}>
-                            {idx + 1}/ {comment.user}:   {comment.comment}
-                        </p>)
-                    } */}
+
                     {comments.map(commentData => <DisplayComment key={commentData._id} commentData={commentData} />)}
                 </div>
             </div>

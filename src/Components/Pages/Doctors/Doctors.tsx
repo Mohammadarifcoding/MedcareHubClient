@@ -209,16 +209,10 @@ const Doctors = () => {
                             <hr className="my-4" />
                             <div className="mb-3">
                                 {!isLoading ? (
-                                    doctorData?.map((docType) => (
-                                        <div key={docType?.DocType} className="flex gap-2">
-                                            <input
-                                                type="checkbox"
-                                                name={docType?.DocType}
-                                                id={docType?.DocType}
-                                                checked={filter.docTypes.includes(docType?.DocType)}
-                                                onChange={() => handleCheckboxChange(docType?.DocType)}
-                                            />
-                                            <p>{docType?.DocType}</p>
+                                    Array.from(new Set(doctorData?.map((doctor) => doctor.DocType)))?.map((docType) => (
+                                        <div key={docType} className="flex gap-2">
+                                            <input type="checkbox" name={docType} id={docType} checked={filter.docTypes.includes(docType)} onChange={() => handleCheckboxChange(docType)} />
+                                            <p>{docType}</p>
                                         </div>
                                     ))
                                 ) : (
