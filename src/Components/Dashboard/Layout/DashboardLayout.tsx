@@ -15,6 +15,7 @@ import { FaHouseMedical } from "react-icons/fa6";
 import { FaBriefcaseMedical } from "react-icons/fa6";
 import { FaHandHoldingMedical } from "react-icons/fa";
 import { GiRemedy } from "react-icons/gi";
+import { MdProductionQuantityLimits } from "react-icons/md";
 
 
 const DashboardLayout = () => {
@@ -124,12 +125,15 @@ const DashboardLayout = () => {
                                     </NavLink>
                                     <NavLink to="/dashboard/doctorvisiting" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <LuFileStack /> Doctor visiting
-                                        </NavLink>
+                                    </NavLink>
                                     <NavLink to="/dashboard/allmedicine" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <GiRemedy /> All Medicine
                                     </NavLink>
                                     <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <GiRemedy /> All Blog
+                                    </NavLink>
+                                    <NavLink to="/dashboard/myorder" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <MdProductionQuantityLimits /> My Order
                                     </NavLink>
                                 </>
                             ) : (
@@ -243,8 +247,8 @@ const DashboardLayout = () => {
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
                                         <LuFileStack />
-                                        </NavLink>
-                                        <NavLink
+                                    </NavLink>
+                                    <NavLink
                                         to="/dashboard/allmedicine"
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
@@ -255,6 +259,12 @@ const DashboardLayout = () => {
                                         className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
                                     >
                                         <GiRemedy />
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/myorder"
+                                        className=" flex justify-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] px-2 py-3 rounded-2xl transition-all duration-200"
+                                    >
+                                        <MdProductionQuantityLimits />
                                     </NavLink>
                                 </>
                             ) : (
@@ -400,6 +410,12 @@ const DashboardLayout = () => {
                                         <GiRemedy />
                                     </p>
                                     <NavLink to="/dashboard/allblog">All blog</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <GiRemedy />
+                                    </p>
+                                    <NavLink to="/dashboard/myorder">My Order</NavLink>
                                 </div>
                             </div>
                         </Drawer>

@@ -5,7 +5,8 @@ import { FaEdit } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { base_URL } from '../../../utills/BaseURL.ts';
 
-const BlogModal = ({ openModal, setOpenModal, blog }) => {
+const BlogModal = ({ blog }) => {
+     const [openModal, setOpenModal] = useState(true);
     const {
         register,
         handleSubmit,
@@ -14,7 +15,7 @@ const BlogModal = ({ openModal, setOpenModal, blog }) => {
 
     console.log("Blog Modal Rendered with Blog:", blog);
 
-    const handleBlogEdit =  (data) => {
+    const handleBlogEdit = (data) => {
         console.log(data);
         const blogData = {
             BlogName: data.BlogName,

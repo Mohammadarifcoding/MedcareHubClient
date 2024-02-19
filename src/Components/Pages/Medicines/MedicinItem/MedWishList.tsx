@@ -25,7 +25,7 @@ const MedWishList = () => {
     const handleAddtoCart = (item) => {
 
         const cartItem = {
-            medicineId: item?.ID,
+            medicineId: item?.medicineId,
             OrderId: uuidv4(),
             email: user?.email,
             medicine: item,
