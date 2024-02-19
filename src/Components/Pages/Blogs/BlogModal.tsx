@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEdit } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { base_URL } from '../../../utills/BaseURL.ts';
 
-const BlogModal = ({ blog }) => {
-     const [openModal, setOpenModal] = useState(true);
+const BlogModal = ({ blog, openModal, setOpenModal }) => {
     const {
         register,
         handleSubmit,
