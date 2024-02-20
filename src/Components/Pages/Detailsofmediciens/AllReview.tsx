@@ -1,9 +1,9 @@
 import React from 'react';
 
 const AllReview = ({data}) => {
-
+  
      const {name,email,description, ProductID,companyname}=data
-     console.log(data);
+    //  console.log(data);
     return (
         <>
         <div  className='flex flex-row items-center gap-2 py-4'>

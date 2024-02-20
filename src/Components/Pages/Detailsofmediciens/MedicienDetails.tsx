@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
 import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import UseCart from '../../../Hook/UseCart.tsx';
+import moment from 'moment';
 
 const MedicienDetails = () => {
     const [, refetch] = UseCart();
@@ -30,12 +31,25 @@ const MedicienDetails = () => {
             });
     }, [id]);
 
+    const currentDate = new Date(); 
+
+    const year = currentDate.getFullYear(); 
+    const month = currentDate.getMonth() + 1; 
+    const day = currentDate.getDate();
+    const hours = currentDate.getHours(); 
+    const minutes = currentDate.getMinutes();
+    
+    const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+    
+    console.log(formattedDateTime); 
+
     const handlereview = (result) => {
         result.preventDefault();
         console.log(result.target.description.value); // Corrected "descripton" to "description"
         const RevData = {
             name: user?.displayName,
             ID: uuidv4(),
+            date:formattedDateTime,
             email: user?.email,
             description: result.target.description.value, // Corrected "descripton" to "description"
             ProductID: data?.ID,
@@ -150,7 +164,7 @@ const MedicienDetails = () => {
                 {/* reviewwwwww */}
 
                 <div>
-                    <Review id={data?.ID}></Review>
+                    <Review id={data?.ID} ></Review>
                 </div>
 
             {/* give */}
