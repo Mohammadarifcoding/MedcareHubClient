@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import UseCart from '../../../Hook/UseCart.tsx';
 import moment from 'moment';
+import { useQuery } from '@tanstack/react-query';
 
 const MedicienDetails = () => {
     const [, refetch] = UseCart();
@@ -18,7 +19,19 @@ const MedicienDetails = () => {
     const [data, setData] = useState();
     const { id } = useParams();
     // console.log(id);
-    console.log(id);
+
+
+
+    const { data: medicineData = [], isLoading } = useQuery({
+        queryKey: ['medicines'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Medicines');
+            return result.data;
+        }
+    });
+
+
+   
     useEffect(() => {
         fetch(`http://localhost:5000/detailsMed/${id}`)
             .then((res) => res.json())
@@ -94,11 +107,13 @@ const MedicienDetails = () => {
             });
     };
 
+    const relatedServicesData = medicineData.filter((medicine) => medicine.Category === data?.Category && medicine.ID !== data?.ID);
+
     return (
         <div className="bg-white">
              <div className='flex md:flex-row flex-col justify-center  py-24 '>
 
-  <div className='w-[550px] h-[480px] justify-center items-center flex mx-auto border-x-2 border-blue-950 bg-blue-200' >
+  <div className='w-[550px] h-[520px] justify-center items-center flex mx-auto border-x-2 border-blue-950 bg-blue-100' >
  
  <img className='w-[390px] h-[400px]' src={data?.Image} alt="" />
 
@@ -213,82 +228,39 @@ const MedicienDetails = () => {
             {/* realtive product */}
  
  <div>
-<h1 className='text-3xl text-center font-bold pb-12'>Related Services</h1>
+<h1 className='text-4xl text-center font-bold pb-16'>Related Services</h1>
 
 <div className='flex md:flex-row flex-col justify-center gap-12 pb-24'>
 
-<div className='w-[300px] justify-center items-center  border-blue-950'>
-<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
-<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-<div className='py-4 shadow-md'>
-<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+<div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-12'>
+
+{relatedServicesData.map((service) => (
+                    <div key={service.ID} className='w-[300px]  shadow-lg justify-center items-center  border-blue-950'>
+                      <div className='w-[300px]  justify-center items-center  border-blue-950'>
+<div className='w-[320px]  flex flex-col  mx-auto items-center h-[500px] '>
+<img className='w-[290px]  h-[340px] pt-5 ' src={service?.Image} alt="" />
+<div className='mt-4'>
+<h1 className=' text-center font-bold ' >{service?.Medname}</h1>
+<h1 className='text-xl font-medium text-center pt-2'>$<span>{service?.Price}</span></h1>
+</div>
+<div className='py-4'>
+<button  onClick={() => handleAddtoCart(data)} className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
 </div>
  
 </div>
 <div>
-<div className='flex flex-row justify-center items-center pt-5'>
-<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
-<h1 className='text-xl text-center font-medium ' >Product Name</h1>
-</div>
-<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
+
+
 </div>
 
 </div>
 
-<div className='w-[300px] justify-center items-center  border-blue-950'>
-<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
-<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-<div className='py-4 shadow-md'>
-<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
-</div>
- 
-</div>
-<div>
-<div className='flex flex-row justify-center items-center pt-5'>
-<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
-<h1 className='text-xl text-center font-medium ' >Product Name</h1>
-</div>
-<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
-</div>
+                    </div>
+                ))}
 
 </div>
 
 
-<div className='w-[300px] justify-center items-center  border-blue-950'>
-<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
-<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-<div className='py-4 shadow-md'>
-<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
-</div>
- 
-</div>
-<div>
-<div className='flex flex-row justify-center items-center pt-5'>
-<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
-<h1 className='text-xl text-center font-medium ' >Product Name</h1>
-</div>
-<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
-</div>
-
-</div>
-
-<div className='w-[300px] justify-center items-center  border-blue-950'>
-<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
-<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
-<div className='py-4 shadow-md'>
-<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
-</div>
- 
-</div>
-<div>
-<div className='flex flex-row justify-center items-center pt-5'>
-<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
-<h1 className='text-xl text-center font-medium gap-1' >Product Name</h1>
-</div>
-<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
-</div>
-
-</div>
 
 
 </div>
