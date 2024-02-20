@@ -68,8 +68,8 @@ const AllBlog = () => {
                             <table className="table w-full ">
                                 <thead className="bg-[#fafafad5] px-6 py-3 text-center h-12 md:h-14 text-black text-sm lg:text-lg ">
                                     <tr>
-                                        <th>Blog Name</th>
                                         <th>Writer Name</th>
+                                        <th>Blog Name</th>
                                         <th>Blog Details</th>
                                         <th>Status</th>
                                         <th className="text-center">Accept</th>

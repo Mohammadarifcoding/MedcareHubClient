@@ -8,7 +8,9 @@ const AllMedicineRow = ({ medicine, handleChangeMedicineStatus, handleDeleteMed 
     console.log(medicine);
     return (
         <tr className='bg-[#FFFFFF] hover:bg-[#fafafa7e]'>
-            <td className="border-t px-6 py-4  ">{Medname}</td>
+            <td className="border-t px-6 py-4 flex items-center gap-1.5 pt-5 md:pt-3  md:gap-2 ">
+                <img className="w-12 h-12 rounded-md" src={Image} alt="" />
+                {Medname}</td>
             <td className="border-t px-6 py-4  ">{Category}</td>
             <td className="border-t px-6 py-4 text-center">{Company}</td>
 

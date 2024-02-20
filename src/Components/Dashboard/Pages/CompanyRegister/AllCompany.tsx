@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { AiOutlineDelete } from 'react-icons/ai';
-import { TiTickOutline } from 'react-icons/ti';
-import { base_URL } from '../../../../utills/BaseURL.ts';
-import { RxCross2 } from "react-icons/rx";
+import React from 'react';
+
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import { useQuery } from '@tanstack/react-query';
 import AllCompanyrow from './AllCompanyrow.jsx';

@@ -8,9 +8,13 @@ const AllBlogRow = ({ blog, handleDeleteBlog, handleChangeBlogStatus }) => {
     console.log(blog);
     return (
         <tr className='bg-[#FFFFFF] hover:bg-[#fafafa7e]'>
-            <td className="border-t px-6 py-4  ">{BlogName}</td>
             <td className="border-t px-6 py-4  ">{BlogWriterName}</td>
-            <td className="border-t px-6 py-4 text-center">{BlogWriting[0].slice(0, 40)}...</td>
+            <td className="border-t px-6 py-4 text-center  ">{BlogName} </td>
+            <td className="border-t px-6 py-4 text-center">
+                {BlogWriting[0].slice(0, 40)}
+                <br />
+                {BlogWriting[0].slice(41, 80)}...
+            </td>
 
 
             <td className="px-6 py-4 border-t text-center">
