@@ -54,6 +54,7 @@ import DoctorVisiting from './Components/Dashboard/Pages/DoctorVisiting/DoctorVi
 import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
+import DoctorVisitingDetails from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisitingDetails.jsx';
 
 
 const queryClient = new QueryClient()
@@ -201,6 +202,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/doctorvisiting',
         element: <DoctorVisiting />
+      },
+      {
+        path: '/dashboard/doctorvisiting/:id',
+        element: <DoctorVisitingDetails />
       },
       {
         path: '/dashboard/allmedicine',
