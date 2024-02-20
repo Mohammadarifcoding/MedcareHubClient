@@ -12,15 +12,16 @@ const DoctorDetails = () => {
     const { id } = useParams();
     const { user } = UseAuth();
     const [appointmentDate, setAppointmentDate] = useState('');
+    const [description, setDescription] = useState('');
     const [patientInfo, setpatientInfo] = useState({});
     const navigate = useNavigate();
-    // console.log(user?.email)
-    // console.log(id);
-    // console.log(foundData);
     const axiosPublic = UseAxiosPublic();
-
+    // console.log(user?.email)
+    console.log(id);
+    
     useEffect(() => {
-        fetch(`http://localhost:5000/Doctor/${id}`)
+        if(id){
+            fetch(`http://localhost:5000/Doctor/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);
@@ -29,7 +30,9 @@ const DoctorDetails = () => {
             .catch((error) => {
                 console.log(error.message);
             });
+        }
     }, [id]);
+    console.log(foundData);
 
     const handleCheckPatient = async () => {
         const res = await fetch(`http://localhost:5000/getPatient/${user?.email}`);
@@ -77,7 +80,9 @@ const DoctorDetails = () => {
             time: selectedTime,
             weekDay: selectedDay,
             doctor: foundData?._id,
-            ID: crypto.randomUUID()
+            ID: crypto.randomUUID(),
+            appointmentDate:appointmentDate,
+            description: description,
         };
         // console.log(patientData);
         try {
@@ -234,7 +239,7 @@ const DoctorDetails = () => {
                                                 <label htmlFor="description" className="mt-5">
                                                     Describe your health status
                                                 </label>
-                                                <textarea name="" id="description" className="w-full min-h-[150px] border-2 border-gray-100 mt-2 pl-2 pt-2" placeholder="Description"></textarea>
+                                                <textarea name="" id="description" className="w-full min-h-[150px] border-2 border-gray-100 mt-2 pl-2 pt-2" placeholder="Description"  onChange={(e) => setDescription(e.target.value)}></textarea>
                                                 <label htmlFor="date" className="block mb-4">
                                                     Appointment Date
                                                 </label>
