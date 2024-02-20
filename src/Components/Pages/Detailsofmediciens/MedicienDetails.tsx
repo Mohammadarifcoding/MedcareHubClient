@@ -82,57 +82,70 @@ const MedicienDetails = () => {
 
     return (
         <div className="bg-white">
-            <div className="flex md:flex-row flex-col justify-center items-center gap-12 py-24">
-                <div className="md:w-[600px]">
-                    <img className="md:w-[700px] w-[300px] md:h-[600px]" src={data?.Image} alt="" />
-                </div>
-                <div className="md:w-[700px] md:h-[650px]">
-                    <div className="flex  items-center justify-center text-center">
-                        <h1 className="md:text-4xl font-bold ml-2  text-blue-600">{data?.Medname}</h1>
-                        <img className="w-20 md:w-36" src="https://i.ibb.co/RBpjTyF/Medical-Logo-Design-Symbol-Icon-on-transparent-background-PNG-removebg-preview.png" alt="" />
-                    </div>
-                    <p className="md:text-2xl text-[#2E2E2E] pb-4 px-4 font-medium ">{data?.Description}</p>
+             <div className='flex md:flex-row flex-col justify-center  py-24 '>
 
-                    <div>
-                        <div>
-                            <div className="flex flex-row  items-center">
-                                <img className="w-16" src="https://i.ibb.co/Pc5QjmM/images-7-removebg-preview.png" alt="" />
-                                <h1 className="md:text-2xl text-[#2E2E2E] font-medium ">{data?.Category}</h1>
-                            </div>
+  <div className='w-[550px] h-[480px] justify-center items-center flex mx-auto border-x-2 border-blue-950 bg-blue-200' >
+ 
+ <img className='w-[390px] h-[400px]' src={data?.Image} alt="" />
 
-                            <div className="flex flex-row  items-center">
-                                <img className="h-16" src="https://i.ibb.co/4gC038L/pngtree-wind-global-solution-logo-design-vector-image-291454-removebg-preview.png" alt="" />
-                                <a href="jj">
-                                    <h1 className="md:text-2xl text-[#2E2E2E] font-medium ">{data?.Company}</h1>
-                                </a>
-                            </div>
-                            <div className="flex flex-row  items-center ml-3 pb-2">
-                                <img className="h-12" src="https://i.ibb.co/XxvTMjc/images-2-removebg-preview-1.png" alt="" />
-                                <h1 className="md:text-2xl text-[#2E2E2E] font-medium  "> {data?.Price}</h1>
-                            </div>
-                        </div>
-                    </div>
+</div>
+<div className='w-[700px] mr-24'>
 
-                    <div className="flex flex-wrap items-center justify-center gap-5">
-                        <button onClick={() => handleAddtoCart(data)} className="bg-[#E1EEFF] text-blue-600 border-blue-600 btn rounded-full h-[60px] p-4 w-[180px] text-xl">
-                            Add to Cart
-                        </button>
-                        <button className="bg-[#E1EEFF] text-blue-600 border-blue-600 btn rounded-full h-[60px] p-4 w-[200px] text-xl">Add to Favorite</button>
-                    </div>
-                </div>
-            </div>
 
+
+
+<h1 className='font-bold text-4xl py-7 pb-4' >{data?.Medname} </h1>
+ 
+<div className='flex md:flex-row flex-col items-center gap-24 pb-8' >
+
+<div className='flex md:flex-row flex-col items-center gap-3'>
+    <img className='h-10 w-10' src="https://i.ibb.co/2kc8fWc/medical-health-logo-design-for-business-and-company-vector-removebg-preview.png" alt="" />
+    <h1 className='text-xl font-medium'><a className='underline' href='hhh'>{data?.Company}</a></h1>
+ </div>
+ <div className='flex md:flex-row flex-col items-center gap-3'>
+    <img className='h-10 w-10' src="https://i.ibb.co/SxtGWHL/office-bag-4-removebg-preview.png" alt="" />
+    <h1 className='text-xl font-medium'>{data?.Category}</h1>
+ </div>
+
+</div>
+
+<p className='font-medium'>{data?.Description}</p>
+ 
+<div className='flex md:flex-row flex-col items-center py-4 gap-2'>
+    <img className='h-12 w-12' src="https://i.ibb.co/18DK7pV/360-F-304050419-e-Lb94-V8-Wbstz-C480-ZBb-W0-A85-Ql-Tk-Fv-Pk-removebg-preview.png" alt="" />
+    <h1 className='text-xl font-medium'>$<span>{data?.Price}</span></h1>
+ </div>
+
+ <div className='flex md:flex-row gap-4'>
+    <button onClick={() => handleAddtoCart(data)} className='btn bg-blue-600 text-white w-[150px] h-[30px]'><div className='flex flex-row justify-center items-center gap-1'>
+        <img className='h-7' src="https://i.ibb.co/12cZS5V/1972381-removebg-preview.png" alt="" />
+        <h1 >Add To Cart</h1></div></button>
+    <button className='btn bg-blue-200  border-x-4 text-black border-blue-500   w-[180px] h-[30px]'><div className='flex flex-row justify-center items-center gap-2'>
+        <img className='h-7' src="https://i.ibb.co/vVmLxkr/add-to-favorites-icon-vector-22798686-removebg-preview.png" alt="" /> <h1>Add To Favorite</h1></div></button>
+ </div>
+ <div className='py-6 flex flex-row items-center gap-6 '>
+ <div >
+    <button className='btn bg-blue-500 text-white border-x-5 border-black'  ><div className='flex flex-row justify-center items-center gap-1' >
+      <img className='h-8' src="https://i.ibb.co/qjLjp8G/73962736-customer-reviews-rating-user-feedback-concept-vector-icon-flat-illustration-on-orange-backg.png" alt="" />
+      <h1>See Product Reviews</h1></div></button>
+ </div>
+ 
+ </div>
+</div>
+</div>
+
+
+           
             {/* review */}
-
-            <div className="px-5 md:px-24">
-                <div className="flex flex-row items-center py-4 gap-2">
-                    <h1 className="md:text-4xl font-bold  text-blue-600">Users Feedback</h1>
-                    <img className="h-12" src="https://i.ibb.co/ynSfLjH/images-4-removebg-preview.png" alt="" />
-                </div>
-                <div className="bg-blue-600 h-1 ">
-                    <span></span>
-                </div>
-                <div className="pt-4"></div>
+            <div className='px-36'>
+<div className='flex flex-row items-center py-4 gap-2'>
+<h1 className='md:text-4xl font-bold  text-blue-600'>Users Feedback</h1> 
+<img className='h-10' src="https://i.ibb.co/ynSfLjH/images-4-removebg-preview.png" alt="" />
+</div>
+<div className='bg-blue-600 h-1 '>
+<span></span>
+</div>
+<div className='pt-4'></div>
 
                 {/* reviewwwwww */}
 
@@ -140,7 +153,9 @@ const MedicienDetails = () => {
                     <Review id={data?.ID}></Review>
                 </div>
 
-                {/* give review */}
+            {/* give */}
+
+
                 <form action="" onSubmit={handlereview}>
                     <div className="pb-24">
                         <div className="flex flex-row items-center py-4 gap-2">
@@ -180,8 +195,112 @@ const MedicienDetails = () => {
                     </div>
                 </form>
             </div>
+
+            {/* realtive product */}
+ 
+ <div>
+<h1 className='text-3xl text-center font-bold pb-12'>Related Services</h1>
+
+<div className='flex md:flex-row flex-col justify-center gap-12 pb-24'>
+
+<div className='w-[300px] justify-center items-center  border-blue-950'>
+<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
+<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+<div className='py-4 shadow-md'>
+<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+</div>
+ 
+</div>
+<div>
+<div className='flex flex-row justify-center items-center pt-5'>
+<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+<h1 className='text-xl text-center font-medium ' >Product Name</h1>
+</div>
+<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
+</div>
+
+</div>
+
+<div className='w-[300px] justify-center items-center  border-blue-950'>
+<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
+<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+<div className='py-4 shadow-md'>
+<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+</div>
+ 
+</div>
+<div>
+<div className='flex flex-row justify-center items-center pt-5'>
+<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+<h1 className='text-xl text-center font-medium ' >Product Name</h1>
+</div>
+<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
+</div>
+
+</div>
+
+
+<div className='w-[300px] justify-center items-center  border-blue-950'>
+<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
+<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+<div className='py-4 shadow-md'>
+<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+</div>
+ 
+</div>
+<div>
+<div className='flex flex-row justify-center items-center pt-5'>
+<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+<h1 className='text-xl text-center font-medium ' >Product Name</h1>
+</div>
+<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
+</div>
+
+</div>
+
+<div className='w-[300px] justify-center items-center  border-blue-950'>
+<div className='w-[320px] flex flex-col  shadow-lg mx-auto items-center h-[300px] bg-slate-200 '>
+<img className='w-[240px]  pt-5' src="https://i.ibb.co/pb83yd7/istockphoto-1419913245-612x612.jpg" alt="" />
+<div className='py-4 shadow-md'>
+<button className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+</div>
+ 
+</div>
+<div>
+<div className='flex flex-row justify-center items-center pt-5'>
+<img className='h-8' src="https://i.ibb.co/zZxgr5C/1106992-removebg-preview.png" alt="" />
+<h1 className='text-xl text-center font-medium gap-1' >Product Name</h1>
+</div>
+<h1 className='text-xl font-medium text-center pt-2'>$<span>Price</span></h1>
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
         </div>
     );
 };
 
 export default MedicienDetails;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
