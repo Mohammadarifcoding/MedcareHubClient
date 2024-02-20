@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div>
         <footer className="bg-gray-800 text-white py-12">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-24">
                 <div>
                     <h3 className="text-lg font-semibold mb-2">Contact Information</h3>
                     <p className="text-sm mb-1">Phone: (123) 456-7890</p>
@@ -70,7 +70,7 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <div>
+                {/* <div>
                     <h3 className="text-lg font-semibold mb-2">MedCareHub</h3>
                     <form className="space-y-2">
                         <input
@@ -85,7 +85,7 @@ const Footer = () => {
                         />
                          <button className="btn bg-[#0360D9] text-white w-full">Contact Us</button>
                     </form>
-                </div>
+                </div> */}
             </div>
         </footer>
     </div>

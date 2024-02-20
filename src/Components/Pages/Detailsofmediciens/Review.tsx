@@ -7,7 +7,10 @@ import AllReview from './AllReview.tsx';
 
 
 
+
+
 const Review = ({id}) => {
+
 
 const{user}=UseAuth()
 const [data,setData] = useState();
@@ -30,7 +33,7 @@ useEffect(() => {
        
        <div>
              {
-                data?.map(data => <AllReview data={data} key={data.ID} />)
+                data?.map(data => <AllReview data={data}  key={data.ID} />)
             } 
         </div>
        
