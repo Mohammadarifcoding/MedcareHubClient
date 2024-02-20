@@ -10,7 +10,7 @@ const MyOrder = () => {
     const { data: orders = [], refetch } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/Orders`);
+            const res = await axiosPublic.get(`/Orders?Email=${user?.email}`);
             return res.data;
         }
     });

@@ -3,8 +3,11 @@ import UseCart from '../../../../Hook/UseCart.tsx';
 import { uuidv4 } from '@firebase/util';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import Swal from 'sweetalert2';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
 
 const ShippingInfo = ({ address, setAddress, submit }) => {
+
+    const { user } = UseAuth()
     // const [cart, refectchCart] = UseCart()
     // const Axious = UseAxiosPublic()
     // const SubmitShippingInfor = (e) => {
@@ -80,7 +83,7 @@ const ShippingInfo = ({ address, setAddress, submit }) => {
                 </div>
                 <div className='flex flex-col gap-2 md:w-[33%] w-full'>
                     <label className='text-lg font-medium' htmlFor="name">Email</label>
-                    <input value={address.Email} required onChange={(e) => { setAddress({ ...address, Email: e.target.value }) }} className='p-3 border-2 border-[#E1EEFF] focus:outline-none rounded-md' type="email" name="name" id="" />
+                    <input value={user?.email} required onChange={(e) => { setAddress({ ...address, Email: e.target.value }) }} className='p-3 border-2 border-[#E1EEFF] focus:outline-none rounded-md' type="email" name="name" id="" />
                 </div>
 
             </div>
