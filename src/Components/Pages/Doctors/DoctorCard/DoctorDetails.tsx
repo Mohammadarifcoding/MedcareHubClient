@@ -219,7 +219,7 @@ const DoctorDetails = () => {
                                 </button>
                                 <button className=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
                                     {foundData?.service[2]}
-                                </button>
+                                </button> 
                             </div>
 
                             <div className='ml-24 mt-3 '>
