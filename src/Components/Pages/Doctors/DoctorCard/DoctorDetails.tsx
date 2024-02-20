@@ -265,38 +265,7 @@ const DoctorDetails = () => {
                                     <h2 className="lg:text-xl font-bold my-2 ">About Me</h2>
                                     <p className="text-sm mb-4  ">{foundData?.aboutMe}</p>
                                 </div>
-                                <div>
-                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                    <button className="btn w-28 bg-[#E1EEFF]" onClick={handleCheckPatient}>
-                                        Book Now
-                                    </button>
-                                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                                        <div className="modal-box">
-                                            <h2 className="font-semibold text-xl mb-4">Choose your Appointment Time</h2>
-                                            <label htmlFor="description" className="mt-5">
-                                                Describe your health status
-                                            </label>
-                                            <textarea name="" id="description" className="w-full min-h-[150px] border-2 border-gray-100 mt-2 pl-2 pt-2" placeholder="Description" onChange={(e) => setDescription(e.target.value)}></textarea>
-                                            <label htmlFor="date" className="block mb-4">
-                                                Appointment Date
-                                            </label>
-                                            <input type="datetime-local" onChange={(e) => setAppointmentDate(e.target.value)} name="" id="date" className="" />
-                                            <div className="modal-action">
-                                                <form method="dialog" className="flex justify-between w-full">
-                                                    <div>
-                                                        <button onClick={handleAppointment} className="btn bg-[#E1EEFF]">
-                                                            Appointment
-                                                        </button>
-                                                    </div>
-                                                    {/* if there is a button in form, it will close the modal */}
-                                                    <div>
-                                                        <button className="btn bg-[#E1EEFF]">Back</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </dialog>
-                                </div>
+                              
                             </div>
 
                             <div className="text-gray-600">
