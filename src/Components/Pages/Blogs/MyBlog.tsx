@@ -4,8 +4,6 @@ import UseSingleBlog from '../../../Hook/UseSingleBlog.tsx';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
-import { useForm } from 'react-hook-form';
 import BlogModal from './BlogModal.tsx';
 
 
@@ -62,7 +60,7 @@ const MyBlog = () => {
                                 <table className="table w-full">
                                     <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
                                         <tr>
-                                            {/* <th className="px-6 py-3 "> Blog Image</th> */}
+                                         
                                             <th >Writer  Name</th>
                                             <th >Blog  Name</th>
                                             <th > Email</th>
@@ -73,7 +71,6 @@ const MyBlog = () => {
                                     <tbody className="bg-base-300 ">
                                         {blogsData?.map((blog) => <tr className='bg-[#FFFFFF] hover:bg-[#fafafa7e] ' key={blog?._id}>
 
-                                            {/* <td className="border-t px-6 py-4  "><img className='w-[40px] h-[40px] rounded-full' src={blog?.BlogPic} alt="" /></td> */}
                                             <td className="border-t px-6 py-4 ">{blog?.BlogWriterName}</td>
                                             <td className="border-t px-6 py-4  ">{blog?.BlogName.slice(0, 18)}...</td>
 

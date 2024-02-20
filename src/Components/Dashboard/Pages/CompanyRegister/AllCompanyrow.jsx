@@ -8,8 +8,8 @@ const AllCompanyrow = ({ company, handleChangeCompanyStatus, handleDeleteCompany
     console.log(company);
     return (
         <tr className='bg-[#FFFFFF] hover:bg-[#fafafa7e]'>
-            <td className="border-t px-6 py-4  ">{comname}</td>
-            <td className="border-t px-6 py-4  ">{comemail}</td>
+            <td className="border-t px-6 py-4 text-center ">{comname}</td>
+            <td className="border-t px-6 py-4 text-center ">{comemail}</td>
             <td className="border-t px-6 py-4 text-center">{owneremail}</td>
 
 

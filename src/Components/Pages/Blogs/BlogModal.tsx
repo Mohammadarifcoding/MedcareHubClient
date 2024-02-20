@@ -29,7 +29,10 @@ const BlogModal = ({ blog, openModal, setOpenModal }) => {
                 setOpenModal(false)
 
             })
-            .catch((error) => console.error("Error updating status:", error));
+            .catch((error) => {
+                console.error("Error updating status:", error);
+                setOpenModal(false)
+            })
     }
 
 
@@ -75,7 +78,7 @@ const BlogModal = ({ blog, openModal, setOpenModal }) => {
 
 
                                         <div className='lg:flex lg:gap-[620px] justify-between'>
-                                            <button onClick={() => { setOpenModal(false) }} className="mr-0 mx-auto flex bg-slate-950 text-white px-3 py-2 rounded-lg mb-6" type='submit'>Submit Blog Edit</button>
+                                            <button className="mr-0 mx-auto flex bg-slate-950 text-white px-3 py-2 rounded-lg mb-6" type='submit'>Submit Blog Edit</button>
 
                                             <button onClick={() => { setOpenModal(false) }} className="mr-0 mx-auto flex bg-slate-950 text-white px-3 py-2 rounded-lg mb-6" >Close</button>
                                         </div>
