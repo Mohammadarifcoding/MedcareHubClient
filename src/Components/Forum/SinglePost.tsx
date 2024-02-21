@@ -6,6 +6,7 @@ import UseAuth from '../../Hook/UseAuth.tsx';
 import DisplayComment from './DisplayComment.tsx';
 import { SlLike, SlDislike } from "react-icons/sl";
 import { useQuery } from '@tanstack/react-query';
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 interface SinglePostProps {
     data: {
@@ -21,15 +22,16 @@ interface SinglePostProps {
         comments: Array,
         value: string,
         like: number,
-        dislike: number
+        dislike: number,
+        userMail: String
     }
 }
 
 const SinglePost = ({ data, refetch }: SinglePostProps) => {
     const { user } = UseAuth();
-    // const userEmail = user?.email;
+    const userEmail = user?.email;
     const axiosPublic = UseAxiosPublic();
-    const { _id, name, date, postTag, title, discription, userImg, comments, like, dislike } = data;
+    const { _id, name, date, postTag, userMail, title, discription, userImg, comments, like, dislike } = data;
 
     // const { data: reactData } = useQuery({
     //     queryKey: ['reactData'],
@@ -86,8 +88,8 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
 
             axiosPublic.patch(`/forum/like/dislike/${_id}`, reactInfo)
                 .then(res => {
-                    console.log(res.data);
-                    if (res.data.like) {
+                    console.log(res.data, "hello res.data");
+                    if (!res.data.message) {
                         refetch()
                         Swal.fire({
                             position: "top-end",
@@ -116,7 +118,33 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             });
         }
     }
+    const handleDeletepost = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert the post!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/forum/post/delete/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your post has been deleted.",
+                                icon: "success"
 
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
 
     return (
@@ -132,7 +160,24 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     </div>
 
                 </div>
-                <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                {
+                    userEmail === userMail ? <>
+                        <div className='flex items-center gap-2'>
+                            <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                            <div className="dropdown dropdown-hover">
+                                <div tabIndex={0} role="button" className="border-2 border-blue-500 p-3 rounded">
+                                    <BsThreeDotsVertical />
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li><a>Edit Post</a></li>
+                                    <li onClick={() => handleDeletepost(_id)}><a>Delete Post</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </> : <>
+                        <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                    </>
+                }
             </div>
             <div className="pt-5">
                 <h1 className="text-2xl font-medium ">{title}</h1>
