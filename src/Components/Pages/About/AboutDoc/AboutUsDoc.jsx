@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutDoc = () => {
+const AboutUsDoc = () => {
     return (
         <div className="flex md:flex-row flex-col justify-center items-center gap-3 ">
         {/* card */}
@@ -66,4 +66,4 @@ const AboutDoc = () => {
     );
 };
 
-export default AboutDoc;
+export default AboutUsDoc;

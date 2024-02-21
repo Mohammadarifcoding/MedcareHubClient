@@ -55,6 +55,7 @@ import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.ts
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
 import ContactPage from './Components/Pages/Contact/ContactPage.tsx';
+import AboutUs from './Components/Pages/About/AboutUs.tsx';
 
 
 const queryClient = new QueryClient()
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <About></About>
+        element: <AboutUs></AboutUs>
       }, {
         path: '/data',
         element: <Testing></Testing>
