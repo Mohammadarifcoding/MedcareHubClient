@@ -7,6 +7,7 @@ import DisplayComment from './DisplayComment.tsx';
 import { SlLike, SlDislike } from "react-icons/sl";
 import { useQuery } from '@tanstack/react-query';
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 interface SinglePostProps {
     data: {
@@ -31,7 +32,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
     const { user } = UseAuth();
     const userEmail = user?.email;
     const axiosPublic = UseAxiosPublic();
-    const { _id, name, date, postTag, userMail, title, discription, userImg, comments, like, dislike } = data;
+    const { _id, name, date, postTag, userMail, title, discription, userImg, comments, like, dislike, category } = data;
 
     // const { data: reactData } = useQuery({
     //     queryKey: ['reactData'],
@@ -145,6 +146,38 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             }
         });
     }
+    const openModal = () => {
+        const modal = document.getElementById('my_modal_7') as HTMLInputElement;
+        modal.checked = true;
+    }
+    const { register, handleSubmit, reset } = useForm({
+        defaultValues: {
+            title: title,
+            discription: discription,
+            postTag: postTag,
+            category: category
+        }
+    });
+
+    const onSubmit: SubmitHandler = async (data) => {
+        reset();
+        const postItem = {
+            title: data.title,
+            discription: data.discription,
+            postTag: data.postTag,
+            category: data.category
+        }
+        const forumRes = await axiosPublic.post('/forum', postItem);
+        if (forumRes.data) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `post has been updated!`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    }
 
 
     return (
@@ -169,7 +202,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                                     <BsThreeDotsVertical />
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a>Edit Post</a></li>
+                                    <li onClick={openModal}><a>Edit Post</a></li>
                                     <li onClick={() => handleDeletepost(_id)}><a>Delete Post</a></li>
                                 </ul>
                             </div>
@@ -222,6 +255,53 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
 
                     </form>
 
+                </div>
+            </div>
+            <div>
+
+
+                {/* Put this part before </body> tag */}
+                <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+                <div className="modal" role="dialog">
+                    <div className="modal-box">
+                        <label className="form-control w-full">
+                            <h1>Create post</h1>
+
+                            <div className="divider"></div>
+
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <label>Title</label>
+                                <input className="mt-2 mb-4 input input-bordered w-full" placeholder='Title' {...register("title")} />
+                                <label>Content</label><br />
+                                <textarea {...register("discription", { required: true })} className="mt-2 mb-4 w-full textarea textarea-bordered h-24" placeholder="Share or Ask Somethings to Everyone"></textarea>
+                                <label className=' label' >
+                                    <span className="label-text">Post Tag</span>
+                                </label>
+                                <select {...register("postTag", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled>Post Tag</option>
+                                    <option>Help Post</option>
+                                    <option>Suggestion</option>
+                                    <option>Dr Post</option>
+                                    <option>Awareness</option>
+                                </select><br />
+                                <label className=' label' >
+                                    <span className="label-text">Category</span>
+                                </label>
+                                <select {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled>Category</option>
+                                    <option>dr-post</option>
+                                    <option>patient-post</option>
+                                </select><br />
+                                <input className='btn btn-ghost' type="submit" />
+                            </form>
+
+
+
+
+                        </label>
+
+                    </div>
+                    <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
                 </div>
             </div>
         </div>
