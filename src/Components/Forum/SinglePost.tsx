@@ -88,8 +88,8 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
 
             axiosPublic.patch(`/forum/like/dislike/${_id}`, reactInfo)
                 .then(res => {
-                    console.log(res.data);
-                    if (res.data.like) {
+                    console.log(res.data, "hello res.data");
+                    if (!res.data.message) {
                         refetch()
                         Swal.fire({
                             position: "top-end",
