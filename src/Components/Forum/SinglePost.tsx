@@ -6,6 +6,7 @@ import UseAuth from '../../Hook/UseAuth.tsx';
 import DisplayComment from './DisplayComment.tsx';
 import { SlLike, SlDislike } from "react-icons/sl";
 import { useQuery } from '@tanstack/react-query';
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 interface SinglePostProps {
     data: {
@@ -132,7 +133,18 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     </div>
 
                 </div>
-                <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                <div className='flex items-center gap-2'>
+                    <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                    <div className="dropdown dropdown-hover">
+                        <div tabIndex={0} role="button" className="border-2 border-blue-500 p-3 rounded">
+                            <BsThreeDotsVertical />
+                        </div>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><a>Edit Post</a></li>
+                            <li><a>Delete Post</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div className="pt-5">
                 <h1 className="text-2xl font-medium ">{title}</h1>
