@@ -5,45 +5,47 @@ import Swal from 'sweetalert2';
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import { useQuery } from '@tanstack/react-query';
 import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
+import DocDep from './DocDep.tsx';
+import Docname from './Docname.tsx';
 
 const Contact = () => {
-  const form = useRef();
-  const { user } = UseAuth();
-  const axiosPublic = UseAxiosPublic();
+    const form = useRef();
+    const { user } = UseAuth();
+    const axiosPublic = UseAxiosPublic();
 
-  const { data: doctors = [], refetch } = useQuery({
-      queryKey: ['doctors'],
-      queryFn: async () => {
-          const res = await axiosPublic.get(`/doctors`);
-          return res.data;
-      }
-  });
+    const { data: doctors = [], refetch } = useQuery({
+        queryKey: ['doctors'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/Doctors`);
+            return res.data;
+        }
+    });
 
-  // console.log(doctors);
 
-  const sendEmail = async (e) => {
-      e.preventDefault();
+    const sendEmail = async (e) => {
+        e.preventDefault();
 
-      try {
-          const result = await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_USER_ID');
+        try {
+            // Send email using emailjs
+            const result = await emailjs.sendForm('service_t5rw20g', 'template_fm2q7f7', form.current, '53e7lEtq-rLlUMSyB');
 
-          console.log('Email sent successfully:', result.text);
-          // Show success SweetAlert
-          Swal.fire({
-              icon: 'success',
-              title: 'Email sent successfully!',
-              text: result.text
-          });
-      } catch (error) {
-          console.error('Error sending email:', error);
-          // Show error SweetAlert
-          Swal.fire({
-              icon: 'error',
-              title: 'Error sending email',
-              text: error.message // Use error.message to display the error message
-          });
-      }
-  };
+            console.log('Email sent successfully:', result.text);
+            // Show success SweetAlert
+            Swal.fire({
+                icon: 'success',
+                title: 'Email sent successfully!',
+                text: result.text
+            });
+        } catch (error) {
+            console.error('Error sending email:', error);
+            // Show error SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Error sending email',
+                text: error.message // Use error.message to display the error message
+            });
+        }
+    };
     return (
         <div>
             {/* map */}
@@ -71,7 +73,7 @@ const Contact = () => {
             <section className="flex container mx-auto md:flex-row  flex-col items-center justify-around ">
                 <div className="py-16 px-2">
                     {/* form */}
-                    <form onSubmit={sendEmail}>
+                    <form onSubmit={sendEmail} ref={form}>
                         <div className="   bg-gray-200 pt-6 pb-5 max-w-[500px] px-2">
                             <div>
                                 <h2 className="text-gray-900 md:text-3xl sm:text-xl mb-1 font-bold title-font pt-4 pb-1 pl-4">Book Your Appointment Now</h2>
@@ -91,7 +93,7 @@ const Contact = () => {
                             </div>
 
                             <div className="relative flex flex-col pl-4 px-2 pt-4">
-                                <label htmlFor="department" className="leading-7 text-sm text-black font-medium pb-2">
+                                <label htmlFor="department"  className="leading-7 text-sm text-black font-medium pb-2">
                                     Email Address
                                 </label>
                                 <input
@@ -111,9 +113,11 @@ const Contact = () => {
                                     name="department"
                                     className="w-full max-w-[400px] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                 >
-                                  
+                                   {doctors?.map((doctor) => (
+                                    <DocDep key={doctor._id} doctor={doctor}></DocDep>
+                                ))}
 
-                                    <option value="department1">1</option>
+                                   
                                 </select>
                             </div>
                             <div className="relative flex flex-col pl-4 px-2 pt-4">
@@ -125,8 +129,10 @@ const Contact = () => {
                                     name="doctor"
                                     className="w-full max-w-[400px] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                 >
-                                    <option value="doctor1">Doctor 1</option>
-                                    <option value="doctor2">Doctor 2</option>
+                                  {doctors?.map((doctor) => (
+                                    <Docname key={doctor._id} doctor={doctor}></Docname>
+                                    ))}
+                                   
                                 </select>
                             </div>
                             <div className="relative flex flex-col pl-4 px-2 pt-4">
@@ -134,6 +140,7 @@ const Contact = () => {
                                     Description
                                 </label>
                                 <textarea
+                                
                                     id="message"
                                     name="message"
                                     className="w-full max-w-[400px] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
