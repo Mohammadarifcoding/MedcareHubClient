@@ -5,6 +5,7 @@ import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import UseAuth from '../../Hook/UseAuth.tsx';
 import DisplayComment from './DisplayComment.tsx';
 import { SlLike, SlDislike } from "react-icons/sl";
+import { useQuery } from '@tanstack/react-query';
 
 interface SinglePostProps {
     data: {
@@ -25,9 +26,23 @@ interface SinglePostProps {
 }
 
 const SinglePost = ({ data, refetch }: SinglePostProps) => {
-    const { user } = UseAuth()
+    const { user } = UseAuth();
+    // const userEmail = user?.email;
     const axiosPublic = UseAxiosPublic();
     const { _id, name, date, postTag, title, discription, userImg, comments, like, dislike } = data;
+
+    // const { data: reactData } = useQuery({
+    //     queryKey: ['reactData'],
+    //     queryFn: async () => {
+    //         const res = await axiosPublic.get(`/forum/posts/${_id}?email=${encodeURIComponent(userEmail)}`);
+    //         console.log(res.data);
+    //         return res.data
+    //     }
+    // })
+    // if (reactData) {
+    //     console.log(reactData, "hahahah");
+    //     ({} = reactData);
+    // }
 
     const handlAddComment = e => {
         e.preventDefault()
@@ -101,6 +116,9 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             });
         }
     }
+
+
+
     return (
         <div className="bg-slate-200 p-5 my-5">
             <div className="flex justify-between items-center">
