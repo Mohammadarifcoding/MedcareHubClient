@@ -118,7 +118,33 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             });
         }
     }
+    const handleDeletepost = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/forum/post/delete/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
 
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
 
     return (
@@ -144,7 +170,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                     <li><a>Edit Post</a></li>
-                                    <li><a>Delete Post</a></li>
+                                    <li onClick={() => handleDeletepost(_id)}><a>Delete Post</a></li>
                                 </ul>
                             </div>
                         </div>
