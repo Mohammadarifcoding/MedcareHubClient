@@ -54,6 +54,7 @@ import DoctorVisiting from './Components/Dashboard/Pages/DoctorVisiting/DoctorVi
 import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
+import ContactPage from './Components/Pages/Contact/ContactPage.tsx';
 
 
 const queryClient = new QueryClient()
@@ -74,7 +75,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/contact',
-        element: <Contact></Contact>
+        element:<ContactPage></ContactPage>
       },
       {
         path: '/login',
