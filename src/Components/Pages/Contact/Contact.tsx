@@ -5,31 +5,21 @@ import Swal from 'sweetalert2';
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import { useQuery } from '@tanstack/react-query';
 import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
+import DocDep from './DocDep.tsx';
+import Docname from './Docname.tsx';
 
 const Contact = () => {
     const form = useRef();
     const { user } = UseAuth();
     const axiosPublic = UseAxiosPublic();
 
-    // const { data: doctors = [], refetch } = useQuery({
-    //     queryKey: ['doctors'],
-    //     queryFn: async () => {
-    //         const res = await axiosPublic.get(`/doctors`);
-    //         return res.data;
-    //     }
-    // });
-
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/`)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             setData(data);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.message);
-    //         });
-    // }, []);
+    const { data: doctors = [], refetch } = useQuery({
+        queryKey: ['doctors'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/Doctors`);
+            return res.data;
+        }
+    });
 
 
     const sendEmail = async (e) => {
@@ -123,9 +113,11 @@ const Contact = () => {
                                     name="department"
                                     className="w-full max-w-[400px] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                 >
-                                  
+                                   {doctors?.map((doctor) => (
+                                    <DocDep key={doctor._id} doctor={doctor}></DocDep>
+                                ))}
 
-                                    <option value="department1">1</option>
+                                   
                                 </select>
                             </div>
                             <div className="relative flex flex-col pl-4 px-2 pt-4">
@@ -137,8 +129,10 @@ const Contact = () => {
                                     name="doctor"
                                     className="w-full max-w-[400px] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                 >
-                                    <option value="doctor1">Doctor 1</option>
-                                    <option value="doctor2">Doctor 2</option>
+                                  {doctors?.map((doctor) => (
+                                    <Docname key={doctor._id} doctor={doctor}></Docname>
+                                    ))}
+                                   
                                 </select>
                             </div>
                             <div className="relative flex flex-col pl-4 px-2 pt-4">
