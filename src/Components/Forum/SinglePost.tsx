@@ -121,7 +121,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
     const handleDeletepost = id => {
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "You won't be able to revert the post!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -136,7 +136,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                             refetch()
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Your post has been deleted.",
                                 icon: "success"
 
                             });
