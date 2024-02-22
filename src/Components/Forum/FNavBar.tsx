@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import UseAuth from '../../Hook/UseAuth.tsx';
+import FDrawerRoute from './FDrawerRoute.jsx';
 
 const FNavBar = () => {
     const { user } = UseAuth();
@@ -11,8 +12,8 @@ const FNavBar = () => {
     // const lastName = nameParts.slice(1).join(" ");
 
     return (
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
+        <div className="flex justify-between py-3 items-center px-3 md:px-6 md:py-5 bg-base-100">
+            <div className="">
                 <button
                     className="font-extrabold px-5 text-2xl text-gradient-to-r from-cyan-500 to-blue-500"
                     style={{
@@ -25,8 +26,10 @@ const FNavBar = () => {
                     Help Desk
                 </button>
             </div>
-
-            <div className="navbar-end">
+            <div className="block md:hidden">
+                <FDrawerRoute></FDrawerRoute>
+            </div>
+            <div className="hidden md:flex justify-end items-center">
                 <div className="px-2">
                     <NavLink to={'/'} className="flex items-center px-3 text-lg text-[#757575] hover:text-[#0360D9] hover:underline ">
                         Home

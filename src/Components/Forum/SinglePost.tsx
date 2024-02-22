@@ -200,9 +200,19 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                 {userEmail === userMail ? (
                     <>
                         <div className="flex items-center gap-2">
-                            <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                            <button
+                                className="border text-sm ml-1 md:text-lg shadow-sm p-2 rounded-xl bg-gradient-to-r from-[#0360D9]  to-[#B437E3]"
+                                style={{
+                                    WebkitBackgroundClip: 'text',
+                                    backgroundClip: 'text',
+                                    color: 'transparent',
+                                    backgroundColor: '#E9D7F2'
+                                }}
+                            >
+                                {postTag}
+                            </button>
                             <div className="dropdown dropdown-hover">
-                                <div tabIndex={0} role="button" className="border-2 border-blue-500 p-3 rounded">
+                                <div tabIndex={0} role="button" className="border p-1 md:p-3 bg-[#F0F2F5] rounded-full">
                                     <BsThreeDotsVertical />
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">

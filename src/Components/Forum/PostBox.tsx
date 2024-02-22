@@ -35,9 +35,9 @@ const PostBox = () => {
     return (
         <div>
             <div className="px-1 py-5 mx-auto ">
-                <div className="flex flex-col md:flex-row justify-center md:justify-start items-center">
+                <div className="flex justify-center md:justify-start items-center">
                     <div>
-                        <ul className="flex gap-2">
+                        <ul className="flex gap-2 flex-col md:flex-row">
                             <button
                                 onClick={() => handleButtonClick('category', '')}
                                 className=" py-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white flex items-center px-4 gap-2 text-[#636979] font-medium"
