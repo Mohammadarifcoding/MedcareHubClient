@@ -1,12 +1,13 @@
 import React from 'react';
 
-const AboutService = () => {
+const AboutUsServiece = () => {
     return (
         <div>
         <h1 className="md:text-4xl font-bold text-center text-[#0360D9] pt-12 pb-12 ">
           Reliable <span className="text-[#021526]">Services</span>
         </h1>
-  
+        
+  <p></p>
         <div className="flex md:flex-row flex-col justify-center items-center mx-auto gap-4 py-6">
           <div>
             <div className="w-[300px] ">
@@ -64,4 +65,4 @@ const AboutService = () => {
     );
 };
 
-export default AboutService;
+export default AboutUsServiece;

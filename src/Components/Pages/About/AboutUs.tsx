@@ -1,13 +1,13 @@
 import React from 'react';
-import AboutPart1 from './AboutPart/AboutPart1.tsx';
-import AboutDoc from './AboutDoc/AboutDoc.tsx';
-
-import AboutPart2 from './AboutPart/AboutPart2.tsx';
-import AboutService from './AboutService/AboutService.tsx';
 import Container from '../../Shared/Container/Container.tsx';
 import { useNavigate } from 'react-router-dom';
+import AboutUsPart1 from './AboutPart/AboutUsPart1.tsx';
+import AboutUspart2 from './AboutPart/AboutUspart2.tsx';
+import AboutUsDoc from './AboutDoc/AboutUsDoc.jsx';
+import AboutUsServiece from './AboutService/AboutUsServiece.tsx';
 
-const About = () => {
+
+const AboutUs = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -16,7 +16,7 @@ const About = () => {
     return (
         <Container>
             <div className="mt-20">
-                <AboutPart1></AboutPart1>
+                <AboutUsPart1></AboutUsPart1>
 
                 <div className="flex md:flex-row flex-col justify-center gap-10 py-24 mx-auto items-center">
                     <div className="bg-[#E1EEFF] text-[#0360D9] w-full md:w-[350px] h-[220px] text-center items-center justify-center rounded-lg  ">
@@ -48,14 +48,14 @@ const About = () => {
                         education and training, staying updated on the latest medical advancements. Beyond diagnosing and treating illnesses, doctors emphasize preventive care to promote overall
                         health. They work collaboratively with patients, employing empathy and communication skills to ensure a holistic approach to healthcare.{' '}
                     </p>
-                    <AboutDoc></AboutDoc>
+                    <AboutUsDoc></AboutUsDoc>
                 </div>
                 {/* rel */}
-                <AboutService></AboutService>
-                <AboutPart2></AboutPart2>
+                <AboutUsServiece></AboutUsServiece>
+                 <AboutUspart2></AboutUspart2>
             </div>
         </Container>
     );
 };
 
-export default About;
+export default AboutUs;
