@@ -1,13 +1,13 @@
-import React from 'react';
-import { FaRegCommentAlt } from 'react-icons/fa';
-import Swal from 'sweetalert2';
-import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
-import UseAuth from '../../Hook/UseAuth.tsx';
-import DisplayComment from './DisplayComment.tsx';
-import { SlLike, SlDislike } from 'react-icons/sl';
-import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { FaRegCommentAlt } from 'react-icons/fa';
+import { IoSend } from 'react-icons/io5';
+import { SlDislike, SlLike } from 'react-icons/sl';
+import Swal from 'sweetalert2';
+import UseAuth from '../../Hook/UseAuth.tsx';
+import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
+import DisplayComment from './DisplayComment.tsx';
 
 interface SinglePostProps {
     data: {
@@ -33,7 +33,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
     const userEmail = user?.email;
     const axiosPublic = UseAxiosPublic();
     const { _id, name, date, postTag, userMail, title, discription, userImg, comments, like, dislike, category } = data;
-
+    const [comment, setComment] = useState('');
     // const { data: reactData } = useQuery({
     //     queryKey: ['reactData'],
     //     queryFn: async () => {
@@ -60,6 +60,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
         axiosPublic.patch(`/forum/comment/${_id}`, commentInfo).then((res) => {
             // console.log(res.data, "here here");
             if (res.data) {
+                setComment('');
                 refetch();
                 Swal.fire({
                     position: 'top-end',
@@ -175,8 +176,12 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
         }
     };
 
+    const handleChange = (event) => {
+        setComment(event.target.value);
+    };
+
     return (
-        <div className="px-8 py-5 mx-auto rounded-2xl border shadow-sm bg-white">
+        <div className="px-8 mb-5 py-5 mx-auto rounded-2xl border shadow-sm bg-white">
             <div className="flex justify-between items-center">
                 <div className="flex gap-5 items-center">
                     <div>
@@ -253,20 +258,35 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             </div>
 
             <div>
-                <div className="container mx-auto my-6 bg-[#F6F6F6] p-5 rounded">
-                    <h1 className="text-2xl text-center my-2">Add Your Comment</h1>
+                <div className="container mx-auto my-6 p-5 rounded">
+                    {/* <h1 className="text-2xl text-center my-2">Add Your Comment</h1> */}
                     <form onSubmit={handlAddComment}>
                         <div className="md:flex gap-3 px-2 md:px-1 mb-6">
-                            <div className="form-control w-full">
-                                <label className="label">
-                                    <span className="label-text">Comment</span>
-                                </label>
-                                <label className="input-group">
-                                    <textarea name="comment" placeholder="Write your comment here" required className="textarea textarea-bordered textarea-xs w-full"></textarea>
-                                </label>
+                            <div className="flex items-start gap-2 w-full">
+                                {/* <label className="label"> */}
+                                <div className="relative group">
+                                    <img className="w-[40px] h-[40px] bg-slate-500 object-cover rounded-full" src={user?.photoURL} alt="" />
+                                    <span className="h-2 w-2 bg-green-500 absolute rounded-full bottom-2 right-0 border border-white"></span>
+                                    <span className="h-2 w-2 bg-green-500 absolute rounded-full bottom-2 right-0 animate-ping"></span>
+                                </div>
+                                {/* </label> */}
+                                {/* <label className="input-group"> */}
+                                <div className="relative w-full">
+                                    <textarea
+                                        name="comment"
+                                        placeholder="Write a comment... "
+                                        value={comment}
+                                        onChange={handleChange}
+                                        required
+                                        className="textarea textarea-md w-full rounded-2xl border shadow-sm bg-[#F0F2F5] py-7 px-5"
+                                    ></textarea>
+                                    <button type="submit" className={`absolute bottom-4 right-6 ${comment ? 'text-blue-500' : 'text-gray-500'}`} disabled={!comment}>
+                                        <IoSend className="text-xl" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <input className="btn btn-block bg-[#93C5FD] text-black" type="submit" value="Add Comment" />
+                        {/* <input className="btn btn-block bg-[#93C5FD] text-black" type="submit" value="Add Comment" /> */}
                     </form>
                 </div>
             </div>
