@@ -3,6 +3,7 @@ import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import { useQuery } from '@tanstack/react-query';
 import UseAuth from '../../../../Hook/UseAuth.tsx';
 import MyOrderRow from './MyOrderRow.tsx';
+import Swal from 'sweetalert2';
 
 const MyOrder = () => {
     const axiosPublic = UseAxiosPublic()
@@ -16,6 +17,48 @@ const MyOrder = () => {
         }
     });
 
+    const handleChangeOrderStatus = (user, status) => {
+        console.log(user);
+        axiosPublic.patch(`order/status/${user?._id}`, { status }).then((res) => {
+            console.log(res);
+            if (res.data.status) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name}s order is ${status} now`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                refetch();
+            }
+        });
+    };
+
+
+
+    const handleDeleteMyOrder = (id) => {
+        // console.log(id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/order/${id}`).then((res) => {
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: 'Your Order has been deleted.',
+                        icon: 'success'
+                    });
+                    refetch();
+                });
+            }
+        });
+    };
     console.log(orders);
     return (
         <>
@@ -31,17 +74,20 @@ const MyOrder = () => {
                                 <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
                                     <tr className="text-center">
                                         <th> Order No</th>
-                                        <th> Name</th>
+                                        {/* <th> Name</th> */}
                                         <th> Mobile</th>
                                         <th>Order Address</th>
-                                        <th >Products Name</th>
-                                        
+                                        <th >Status</th>
+                                        <th className="text-center">Accept</th>
+                                        <th className="text-center">Reject</th>
+                                        <th className="text-center">Delete</th>
+
                                         {/* <th className="text-center">Cancel</th> */}
                                     </tr>
                                 </thead>
                                 <tbody className="bg-base-300 text-center">
                                     {orders?.map((order) => (
-                                        <MyOrderRow key={order?._id} order={order} ></MyOrderRow>
+                                        <MyOrderRow key={order?._id} order={order} handleChangeOrderStatus={handleChangeOrderStatus} handleDeleteMyOrder={handleDeleteMyOrder} ></MyOrderRow>
                                     ))}
                                 </tbody>
                             </table>

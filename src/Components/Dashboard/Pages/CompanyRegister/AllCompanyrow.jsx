@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
-import { TiTickOutline } from 'react-icons/ti';
+import { AiOutlineCheck } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 
 const AllCompanyrow = ({ company, handleChangeCompanyStatus, handleDeleteCompany }) => {
@@ -14,13 +14,13 @@ const AllCompanyrow = ({ company, handleChangeCompanyStatus, handleDeleteCompany
 
 
             <td className="px-6 py-4 border-t text-center">
-                <button className="text-white btn btn-ghost  hover:bg-[#393E46] bg-[#0360D9] hover:text-red-800">
-                    {status}
-                </button>
+
+                {status}
+
             </td>
             <td className="px-6 py-4 border-t text-center">
                 <button onClick={() => handleChangeCompanyStatus(company, "Accepted")} className="text-2xl flex justify-center flex-col md:flex-row gap-5 text-blue-700 lg:ml-11" >
-                    <TiTickOutline />
+                    <AiOutlineCheck />
                 </button>
             </td>
 
