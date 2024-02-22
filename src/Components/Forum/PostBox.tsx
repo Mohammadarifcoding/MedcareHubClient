@@ -3,8 +3,10 @@ import SinglePost from './SinglePost.tsx';
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import { useQuery } from '@tanstack/react-query';
 import UseAuth from '../../Hook/UseAuth.tsx';
-import { VscFiles } from "react-icons/vsc";
-
+import { VscFiles } from 'react-icons/vsc';
+import { CiUser } from 'react-icons/ci';
+import { FaUserDoctor } from 'react-icons/fa6';
+import { MdOutlineSick } from 'react-icons/md';
 
 const PostBox = () => {
     const { user } = UseAuth();
@@ -32,21 +34,33 @@ const PostBox = () => {
 
     return (
         <div>
-            <div className="px-11 py-5 mx-auto ">
-                <div className="flex justify-center items-center">
+            <div className="px-1 py-5 mx-auto ">
+                <div className="flex justify-start items-center">
                     <div>
                         <ul className="flex gap-2">
-                            <button onClick={() => handleButtonClick('category', '')} className=" p-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white flex items-center gap-2">
-                            <VscFiles />  All Post
+                            <button
+                                onClick={() => handleButtonClick('category', '')}
+                                className=" py-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white flex items-center px-4 gap-2 text-[#636979] font-medium"
+                            >
+                                <VscFiles className="text-[#1F2937] text-lg" /> All Post
                             </button>
-                            <button onClick={() => handleButtonClick('userPost', userEmail)} className="p-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white">
-                                My Post
+                            <button
+                                onClick={() => handleButtonClick('userPost', userEmail)}
+                                className="py-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white flex items-center px-4 gap-2 text-[#636979] "
+                            >
+                                <CiUser className="text-[#1F2937] text-xl" /> My Post
                             </button>
-                            <button onClick={() => handleButtonClick('category', 'dr-post')} className="p-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white">
-                                Dr. Post
+                            <button
+                                onClick={() => handleButtonClick('category', 'dr-post')}
+                                className="py-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white flex items-center px-4 gap-2 text-[#636979] "
+                            >
+                                <FaUserDoctor className="text-md text-[#1F2937]" /> Dr. Post
                             </button>
-                            <button onClick={() => handleButtonClick('category', 'patient-post')} className="p-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white">
-                                Patient Post
+                            <button
+                                onClick={() => handleButtonClick('category', 'patient-post')}
+                                className="py-2 border-s-violet-200 rounded-2xl border shadow-sm bg-white flex items-center px-4 gap-2 text-[#636979] "
+                            >
+                                <MdOutlineSick className="text-lg text-[#1F2937]" /> Patient Post
                             </button>
                         </ul>
                     </div>
