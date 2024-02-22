@@ -12,8 +12,8 @@ const AllUserRow = ({ user, handleDeleteUser, handleChangeUserRole }) => {
             </td>
 
             <td className="font-medium text-sm">{email}</td>
-            <td className="font-medium text-sm ">{role}</td>
-            <td className="font-medium text-sm "> {gender}</td>
+            <td className="font-medium text-sm ">{gender}</td>
+            <td className="font-medium text-sm "> {role}</td>
             <td>
                 <ul className="menu menu-horizontal">
                     <li>
