@@ -1,6 +1,6 @@
- export interface tabsData {
+export interface tabsData {
     name: string;
-    id:number
+    id: number
 }
 
 export type tabProduct = {
@@ -9,16 +9,16 @@ export type tabProduct = {
     Product_Image: string;
     rating: number;
     price: number;
-    category:string
+    category: string
 }
 
 export type latestProduct = {
-    Product_Image : string;
-    Product_Title : string;
-    Product_Description : string;
-    Shop_Image : string;
+    Product_Image: string;
+    Product_Title: string;
+    Product_Description: string;
+    Shop_Image: string;
     Shop_Name: string;
-    Product_Date:string
+    Product_Date: string
 }
 
 export type doctor = {
@@ -32,15 +32,15 @@ export type doctor = {
     endAvail: number;
     degree: string[];
     gender: string;
-    visit:number;
-    aboutMe:string;
-    specialties:string[];
-    Email:string;
-    Phone:string;
-    Address:string
+    serviceFee: number;
+    aboutMe: string;
+    specialties: string[];
+    Email: string;
+    Phone: string;
+    Address: string
 }
 
-export  type Medicine = {
+export type Medicine = {
     ID: number;
     Medname: string;
     Image: string;
@@ -48,9 +48,9 @@ export  type Medicine = {
     Category: string;
     Company: string;
     Description: string;
-  }
-  
- export interface Blog {
+}
+
+export interface Blog {
     ID: number;
     BlogName: string;
     BlogWriting: string[];
@@ -58,5 +58,6 @@ export  type Medicine = {
     BlogTime: string; // Assuming this is a string representation of a date
     BlogWriterName: string;
     BlogWriterImage: string;
-  }
-  
+    like: number;
+    _id: string
+}

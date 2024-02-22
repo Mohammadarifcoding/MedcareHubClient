@@ -14,15 +14,21 @@ import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 
 interface IFormInput {
     title: string,
-    content: string,
+    discription: string,
+    postTag: string,
     category: string
 
 
 }
 
 const CreatePost = () => {
+    let todayDate = new Date();
+    let formattedDate = todayDate.toLocaleString('en-US');
+    // console.log(formattedDate);
+
     const axiosPublic = UseAxiosPublic()
     const { user } = UseAuth();
+    // console.log(user);
     const openModal = (event: MouseEvent<HTMLInputElement>) => {
         const modal = document.getElementById('my_modal_7') as HTMLInputElement;
         modal.checked = true;
@@ -33,12 +39,20 @@ const CreatePost = () => {
 
         reset()
         const postItem = {
+
+            name: user.displayName,
+            userMail: user.email,
+            userImg: user.photoURL,
+            date: formattedDate,
             title: data.title,
+            discription: data.discription,
+            postTag: data.postTag,
+            category: data.category
 
         }
         // console.log(postItem);
-        const forumRes = await axiosPublic.post('/forum', postItem)
-        console.log(forumRes);
+        const forumRes = await axiosPublic.post('/forum', postItem);
+        // console.log(forumRes);
         if (forumRes.data) {
             Swal.fire({
                 position: "top-end",
@@ -92,16 +106,24 @@ const CreatePost = () => {
                                 <label>Title</label>
                                 <input className="mt-2 mb-4 input input-bordered w-full" placeholder='Title' {...register("title")} />
                                 <label>Content</label><br />
-                                <textarea {...register("content", { required: true })} className="mt-2 mb-4 w-full textarea textarea-bordered h-24" placeholder="Share or Ask Somethings to Everyone"></textarea>
+                                <textarea {...register("discription", { required: true })} className="mt-2 mb-4 w-full textarea textarea-bordered h-24" placeholder="Share or Ask Somethings to Everyone"></textarea>
                                 <label className=' label' >
                                     <span className="label-text">Post Tag</span>
                                 </label>
-                                <select  {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
-                                    <option disabled value='default'>Category</option>
+                                <select  {...register("postTag", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled value='default'>Post Tag</option>
                                     <option>Help Post</option>
                                     <option>Suggestion</option>
                                     <option>Dr Post</option>
                                     <option>Awareness</option>
+                                </select><br />
+                                <label className=' label' >
+                                    <span className="label-text">Category</span>
+                                </label>
+                                <select  {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled value='default'>Category</option>
+                                    <option>dr-post</option>
+                                    <option>patient-post</option>
                                 </select><br />
                                 <input className='btn btn-ghost' type="submit" />
                             </form>

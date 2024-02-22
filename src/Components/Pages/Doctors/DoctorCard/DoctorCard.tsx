@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import { useQuery } from '@tanstack/react-query';
 
 const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
-    const [doctors, setDoctors] = useState([]);
     const [filteredDoctors, setFilteredDoctors] = useState([]);
-    const [isLoading, setISLoading] = useState(true);
+    const AxiousPublic = UseAxiosPublic();
 
-    useEffect(() => {
-        setISLoading(true);
-        fetch('https://medcarehubendgame.vercel.app/Doctors')
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log(data);
-                setDoctors(data);
-                setISLoading(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }, []);
+
+    const { data: doctorData = [], isLoading } = useQuery({
+        queryKey: ['doctors'],
+        queryFn: async () => {
+            const result = await AxiousPublic.get('/Doctors');
+            return result.data;
+        }
+    });
 
     useEffect(() => {
         const debounceFilter = setTimeout(() => {
-            let tempFilteredDoctors = [...doctors];
+            let tempFilteredDoctors = [...doctorData];
             if (filter.keyword) {
                 tempFilteredDoctors = tempFilteredDoctors?.filter((item) => item.DocName.toLowerCase().includes(filter.keyword.toLowerCase()));
             }
@@ -35,31 +31,30 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
 
             if (isButtonClicked) {
                 if (filter.priceRange.min !== '' && filter.priceRange.max !== '') {
-                    tempFilteredDoctors = tempFilteredDoctors.filter((item) => item.visit >= parseFloat(filter.priceRange.min) && item.visit <= parseFloat(filter.priceRange.max));
+                    tempFilteredDoctors = tempFilteredDoctors.filter((item) => item.serviceFee >= parseFloat(filter.priceRange.min) && item.serviceFee <= parseFloat(filter.priceRange.max));
                 }
             }
 
             setFilteredDoctors(tempFilteredDoctors);
         }, 600);
         return () => clearTimeout(debounceFilter);
-    }, [filter, doctors, isButtonClicked]);
-   console.log(filteredDoctors)
+    }, [filter, doctorData, isButtonClicked]);
+    //    console.log(filteredDoctors)
     return (
         <>
             {!isLoading ? (
-                <div className="container mx-auto grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 lg:gap-6 my-10 ">
+                <div className="container mx-auto grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 lg:gap-6 my-10  ">
                     {filteredDoctors?.map((data) => (
-                        <div key={data.ID} className=" w-full max-w-[350px] shadow-lg border border-gray-200 rounded-lg overflow-hidden">
-                            <Link to={`/doctors/${data.ID}`}>
+                        <div key={data?._id} className=" w-full max-w-[350px] mx-auto shadow-lg border border-gray-200 rounded-lg overflow-hidden">
+                            <Link to={`/doctors/${data?._id}`}>
                                 <div className="flex-col space-y-1.5 flex items-center gap-4 p-6 bg-[#E1EEFF] ">
                                     <span className="relative flex shrink-0 overflow-hidden rounded-full w-14 h-14">
-                                        <img src={data.image} alt="" />
+                                        <img src={data?.image} alt="" />
                                     </span>
                                     <div className="space-y-1">
-                                        <h3 className=" text-lg font-semibold text-[#0360D9]">{data.DocName}</h3>
-                                        <p className="text-sm text-[#1F2937] ">{data.DocType}</p>
+                                        <h3 className=" text-lg font-semibold text-[#0360D9]">{data?.DocName}</h3>
+                                        <p className="text-sm text-[#1F2937] ">{data?.DocType}</p>
                                     </div>
-
                                 </div>
                                 <div className="grid gap-2 p-6">
                                     <div className="flex items-center gap-2">
@@ -78,7 +73,7 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                             <line x1={12} x2={12} y1={2} y2={22} />
                                             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                                         </svg>
-                                        <span className="text-sm text-[#1F2937] ">${data.serviceFee} per visit</span>
+                                        <span className="text-sm text-[#1F2937] ">${data?.serviceFee} per visit</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <svg
@@ -102,7 +97,6 @@ const DoctorCard = ({ filter, setFilter, isButtonClicked }) => {
                                 </div>
                             </Link>
                         </div>
- 
                     ))}
                 </div>
             ) : (
