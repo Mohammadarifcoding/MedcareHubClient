@@ -186,15 +186,15 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
     };
 
     return (
-        <div className="px-8 mb-5 py-5 mx-auto rounded-2xl border shadow-sm bg-white">
-            <div className="flex justify-between items-center">
+        <div className="md:px-8 mb-5 py-5 mx-auto rounded-2xl border shadow-sm bg-white">
+            <div className="px-3 flex justify-between items-center">
                 <div className="flex gap-5 items-center">
                     <div>
                         <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-full hover:blur-[2px] duration-500" src={userImg} alt="" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-bold ">{name}</h1>
-                        <p>{date}</p>
+                        <h1 className="text-xl md:text-3xl font-bold ">{name}</h1>
+                        <p className="text-sm md:text-lg">{date}</p>
                     </div>
                 </div>
                 {userEmail === userMail ? (
@@ -219,7 +219,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                 ) : (
                     <>
                         <button
-                            className="border shadow-sm p-2 rounded-xl bg-gradient-to-r from-[#0360D9]  to-[#B437E3]"
+                            className="border text-sm ml-1 md:text-lg shadow-sm p-2 rounded-xl bg-gradient-to-r from-[#0360D9]  to-[#B437E3]"
                             style={{
                                 WebkitBackgroundClip: 'text',
                                 backgroundClip: 'text',
@@ -232,9 +232,9 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     </>
                 )}
             </div>
-            <div className="pt-5">
-                <h1 className="text-2xl font-medium ">{title}</h1>
-                <p className="text-xl font-normal pt-2">{discription}</p>
+            <div className="pt-5 px-3">
+                <h1 className="text-xl md:text-2xl font-medium ">{title}</h1>
+                <p className="text-lg md:text-xl font-normal pt-2">{discription}</p>
                 <div className="flex justify-between items-center">
                     <div className="pt-5 flex gap-2 items-center">
                         <FaRegCommentAlt />
@@ -263,7 +263,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             </div>
 
             <div>
-                <div className="container mx-auto my-6 p-5 rounded">
+                <div className="container mx-auto my-6 md:p-5 rounded">
                     {/* <h1 className="text-2xl text-center my-2">Add Your Comment</h1> */}
                     <form onSubmit={handlAddComment}>
                         <div className="md:flex gap-3 px-2 md:px-1 mb-6">
