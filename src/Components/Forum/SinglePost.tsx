@@ -8,6 +8,11 @@ import Swal from 'sweetalert2';
 import UseAuth from '../../Hook/UseAuth.tsx';
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import DisplayComment from './DisplayComment.tsx';
+import { HiOutlineEmojiHappy } from 'react-icons/hi';
+import { CiCamera } from 'react-icons/ci';
+import { MdOutlineGifBox } from 'react-icons/md';
+import { PiStickerLight } from 'react-icons/pi';
+import { LuSticker } from 'react-icons/lu';
 
 interface SinglePostProps {
     data: {
@@ -280,7 +285,14 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                                         required
                                         className="textarea textarea-md w-full rounded-2xl border shadow-sm bg-[#F0F2F5] py-7 px-5"
                                     ></textarea>
-                                    <button type="submit" className={`absolute bottom-4 right-6 ${comment ? 'text-blue-500' : 'text-gray-500'}`} disabled={!comment}>
+                                    <div className="flex gap-2 text-xl text-gray-500 absolute bottom-5 left-5">
+                                        <PiStickerLight />
+                                        <HiOutlineEmojiHappy />
+                                        <CiCamera />
+                                        <MdOutlineGifBox />
+                                        <LuSticker />
+                                    </div>
+                                    <button type="submit" className={`absolute bottom-5 right-6 ${comment ? 'text-blue-500' : 'text-gray-500'}`} disabled={!comment}>
                                         <IoSend className="text-xl" />
                                     </button>
                                 </div>
