@@ -3,7 +3,7 @@ import UseAxiosPublic from './UseAxiosPublic';
 import UseAuth from './UseAuth';
 import { useQuery } from '@tanstack/react-query';
 
-const UseCheckCompany = () => {
+const UseCheckUser = () => {
     const Axious = UseAxiosPublic()
     const {user} = UseAuth()
     
@@ -19,4 +19,4 @@ const UseCheckCompany = () => {
     return [userRolename,isLoading,isPending]
 };
 
-export default UseCheckCompany;
+export default UseCheckUser;
