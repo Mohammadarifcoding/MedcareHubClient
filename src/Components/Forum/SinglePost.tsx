@@ -5,6 +5,9 @@ import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 import UseAuth from '../../Hook/UseAuth.tsx';
 import DisplayComment from './DisplayComment.tsx';
 import { SlLike, SlDislike } from "react-icons/sl";
+import { useQuery } from '@tanstack/react-query';
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 interface SinglePostProps {
     data: {
@@ -20,14 +23,29 @@ interface SinglePostProps {
         comments: Array,
         value: string,
         like: number,
-        dislike: number
+        dislike: number,
+        userMail: String
     }
 }
 
 const SinglePost = ({ data, refetch }: SinglePostProps) => {
-    const { user } = UseAuth()
+    const { user } = UseAuth();
+    const userEmail = user?.email;
     const axiosPublic = UseAxiosPublic();
-    const { _id, name, date, postTag, title, discription, userImg, comments, like, dislike } = data;
+    const { _id, name, date, postTag, userMail, title, discription, userImg, comments, like, dislike, category } = data;
+
+    // const { data: reactData } = useQuery({
+    //     queryKey: ['reactData'],
+    //     queryFn: async () => {
+    //         const res = await axiosPublic.get(`/forum/posts/${_id}?email=${encodeURIComponent(userEmail)}`);
+    //         console.log(res.data);
+    //         return res.data
+    //     }
+    // })
+    // if (reactData) {
+    //     console.log(reactData, "hahahah");
+    //     ({} = reactData);
+    // }
 
     const handlAddComment = e => {
         e.preventDefault()
@@ -71,8 +89,8 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
 
             axiosPublic.patch(`/forum/like/dislike/${_id}`, reactInfo)
                 .then(res => {
-                    console.log(res.data);
-                    if (res.data.like) {
+                    console.log(res.data, "hello res.data");
+                    if (!res.data.message) {
                         refetch()
                         Swal.fire({
                             position: "top-end",
@@ -101,6 +119,67 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
             });
         }
     }
+    const handleDeletepost = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert the post!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/forum/post/delete/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your post has been deleted.",
+                                icon: "success"
+
+                            });
+                        }
+                    })
+            }
+        });
+    }
+    const openModal = () => {
+        const modal = document.getElementById('my_modal_7') as HTMLInputElement;
+        modal.checked = true;
+    }
+    const { register, handleSubmit, reset } = useForm({
+        defaultValues: {
+            title: title,
+            discription: discription,
+            postTag: postTag,
+            category: category
+        }
+    });
+
+    const onSubmit: SubmitHandler = async (data) => {
+        reset();
+        const postItem = {
+            title: data.title,
+            discription: data.discription,
+            postTag: data.postTag,
+            category: data.category
+        }
+        const forumRes = await axiosPublic.post('/forum', postItem);
+        if (forumRes.data) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `post has been updated!`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    }
+
+
     return (
         <div className="bg-slate-200 p-5 my-5">
             <div className="flex justify-between items-center">
@@ -114,7 +193,24 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     </div>
 
                 </div>
-                <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                {
+                    userEmail === userMail ? <>
+                        <div className='flex items-center gap-2'>
+                            <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                            <div className="dropdown dropdown-hover">
+                                <div tabIndex={0} role="button" className="border-2 border-blue-500 p-3 rounded">
+                                    <BsThreeDotsVertical />
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li onClick={openModal}><a>Edit Post</a></li>
+                                    <li onClick={() => handleDeletepost(_id)}><a>Delete Post</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </> : <>
+                        <button className="border-2 border-blue-500 p-2 rounded">{postTag}</button>
+                    </>
+                }
             </div>
             <div className="pt-5">
                 <h1 className="text-2xl font-medium ">{title}</h1>
@@ -159,6 +255,53 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
 
                     </form>
 
+                </div>
+            </div>
+            <div>
+
+
+                {/* Put this part before </body> tag */}
+                <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+                <div className="modal" role="dialog">
+                    <div className="modal-box">
+                        <label className="form-control w-full">
+                            <h1>Create post</h1>
+
+                            <div className="divider"></div>
+
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <label>Title</label>
+                                <input className="mt-2 mb-4 input input-bordered w-full" placeholder='Title' {...register("title")} />
+                                <label>Content</label><br />
+                                <textarea {...register("discription", { required: true })} className="mt-2 mb-4 w-full textarea textarea-bordered h-24" placeholder="Share or Ask Somethings to Everyone"></textarea>
+                                <label className=' label' >
+                                    <span className="label-text">Post Tag</span>
+                                </label>
+                                <select {...register("postTag", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled>Post Tag</option>
+                                    <option>Help Post</option>
+                                    <option>Suggestion</option>
+                                    <option>Dr Post</option>
+                                    <option>Awareness</option>
+                                </select><br />
+                                <label className=' label' >
+                                    <span className="label-text">Category</span>
+                                </label>
+                                <select {...register("category", { required: true })} className="mt-2 mb-4 select select-bordered">
+                                    <option disabled>Category</option>
+                                    <option>dr-post</option>
+                                    <option>patient-post</option>
+                                </select><br />
+                                <input className='btn btn-ghost' type="submit" />
+                            </form>
+
+
+
+
+                        </label>
+
+                    </div>
+                    <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
                 </div>
             </div>
         </div>

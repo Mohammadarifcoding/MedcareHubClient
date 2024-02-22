@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEdit } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { base_URL } from '../../../utills/BaseURL.ts';
 
-const BlogModal = ({ blog }) => {
-     const [openModal, setOpenModal] = useState(true);
+const BlogModal = ({ blog, openModal, setOpenModal }) => {
     const {
         register,
         handleSubmit,
@@ -30,7 +29,10 @@ const BlogModal = ({ blog }) => {
                 setOpenModal(false)
 
             })
-            .catch((error) => console.error("Error updating status:", error));
+            .catch((error) => {
+                console.error("Error updating status:", error);
+                setOpenModal(false)
+            })
     }
 
 
@@ -76,7 +78,7 @@ const BlogModal = ({ blog }) => {
 
 
                                         <div className='lg:flex lg:gap-[620px] justify-between'>
-                                            <button onClick={() => { setOpenModal(false) }} className="mr-0 mx-auto flex bg-slate-950 text-white px-3 py-2 rounded-lg mb-6" type='submit'>Submit Blog Edit</button>
+                                            <button className="mr-0 mx-auto flex bg-slate-950 text-white px-3 py-2 rounded-lg mb-6" type='submit'>Submit Blog Edit</button>
 
                                             <button onClick={() => { setOpenModal(false) }} className="mr-0 mx-auto flex bg-slate-950 text-white px-3 py-2 rounded-lg mb-6" >Close</button>
                                         </div>

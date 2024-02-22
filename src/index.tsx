@@ -56,6 +56,7 @@ import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
 import ContactPage from './Components/Pages/Contact/ContactPage.tsx';
 import AboutUs from './Components/Pages/About/AboutUs.tsx';
+import DoctorVisitingDetails from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisitingDetails.jsx';
 
 
 const queryClient = new QueryClient()
@@ -203,6 +204,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/doctorvisiting',
         element: <DoctorVisiting />
+      },
+      {
+        path: '/dashboard/doctorvisiting/:id',
+        element: <DoctorVisitingDetails />
       },
       {
         path: '/dashboard/allmedicine',

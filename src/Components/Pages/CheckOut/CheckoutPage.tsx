@@ -7,12 +7,14 @@ import UseCart from '../../../Hook/UseCart.tsx';
 import { uuidv4 } from '@firebase/util';
 import Swal from 'sweetalert2';
 import UseAxiosPublic from './../../../Hook/UseAxiosPublic.tsx';
+import UseAuth from '../../../Hook/UseAuth.tsx';
 
 const CheckoutPage = () => {
     const [AllPrice, setAllPrice] = useState(0)
     const [cart, refectchCart] = UseCart()
     const Axious = UseAxiosPublic()
     const [Process, setProcess] = useState(false)
+    const {user} =UseAuth()
 
     const [address, setAddress] = useState({
         name: '',
