@@ -61,7 +61,7 @@ const CreatePost = () => {
 
     return (
         <>
-            <div className="px-8 py-5 mx-auto rounded-2xl border shadow-sm bg-white">
+            <div className="px-2 md:px-8 py-5 mx-auto rounded-2xl border shadow-sm bg-white">
                 <div className="flex gap-5 items-center">
                     <div>
                         <img className="w-[60px] h-[50px] md:w-[80px] md:h-[70px] bg-slate-500 object-cover rounded-full " src={user?.photoURL} alt="" />
@@ -82,7 +82,7 @@ const CreatePost = () => {
                         <h1>Photo/Video</h1>
                     </div>
 
-                    <button className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-[#0360D9] to-[#B437E3] text-white rounded-xl" onClick={openModal}>
+                    <button className="flex items-center text-sm md:text-lg gap-1 px-3 py-2 bg-gradient-to-r from-[#0360D9] to-[#B437E3] text-white rounded-xl" onClick={openModal}>
                         Create post
                     </button>
                 </div>

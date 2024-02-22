@@ -35,7 +35,7 @@ const PostBox = () => {
     return (
         <div>
             <div className="px-1 py-5 mx-auto ">
-                <div className="flex justify-start items-center">
+                <div className="flex flex-col md:flex-row justify-center md:justify-start items-center">
                     <div>
                         <ul className="flex gap-2">
                             <button
