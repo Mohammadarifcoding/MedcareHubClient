@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router';
 import UseCheckUser from '../../Hook/UseCheckUser';
+import UseAuth from '../../Hook/UseAuth';
 
-const CompanyRoute = ({children}) => {
+const UserRoute = () => {
     const { user, load } = UseAuth()
     const {checkUser,isloading} = UseCheckUser()
     const location = useLocation()
@@ -11,7 +12,7 @@ const CompanyRoute = ({children}) => {
         return <span className="loading loading-dots loading-lg"></span>
     }
     
-    if(checkedUser === 'Company'){
+    if(checkedUser === 'user'){
          checkedUser = true
     }
        
@@ -23,4 +24,4 @@ const CompanyRoute = ({children}) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
-export default CompanyRoute;
+export default UserRoute;
