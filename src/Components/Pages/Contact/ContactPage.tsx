@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import  { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { useRef } from 'react';
 import Swal from 'sweetalert2';
@@ -8,7 +9,8 @@ import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import DocDep from './DocDep.tsx';
 import Docname from './Docname.tsx';
 
-const Contact = () => {
+
+const ContactPage = () => {
     const form = useRef();
     const { user } = UseAuth();
     const axiosPublic = UseAxiosPublic();
@@ -202,4 +204,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+export default ContactPage;
