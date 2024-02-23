@@ -9,7 +9,7 @@ const FDrawerRoute = () => {
     // console.log(user);
     const fullName = user?.displayName;
     const nameParts = fullName?.split(' ');
-    const firstName = nameParts[0];
+    const firstName = nameParts && nameParts.length > 0 ? nameParts[0] : null;
     // const lastName = nameParts.slice(1).join(" ");
 
     const toggleDrawer = () => {

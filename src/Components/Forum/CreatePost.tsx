@@ -1,9 +1,9 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { IoMdPhotos } from 'react-icons/io';
-import UseAuth from '../../Hook/UseAuth.tsx';
 import Swal from 'sweetalert2';
-import ReactDOM from 'react-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import UseAuth from '../../Hook/UseAuth.tsx';
 import UseAxiosPublic from '../../Hook/UseAxiosPublic.tsx';
 
 // enum GenderEnum {
@@ -18,6 +18,8 @@ interface IFormInput {
     postTag: string;
     category: string;
 }
+const image_hosting_key = '140f2d0db1502e65c2c0ee7bfc66be98';
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const CreatePost = () => {
     let todayDate = new Date();
@@ -31,6 +33,7 @@ const CreatePost = () => {
         const modal = document.getElementById('my_modal_7') as HTMLInputElement;
         modal.checked = true;
     };
+
     const { register, handleSubmit, reset } = useForm<IFormInput>();
     // const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -43,7 +46,7 @@ const CreatePost = () => {
             title: data.title,
             discription: data.discription,
             postTag: data.postTag,
-            category: data.category
+            category: data.category,
         };
         // console.log(postItem);
         const forumRes = await axiosPublic.post('/forum', postItem);
@@ -92,14 +95,41 @@ const CreatePost = () => {
                 <input type="checkbox" id="my_modal_7" className="modal-toggle" />
                 <div className="modal" role="dialog">
                     <div className="modal-box">
+                        <h1>Create post</h1>
+
+                        <div className="divider"></div>
                         <label className="form-control w-full">
-                            <h1>Create post</h1>
-
-                            <div className="divider"></div>
-
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <label>Title</label>
                                 <input className="mt-2 mb-4 input input-bordered w-full" placeholder="Title" {...register('title')} />
+                                <div className="flex justify-evenly gap-4">
+                                    <div className=" w-full">
+                                        <label className=" label">
+                                            <span className="label-text">Post Tag</span>
+                                        </label>
+                                        <select {...register('postTag', { required: true })} className="mt-2 mb-4 select select-bordered w-full">
+                                            <option disabled value="default">
+                                                Post Tag
+                                            </option>
+                                            <option>Help Post</option>
+                                            <option>Suggestion</option>
+                                            <option>Dr Post</option>
+                                            <option>Awareness</option>
+                                        </select>
+                                    </div>
+                                    <div className=" w-full">
+                                        <label className=" label">
+                                            <span className="label-text">Category</span>
+                                        </label>
+                                        <select {...register('category', { required: true })} className="mt-2 mb-4 select select-bordered  w-full">
+                                            <option disabled value="default">
+                                                Category
+                                            </option>
+                                            <option>dr-post</option>
+                                            <option>patient-post</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <label>Content</label>
                                 <br />
                                 <textarea
@@ -107,31 +137,19 @@ const CreatePost = () => {
                                     className="mt-2 mb-4 w-full textarea textarea-bordered h-24"
                                     placeholder="Share or Ask Somethings to Everyone"
                                 ></textarea>
-                                <label className=" label">
-                                    <span className="label-text">Post Tag</span>
-                                </label>
-                                <select {...register('postTag', { required: true })} className="mt-2 mb-4 select select-bordered">
-                                    <option disabled value="default">
-                                        Post Tag
-                                    </option>
-                                    <option>Help Post</option>
-                                    <option>Suggestion</option>
-                                    <option>Dr Post</option>
-                                    <option>Awareness</option>
-                                </select>
-                                <br />
-                                <label className=" label">
-                                    <span className="label-text">Category</span>
-                                </label>
-                                <select {...register('category', { required: true })} className="mt-2 mb-4 select select-bordered">
-                                    <option disabled value="default">
-                                        Category
-                                    </option>
-                                    <option>dr-post</option>
-                                    <option>patient-post</option>
-                                </select>
-                                <br />
-                                <input className="btn btn-ghost" type="submit" />
+                                <div className="flex justify-between">
+                                    <label htmlFor="file" className="flex justify-between items-center font-light p-2 rounded text-[15px] hover:bg-gray-50 cursor-pointer">
+                                        <button className="flex items-center gap-2">
+                                            <IoMdPhotos className="text-xl text-[#0360D9]" />
+                                            <h1>Photo/Video</h1>
+                                        </button>
+                                        <input id="file" type="file" style={{ display: 'none' }} />
+                                    </label>
+
+                                    <button className="flex items-center text-sm md:text-md gap-1 px-3 py-2 bg-gradient-to-r from-[#0360D9] to-[#B437E3] text-white rounded-xl" type="submit">
+                                        Submit Post
+                                    </button>
+                                </div>
                             </form>
                         </label>
                     </div>
