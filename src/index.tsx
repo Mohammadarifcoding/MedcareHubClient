@@ -54,8 +54,18 @@ import DoctorVisiting from './Components/Dashboard/Pages/DoctorVisiting/DoctorVi
 import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
+import ContactPage from './Components/Pages/Contact/ContactPage.tsx';
+import AboutUs from './Components/Pages/About/AboutUs.tsx';
 import DoctorVisitingDetails from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisitingDetails.jsx';
+<<<<<<< HEAD
 import DoctorHistory from './Components/Dashboard/Pages/DoctorHistory/DoctorHistory.tsx';
+=======
+import PrivateRoute from './Components/Route/PrivateRoute.tsx';
+import DoctorRoute from './Components/Route/DoctorRoute.tsx';
+import CompanyRoute from './Components/Route/CompanyRoute.tsx';
+import UserRoute from './Components/Route/UserRoute.tsx';
+import PatientRoute from './Components/Route/PatientRoute.tsx';
+>>>>>>> c5260c628f6a1f4307521684c1382f75363ff549
 
 
 const queryClient = new QueryClient()
@@ -76,7 +86,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/contact',
-        element: <Contact></Contact>
+        element: <ContactPage></ContactPage>
       },
       {
         path: '/login',
@@ -100,7 +110,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <About></About>
+        element: <AboutUs></AboutUs>
       }, {
         path: '/data',
         element: <Testing></Testing>
@@ -140,7 +150,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
         path: '/dashboard/profile',
@@ -148,6 +158,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/docstatus',
+<<<<<<< HEAD
         element: <DocStatus></DocStatus>
       },
       {
@@ -155,12 +166,16 @@ const router = createBrowserRouter([
         element: <DoctorHistory></DoctorHistory>
       },
       {
+=======
+        element: <DoctorRoute><DocStatus></DocStatus></DoctorRoute>
+      }, {
+>>>>>>> c5260c628f6a1f4307521684c1382f75363ff549
         path: '/dashboard/comproduct',
-        element: <CompanyProduct></CompanyProduct>
+        element: <CompanyRoute><CompanyProduct></CompanyProduct></CompanyRoute>
       },
       {
         path: '/dashboard/alluser',
-        element: <AllUser></AllUser>
+        element: <AdminRoute><AllUser></AllUser></AdminRoute>
       },
       {
         path: '/dashboard/myblog',
@@ -168,54 +183,54 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/addproduct',
-        element: <AddProduct></AddProduct>
+        element: <CompanyRoute><AddProduct></AddProduct></CompanyRoute>
       },
       {
         path: '/dashboard/myproduct',
-        element: <MyProduct></MyProduct>
+        element: <CompanyRoute><MyProduct></MyProduct></CompanyRoute>
       },
       {
         path: '/dashboard/updateproduct/:id',
-        element: <UpdateProduct></UpdateProduct>
+        element: <CompanyRoute><UpdateProduct></UpdateProduct></CompanyRoute>
       },
       {
         path: '/dashboard/addpatient',
-        element: <PatientRegister></PatientRegister>
+        element: <UserRoute><PatientRegister></PatientRegister></UserRoute>
       }, {
         path: '/dashboard/comde',
-        element: <ComDesh></ComDesh>
+        element: <CompanyRoute><ComDesh></ComDesh></CompanyRoute>
       },
       {
         path: '/dashboard/docque',
-        element: <DoctorQue></DoctorQue>
+        element: <AdminRoute><DoctorQue></DoctorQue></AdminRoute>
       },
       {
         path: '/dashboard/comregister',
-        element: <CompanyRegister></CompanyRegister>
+        element: <UserRoute><CompanyRegister></CompanyRegister></UserRoute>
       },
       {
         path: '/dashboard/allpateint',
-        element: <AllPatient></AllPatient>
+        element: <DoctorRoute><AllPatient></AllPatient></DoctorRoute>
       },
       {
         path: '/dashboard/companys',
-        element: <AllCompany></AllCompany>
+        element: <AdminRoute><AllCompany></AllCompany></AdminRoute>
       },
       {
         path: '/dashboard/orders',
-        element: <Orders />
+        element: <AdminRoute><Orders /></AdminRoute>
       },
       {
         path: '/dashboard/doctorvisiting',
-        element: <DoctorVisiting />
+        element: <PatientRoute><DoctorVisiting /></PatientRoute>
       },
       {
         path: '/dashboard/doctorvisiting/:id',
-        element: <DoctorVisitingDetails />
+        element: <PatientRoute><DoctorVisitingDetails /></PatientRoute>
       },
       {
         path: '/dashboard/allmedicine',
-        element: <AllMedicine></AllMedicine>
+        element: <AdminRoute><AllMedicine></AllMedicine></AdminRoute>
       },
       {
         path: '/dashboard/allblog',

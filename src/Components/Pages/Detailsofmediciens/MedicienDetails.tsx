@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './medi.css';
 import UseAuth from '../../../Hook/UseAuth.tsx';
+import { FcLike } from "react-icons/fc";
+import { IoIosHeartDislike } from "react-icons/io";
 import { useLoaderData, useParams } from 'react-router-dom';
 import Review from './Review.tsx';
 import axios from 'axios';
@@ -11,6 +13,7 @@ import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import UseCart from '../../../Hook/UseCart.tsx';
 import moment from 'moment';
 import { useQuery } from '@tanstack/react-query';
+import { base_URL } from '../../../utills/BaseURL.ts';
 
 const MedicienDetails = () => {
     const [, refetch] = UseCart();
@@ -20,7 +23,7 @@ const MedicienDetails = () => {
     const { id } = useParams();
     // console.log(id);
 
-
+{/* <FcLike /> <IoIosHeartDislike /> */}
 
     const { data: medicineData = [], isLoading } = useQuery({
         queryKey: ['medicines'],
@@ -30,6 +33,7 @@ const MedicienDetails = () => {
         }
     });
 
+  
 
    
     useEffect(() => {
@@ -43,6 +47,20 @@ const MedicienDetails = () => {
                 console.log(error.message);
             });
     }, [id]);
+    const [isFavorite, setIsFavorite] = useState(false); 
+
+    const handlefav = () => {
+        // Toggle the favorite status
+        setIsFavorite(prevState => !prevState);
+
+        // Perform API call to update favorite status
+        axios.put(`${base_URL}/MedicineWish/${id}`)
+            .then((res) => {
+                console.log(res);
+                Swal.fire("You added this in your wish List");
+            })
+            .catch((error) => console.error("Error updating status:", error));
+    };
 
     const currentDate = new Date(); 
 
@@ -113,7 +131,7 @@ const MedicienDetails = () => {
         <div className="bg-white">
              <div className='flex md:flex-row flex-col justify-center  py-24 '>
 
-  <div className='w-[550px] h-[520px] justify-center items-center flex mx-auto border-x-2 border-blue-950 bg-blue-100' >
+  <div className='w-[550px] h-[520px] justify-center items-center flex mx-auto border-x-2 border-blue-950 border-y-2' >
  
  <img className='w-[390px] h-[400px]' src={data?.Image} alt="" />
 
@@ -149,8 +167,14 @@ const MedicienDetails = () => {
     <button onClick={() => handleAddtoCart(data)} className='btn bg-blue-600 text-white w-[150px] h-[30px]'><div className='flex flex-row justify-center items-center gap-1'>
         <img className='h-7' src="https://i.ibb.co/12cZS5V/1972381-removebg-preview.png" alt="" />
         <h1 >Add To Cart</h1></div></button>
-    <button className='btn bg-blue-200  border-x-4 text-black border-blue-500   w-[180px] h-[30px]'><div className='flex flex-row justify-center items-center gap-2'>
-        <img className='h-7' src="https://i.ibb.co/vVmLxkr/add-to-favorites-icon-vector-22798686-removebg-preview.png" alt="" /> <h1>Add To Favorite</h1></div></button>
+
+       
+        <button onClick={handlefav} className='btn bg-blue-200  border-x-4 text-black border-blue-500   w-[180px] h-[30px]'>
+                <div className='flex flex-row justify-center items-center gap-2'>
+                    {isFavorite ? <FcLike /> : <IoIosHeartDislike />} {/* Toggle the icon based on the favorite status */}
+                    <h1>Add To Favorite</h1>
+                </div>
+            </button>
  </div>
  <div className='py-6 flex flex-row items-center gap-6 '>
  <div >
@@ -228,23 +252,23 @@ const MedicienDetails = () => {
             {/* realtive product */}
  
  <div>
-<h1 className='text-4xl text-center font-bold pb-16'>Related Services</h1>
+<h1 className='text-4xl text-center text-blue-600 font-bold pb-16'>Related Services</h1>
 
 <div className='flex md:flex-row flex-col justify-center gap-12 pb-24'>
 
 <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-12'>
 
 {relatedServicesData.map((service) => (
-                    <div key={service.ID} className='w-[300px]  shadow-lg justify-center items-center  border-blue-950'>
-                      <div className='w-[300px]  justify-center items-center  border-blue-950'>
-<div className='w-[320px]  flex flex-col  mx-auto items-center h-[500px] '>
-<img className='w-[290px]  h-[340px] pt-5 ' src={service?.Image} alt="" />
+                    <div key={service.ID} className='w-[350px] border-blue-600 border-x-2 rounded-lg border-y-2 shadow-lg justify-center items-center '>
+                      <div className=' justify-center items-center  border-blue-950'>
+<div className='w-[350px]  flex flex-col  mx-auto items-center h-[500px] '>
+<img className='w-[300px]  h-[340px] pt-5 ' src={service?.Image} alt="" />
 <div className='mt-4'>
 <h1 className=' text-center font-bold ' >{service?.Medname}</h1>
-<h1 className='text-xl font-medium text-center pt-2'>$<span>{service?.Price}</span></h1>
+<h1 className='text-xl font-medium text-orange-800 text-center pt-2'>$<span>{service?.Price}</span></h1>
 </div>
 <div className='py-4'>
-<button  onClick={() => handleAddtoCart(data)} className='btn bg-white border-x-3  border-blue-600 text-black w-[120px] h-[30px]'>Add To Cart</button>
+<button  onClick={() => handleAddtoCart(data)} className='btn bg-blue-600 text-white  w-[120px] h-[30px]'>Add To Cart</button>
 </div>
  
 </div>

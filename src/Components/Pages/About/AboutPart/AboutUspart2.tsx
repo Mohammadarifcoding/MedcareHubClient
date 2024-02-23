@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutPart2 = () => {
+const AboutUspart2 = () => {
     return (
         <div className="flex md:flex-row pb-24 flex-col gap-10 justify-center items-center mx-auto pt-20">
         
@@ -25,4 +25,4 @@ const AboutPart2 = () => {
     );
 };
 
-export default AboutPart2;
+export default AboutUspart2;
