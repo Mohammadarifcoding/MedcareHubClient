@@ -94,6 +94,12 @@ const DashboardLayout = () => {
                                         <FaFilePrescription /> Doctor Status
                                     </NavLink>
                                     <NavLink
+                                        to="/dashboard/dochistory"
+                                        className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                                    >
+                                        <FaFilePrescription /> Doctor History
+                                    </NavLink>
+                                    <NavLink
                                         to="/dashboard/addpatient"
                                         className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
                                     >
@@ -334,6 +340,12 @@ const DashboardLayout = () => {
                                         <FaFilePrescription />
                                     </p>
                                     <NavLink to="/dashboard/docstatus">Doctor Status</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <FaFilePrescription />
+                                    </p>
+                                    <NavLink to="/dashboard/dochistory">Doctor History</NavLink>
                                 </div>
 
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
