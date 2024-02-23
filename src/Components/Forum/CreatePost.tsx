@@ -59,6 +59,8 @@ const CreatePost = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            const modal = document.getElementById('my_modal_7') as HTMLInputElement;
+            modal.checked = false;
         }
     };
 
