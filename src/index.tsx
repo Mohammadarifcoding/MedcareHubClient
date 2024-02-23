@@ -55,6 +55,7 @@ import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.ts
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
 import DoctorVisitingDetails from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisitingDetails.jsx';
+import DoctorHistory from './Components/Dashboard/Pages/DoctorHistory/DoctorHistory.tsx';
 
 
 const queryClient = new QueryClient()
@@ -148,7 +149,12 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/docstatus',
         element: <DocStatus></DocStatus>
-      }, {
+      },
+      {
+        path: '/dashboard/dochistory',
+        element: <DoctorHistory></DoctorHistory>
+      },
+      {
         path: '/dashboard/comproduct',
         element: <CompanyProduct></CompanyProduct>
       },

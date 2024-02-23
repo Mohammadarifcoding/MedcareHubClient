@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import DocStatus from "../Dashboard/Pages/DocStatus/DocStatus";
 import CompanyRegister from "../Dashboard/Pages/CompanyRegister/CompanyRegister";
+import DoctorHistory from "../Dashboard/Pages/DoctorHistory/DoctorHistory";
 
 
 const Route = createBrowserRouter([

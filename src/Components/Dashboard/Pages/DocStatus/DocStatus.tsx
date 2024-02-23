@@ -2,21 +2,82 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { TiTickOutline } from 'react-icons/ti';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
+import Swal from 'sweetalert2';
 
 const DocStatus = () => {
     const [patients, setPatients] = useState([]);
+    const [doctor, setDoctor] = useState("");
+
+    const { user } = UseAuth();
 
     useEffect(() => {
-        fetch('/patients.json')
-            .then((res) => res.json())
-            .then((data) => setPatients(data));
-    }, []);
+        if (user && user.email) {
+            fetch(`http://localhost:5000/doctor/${user.email}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setDoctor(data);
+                    fetch(`http://localhost:5000/doctor/${data._id}/patients`)
+                        .then(res => res.json())
+                        .then(data => setPatients(data.filter(doctor => doctor.status.toLowerCase() !== "completed")))
+                })
+        }
 
-    // const handleBookingConfirm = id => {
-    //     fetch(`/patients.json/${id}`)
-    //         .then(res => res.json())
-    //         .then(data => setPatients(data));
-    // }
+    }, [user]);
+
+    const handlecomplete = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/doctor/${doctor._id}/patient/${id}/status/completed`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        Swal.fire('Successfully complete')
+                    })
+            }
+        });
+    }
+
+    const handleDelete = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/doctor/${doctor._id}/patient/${id}/cancel`, {
+                    method: 'DELETE',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        Swal.fire('Cancel successfully')
+                    })
+            }
+        });
+    }
+
+
     return (
         <div className="">
             <div className="mt-5 ml-3 md:ml-0 md:my-5">
@@ -39,23 +100,27 @@ const DocStatus = () => {
                                     <th>Schedule Time</th>
                                     <th>Status</th>
                                     <th>Action</th>
+                                    <th>Complete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {patients.map(({ id, name, description, schedule }, index) => (
-                                    <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] " key={id}>
+                                {patients.map(({ _id, description, time, weekDay, status, patient }, index) => (
+                                    <tr className="bg-[#FFFFFF] hover:bg-[#fafafa7e] " key={_id}>
                                         <th>{index + 1}</th>
-                                        <td>{name}</td>
+                                        <td>{patient.patientName}</td>
                                         <td>{description}</td>
-                                        <td>{schedule}</td>
-                                        <td>Waiting</td>
+                                        <td>{time}</td>
+                                        <td>{status}</td>
                                         <th>
                                             <button className="btn btn-sm text-blue-500 btn-circle  mb-3">
                                                 <TiTickOutline />
                                             </button>
-                                            <button className="btn btn-sm btn-circle text-red-600">
+                                            <button onClick={() => handleDelete(patient._id)} className="btn btn-sm btn-circle text-red-600">
                                                 <AiOutlineDelete />
                                             </button>
+                                        </th>
+                                        <th>
+                                            <button onClick={() => handlecomplete(patient._id)} className='py-1 px-2 bg-[#0360D9]'>Done</button>
                                         </th>
                                     </tr>
                                 ))}
@@ -73,10 +138,10 @@ const DocStatus = () => {
                                     <h1 className="mt-2">Monday - Friday</h1>
                                 </div>
                                 <div>
-                                    <h1 className="mt-2">8.00-20.00</h1>
-                                    <h1 className="mt-2">9.00-18.30</h1>
-                                    <h1 className="mt-2">9.00-15.00</h1>
-                                    <h1 className="mt-2 mb-6">8.00-20.00</h1>
+                                    <h1 className="mt-2">{doctor.startAvail} - {doctor.endAvail}</h1>
+                                    <h1 className="mt-2">{doctor.startAvail} - {doctor.endAvail}</h1>
+                                    <h1 className="mt-2">{doctor.startAvail} - {doctor.endAvail}</h1>
+                                    <h1 className="mt-2 mb-6">{doctor.startAvail} - {doctor.endAvail}</h1>
                                 </div>
                             </div>
                         </div>
