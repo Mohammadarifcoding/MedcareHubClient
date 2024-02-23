@@ -8,7 +8,7 @@ const FNavBar = () => {
     // console.log(user);
     const fullName = user?.displayName;
     const nameParts = fullName?.split(' ');
-    const firstName = nameParts[0];
+    const firstName = nameParts && nameParts.length > 0 ? nameParts[0] : null;
     // const lastName = nameParts.slice(1).join(" ");
 
     return (
@@ -36,12 +36,12 @@ const FNavBar = () => {
                     </NavLink>
                 </div>
                 <div className="relative group">
-                    <img className="w-[50px] h-[50px] bg-slate-500 object-cover rounded-full" src={user?.photoURL} alt="" />
-                    <span className="h-4 w-4 bg-green-500 absolute rounded-full bottom-2 right-0 border-[3px] border-white"></span>
-                    <span className="h-4 w-4 bg-green-500 absolute rounded-full bottom-2 right-0 animate-ping"></span>
+                    <img className="w-[40px] h-[40px] bg-slate-500 object-cover rounded-full" src={user?.photoURL} alt="" />
+                    <span className="h-2.5 w-2.5 bg-green-500 absolute rounded-full bottom-2 right-0 border border-white"></span>
+                    <span className="h-2.5 w-2.5 bg-green-500 absolute rounded-full bottom-2 right-0 animate-ping"></span>
                 </div>
                 <div className="px-2 text-[#5c5b5b]">
-                    <p>Hi,{firstName ? firstName : 'User'}</p>
+                    <p>Hi, {firstName ? firstName : 'User'}</p>
                 </div>
             </div>
         </div>
