@@ -155,7 +155,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/dochistory',
-        element: <DoctorHistory></DoctorHistory>
+        element: <DoctorRoute><DoctorHistory></DoctorHistory></DoctorRoute>
       },
       {
          path: '/dashboard/docstatus',
