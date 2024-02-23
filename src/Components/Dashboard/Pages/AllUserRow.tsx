@@ -12,8 +12,8 @@ const AllUserRow = ({ user, handleDeleteUser, handleChangeUserRole }) => {
             </td>
 
             <td className="font-medium text-sm">{email}</td>
-            <td className="font-medium text-sm ">{role}</td>
-            <td className="font-medium text-sm "> {gender}</td>
+            <td className="font-medium text-sm ">{gender}</td>
+            <td className="font-medium text-sm "> {role}</td>
             <td>
                 <ul className="menu menu-horizontal">
                     <li>
@@ -23,12 +23,17 @@ const AllUserRow = ({ user, handleDeleteUser, handleChangeUserRole }) => {
                                 <li onClick={() => handleChangeUserRole(user, 'admin')}>
                                     <Link>admin</Link>
                                 </li>
-                                <li onClick={() => handleChangeUserRole(user, 'moderator')}>
-                                    <Link>moderator</Link>
-                                </li>
-
                                 <li onClick={() => handleChangeUserRole(user, 'user')}>
                                     <Link>user</Link>
+                                </li>
+                                <li onClick={() => handleChangeUserRole(user, 'Doctor')}>
+                                    <Link>Doctor</Link>
+                                </li>
+                                <li onClick={() => handleChangeUserRole(user, 'Patient')}>
+                                    <Link>Patient</Link>
+                                </li>
+                                <li onClick={() => handleChangeUserRole(user, 'Company')}>
+                                    <Link>Company</Link>
                                 </li>
                             </ul>
                         </details>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router';
-import UseCheckUser from '../../Hook/UseCheckUser.tsx';
 import UseAuth from '../../Hook/UseAuth.tsx';
+import UseCheckUser from '../../Hook/UseCheckUser.tsx';
+import { Navigate, useLocation } from 'react-router-dom';
 
-const DoctorRoute = () => {
+const SuperRoute = () => {
     const { user, load } = UseAuth()
     const {checkUser,isloading} = UseCheckUser()
     const location = useLocation()
@@ -12,7 +12,7 @@ const DoctorRoute = () => {
         return <span className="loading loading-dots loading-lg"></span>
     }
     
-    if(checkUser === 'Doctor' || checkUser === 'Super'){
+    if(checkUser === 'Super'){
          checkedUser = true
     }
        
@@ -24,4 +24,4 @@ const DoctorRoute = () => {
     return <Navigate to="/" state={{ from: location }} replace />;
 };
 
-export default DoctorRoute;
+export default SuperRoute;

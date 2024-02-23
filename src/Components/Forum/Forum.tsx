@@ -8,13 +8,14 @@ const Forum = () => {
     const [isAdmin] = UseAdmin();
     console.log(isAdmin);
     return (
-        <div className='container mx-auto'>
-
+        <>
             <FNavBar></FNavBar>
-            <CreatePost></CreatePost>
-            {/* <PostMenu></PostMenu> */}
-            <PostBox></PostBox>
-        </div>
+            <div className="container my-8 mx-auto">
+                <CreatePost></CreatePost>
+                {/* <PostMenu></PostMenu> */}
+                <PostBox></PostBox>
+            </div>
+        </>
     );
 };
 
