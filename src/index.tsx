@@ -57,15 +57,12 @@ import MyOrder from './Components/Dashboard/Pages/MyOrder/MyOrder.tsx';
 import ContactPage from './Components/Pages/Contact/ContactPage.tsx';
 import AboutUs from './Components/Pages/About/AboutUs.tsx';
 import DoctorVisitingDetails from './Components/Dashboard/Pages/DoctorVisiting/DoctorVisitingDetails.jsx';
-<<<<<<< HEAD
 import DoctorHistory from './Components/Dashboard/Pages/DoctorHistory/DoctorHistory.tsx';
-=======
 import PrivateRoute from './Components/Route/PrivateRoute.tsx';
 import DoctorRoute from './Components/Route/DoctorRoute.tsx';
 import CompanyRoute from './Components/Route/CompanyRoute.tsx';
 import UserRoute from './Components/Route/UserRoute.tsx';
 import PatientRoute from './Components/Route/PatientRoute.tsx';
->>>>>>> c5260c628f6a1f4307521684c1382f75363ff549
 
 
 const queryClient = new QueryClient()
@@ -157,19 +154,13 @@ const router = createBrowserRouter([
         element: <Profile></Profile>
       },
       {
-        path: '/dashboard/docstatus',
-<<<<<<< HEAD
-        element: <DocStatus></DocStatus>
-      },
-      {
         path: '/dashboard/dochistory',
         element: <DoctorHistory></DoctorHistory>
       },
       {
-=======
+         path: '/dashboard/docstatus',
         element: <DoctorRoute><DocStatus></DocStatus></DoctorRoute>
       }, {
->>>>>>> c5260c628f6a1f4307521684c1382f75363ff549
         path: '/dashboard/comproduct',
         element: <CompanyRoute><CompanyProduct></CompanyProduct></CompanyRoute>
       },
