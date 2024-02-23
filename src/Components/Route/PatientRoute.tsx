@@ -12,7 +12,7 @@ const PatientRoute = () => {
         return <span className="loading loading-dots loading-lg"></span>
     }
 
-    if (checkUser === 'Patient') {
+    if (checkUser === 'Patient' || checkUser === 'Super') {
         checkedUser = true
     }
 

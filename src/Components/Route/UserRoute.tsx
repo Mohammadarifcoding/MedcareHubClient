@@ -12,7 +12,7 @@ const UserRoute = () => {
         return <span className="loading loading-dots loading-lg"></span>
     }
     
-    if(checkUser === 'user'){
+    if(checkUser === 'user' || checkUser === 'Super'){
          checkedUser = true
     }
        

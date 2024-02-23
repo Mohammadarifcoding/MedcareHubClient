@@ -12,7 +12,7 @@ const CompanyRoute = ({children}) => {
         return <span className="loading loading-dots loading-lg"></span>
     }
     
-    if(checkedUser === 'Company'){
+    if(checkedUser === 'Company' || checkUser === 'Super'){
          checkedUser = true
     }
        
