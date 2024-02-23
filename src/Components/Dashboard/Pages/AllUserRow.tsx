@@ -23,12 +23,14 @@ const AllUserRow = ({ user, handleDeleteUser, handleChangeUserRole }) => {
                                 <li onClick={() => handleChangeUserRole(user, 'admin')}>
                                     <Link>admin</Link>
                                 </li>
-                                <li onClick={() => handleChangeUserRole(user, 'moderator')}>
-                                    <Link>moderator</Link>
-                                </li>
-
                                 <li onClick={() => handleChangeUserRole(user, 'user')}>
                                     <Link>user</Link>
+                                </li>
+                                <li onClick={() => handleChangeUserRole(user, 'Doctor')}>
+                                    <Link>Doctor</Link>
+                                </li>
+                                <li onClick={() => handleChangeUserRole(user, 'Patient')}>
+                                    <Link>Patient</Link>
                                 </li>
                             </ul>
                         </details>

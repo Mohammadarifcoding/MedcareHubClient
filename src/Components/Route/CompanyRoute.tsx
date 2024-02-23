@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router';
-import UseCheckUser from '../../Hook/UseCheckUser';
+import UseCheckUser from '../../Hook/UseCheckUser.tsx';
+import UseAuth from '../../Hook/UseAuth.tsx';
 
 const CompanyRoute = ({children}) => {
     const { user, load } = UseAuth()
@@ -20,7 +21,7 @@ const CompanyRoute = ({children}) => {
     }
 
 
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
 };
 
 export default CompanyRoute;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router';
-import UseCheckUser from '../../Hook/UseCheckUser';
-import UseAuth from '../../Hook/UseAuth';
+import UseCheckUser from '../../Hook/UseCheckUser.tsx';
+import UseAuth from '../../Hook/UseAuth.tsx';
 
 const UserRoute = () => {
     const { user, load } = UseAuth()
@@ -21,7 +21,7 @@ const UserRoute = () => {
     }
 
 
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
 };
 
 export default UserRoute;
