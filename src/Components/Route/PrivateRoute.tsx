@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types'
 import Swal from "sweetalert2";
-import UseAuth from '../../Hook/UseAuth';
+import UseAuth from '../../Hook/UseAuth.tsx';
 
 
 const PrivateRoute = ({children}) => {
