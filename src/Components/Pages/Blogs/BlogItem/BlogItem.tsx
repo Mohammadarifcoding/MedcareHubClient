@@ -117,13 +117,13 @@ const BlogItem: FC<myProps> = ({ blog }) => {
                                 <button onClick={() => handleLikeDislike(1, 0, 'like')}>
                                     <SlLike className="text-2xl"></SlLike>
                                 </button>
-                                {/* <p className="text-xl pt-2">{like}</p> */}
+                                <p className="text-xl pt-2">{blog?.like}</p>
                             </div>
                             <div className="flex gap-2 pt-3 items-center">
                                 <button onClick={() => handleLikeDislike(0, 1, 'dislike')}>
                                     <SlDislike className="text-2xl"></SlDislike>
                                 </button>
-                                {/* <p className="text-xl pb-2"> {dislike}</p> */}
+                                <p className="text-xl pb-2"> {blog?.dislike}</p>
                             </div>
                         </div>
                     </div>
