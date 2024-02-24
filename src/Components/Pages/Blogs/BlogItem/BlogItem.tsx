@@ -6,36 +6,88 @@ import axios from 'axios';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import { SlDislike, SlLike } from 'react-icons/sl';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
+import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 interface myProps {
     blog: Blog
 }
 
 const BlogItem: FC<myProps> = ({ blog }) => {
-    console.log(blog)
+    // console.log(blog);
+    const { user } = UseAuth();
+    const axiosPublic = UseAxiosPublic();
+    // console.log(blog)
 
-    const [refetchData, setRefecthData] = useState(false)
-    const [updateLike, setUpdateLike] = useState(
-        localStorage.getItem('buttonClicked') === 'true'
-    );
+    // const [refetchData, setRefecthData] = useState(false)
+    // const [updateLike, setUpdateLike] = useState(
+    //     localStorage.getItem('buttonClicked') === 'true'
+    // );
 
-    useEffect(() => {
-        // Update localStorage when buttonClicked state changes
-        localStorage.setItem('buttonClicked', updateLike);
-    }, [updateLike]);
+    // useEffect(() => {
+    //     // Update localStorage when buttonClicked state changes
+    //     localStorage.setItem('buttonClicked', updateLike);
+    // }, [updateLike]);
 
-    const handleLikeClick = () => {
-        try {
-            axios.patch(`${base_URL}/Blog/${blog?._id}`)
-            setUpdateLike(true)
+    // const handleLikeClick = () => {
+    //     try {
+    //         axios.patch(`${base_URL}/Blog/${blog?._id}`)
+    //         setUpdateLike(true)
 
-            setRefecthData(!refetchData)
-        } catch (error) {
+    //         setRefecthData(!refetchData)
+    //     } catch (error) {
 
+    //     }
+
+    // };
+
+    const handleLikeDislike = (like, dislike, userValue) => {
+        // console.log(like, dislike, userValue);
+        if (user) {
+            const reactInfo = {
+                value: {
+                    like,
+                    dislike
+                },
+                user: {
+                    name: user?.displayName,
+                    email: user?.email,
+                    react: userValue
+                }
+            };
+
+            axiosPublic.patch(`/blog/like/dislike/${blog?._id}`, reactInfo).then((res) => {
+                console.log(reactInfo);
+                console.log(res.data, 'hello res.data');
+                if (!res.data.message) {
+                    // refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your react is succfully counted',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'You Have already participated the post react!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+        } else {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'login first to participated the post like or dislike.',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
-
     };
-
-
 
 
 
@@ -60,9 +112,20 @@ const BlogItem: FC<myProps> = ({ blog }) => {
                     </div>
 
                     <div className='mt-3'>
-                        <button disabled={updateLike} onClick={handleLikeClick} className='flex text-3xl'>
-                            <AiFillLike className='text-4xl text-[#0360D9]' />{blog?.like}
-                        </button>
+                        <div className="flex justify-center items-center text-center gap-5">
+                            <div className="flex gap-2 items-center">
+                                <button onClick={() => handleLikeDislike(1, 0, 'like')}>
+                                    <SlLike className="text-2xl"></SlLike>
+                                </button>
+                                {/* <p className="text-xl pt-2">{like}</p> */}
+                            </div>
+                            <div className="flex gap-2 pt-3 items-center">
+                                <button onClick={() => handleLikeDislike(0, 1, 'dislike')}>
+                                    <SlDislike className="text-2xl"></SlDislike>
+                                </button>
+                                {/* <p className="text-xl pb-2"> {dislike}</p> */}
+                            </div>
+                        </div>
                     </div>
 
 
