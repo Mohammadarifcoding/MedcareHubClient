@@ -88,7 +88,7 @@ const BlogItem: FC<myProps> = ({ blog }) => {
                     </div>
 
                     <div className='mt-3'>
-                        <div className="flex justify-center items-center text-center gap-5">
+                        <div className="flex items-center text-center gap-5">
                             <div className="flex gap-2 items-center">
                                 <button onClick={() => handleLikeDislike(1, 0, 'like')}>
                                     <BiSolidLike className="text-2xl"></BiSolidLike>
