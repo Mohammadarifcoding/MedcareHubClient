@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import { FcApprove, FcDisapprove } from "react-icons/fc";
 import Swal from 'sweetalert2';
+import { MdOutlineAutoDelete } from 'react-icons/md';
 
 const ForumAllPost = () => {
     const axiosPublic = UseAxiosPublic();
@@ -30,6 +31,33 @@ const ForumAllPost = () => {
             })
 
     }
+    const handleDeletePost = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/forum/post/delete/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your post has been deleted.",
+                                icon: "success"
+
+                            });
+                        }
+                    })
+            }
+        });
+    }
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -42,6 +70,7 @@ const ForumAllPost = () => {
                         <th>Status</th>
                         <th>Approved</th>
                         <th>Rejected</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +88,11 @@ const ForumAllPost = () => {
                             <td>
                                 <button onClick={() => handleChangeStatus(data._id, 'Rejected')}>
                                     <FcDisapprove className='text-4xl'></FcDisapprove>
+                                </button>
+                            </td>
+                            <td>
+                                <button onClick={() => handleDeletePost(data._id)}>
+                                    <MdOutlineAutoDelete className='text-4xl'></MdOutlineAutoDelete>
                                 </button>
                             </td>
                         </tr>)
