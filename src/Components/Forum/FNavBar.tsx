@@ -72,11 +72,11 @@ const FNavBar = () => {
                             </div>
                         </>
                     ) : (
-                        <div className="flex gap-3"><div className="w-10 rounded-full">
+                       <div className="w-10 rounded-full">
                         <img className="rounded-full w-7 lg:w-14" src='https://i.ibb.co/2FngQt8/user.png'
                             alt="" />
 
-                    </div></div>
+                    </div>
                     )}
                 </div>
                 <div className="px-2 text-[#5c5b5b]">
