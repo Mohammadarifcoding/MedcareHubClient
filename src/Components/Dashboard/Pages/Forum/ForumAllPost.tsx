@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
-import { FcApprove } from "react-icons/fc";
+import { FcApprove, FcDisapprove } from "react-icons/fc";
 import Swal from 'sweetalert2';
 
 const ForumAllPost = () => {
@@ -21,7 +21,7 @@ const ForumAllPost = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `is now admin`,
+                        title: `post is ${status}`,
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -41,6 +41,7 @@ const ForumAllPost = () => {
                         <th>Title</th>
                         <th>Status</th>
                         <th>Approved</th>
+                        <th>Rejected</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,11 @@ const ForumAllPost = () => {
                             <td>
                                 <button onClick={() => handleChangeStatus(data._id, 'Approved')}>
                                     <FcApprove className='text-4xl'></FcApprove>
+                                </button>
+                            </td>
+                            <td>
+                                <button onClick={() => handleChangeStatus(data._id, 'Rejected')}>
+                                    <FcDisapprove className='text-4xl'></FcDisapprove>
                                 </button>
                             </td>
                         </tr>)
