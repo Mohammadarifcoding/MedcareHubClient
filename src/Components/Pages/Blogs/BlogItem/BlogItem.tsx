@@ -6,7 +6,7 @@ import axios from 'axios';
 import { base_URL } from '../../../../utills/BaseURL.ts';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
-import { SlDislike, SlLike } from 'react-icons/sl';
+import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import UseAuth from '../../../../Hook/UseAuth.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 interface myProps {
@@ -17,32 +17,8 @@ const BlogItem: FC<myProps> = ({ blog }) => {
     // console.log(blog);
     const { user } = UseAuth();
     const axiosPublic = UseAxiosPublic();
-    // console.log(blog)
-
-    // const [refetchData, setRefecthData] = useState(false)
-    // const [updateLike, setUpdateLike] = useState(
-    //     localStorage.getItem('buttonClicked') === 'true'
-    // );
-
-    // useEffect(() => {
-    //     // Update localStorage when buttonClicked state changes
-    //     localStorage.setItem('buttonClicked', updateLike);
-    // }, [updateLike]);
-
-    // const handleLikeClick = () => {
-    //     try {
-    //         axios.patch(`${base_URL}/Blog/${blog?._id}`)
-    //         setUpdateLike(true)
-
-    //         setRefecthData(!refetchData)
-    //     } catch (error) {
-
-    //     }
-
-    // };
 
     const handleLikeDislike = (like, dislike, userValue) => {
-        // console.log(like, dislike, userValue);
         if (user) {
             const reactInfo = {
                 value: {
@@ -115,13 +91,13 @@ const BlogItem: FC<myProps> = ({ blog }) => {
                         <div className="flex justify-center items-center text-center gap-5">
                             <div className="flex gap-2 items-center">
                                 <button onClick={() => handleLikeDislike(1, 0, 'like')}>
-                                    <SlLike className="text-2xl"></SlLike>
+                                    <BiSolidLike className="text-2xl"></BiSolidLike>
                                 </button>
                                 <p className="text-xl pt-2">{blog?.like}</p>
                             </div>
                             <div className="flex gap-2 pt-3 items-center">
                                 <button onClick={() => handleLikeDislike(0, 1, 'dislike')}>
-                                    <SlDislike className="text-2xl"></SlDislike>
+                                    <BiSolidDislike className="text-2xl"></BiSolidDislike>
                                 </button>
                                 <p className="text-xl pb-2"> {blog?.dislike}</p>
                             </div>
