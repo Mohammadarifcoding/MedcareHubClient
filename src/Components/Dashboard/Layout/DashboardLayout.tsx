@@ -15,7 +15,7 @@ import { FaHouseMedical } from "react-icons/fa6";
 import { FaBriefcaseMedical } from "react-icons/fa6";
 import { FaHandHoldingMedical } from "react-icons/fa";
 import { GiRemedy } from "react-icons/gi";
-import { MdProductionQuantityLimits } from "react-icons/md";
+import { MdOutlineForum, MdProductionQuantityLimits } from "react-icons/md";
 
 
 const DashboardLayout = () => {
@@ -24,7 +24,7 @@ const DashboardLayout = () => {
     const [isAdmin] = UseAdmin()
     const [isOpen, setIsOpen] = React.useState(false);
     // const [isAdmin] = 'true';
-    
+
 
     const toggleDrawer = () => {
         setIsOpen((prevState) => !prevState);
@@ -140,6 +140,9 @@ const DashboardLayout = () => {
                                     </NavLink>
                                     <NavLink to="/dashboard/myorder" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <MdProductionQuantityLimits /> My Order
+                                    </NavLink>
+                                    <NavLink to="/dashboard/forum" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <MdOutlineForum /> Forum
                                     </NavLink>
                                 </>
 
