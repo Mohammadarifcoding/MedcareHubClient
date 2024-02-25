@@ -87,12 +87,12 @@ const MedicienDetails = () => {
             companyname: data?.Company
         };
 
-        console.log(RevData);
+
 
         axios
             .post(`http://localhost:5000/reviewdata`, RevData)
             .then((res) => {
-                console.log(res);
+                console.log(res.data);
                 Swal.fire('You posted a review successfully!');
             })
             .catch((error) => console.error('Error updating status:', error));
