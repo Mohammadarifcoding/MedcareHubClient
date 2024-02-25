@@ -87,6 +87,52 @@ const DashboardLayout = () => {
                                     </NavLink>
                                 </>
                             }
+                            {
+                                checkUser === 'Admin' && <>
+                                    <NavLink to="/dashboard/docque" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <FaHandHoldingMedical /> Doctor Que
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/alluser"
+                                        className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                                    >
+                                        <FaUserFriends /> All User
+                                    </NavLink>
+                                    <NavLink to="/dashboard/allmedicine" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <GiRemedy /> All Medicine
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/companys"
+                                        className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                                    >
+                                        <FaHouseMedical /> All Company
+                                    </NavLink>
+                                </>
+                            }
+                            {
+                                checkUser === 'Doctor' && <>
+                                    <NavLink
+                                        to="/dashboard/docstatus"
+                                        className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                                    >
+                                        <FaFilePrescription /> Doctor Status
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/dochistory"
+                                        className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                                    >
+                                        <FaFilePrescription /> Doctor History
+                                    </NavLink>
+
+                                    <NavLink
+                                        to="/dashboard/allpateint"
+                                        className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                                    >
+                                        <MdOutlineSick /> All Patients
+                                    </NavLink>
+
+                                </>
+                            }
                             <NavLink to="/" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <FaHome className=""></FaHome> Home
                             </NavLink>
@@ -98,46 +144,15 @@ const DashboardLayout = () => {
                             </NavLink>
 
 
-                            <NavLink to="/dashboard/docque" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <FaHandHoldingMedical /> Doctor Que
-                            </NavLink>
+
 
                             <NavLink to="/dashboard/myblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <ImBlog /> My blog
                             </NavLink>
 
 
-                            <NavLink
-                                to="/dashboard/alluser"
-                                className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
-                            >
-                                <FaUserFriends /> All User
-                            </NavLink>
-                            <NavLink
-                                to="/dashboard/docstatus"
-                                className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
-                            >
-                                <FaFilePrescription /> Doctor Status
-                            </NavLink>
-                            <NavLink
-                                to="/dashboard/dochistory"
-                                className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
-                            >
-                                <FaFilePrescription /> Doctor History
-                            </NavLink>
 
-                            <NavLink
-                                to="/dashboard/allpateint"
-                                className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
-                            >
-                                <MdOutlineSick /> All Patients
-                            </NavLink>
-                            <NavLink
-                                to="/dashboard/companys"
-                                className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
-                            >
-                                <FaHouseMedical /> All Company
-                            </NavLink>
+
 
 
                             <NavLink to="/dashboard/orders" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
@@ -146,9 +161,7 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/doctorvisiting" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <LuFileStack /> Doctor visiting
                             </NavLink>
-                            <NavLink to="/dashboard/allmedicine" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <GiRemedy /> All Medicine
-                            </NavLink>
+
                             <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <GiRemedy /> All Blog
                             </NavLink>
