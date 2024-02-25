@@ -63,6 +63,7 @@ import DoctorRoute from './Components/Route/DoctorRoute.tsx';
 import CompanyRoute from './Components/Route/CompanyRoute.tsx';
 import UserRoute from './Components/Route/UserRoute.tsx';
 import PatientRoute from './Components/Route/PatientRoute.tsx';
+import ForumAllPost from './Components/Dashboard/Pages/Forum/ForumAllPost.tsx';
 
 
 const queryClient = new QueryClient()
@@ -158,7 +159,7 @@ const router = createBrowserRouter([
         element: <DoctorHistory></DoctorHistory>
       },
       {
-         path: '/dashboard/docstatus',
+        path: '/dashboard/docstatus',
         element: <DoctorRoute><DocStatus></DocStatus></DoctorRoute>
       }, {
         path: '/dashboard/comproduct',
@@ -230,6 +231,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/myorder',
         element: <MyOrder></MyOrder>
+      },
+      {
+        path: '/dashboard/forum',
+        element: <ForumAllPost></ForumAllPost>
       }
 
     ]
