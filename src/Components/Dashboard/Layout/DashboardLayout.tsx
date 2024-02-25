@@ -107,6 +107,9 @@ const DashboardLayout = () => {
                                     >
                                         <FaHouseMedical /> All Company
                                     </NavLink>
+                                    <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <GiRemedy /> All Blog
+                                    </NavLink>
                                 </>
                             }
                             {
@@ -131,6 +134,13 @@ const DashboardLayout = () => {
                                         <MdOutlineSick /> All Patients
                                     </NavLink>
 
+                                </>
+                            }
+                            {
+                                checkUser === 'Patient' && <>
+                                    <NavLink to="/dashboard/doctorvisiting" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                        <LuFileStack /> Doctor visiting
+                                    </NavLink>
                                 </>
                             }
                             <NavLink to="/" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
@@ -158,13 +168,9 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/orders" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <LuFileStack /> Orders
                             </NavLink>
-                            <NavLink to="/dashboard/doctorvisiting" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <LuFileStack /> Doctor visiting
-                            </NavLink>
 
-                            <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <GiRemedy /> All Blog
-                            </NavLink>
+
+
                             <NavLink to="/dashboard/myorder" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <MdProductionQuantityLimits /> My Order
                             </NavLink>
