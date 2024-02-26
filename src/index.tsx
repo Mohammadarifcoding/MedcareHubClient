@@ -51,7 +51,6 @@ import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/M
 import Medicines from './Components/Pages/Medicines/Medicines.tsx';
 import MedWishList from './Components/Pages/Medicines/MedicinItem/MedWishList.tsx';
 import Register from './Components/Pages/Register/Register.tsx';
-import AdminRoute from './Components/RelatedProduct/AdminRoute.tsx';
 import CompanyRoute from './Components/Route/CompanyRoute.tsx';
 import DoctorRoute from './Components/Route/DoctorRoute.tsx';
 import PatientRoute from './Components/Route/PatientRoute.tsx';
@@ -60,6 +59,7 @@ import UserRoute from './Components/Route/UserRoute.tsx';
 import AuthProvider from './Providers/AuthProvider/AuthProvider.tsx';
 import reportWebVitals from './reportWebVitals';
 import { base_URL } from './utills/BaseURL.ts';
+import AdminRoute from './Components/Route/AdminRoute.tsx';
 
 
 const queryClient = new QueryClient()

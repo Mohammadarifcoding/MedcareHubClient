@@ -12,7 +12,7 @@ const AdminRoute = ({children}) => {
         return <span className="loading loading-dots loading-lg"></span>
     }
 
-    if (checkedUser === 'Admin' || checkUser === 'Super') {
+    if (checkUser === 'Admin' || checkUser === 'Super') {
         checkedUser = true
     }
 

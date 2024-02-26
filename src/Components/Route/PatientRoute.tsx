@@ -5,7 +5,7 @@ import UseCheckUser from '../../Hook/UseCheckUser.tsx';
 
 const PatientRoute = ({children}) => {
     const { user, load } = UseAuth()
-    const { checkUser, isloading } = UseCheckUser()
+    const [ checkUser, isloading ] = UseCheckUser()
     const location = useLocation()
     let checkedUser = false
     if (load || isloading) {
