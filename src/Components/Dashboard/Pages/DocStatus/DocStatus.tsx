@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { TiTickOutline } from 'react-icons/ti';
-import UseAuth from '../../../../Hook/UseAuth.tsx';
 import Swal from 'sweetalert2';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
 
 const DocStatus = () => {
     const [patients, setPatients] = useState([]);
@@ -13,11 +12,11 @@ const DocStatus = () => {
 
     useEffect(() => {
         if (user && user.email) {
-            fetch(`http://localhost:5000/doctor/${user.email}`)
+            fetch(`https://medicinehub.vercel.app/doctor/${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setDoctor(data);
-                    fetch(`http://localhost:5000/doctor/${data._id}/patients`)
+                    fetch(`https://medicinehub.vercel.app/doctor/${data._id}/patients`)
                         .then(res => res.json())
                         .then(data => setPatients(data.filter(doctor => doctor.status.toLowerCase() !== "completed")))
                 })
@@ -36,7 +35,7 @@ const DocStatus = () => {
             confirmButtonText: "Confirm"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/doctor/${doctor._id}/patient/${id}/status/completed`, {
+                fetch(`https://medicinehub.vercel.app/doctor/${doctor._id}/patient/${id}/status/completed`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
@@ -62,7 +61,7 @@ const DocStatus = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/doctor/${doctor._id}/patient/${id}/cancel`, {
+                fetch(`https://medicinehub.vercel.app/doctor/${doctor._id}/patient/${id}/cancel`, {
                     method: 'DELETE',
                     headers: {
                         'content-type': 'application/json'

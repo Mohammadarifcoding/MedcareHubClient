@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useMedicineContext } from '../MedicineContext/MedicineContext.tsx';
 import { useQuery } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
+import { useMedicineContext } from '../MedicineContext/MedicineContext.tsx';
 
 const SideCategory = ({ filter, setFilter }) => {
     const [medicines, setMedicines] = useState([]);
@@ -11,7 +11,7 @@ const SideCategory = ({ filter, setFilter }) => {
 
     // useEffect(() => {
     //     setISLoading(true);
-    //     fetch('http://localhost:5000/Medicines')
+    //     fetch('https://medicinehub.vercel.app/Medicines')
     //         .then((res) => res.json())
     //         .then((data) => {
     //             setMedicines(data);
