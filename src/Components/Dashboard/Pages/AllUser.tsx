@@ -1,10 +1,9 @@
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { FaTimes } from 'react-icons/fa';
+import React from 'react';
 import Swal from 'sweetalert2';
-import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import UseAuth from '../../../Hook/UseAuth.tsx';
+import UseAxiosPublic from '../../../Hook/UseAxiosPublic.tsx';
 import AllUserRow from './AllUserRow.tsx';
 
 const AllUser = () => {
@@ -45,7 +44,7 @@ const AllUser = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/user/${user._id}`).then((res) => {
+                axios.delete(`https://medicinehub.vercel.app/user/${user._id}`).then((res) => {
                     Swal.fire({
                         title: 'Deleted!',
                         text: 'User has been deleted.',

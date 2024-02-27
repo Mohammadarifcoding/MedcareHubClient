@@ -13,9 +13,11 @@ const UseCheckUser = () => {
       queryKey:['checkingUser'],
       queryFn : async()=>{
         const getUserRole = await Axious.get(`/checkAcess/${user.email}`)
+        console.log(getUserRole.data)
         return getUserRole.data
       }
     })
+    console.log(userRolename)
     return [userRolename,isLoading,isPending]
 };
 

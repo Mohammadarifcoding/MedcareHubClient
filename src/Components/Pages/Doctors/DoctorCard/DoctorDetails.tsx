@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import React from 'react';
-import UseAuth from '../../../../Hook/UseAuth.tsx';
 import Swal from 'sweetalert2';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 
 const workdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
@@ -21,7 +20,7 @@ const DoctorDetails = () => {
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:5000/Doctor/${id}`)
+            fetch(`https://medicinehub.vercel.app/Doctor/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     // console.log(data);
@@ -35,7 +34,7 @@ const DoctorDetails = () => {
     console.log(foundData);
 
     const handleCheckPatient = async () => {
-        const res = await fetch(`http://localhost:5000/getPatient/${user?.email}`);
+        const res = await fetch(`https://medicinehub.vercel.app/getPatient/${user?.email}`);
         const data = await res.json();
 
         if (!data.status) {
@@ -101,7 +100,7 @@ const DoctorDetails = () => {
             console.log(error.message);
         }
         // try {
-        //     const res = await fetch("http://localhost:5000/doctor-booking", {
+        //     const res = await fetch("https://medicinehub.vercel.app/doctor-booking", {
         //         method: "POST",
         //         headers: {
         //             'Content-Type': 'application/json'
@@ -219,7 +218,7 @@ const DoctorDetails = () => {
                                 </button>
                                 <button className=" items-center justify-center whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-200 text-gray-500">
                                     {foundData?.service[2]}
-                                </button> 
+                                </button>
                             </div>
 
                             <div className='ml-24 mt-3 '>
@@ -265,7 +264,7 @@ const DoctorDetails = () => {
                                     <h2 className="lg:text-xl font-bold my-2 ">About Me</h2>
                                     <p className="text-sm mb-4  ">{foundData?.aboutMe}</p>
                                 </div>
-                              
+
                             </div>
 
                             <div className="text-gray-600">
