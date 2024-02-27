@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import UseAuth from '../../Hook/UseAuth.tsx';
 import UseCheckUser from '../../Hook/UseCheckUser.tsx';
 
-const SuperRoute = () => {
+const SuperRoute = ({children}) => {
     const { user, load } = UseAuth()
     const [checkUser, isloading] = UseCheckUser()
     const location = useLocation()

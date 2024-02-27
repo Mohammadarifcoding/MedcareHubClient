@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router';
 import UseAuth from '../../Hook/UseAuth.tsx';
 import UseCheckUser from '../../Hook/UseCheckUser.tsx';
 
-const AdminRoute = () => {
+const AdminRoute = ({children}) => {
     const { user, load } = UseAuth()
     const [checkUser, isloading] = UseCheckUser()
     const location = useLocation()
@@ -12,7 +12,7 @@ const AdminRoute = () => {
         return <span className="loading loading-dots loading-lg"></span>
     }
 
-    if (checkedUser === 'Admin' || checkUser === 'Super') {
+    if (checkUser === 'Admin' || checkUser === 'Super') {
         checkedUser = true
     }
 

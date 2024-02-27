@@ -1,9 +1,9 @@
 
-import React, { useState } from 'react';
-import UseSingleBlog from '../../../Hook/UseSingleBlog.tsx';
-import Swal from 'sweetalert2';
 import axios from 'axios';
+import React, { useState } from 'react';
 import { MdDelete } from "react-icons/md";
+import Swal from 'sweetalert2';
+import UseSingleBlog from '../../../Hook/UseSingleBlog.tsx';
 import BlogModal from './BlogModal.tsx';
 
 
@@ -26,7 +26,7 @@ const MyBlog = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:5000/Blog/${blog?.ID}`)
+                axios.delete(`https://medicinehub.vercel.app/Blog/${blog?.ID}`)
                     .then(res => {
                         Swal.fire({
                             title: "Deleted!",
@@ -60,7 +60,7 @@ const MyBlog = () => {
                                 <table className="table w-full">
                                     <thead className="bg-[#fafafad5] h-12 md:h-14 text-black text-sm lg:text-lg ">
                                         <tr>
-                                         
+
                                             <th >Writer  Name</th>
                                             <th >Blog  Name</th>
                                             <th > Email</th>

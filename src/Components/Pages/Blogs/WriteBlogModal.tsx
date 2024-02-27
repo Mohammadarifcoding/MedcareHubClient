@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import UseAuth from '../../../Hook/UseAuth.tsx';
-import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import UseAuth from '../../../Hook/UseAuth.tsx';
 const image_hosting_key = '140f2d0db1502e65c2c0ee7bfc66be98';
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const WriteBlogModal = () => {
@@ -41,7 +41,7 @@ const WriteBlogModal = () => {
         };
         console.log(blogData);
         axios
-            .post(`http://localhost:5000/Blog`, blogData)
+            .post(`https://medicinehub.vercel.app/Blog`, blogData)
             .then((res) => {
                 console.log(res);
                 Swal.fire('You post a blog successfully!');

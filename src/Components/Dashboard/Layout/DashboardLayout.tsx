@@ -47,7 +47,7 @@ const DashboardLayout = () => {
 
                         <>
                             {
-                                checkUser === 'Company' && <>
+                                (checkUser === 'Company' || checkUser === 'Super') && <>
                                     {/* <NavLink
                                 to="/dashboard/comproduct"
                                 className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
@@ -72,7 +72,7 @@ const DashboardLayout = () => {
                                 </>
                             }
                             {
-                                checkUser === 'user' && <>
+                                (checkUser === 'user' || checkUser === 'Super') && <>
                                     <NavLink
                                         to="/dashboard/addpatient"
                                         className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
@@ -88,7 +88,7 @@ const DashboardLayout = () => {
                                 </>
                             }
                             {
-                                checkUser === 'Admin' && <>
+                                (checkUser === 'Admin' || checkUser === 'Super')  && <>
                                     <NavLink to="/dashboard/docque" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <FaHandHoldingMedical /> Doctor Que
                                     </NavLink>
@@ -110,10 +110,13 @@ const DashboardLayout = () => {
                                     <NavLink to="/dashboard/allblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <GiRemedy /> All Blog
                                     </NavLink>
+                                    <NavLink to="/dashboard/orders" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
+                                <LuFileStack /> Orders
+                            </NavLink>
                                 </>
                             }
                             {
-                                checkUser === 'Doctor' && <>
+                                (checkUser === 'Doctor' || checkUser === 'Super') && <>
                                     <NavLink
                                         to="/dashboard/docstatus"
                                         className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
@@ -137,7 +140,7 @@ const DashboardLayout = () => {
                                 </>
                             }
                             {
-                                checkUser === 'Patient' && <>
+                                (checkUser === 'Patient' || checkUser === 'Super') && <>
                                     <NavLink to="/dashboard/doctorvisiting" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <LuFileStack /> Doctor visiting
                                     </NavLink>
@@ -165,9 +168,7 @@ const DashboardLayout = () => {
 
 
 
-                            <NavLink to="/dashboard/orders" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <LuFileStack /> Orders
-                            </NavLink>
+
 
 
 
