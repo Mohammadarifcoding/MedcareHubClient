@@ -1,9 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Blog } from '../../../../Model/Model';
 import moment from 'moment';
-import { AiFillLike } from "react-icons/ai";
-import axios from 'axios';
-import { base_URL } from '../../../../utills/BaseURL.ts';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";

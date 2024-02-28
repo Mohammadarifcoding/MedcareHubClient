@@ -3,9 +3,10 @@ import AllPatientRow from './AllPatientRow.tsx';
 import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
 const AllPatient = () => {
     const axiosPublic = UseAxiosPublic()
-
+    const { user } = UseAuth()
 
     const { data: patient = [], refetch } = useQuery({
         queryKey: ['patient'],
@@ -76,12 +77,17 @@ const AllPatient = () => {
                                 <th className="text-center">Status</th>
                                 <th className="text-center">Accept</th>
                                 <th className="text-center">Reject</th>
-                                <th className="text-center">Delete</th>
+                                {
+                                    user && (user.role === "Admin" || user.role === "Super") && (
+                                        <th className="text-center">Delete</th>
+                                    )
+                                }
+                                
                             </tr>
                         </thead>
                         <tbody className="bg-base-300 ">
-                            {patient?.map((user) => (
-                                <AllPatientRow key={user?._id} user={user} handleChangePatientStatus={handleChangePatientStatus} handleDeletePatient={handleDeletePatient}></AllPatientRow>
+                            {patient?.map((patient) => (
+                                <AllPatientRow key={patient?._id} patient={patient} handleChangePatientStatus={handleChangePatientStatus} handleDeletePatient={handleDeletePatient}></AllPatientRow>
                             ))}
 
                             {/* Add more rows with user details */}
