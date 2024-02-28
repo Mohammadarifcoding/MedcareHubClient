@@ -150,7 +150,7 @@ const AddProduct = () => {
                             <textarea className="textarea rounded-md  w-full" name="Description" placeholder="Enter Short description" required></textarea>
                         </div>
                     </div>
-                    <input className="btn btn-block bg-[#0360D9] text-white" type="submit" value="Add Medicine" />
+                    <input className="btn btn-block bg-[#0360D9] hover:bg-[#0360D9] text-white" type="submit" value="Add Medicine" />
                 </form>
             </div>
         </div>

@@ -37,6 +37,7 @@ const WriteBlogModal = () => {
             BlogWriterName: result.BlogWriterName,
             BlogWriting: result.BlogWriting,
             email: user.email,
+            BlogTime: result.BlogTime,
             like: 0
         };
         console.log(blogData);
@@ -94,10 +95,13 @@ const WriteBlogModal = () => {
                                 </div>
 
                                 <div>
-                                    <textarea {...register('BlogName')} placeholder="Blog name" className="p-2 border w-full h-12"> </textarea>
+                                    <input type='date' {...register('BlogTime')} placeholder='Blog Time' className="p-2 my-2 border w-full h-12" />
                                 </div>
                                 <div>
-                                    <textarea {...register('BlogWriting')} placeholder="Write blog" className="border w-full md:h-[150px] p-2 h-[100px]"></textarea>
+                                    <input {...register('BlogName')} placeholder='Blog Title' className="p-2 border w-full h-12" />
+                                </div>
+                                <div>
+                                    <textarea {...register('BlogWriting')} placeholder="Write blog" className="border w-full md:h-[150px] p-2 h-[100px] mt-2"></textarea>
                                 </div>
 
                                 <div>
