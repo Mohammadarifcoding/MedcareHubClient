@@ -17,22 +17,6 @@ const MyOrder = () => {
         }
     });
 
-    const handleChangeOrderStatus = (user, status) => {
-        console.log(user);
-        axiosPublic.patch(`order/status/${user?._id}`, { status }).then((res) => {
-            console.log(res);
-            if (res.data.status) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: `${user.name}s order is ${status} now`,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                refetch();
-            }
-        });
-    };
 
 
 
@@ -78,8 +62,7 @@ const MyOrder = () => {
                                         <th> Mobile</th>
                                         <th>Order Address</th>
                                         <th >Status</th>
-                                        <th className="text-center">Accept</th>
-                                        <th className="text-center">Reject</th>
+                                        
                                         <th className="text-center">Delete</th>
 
                                         {/* <th className="text-center">Cancel</th> */}
@@ -87,7 +70,7 @@ const MyOrder = () => {
                                 </thead>
                                 <tbody className="bg-base-300 text-center">
                                     {orders?.map((order) => (
-                                        <MyOrderRow key={order?._id} order={order} handleChangeOrderStatus={handleChangeOrderStatus} handleDeleteMyOrder={handleDeleteMyOrder} ></MyOrderRow>
+                                        <MyOrderRow key={order?._id} order={order} handleDeleteMyOrder={handleDeleteMyOrder} ></MyOrderRow>
                                     ))}
                                 </tbody>
                             </table>

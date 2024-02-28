@@ -105,9 +105,11 @@ const BlogItem: FC<myProps> = ({ blog }) => {
                     </div>
 
 
+
                     <Link to={`/blogdetails/${blog._id}`}>
-                        <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3'>Read More</button>
+                        <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3 '>Read More</button>
                     </Link>
+
                 </div>
 
             </div>
