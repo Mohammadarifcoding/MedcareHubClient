@@ -43,6 +43,23 @@ const Orders = () => {
         });
     };
 
+    const ChangeOrderStatus = (user, status) => {
+        console.log(user);
+        axiosPublic.patch(`order/status/${user?._id}`, { status }).then((res) => {
+            console.log(res);
+            if (res.data.status) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name}s order is ${status} now`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                refetch();
+            }
+        });
+    };
+
     return (
         <>
             <div className="mt-5 ml-3 md:ml-0 md:my-5">
@@ -60,13 +77,16 @@ const Orders = () => {
                                         <th> Mobile</th>
                                         <th>Order Address</th>
                                         <th>Products Name</th>
-                                        <th>Quentity</th>
-                                        <th className="text-center">Cencel</th>
+                                        <th>Quantity</th>
+                                        <th >Status</th>
+                                        <th >Accept</th>
+                                        <th >Reject</th>
+                                        <th className="text-center">Cancel</th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-base-300 text-center">
                                     {orders?.map((user) => (
-                                        <OrdersRow key={user?._id} user={user} handleDeleteOrder={handleDeleteOrder}></OrdersRow>
+                                        <OrdersRow key={user?._id} user={user} ChangeOrderStatus={ChangeOrderStatus} handleDeleteOrder={handleDeleteOrder}></OrdersRow>
                                     ))}
                                 </tbody>
                             </table>

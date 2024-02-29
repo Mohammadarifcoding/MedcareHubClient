@@ -1,9 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Blog } from '../../../../Model/Model';
 import moment from 'moment';
-import { AiFillLike } from "react-icons/ai";
-import axios from 'axios';
-import { base_URL } from '../../../../utills/BaseURL.ts';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
@@ -105,9 +102,11 @@ const BlogItem: FC<myProps> = ({ blog }) => {
                     </div>
 
 
+
                     <Link to={`/blogdetails/${blog._id}`}>
-                        <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3'>Read More</button>
+                        <button className='w-full px-3 py-3 hover:bg-[#bdd8f3] rounded-lg bg-[#E1EEFF] mt-3 '>Read More</button>
                     </Link>
+
                 </div>
 
             </div>

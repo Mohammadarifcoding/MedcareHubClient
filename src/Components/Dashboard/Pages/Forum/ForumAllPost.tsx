@@ -4,8 +4,10 @@ import UseAxiosPublic from '../../../../Hook/UseAxiosPublic.tsx';
 import { FcApprove, FcDisapprove } from "react-icons/fc";
 import Swal from 'sweetalert2';
 import { MdOutlineAutoDelete } from 'react-icons/md';
+import UseAuth from '../../../../Hook/UseAuth.tsx';
 
 const ForumAllPost = () => {
+    const { user } = UseAuth()
     const axiosPublic = UseAxiosPublic();
     const { data: postData = [], refetch } = useQuery({
         queryKey: ['postData'],
@@ -68,8 +70,12 @@ const ForumAllPost = () => {
                         <th>Post Owner</th>
                         <th>Title</th>
                         <th>Status</th>
-                        <th>Approved</th>
-                        <th>Rejected</th>
+                        {user && (user.role === 'Admin' || user.role === 'Super') && (
+                            <>
+                                <th>Approved</th>
+                                <th>Rejected</th>
+                            </>
+                        )}
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -80,7 +86,10 @@ const ForumAllPost = () => {
                             <td>{data.name}</td>
                             <td>{data.title}</td>
                             <td>{data.status}</td>
-                            <td>
+                            {
+                                user && (user.role === 'Admin' || user.role === 'Super') && (
+                                    <>
+                                     <td>
                                 <button onClick={() => handleChangeStatus(data._id, 'Approved')}>
                                     <FcApprove className='text-4xl'></FcApprove>
                                 </button>
@@ -90,6 +99,10 @@ const ForumAllPost = () => {
                                     <FcDisapprove className='text-4xl'></FcDisapprove>
                                 </button>
                             </td>
+                                    </>
+                                )
+                            }
+                           
                             <td>
                                 <button onClick={() => handleDeletePost(data._id)}>
                                     <MdOutlineAutoDelete className='text-4xl'></MdOutlineAutoDelete>

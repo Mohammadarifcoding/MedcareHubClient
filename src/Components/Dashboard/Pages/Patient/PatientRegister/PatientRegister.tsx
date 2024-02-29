@@ -95,7 +95,7 @@ const PatientRegister = () => {
     return (
         <div className="md:mx-3">
             <div className="md:py-20 py-8 md:px-3">
-                <h1 className="text-center font-extrabold mb-10 text-purple-500 text-2xl md:text-4xl">Register Patient</h1>
+                <h1 className="text-center font-extrabold mb-10 text-blue-600 text-2xl md:text-4xl">Register Patient</h1>
                 <form onSubmit={handleAddPatient}>
                     <div className="md:flex gap-6 justify-center mb-8">
                         <div className="form-control md:w-1/2">
@@ -203,7 +203,7 @@ const PatientRegister = () => {
                             </label>
                         </div>
                     </div>
-                    <input className="btn btn-block bg-[#0360D9] text-white" type="submit" value="Register" />
+                    <input className="btn btn-block bg-[#0360D9] hover:bg-[#0360D9] text-white" type="submit" value="Register" />
                 </form>
             </div>
         </div>
