@@ -17,7 +17,7 @@ const Review = ({ id }) => {
 
 
     useEffect(() => {
-        fetch(`https://medicinehub.vercel.app/datarev/${id}`)
+        fetch(`http://localhost:5000/datarev/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

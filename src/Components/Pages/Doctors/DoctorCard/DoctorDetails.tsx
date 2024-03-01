@@ -20,7 +20,7 @@ const DoctorDetails = () => {
 
     useEffect(() => {
         if (id) {
-            fetch(`https://medicinehub.vercel.app/Doctor/${id}`)
+            fetch(`http://localhost:5000/Doctor/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     // console.log(data);
@@ -34,7 +34,7 @@ const DoctorDetails = () => {
     console.log(foundData);
 
     const handleCheckPatient = async () => {
-        const res = await fetch(`https://medicinehub.vercel.app/getPatient/${user?.email}`);
+        const res = await fetch(`http://localhost:5000/getPatient/${user?.email}`);
         const data = await res.json();
 
         if (!data.status) {
@@ -51,6 +51,16 @@ const DoctorDetails = () => {
         document.getElementById('my_modal_5').showModal();
     }; // Book korle arif bolsena patient and time r data eksathey add korte, kothay add korbo? I mean kon collection ey add korbo eta ask koro
     console.log(patientInfo);
+
+
+    function generateRandomId() {
+        const min = 10000;
+        const max = 60000;
+        const number = Math.floor(Math.random() * (max - min + 1)) + min
+        return number.toString();
+    }
+    
+    // Example usage:
     const handleAppointment = async () => {
         // Parse the selected appointment date
         const selectedDate = new Date(appointmentDate);
@@ -80,6 +90,7 @@ const DoctorDetails = () => {
             weekDay: selectedDay,
             doctor: foundData?._id,
             ID: crypto.randomUUID(),
+            MeetingId:generateRandomId(),
             appointmentDate: appointmentDate,
             description: description,
         };
@@ -100,7 +111,7 @@ const DoctorDetails = () => {
             console.log(error.message);
         }
         // try {
-        //     const res = await fetch("https://medicinehub.vercel.app/doctor-booking", {
+        //     const res = await fetch("http://localhost:5000/doctor-booking", {
         //         method: "POST",
         //         headers: {
         //             'Content-Type': 'application/json'

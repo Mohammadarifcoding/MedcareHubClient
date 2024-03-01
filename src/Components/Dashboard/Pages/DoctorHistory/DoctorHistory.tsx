@@ -10,11 +10,11 @@ const DoctorHistory = () => {
 
     useEffect(() => {
         if (user && user.email) {
-            fetch(`https://medicinehub.vercel.app/doctor/${user.email}`)
+            fetch(`http://localhost:5000/doctor/${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setDoctor(data);
-                    fetch(`https://medicinehub.vercel.app/doctor/${data._id}/patients`)
+                    fetch(`http://localhost:5000/doctor/${data._id}/patients`)
                         .then(res => res.json())
                         .then(data => setPatients(data.filter(doctor => doctor.status.toLowerCase() === "completed")))
                 })
