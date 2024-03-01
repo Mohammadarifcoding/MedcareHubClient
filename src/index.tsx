@@ -115,7 +115,7 @@ const router = createBrowserRouter([
       }, {
         path: '/detailsMed/:id',
         element: <MedicienDetails></MedicienDetails>,
-        loader: ({ params }) => fetch(`https://medicinehub.vercel.app/detailsMed/${params?.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/detailsMed/${params?.id}`)
       }, {
         path: '/addoctor',
         element: <CreateDoctor></CreateDoctor>

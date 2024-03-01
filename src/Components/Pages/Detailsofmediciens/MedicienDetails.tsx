@@ -36,7 +36,7 @@ const MedicienDetails = () => {
 
 
     useEffect(() => {
-        fetch(`https://medicinehub.vercel.app/detailsMed/${id}`)
+        fetch(`http://localhost:5000/detailsMed/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -89,7 +89,7 @@ const MedicienDetails = () => {
 
 
         axios
-            .post(`https://medicinehub.vercel.app/reviewdata`, RevData)
+            .post(`http://localhost:5000/reviewdata`, RevData)
             .then((res) => {
                 console.log(res.data);
                 Swal.fire('You posted a review successfully!');

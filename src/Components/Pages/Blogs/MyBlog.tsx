@@ -26,7 +26,7 @@ const MyBlog = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`https://medicinehub.vercel.app/Blog/${blog?.ID}`)
+                axios.delete(`http://localhost:5000/Blog/${blog?.ID}`)
                     .then(res => {
                         Swal.fire({
                             title: "Deleted!",

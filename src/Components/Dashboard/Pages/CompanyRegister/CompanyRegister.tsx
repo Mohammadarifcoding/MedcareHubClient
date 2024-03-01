@@ -27,7 +27,7 @@ const CompanyRegister = () => {
         console.log(newCompany)
 
         // send data to the server
-        fetch('https://medicinehub.vercel.app/Company', {
+        fetch('http://localhost:5000/Company', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

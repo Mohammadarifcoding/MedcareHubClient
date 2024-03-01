@@ -20,7 +20,7 @@ const DoctorDetails = () => {
 
     useEffect(() => {
         if (id) {
-            fetch(`https://medicinehub.vercel.app/Doctor/${id}`)
+            fetch(`http://localhost:5000/Doctor/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     // console.log(data);
@@ -34,7 +34,7 @@ const DoctorDetails = () => {
     console.log(foundData);
 
     const handleCheckPatient = async () => {
-        const res = await fetch(`https://medicinehub.vercel.app/getPatient/${user?.email}`);
+        const res = await fetch(`http://localhost:5000/getPatient/${user?.email}`);
         const data = await res.json();
 
         if (!data.status) {
@@ -100,7 +100,7 @@ const DoctorDetails = () => {
             console.log(error.message);
         }
         // try {
-        //     const res = await fetch("https://medicinehub.vercel.app/doctor-booking", {
+        //     const res = await fetch("http://localhost:5000/doctor-booking", {
         //         method: "POST",
         //         headers: {
         //             'Content-Type': 'application/json'

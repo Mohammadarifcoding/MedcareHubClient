@@ -1,1 +1,1 @@
-export const base_URL = 'https://medicinehub.vercel.app';
+export const base_URL = 'http://localhost:5000';
