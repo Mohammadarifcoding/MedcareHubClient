@@ -102,6 +102,9 @@ const DoctorVisitingDetails = () => {
                 <p className="text-sm font-medium  text-gray-500 dark:text-gray-400">
                     Time : {booking?.weekDay}, {booking?.time}
                 </p>
+                <p className="text-sm font-medium  text-gray-500 dark:text-gray-400">
+                    Meeting Code : {booking?.MeetingId}
+                </p>
                 <p className="text-sm font-medium  text-gray-500 dark:text-gray-400"> Patient Issue : {booking?.description}</p>
                 <p className="text-sm font-medium  text-gray-500 dark:text-gray-400">Patient Status : {patient?.status}</p>
             </div>
