@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaArrowLeft, FaArrowRight, FaBook, FaFilePrescription, FaHome, FaHospitalUser, FaUserCircle, FaUserFriends } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaBook, FaCamera, FaFilePrescription, FaHome, FaHospitalUser, FaUserCircle, FaUserFriends } from 'react-icons/fa';
 import { ImBlog } from 'react-icons/im';
 import { MdOutlineAddToPhotos, MdOutlineNotificationsActive } from 'react-icons/md';
 import { PiDotsNineBold } from 'react-icons/pi';
@@ -88,7 +88,7 @@ const DashboardLayout = () => {
                                 </>
                             }
                             {
-                                (checkUser === 'Admin' || checkUser === 'Super')  && <>
+                                (checkUser === 'Admin' || checkUser === 'Super') && <>
                                     <NavLink to="/dashboard/docque" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                         <FaHandHoldingMedical /> Doctor Que
                                     </NavLink>
@@ -111,8 +111,8 @@ const DashboardLayout = () => {
                                         <GiRemedy /> All Blog
                                     </NavLink>
                                     <NavLink to="/dashboard/orders" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
-                                <LuFileStack /> Orders
-                            </NavLink>
+                                        <LuFileStack /> Orders
+                                    </NavLink>
                                 </>
                             }
                             {
@@ -156,21 +156,17 @@ const DashboardLayout = () => {
                                 <FaUserCircle /> Profile
                             </NavLink>
 
-
+                            <NavLink
+                                to="/dashboard/meeting"
+                                className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200"
+                            >
+                                <FaCamera></FaCamera> Meeting
+                            </NavLink>
 
 
                             <NavLink to="/dashboard/myblog" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <ImBlog /> My blog
                             </NavLink>
-
-
-
-
-
-
-
-
-
 
                             <NavLink to="/dashboard/myorder" className=" flex gap-1 items-center hover:scale-105 overflow-hidden hover:bg-[#2c7feb] p-2 rounded-2xl transition-all duration-200">
                                 <MdProductionQuantityLimits /> My Order
