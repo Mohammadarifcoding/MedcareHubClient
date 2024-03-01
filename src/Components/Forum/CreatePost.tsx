@@ -39,7 +39,7 @@ const CreatePost = () => {
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         reset();
         const postItem = {
-            name: user.displayName,
+            name: user?.displayName,
             userMail: user.email,
             userImg: user.photoURL,
             date: formattedDate,
