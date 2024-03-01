@@ -60,6 +60,8 @@ import Testing from './Components/designTest/Testing.tsx';
 import AuthProvider from './Providers/AuthProvider/AuthProvider.tsx';
 import reportWebVitals from './reportWebVitals';
 import { base_URL } from './utills/BaseURL.ts';
+import Meeting from './Components/Dashboard/Pages/Meeting/Meeting.tsx';
+import MeetingRoom from './Components/Dashboard/Pages/Meeting/MeetingRoom/MeetingRoom.tsx';
 
 
 const queryClient = new QueryClient()
@@ -231,6 +233,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/forum',
         element: <ForumAllPost></ForumAllPost>
+      },
+      {
+        path: '/dashboard/meeting',
+        element: <Meeting></Meeting>
+      },
+      {
+        path: '/dashboard/meetingRoom/:code',
+        element:<MeetingRoom></MeetingRoom>
       }
 
     ]
