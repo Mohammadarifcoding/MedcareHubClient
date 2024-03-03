@@ -4,7 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 import UseAuth from '../../../../Hook/UseAuth.tsx';
 
 const AllPatientRow = ({ patient, handleChangePatientStatus, handleDeletePatient }) => {
-    const { patientName, Age, bloodGroup, patientIssue, Gender, status } = patient;
+    const { patientName, Age, bloodGroup, patientIssue, Gender, status, MeetingId } = patient;
     const { user } = UseAuth()
 
     return (

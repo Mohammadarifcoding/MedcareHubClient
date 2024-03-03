@@ -51,6 +51,16 @@ const DoctorDetails = () => {
         document.getElementById('my_modal_5').showModal();
     }; // Book korle arif bolsena patient and time r data eksathey add korte, kothay add korbo? I mean kon collection ey add korbo eta ask koro
     console.log(patientInfo);
+
+
+    function generateRandomId() {
+        const min = 10000;
+        const max = 60000;
+        const number = Math.floor(Math.random() * (max - min + 1)) + min
+        return number.toString();
+    }
+    
+    // Example usage:
     const handleAppointment = async () => {
         // Parse the selected appointment date
         const selectedDate = new Date(appointmentDate);
@@ -80,6 +90,7 @@ const DoctorDetails = () => {
             weekDay: selectedDay,
             doctor: foundData?._id,
             ID: crypto.randomUUID(),
+            MeetingId:generateRandomId(),
             appointmentDate: appointmentDate,
             description: description,
         };

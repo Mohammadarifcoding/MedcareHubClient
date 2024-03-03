@@ -5,11 +5,9 @@ import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import {
-  createBrowserRouter,
   RouterProvider,
+  createBrowserRouter,
 } from "react-router-dom";
-import ComDesh from './Components/companyDash/ComDesh.tsx';
-import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
 import DashboardLayout from './Components/Dashboard/Layout/DashboardLayout.tsx';
 import AllBlog from './Components/Dashboard/Pages/AllBlog/AllBlog.tsx';
 import AllMedicine from './Components/Dashboard/Pages/AllMedicine/AllMedicine.tsx';
@@ -29,7 +27,7 @@ import AddProduct from './Components/Dashboard/Pages/ProductPages/AddProduct.tsx
 import MyProduct from './Components/Dashboard/Pages/ProductPages/MyProduct.tsx';
 import UpdateProduct from './Components/Dashboard/Pages/ProductPages/UpdateProduct.tsx';
 import Profile from './Components/Dashboard/Pages/Profile/Profile.tsx';
-import Testing from './Components/designTest/Testing.tsx';
+import CompanyProduct from './Components/Dashboard/companyProduct/CompanyProduct.tsx';
 import Forum from './Components/Forum/Forum.tsx';
 import Layout from './Components/Layout/Layout.tsx';
 import AboutUs from './Components/Pages/About/AboutUs.tsx';
@@ -47,19 +45,23 @@ import DoctorQue from './Components/Pages/Doctors/DoctorQue.tsx';
 import Doctors from './Components/Pages/Doctors/Doctors.tsx';
 import Home from './Components/Pages/Home/Home.tsx';
 import Login from './Components/Pages/Login/Login.tsx';
+import MedWishList from './Components/Pages/Medicines/MedicinItem/MedWishList.tsx';
 import { MedicineProvider } from './Components/Pages/Medicines/MedicineContext/MedicineContext.tsx';
 import Medicines from './Components/Pages/Medicines/Medicines.tsx';
-import MedWishList from './Components/Pages/Medicines/MedicinItem/MedWishList.tsx';
 import Register from './Components/Pages/Register/Register.tsx';
+import AdminRoute from './Components/Route/AdminRoute.tsx';
 import CompanyRoute from './Components/Route/CompanyRoute.tsx';
 import DoctorRoute from './Components/Route/DoctorRoute.tsx';
 import PatientRoute from './Components/Route/PatientRoute.tsx';
 import PrivateRoute from './Components/Route/PrivateRoute.tsx';
 import UserRoute from './Components/Route/UserRoute.tsx';
+import ComDesh from './Components/companyDash/ComDesh.tsx';
+import Testing from './Components/designTest/Testing.tsx';
 import AuthProvider from './Providers/AuthProvider/AuthProvider.tsx';
 import reportWebVitals from './reportWebVitals';
 import { base_URL } from './utills/BaseURL.ts';
-import AdminRoute from './Components/Route/AdminRoute.tsx';
+import Meeting from './Components/Dashboard/Pages/Meeting/Meeting.tsx';
+import MeetingRoom from './Components/Dashboard/Pages/Meeting/MeetingRoom/MeetingRoom.tsx';
 
 
 const queryClient = new QueryClient()
@@ -231,6 +233,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/forum',
         element: <ForumAllPost></ForumAllPost>
+      },
+      {
+        path: '/dashboard/meeting',
+        element: <Meeting></Meeting>
+      },
+      {
+        path: '/dashboard/meetingRoom/:code',
+        element:<MeetingRoom></MeetingRoom>
       }
 
     ]
