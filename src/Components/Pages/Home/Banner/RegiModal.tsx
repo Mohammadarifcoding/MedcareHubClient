@@ -9,9 +9,12 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const RegiModal = () => {
     const [openModal, setOpenModal] = useState(false);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit} = useForm();
 
     const handleRegistered = async (data) => {
+        // Check if there are any validation errors
+    
+
         console.log(data);
 
         let imageUrl;
@@ -32,6 +35,9 @@ const RegiModal = () => {
             return;
         }
 
+        const specialtiesArray = data.specialties.split(',');
+        const servicesArray = data.services.split(',');
+
         const doctorData = {
             ID: crypto.randomUUID(),
             DocName: data.DocName,
@@ -44,12 +50,8 @@ const RegiModal = () => {
             Email: data.Email,
             Phone: data.Phone,
             Address: data.Address,
-            specialties: {
-                specialties: data.specialties
-            },
-            services: {
-                services: data.services
-            },
+            specialties: specialtiesArray,
+            service: servicesArray,
             degree: data.degree,
             serviceFee: data.serviceFee,
             image: imageUrl
@@ -58,7 +60,6 @@ const RegiModal = () => {
 
         axios
             .post(`${base_URL}/Doctor`, doctorData)
-
             .then((res) => {
                 console.log(res);
                 Swal.fire('You registered for doctor successfully!');
@@ -66,6 +67,7 @@ const RegiModal = () => {
             })
             .catch((error) => console.error('Error updating status:', error));
     };
+
     return (
         <div>
             <div className=" mx-auto flex items-center justify-center">
@@ -94,7 +96,7 @@ const RegiModal = () => {
                                                         <span className="label-text font-bold">Doctor Name</span>
                                                     </label>
 
-                                                    <input {...register('DocName')} type="text" placeholder="Enter Doctor Name" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                    <input {...register('DocName', { required: true })} type="text" placeholder="Enter Doctor Name" className=" rounded-lg px-3 h-10 w-full border" />
                                                 </div>
                                                 <div className="form-control md:w-full">
                                                     <label className="label">
@@ -106,7 +108,7 @@ const RegiModal = () => {
                                                         {...register('image', { required: true })}
                                                         className="input rounded-r-md  w-full font-medium bg-[#0360D9] p-2 text-white file-input file-input-bordered border-none file-input-info"
                                                         accept="image/*"
-                                                        required
+
                                                     />
                                                 </div>
                                             </div>
@@ -118,7 +120,7 @@ const RegiModal = () => {
                                                             <span className="label-text font-bold">Doctor Email</span>
                                                         </label>
 
-                                                        <input {...register('Email')} type="email" placeholder="Enter Doctor Email" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                        <input {...register('Email', { required: true })} type="email" placeholder="Enter Doctor Email" className=" rounded-lg px-3 h-10 w-full border" />
                                                     </div>
 
                                                     <div className="form-control md:w-1/2">
@@ -126,7 +128,7 @@ const RegiModal = () => {
                                                             <span className="label-text font-bold">Phone Number</span>
                                                         </label>
 
-                                                        <input {...register('Phone')} type="text" placeholder="Enter Phone Number" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                        <input {...register('Phone', { required: true })} type="number" placeholder="Enter Phone Number" className=" rounded-lg px-3 h-10 w-full border" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,7 +137,7 @@ const RegiModal = () => {
                                                     <span className="label-text font-bold">Education</span>
                                                 </label>
 
-                                                <input {...register('degree')} type="text" placeholder="Enter education" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                <input {...register('degree', { required: true })} type="text" placeholder="Enter education" className=" rounded-lg px-3 h-10 w-full border" />
                                             </div>
                                             <div className="form-control md:w-full">
                                                 <label className="label">
@@ -157,14 +159,14 @@ const RegiModal = () => {
                                                             <span className="label-text font-bold">Doctor Age</span>
                                                         </label>
 
-                                                        <input {...register('age')} type="text" placeholder="Enter Doctor Age" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                        <input {...register('age', { required: true })} type="number" placeholder="Enter Doctor Age" className=" rounded-lg px-3 h-10 w-full border" />
                                                     </div>
 
                                                     <div className="form-control md:w-1/2">
                                                         <label className="label">
                                                             <span className="label-text font-bold">Gender</span>
                                                         </label>
-                                                        <select {...register('gender')} className="select select-bordered w-full max-w-xs">
+                                                        <select {...register('gender', { required: true })} className="select select-bordered w-full max-w-xs">
                                                             <option disabled selected>
                                                                 Gender
                                                             </option>
@@ -179,7 +181,7 @@ const RegiModal = () => {
                                                     <span className="label-text font-bold">Doctor Type</span>
                                                 </label>
 
-                                                <input {...register('DocType')} type="text" placeholder="Enter Doctor Type" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                <input {...register('DocType', { required: true })} type="text" placeholder="Enter Doctor Type" className=" rounded-lg px-3 h-10 w-full border" />
                                             </div>
 
                                             <div className="space-y-2">
@@ -190,7 +192,7 @@ const RegiModal = () => {
                                                         </label>
 
                                                         <input
-                                                            {...register('startAvail')}
+                                                            {...register('startAvail', { required: true })}
                                                             type="number"
                                                             placeholder="Enter Start Available Time"
                                                             className=" rounded-lg px-3 h-10 w-full border"
@@ -203,7 +205,7 @@ const RegiModal = () => {
                                                         </label>
 
                                                         <input
-                                                            {...register('endAvail')}
+                                                            {...register('endAvail', { required: true })}
                                                             type="number"
                                                             placeholder="Enter End Available Time"
                                                             className=" rounded-lg px-3 h-10 w-full border"
@@ -217,7 +219,7 @@ const RegiModal = () => {
                                                     <span className="label-text font-bold">Doctor Fee</span>
                                                 </label>
 
-                                                <input {...register('serviceFee')} type="number" placeholder="Enter Doctor Fee" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                <input {...register('serviceFee', { required: true })} type="number" placeholder="Enter Doctor Fee" className=" rounded-lg px-3 h-10 w-full border" />
                                             </div>
                                             <div className="space-y-2">
                                                 <div className="md:flex gap-6 justify-center mb-8">
@@ -226,7 +228,7 @@ const RegiModal = () => {
                                                             <span className="label-text font-bold">Doctor Service</span>
                                                         </label>
 
-                                                        <input {...register('services')} type="text" placeholder="Enter Doctor Service" className=" rounded-lg px-3 h-10 w-full border" required />
+                                                        <input {...register('services', { required: true })} type="text" placeholder="Enter Doctor Service" className=" rounded-lg px-3 h-10 w-full border" />
                                                     </div>
                                                     <div className="form-control md:w-1/2">
                                                         <label className="label">
@@ -234,7 +236,7 @@ const RegiModal = () => {
                                                         </label>
 
                                                         <input
-                                                            {...register('specialties')}
+                                                            {...register('specialties', { required: true })}
                                                             type="text"
                                                             placeholder="Enter Doctor Specialists"
                                                             className=" rounded-lg px-3 h-10 w-full border"
@@ -246,7 +248,7 @@ const RegiModal = () => {
                                                     <label className="label">
                                                         <span className="label-text font-bold">Doctor's About</span>
                                                     </label>
-                                                    <textarea {...register('aboutMe')} className="w-full border h-[200px]" required></textarea>
+                                                    <textarea {...register('aboutMe', { required: true })} className="w-full border h-[200px]" required></textarea>
                                                 </div>
                                             </div>
 

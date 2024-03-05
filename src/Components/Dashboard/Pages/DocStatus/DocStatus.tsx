@@ -16,7 +16,7 @@ const DocStatus = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setDoctor(data);
-                    fetch(`http://localhost:5000/doctor/${data.ID}/patients`)
+                    fetch(`http://localhost:5000/doctor/${data._id}/patients`)
                         .then(res => res.json())
                         .then(data => setPatients(data.filter(doctor => doctor.status.toLowerCase() !== "completed")))
                 })
