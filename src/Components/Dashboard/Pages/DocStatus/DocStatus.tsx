@@ -12,11 +12,11 @@ const DocStatus = () => {
 
     useEffect(() => {
         if (user && user.email) {
-            fetch(`http://localhost:5000/doctor/${user.email}`)
+            fetch(`https://medcarehubserverwebsite.vercel.app/doctor/${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setDoctor(data);
-                    fetch(`http://localhost:5000/doctor/${data._id}/patients`)
+                    fetch(`https://medcarehubserverwebsite.vercel.app/doctor/${data._id}/patients`)
                         .then(res => res.json())
                         .then(data => setPatients(data.filter(doctor => doctor.status.toLowerCase() !== "completed")))
                 })
@@ -35,7 +35,7 @@ const DocStatus = () => {
             confirmButtonText: "Confirm"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/doctor/${doctor._id}/patient/${id}/status/completed`, {
+                fetch(`https://medcarehubserverwebsite.vercel.app/doctor/${doctor._id}/patient/${id}/status/completed`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
@@ -61,7 +61,7 @@ const DocStatus = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/doctor/${doctor._id}/patient/${id}/cancel`, {
+                fetch(`https://medcarehubserverwebsite.vercel.app/doctor/${doctor._id}/patient/${id}/cancel`, {
                     method: 'DELETE',
                     headers: {
                         'content-type': 'application/json'
