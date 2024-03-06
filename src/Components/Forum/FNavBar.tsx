@@ -23,7 +23,7 @@ const FNavBar = () => {
                 <button
                     className="font-extrabold px-5 text-2xl text-gradient-to-r from-cyan-500 to-blue-500"
                     style={{
-                        backgroundImage: 'linear-gradient(to right, #0360D9, #B437E3)',
+                        backgroundImage: 'linear-gradient(to right, #0360D9, #A5CCFF)',
                         WebkitBackgroundClip: 'text',
                         backgroundClip: 'text',
                         color: 'transparent'

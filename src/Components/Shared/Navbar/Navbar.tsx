@@ -30,7 +30,8 @@ const Navbar = () => {
                         <div className='flex justify-start items-center'>
                             <DrawerRoute></DrawerRoute>
                             <div className='justify-start flex'>
-                                <img className="lg:w-[150px] w-[100px] ml-0 " src='/1.png' alt="" />
+
+                                <Link to='/'> <img className="lg:w-[150px] w-[100px] ml-0 " src='/1.png' alt="" /></Link>
                             </div>
                         </div>
 
