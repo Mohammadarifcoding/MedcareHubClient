@@ -87,7 +87,7 @@ const CreatePost = () => {
                         <h1>Photo/Video</h1>
                     </div>
 
-                    <button className="flex items-center text-sm md:text-lg gap-1 px-3 py-2 bg-gradient-to-r from-[#0360D9] to-[#B437E3] text-white rounded-xl" onClick={openModal}>
+                    <button className="flex items-center text-sm md:text-lg gap-1 px-3 py-2 bg-gradient-to-r from-[#0360D9] to-[#A5CCFF] text-white rounded-xl" onClick={openModal}>
                         Create post
                     </button>
                 </div>
@@ -148,7 +148,7 @@ const CreatePost = () => {
                                         <input id="file" type="file" style={{ display: 'none' }} />
                                     </label>
 
-                                    <button className="flex items-center text-sm md:text-md gap-1 px-3 py-2 bg-gradient-to-r from-[#0360D9] to-[#B437E3] text-white rounded-xl" type="submit">
+                                    <button className="flex items-center text-sm md:text-md gap-1 px-3 py-2 bg-gradient-to-r from-[#0360D9] to-[#A5CCFF] text-white rounded-xl" type="submit">
                                         Submit Post
                                     </button>
                                 </div>

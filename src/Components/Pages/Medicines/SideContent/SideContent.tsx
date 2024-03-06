@@ -12,7 +12,7 @@ const SideContent = () => {
 
     useEffect(() => {
         setISLoading(true);
-        fetch('http://localhost:5000/Medicines')
+        fetch('https://medcarehubserverwebsite.vercel.app/Medicines')
             .then((res) => res.json())
             .then((data) => {
                 setMedicines(data);
@@ -25,7 +25,7 @@ const SideContent = () => {
 
     return (
         <div className=" space-y-10">
-            <div className="mx-2 space-y-3">
+            {/* <div className="mx-2 space-y-3">
                 <h1 className="text-xl">Promotion & Services</h1>
                 <hr />
                 <div className="flex md:flex-col lg:flex-row mt-4 gap-1 ">
@@ -86,7 +86,7 @@ const SideContent = () => {
                     </div>
                     <small className="text-[#2E2E2E]">Installment</small>
                 </div>
-            </div>
+            </div> */}
 
             <div className="mx-2 space-y-3">
                 <h1 className="text-xl">Category</h1>

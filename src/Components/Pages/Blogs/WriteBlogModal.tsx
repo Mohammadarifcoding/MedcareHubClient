@@ -42,7 +42,7 @@ const WriteBlogModal = () => {
         };
         console.log(blogData);
         axios
-            .post(`http://localhost:5000/Blog`, blogData)
+            .post(`https://medcarehubserverwebsite.vercel.app/Blog`, blogData)
             .then((res) => {
                 console.log(res);
                 Swal.fire('You post a blog successfully!');

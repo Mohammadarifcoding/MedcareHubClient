@@ -201,7 +201,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                     <>
                         <div className="flex items-center gap-2">
                             <button
-                                className="border text-sm ml-1 md:text-lg shadow-sm p-2 rounded-xl bg-gradient-to-r from-[#0360D9]  to-[#B437E3]"
+                                className="border text-sm ml-1 md:text-lg shadow-sm p-2 rounded-xl bg-gradient-to-r from-[#0360D9]  to-[#A5CCFF]"
                                 style={{
                                     WebkitBackgroundClip: 'text',
                                     backgroundClip: 'text',
@@ -229,7 +229,7 @@ const SinglePost = ({ data, refetch }: SinglePostProps) => {
                 ) : (
                     <>
                         <button
-                            className="border text-sm ml-1 md:text-lg shadow-sm p-2 rounded-xl bg-gradient-to-r from-[#0360D9]  to-[#B437E3]"
+                            className="border text-sm ml-1 md:text-lg shadow-sm p-2 rounded-xl bg-gradient-to-r from-[#0360D9]  to-[#A5CCFF]"
                             style={{
                                 WebkitBackgroundClip: 'text',
                                 backgroundClip: 'text',
