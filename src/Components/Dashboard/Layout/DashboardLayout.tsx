@@ -366,12 +366,7 @@ const DashboardLayout = () => {
                                     </p>
                                     <NavLink to="/dashboard/alluser">All User</NavLink>
                                 </div>
-                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
-                                    <p>
-                                        <FaUserCircle />
-                                    </p>
-                                    <NavLink to="/dashboard/comproduct">Company Product</NavLink>
-                                </div>
+
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
                                         <GiMedicines />
@@ -389,7 +384,7 @@ const DashboardLayout = () => {
                                     <p>
                                         <MdOutlineSick />
                                     </p>
-                                    <NavLink to="/dashboard/allpateint">All Patient</NavLink>
+                                    <NavLink to="/dashboard/allpateint">All Patients</NavLink>
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
@@ -436,6 +431,21 @@ const DashboardLayout = () => {
                                     </p>
                                     <NavLink to="/dashboard/myorder">My Order</NavLink>
                                 </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                        <LuFileStack />
+                                    </p>
+                                    <NavLink to="/dashboard/orders">Orders</NavLink>
+                                </div>
+                                <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
+                                    <p>
+                                    <MdOutlineForum /> 
+                                    </p>
+                                    <NavLink to="/dashboard/forum">Forum</NavLink>
+                                </div>
+
+
+
                             </div>
                         </Drawer>
                         <h1 className="text-xl font-semibold text-[#0360D9]">Dashboard</h1>
