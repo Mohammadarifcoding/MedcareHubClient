@@ -4,7 +4,7 @@ import { ImBlog } from 'react-icons/im';
 import { MdOutlineAddToPhotos, MdOutlineNotificationsActive } from 'react-icons/md';
 import { PiDotsNineBold } from 'react-icons/pi';
 import Drawer from 'react-modern-drawer';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import UseAuth from '../../../Hook/UseAuth.tsx';
 import { MdOutlineSick } from 'react-icons/md';
 import { HiOutlineBuildingOffice2 } from 'react-icons/hi2';
@@ -37,7 +37,8 @@ const DashboardLayout = () => {
             {/* Sidebar */}
             <div className={` ${openLayout ? 'xl:w-[20%]' : 'xl:w-[6%]'}  fixed h-full overflow-y-auto bg-[#0360D9] w-[0%] text-[#FFF] transition-all duration-300 `}>
                 <div className={`${openLayout ? 'flex' : 'hidden'} gap-5 border-b border-white py-4 justify-around xl:text-xl 2xl:text-2xl`}>
-                    <h2 className="font-semibold">MedCareHub</h2>
+
+                    <Link to='/'> <h2 className="font-semibold">MedCareHub</h2></Link>
                     <div className="p-1 border border-white rounded-full group-hover:p-3 transition-all duration-200 group cursor-pointer">
                         <MdOutlineNotificationsActive className="group-hover:scale-110  transition-all duration-200"></MdOutlineNotificationsActive>
                     </div>
@@ -439,7 +440,7 @@ const DashboardLayout = () => {
                                 </div>
                                 <div className="flex items-center gap-6 text-lg font-semibold my-2 text-[#0360D9]">
                                     <p>
-                                    <MdOutlineForum /> 
+                                        <MdOutlineForum />
                                     </p>
                                     <NavLink to="/dashboard/forum">Forum</NavLink>
                                 </div>

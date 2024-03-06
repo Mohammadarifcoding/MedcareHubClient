@@ -87,19 +87,19 @@ const PostBox = () => {
                             <ul className="flex gap-2 flex-col w-full px-5">
                                 <button
                                     onClick={() => handleButtonClick('category', '')}
-                                    className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] font-medium hover:bg-[#EADFF4]"
+                                    className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] font-medium hover:bg-[#dfe6f4]"
                                 >
                                     <VscFiles className="text-[#1F2937] text-lg" /> All Post
                                 </button>
-                                <button onClick={() => handleButtonClick('userPost', userEmail)} className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] hover:bg-[#EADFF4]">
+                                <button onClick={() => handleButtonClick('userPost', userEmail)} className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] hover:bg-[#dfe6f4]">
                                     <CiUser className="text-[#1F2937] text-xl" /> My Post
                                 </button>
-                                <button onClick={() => handleButtonClick('category', 'dr-post')} className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] hover:bg-[#EADFF4]">
+                                <button onClick={() => handleButtonClick('category', 'dr-post')} className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] hover:bg-[#dfe6f4]">
                                     <FaUserDoctor className="text-md text-[#1F2937]" /> Dr. Post
                                 </button>
                                 <button
                                     onClick={() => handleButtonClick('category', 'patient-post')}
-                                    className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] hover:bg-[#EADFF4]"
+                                    className="py-2 rounded-2xl bg-white flex items-center px-4 gap-2 text-[#636979] hover:bg-[#dfe6f4]"
                                 >
                                     <MdOutlineSick className="text-lg text-[#1F2937]" /> Patient Post
                                 </button>
