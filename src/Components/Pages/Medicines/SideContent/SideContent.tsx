@@ -12,7 +12,7 @@ const SideContent = () => {
 
     useEffect(() => {
         setISLoading(true);
-        fetch('http://localhost:5000/Medicines')
+        fetch('https://medcarehubserverwebsite.vercel.app/Medicines')
             .then((res) => res.json())
             .then((data) => {
                 setMedicines(data);

@@ -15,6 +15,7 @@ const Login: FC = () => {
     const [signError, setSignError] = useState();
     const [signSuccess, setSignSuccess] = useState();
     const registerNavi = useNavigate()
+    // const from = location.state?.from?.pathname || "/";
 
     const handleLogin = e => {
         e.preventDefault();
@@ -42,7 +43,7 @@ const Login: FC = () => {
 
                 setSignSuccess("User Created successfully!")
                 e.target.reset()
-                
+
                 Swal.fire({
                     icon: "success",
                     title: "Sign In Successful",
@@ -85,7 +86,7 @@ const Login: FC = () => {
                                 title: "Login Successful",
                                 text: "You have successfully logged in!"
                             });
-                            registerNavi('/');
+                            registerNavi("/");
                         }
                     });
             })
@@ -133,6 +134,8 @@ const Login: FC = () => {
                             <button className="btn bg-[#0360D9] text-white w-full">Log in</button>
 
                             <div className="mt-4 gap-10">
+
+                                \
                                 <button onClick={handleGoogle} type="button" className="btn bg-[#0360D9] text-white w-full">
                                     <svg className="w-4 h-auto" width="46" height="47" viewBox="0 0 46 47" fill="none">
                                         <path d="M46 24.0287C46 22.09 45.8533 20.68 45.5013 19.2112H23.4694V27.9356H36.4069C36.1429 30.1094 34.7347 33.37 31.5957 35.5731L31.5663 35.8669L38.5191 41.2719L38.9885 41.3306C43.4477 37.2181 46 31.1669 46 24.0287Z" fill="#4285F4" />
@@ -142,6 +145,7 @@ const Login: FC = () => {
                                     </svg>
                                     Login with Google
                                 </button>
+
                             </div>
                         </form>
 

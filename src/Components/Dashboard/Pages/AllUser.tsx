@@ -44,7 +44,7 @@ const AllUser = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/user/${user._id}`).then((res) => {
+                axios.delete(`https://medcarehubserverwebsite.vercel.app/user/${user._id}`).then((res) => {
                     Swal.fire({
                         title: 'Deleted!',
                         text: 'User has been deleted.',
